@@ -1,0 +1,249 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ─── Auth (NextAuth v5 required models) ───────────────────────────────────
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ─── Core User ────────────────────────────────────────────────────────────
+
+model User {
+  id             String    @id @default(cuid())
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  phone          String?
+  passwordHash   String?
+
+  // Zei-specific fields
+  level          String    @default("explorador") // explorador|guardiao|capitao|embaixador
+  points         Int       @default(0)
+  walletBalance  Float     @default(0)
+  referralCode   String    @unique @default(cuid())
+  neighborhood   String?
+  city           String?
+  state          String?
+
+  // Network
+  referredById   String?
+  referredBy     User?     @relation("Referrals", fields: [referredById], references: [id])
+  referrals      User[]    @relation("Referrals")
+
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  // Relations
+  accounts       Account[]
+  sessions       Session[]
+  registrations  PriceRegistration[]
+  transactions   Transaction[]
+  missionParticipations MissionParticipant[]
+  confirmedRegistrations RegistrationConfirmation[]
+  offers         LocalOffer[]
+}
+
+// ─── Price Registrations ──────────────────────────────────────────────────
+
+model PriceRegistration {
+  id              String   @id @default(cuid())
+  userId          String
+  productName     String
+  productCategory String
+  productBrand    String?
+  price           Float
+  unit            String   @default("un")
+  storeName       String
+  storeAddress    String?
+  neighborhood    String
+  city            String
+  state           String
+  lat             Float?
+  lng             Float?
+  photoUrl        String?
+  status          String   @default("pending") // pending|confirmed|flagged
+  missionId       String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user            User     @relation(fields: [userId], references: [id])
+  mission         Mission? @relation(fields: [missionId], references: [id])
+  confirmations   RegistrationConfirmation[]
+}
+
+model RegistrationConfirmation {
+  id             String   @id @default(cuid())
+  registrationId String
+  userId         String
+  type           String   @default("confirm") // confirm|flag
+  createdAt      DateTime @default(now())
+
+  registration   PriceRegistration @relation(fields: [registrationId], references: [id])
+  user           User              @relation(fields: [userId], references: [id])
+
+  @@unique([registrationId, userId])
+}
+
+// ─── Brand Missions ───────────────────────────────────────────────────────
+
+model Brand {
+  id          String    @id @default(cuid())
+  name        String
+  logo        String?
+  email       String    @unique
+  passwordHash String?
+  apiKey      String    @unique @default(cuid())
+  planTier    String    @default("starter") // starter|pro|enterprise
+  createdAt   DateTime  @default(now())
+
+  missions    Mission[]
+}
+
+model Mission {
+  id                 String   @id @default(cuid())
+  brandId            String
+  title              String
+  description        String
+  type               String   // price_check|shelf_audit|competitor_compare|treasure_hunt
+  productName        String
+  productBrand       String?
+  targetCity         String
+  targetNeighborhoods String? // JSON array
+  rewardPerUser      Float
+  brandCost          Float
+  totalSlots         Int      @default(500)
+  status             String   @default("active") // active|completed|expired
+  expiresAt          DateTime
+  bonusForReferrals  Float?
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  brand        Brand    @relation(fields: [brandId], references: [id])
+  participants MissionParticipant[]
+  registrations PriceRegistration[]
+}
+
+model MissionParticipant {
+  id        String   @id @default(cuid())
+  missionId String
+  userId    String
+  completed Boolean  @default(false)
+  rewardPaid Float   @default(0)
+  createdAt DateTime @default(now())
+
+  mission   Mission  @relation(fields: [missionId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([missionId, userId])
+}
+
+// ─── Wallet & Transactions ────────────────────────────────────────────────
+
+model Transaction {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String   // earn_registration|earn_network|earn_mission|earn_bonus|withdraw
+  amount      Float
+  description String
+  reference   String?  // registrationId or missionId
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model WithdrawRequest {
+  id        String   @id @default(cuid())
+  userId    String
+  amount    Float
+  pixKey    String
+  status    String   @default("pending") // pending|completed|failed
+  createdAt DateTime @default(now())
+}
+
+// ─── Price Alerts ─────────────────────────────────────────────────────────
+
+model PriceAlert {
+  id             String   @id @default(cuid())
+  registrationId String
+  productName    String
+  price          Float
+  avgPrice       Float
+  percentAbove   Float
+  storeName      String
+  neighborhood   String
+  city           String
+  reportedByName String
+  shares         Int      @default(0)
+  confirmedCount Int      @default(0)
+  createdAt      DateTime @default(now())
+}
+
+// ─── Local Offers (Marketplace) ───────────────────────────────────────────
+
+model LocalOffer {
+  id              String   @id @default(cuid())
+  ownerId         String
+  storeName       String
+  storeCategory   String
+  storeAddress    String
+  neighborhood    String
+  city            String
+  productName     String
+  originalPrice   Float
+  offerPrice      Float
+  discountPercent Float
+  description     String
+  validUntil      DateTime
+  views           Int      @default(0)
+  checkIns        Int      @default(0)
+  costPerClick    Float    @default(0.30)
+  costPerCheckIn  Float    @default(1.20)
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now())
+
+  owner           User     @relation(fields: [ownerId], references: [id])
+}
