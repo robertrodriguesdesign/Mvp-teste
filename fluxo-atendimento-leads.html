@@ -1,0 +1,662 @@
+<title>Fluxo de Atendimento — Leads Playbook | Fihan</title>
+<style>
+  :root {
+    --bg: #faf9fc;
+    --surface: #ffffff;
+    --surface-2: #f4f2f9;
+    --text: #191524;
+    --muted: #6c6579;
+    --faint: #928ba0;
+    --border: #e8e4f0;
+    --border-strong: #d9d3e8;
+    --brand: #8a38f5;
+    --brand-2: #1656f6;
+    --buy: #0f9a5c;
+    --buy-soft: #e7f6ee;
+    --buy-line: #b9e6cd;
+    --nobuy: #d97a0a;
+    --nobuy-soft: #fbf0df;
+    --nobuy-line: #f0d6a8;
+    --wa: #1fa855;
+    --wa-soft: #eafaf0;
+    --shadow: 0 1px 2px rgba(25,21,36,.04), 0 8px 24px -12px rgba(25,21,36,.12);
+    --radius: 14px;
+    --maxw: 1080px;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "SF Mono", ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #120f19;
+      --surface: #1b1726;
+      --surface-2: #241f32;
+      --text: #ece9f3;
+      --muted: #a49db5;
+      --faint: #7d7591;
+      --border: #2d2740;
+      --border-strong: #3a3350;
+      --brand: #a774f8;
+      --brand-2: #5b86ff;
+      --buy: #34c07f;
+      --buy-soft: #12281d;
+      --buy-line: #235238;
+      --nobuy: #eaa23c;
+      --nobuy-soft: #2c2110;
+      --nobuy-line: #574018;
+      --wa: #35c66d;
+      --wa-soft: #14271a;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9fc; --surface: #ffffff; --surface-2: #f4f2f9; --text: #191524;
+    --muted: #6c6579; --faint: #928ba0; --border: #e8e4f0; --border-strong: #d9d3e8;
+    --brand: #8a38f5; --brand-2: #1656f6; --buy: #0f9a5c; --buy-soft: #e7f6ee;
+    --buy-line: #b9e6cd; --nobuy: #d97a0a; --nobuy-soft: #fbf0df; --nobuy-line: #f0d6a8;
+    --wa: #1fa855; --wa-soft: #eafaf0;
+    --shadow: 0 1px 2px rgba(25,21,36,.04), 0 8px 24px -12px rgba(25,21,36,.12);
+  }
+  :root[data-theme="dark"] {
+    --bg: #120f19; --surface: #1b1726; --surface-2: #241f32; --text: #ece9f3;
+    --muted: #a49db5; --faint: #7d7591; --border: #2d2740; --border-strong: #3a3350;
+    --brand: #a774f8; --brand-2: #5b86ff; --buy: #34c07f; --buy-soft: #12281d;
+    --buy-line: #235238; --nobuy: #eaa23c; --nobuy-soft: #2c2110; --nobuy-line: #574018;
+    --wa: #35c66d; --wa-soft: #14271a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 30px -14px rgba(0,0,0,.6);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- top nav ---------- */
+  .topbar {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar .wrap {
+    display: flex; align-items: center; gap: 18px;
+    min-height: 58px; flex-wrap: wrap;
+  }
+  .brandmark { display: flex; align-items: center; gap: 9px; font-weight: 700; letter-spacing: -.01em; }
+  .brand-dot {
+    width: 12px; height: 12px; border-radius: 4px;
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  }
+  .navpills { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; }
+  .navpills a {
+    font-size: 13px; color: var(--muted); text-decoration: none;
+    padding: 6px 11px; border-radius: 999px; transition: background .15s, color .15s;
+    white-space: nowrap;
+  }
+  .navpills a:hover { background: var(--surface-2); color: var(--text); }
+  .navpills a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+  /* ---------- hero ---------- */
+  header.hero { padding: 56px 0 40px; }
+  .eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--brand); margin: 0 0 14px;
+  }
+  h1 {
+    font-size: clamp(30px, 5vw, 46px); line-height: 1.08; letter-spacing: -.025em;
+    margin: 0 0 16px; text-wrap: balance; font-weight: 750;
+  }
+  .lede { font-size: 18px; color: var(--muted); max-width: 62ch; margin: 0; }
+  .meta-row {
+    display: flex; gap: 22px; flex-wrap: wrap; margin-top: 26px;
+    font-size: 13px; color: var(--faint);
+  }
+  .meta-row b { color: var(--text); font-weight: 600; }
+
+  /* ---------- principles ---------- */
+  section { padding: 26px 0; }
+  .section-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; flex-wrap: wrap; }
+  .section-head h2 { font-size: 24px; letter-spacing: -.02em; margin: 0; font-weight: 700; }
+  .section-head .num {
+    font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 13px;
+    color: var(--faint); border: 1px solid var(--border); border-radius: 7px; padding: 3px 8px;
+  }
+  .section-head .goal { font-size: 14px; color: var(--muted); margin-left: auto; }
+
+  .cards-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 14px; }
+  .pcard {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px; box-shadow: var(--shadow);
+  }
+  .pcard h3 { margin: 0 0 6px; font-size: 15px; letter-spacing: -.01em; }
+  .pcard p { margin: 0; font-size: 13.5px; color: var(--muted); }
+  .pcard .ico { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); display:block; margin-bottom:9px; }
+
+  /* ---------- flow section framing ---------- */
+  .flow { border-radius: 20px; padding: 4px 0; }
+  .flow-banner {
+    display: flex; align-items: center; gap: 16px; padding: 20px 22px;
+    border-radius: 16px; margin-bottom: 8px; border: 1px solid var(--border);
+  }
+  .flow-a .flow-banner { background: var(--buy-soft); border-color: var(--buy-line); }
+  .flow-b .flow-banner { background: var(--nobuy-soft); border-color: var(--nobuy-line); }
+  .flow-tag {
+    font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    padding: 5px 10px; border-radius: 999px; color: #fff; white-space: nowrap;
+  }
+  .flow-a .flow-tag { background: var(--buy); }
+  .flow-b .flow-tag { background: var(--nobuy); }
+  .flow-banner .btxt h2 { margin: 0; font-size: 21px; letter-spacing: -.02em; }
+  .flow-banner .btxt p { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+
+  /* ---------- timeline ---------- */
+  .timeline { position: relative; margin: 26px 0 8px; padding-left: 30px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px;
+    background: var(--border-strong);
+  }
+  .step { position: relative; padding-bottom: 30px; }
+  .step:last-child { padding-bottom: 4px; }
+  .step::before {
+    content: ""; position: absolute; left: -30px; top: 4px; width: 20px; height: 20px;
+    border-radius: 50%; background: var(--surface); border: 2px solid var(--border-strong);
+  }
+  .flow-a .step::before { border-color: var(--buy); }
+  .flow-b .step::before { border-color: var(--nobuy); }
+  .step-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .day {
+    font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 700; font-size: 13px;
+    padding: 3px 9px; border-radius: 7px; color: #fff;
+  }
+  .flow-a .day { background: var(--buy); }
+  .flow-b .day { background: var(--nobuy); }
+  .step-title { font-weight: 650; font-size: 15.5px; letter-spacing: -.01em; }
+  .step-sub { font-size: 13px; color: var(--faint); }
+
+  /* ---------- message bubbles ---------- */
+  .msgs { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .msgs.two { grid-template-columns: 1fr 1fr; } }
+  .bubble {
+    position: relative; border-radius: 12px; padding: 14px 15px 13px; font-size: 14px;
+    border: 1px solid var(--border); background: var(--surface);
+  }
+  .bubble.wa { background: var(--wa-soft); border-color: color-mix(in srgb, var(--wa) 30%, transparent); }
+  .bubble .chan {
+    display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700;
+    letter-spacing: .07em; text-transform: uppercase; margin-bottom: 9px;
+  }
+  .bubble.wa .chan { color: var(--wa); }
+  .bubble.em .chan { color: var(--brand-2); }
+  .chan .glyph { width: 15px; height: 15px; flex: none; }
+  .subject { font-size: 13px; font-weight: 600; margin: 0 0 8px; color: var(--text); }
+  .subject span { color: var(--faint); font-weight: 500; }
+  .bubble p { margin: 0 0 9px; white-space: pre-line; color: var(--text); }
+  .bubble p:last-of-type { margin-bottom: 0; }
+  .bubble .var { color: var(--brand); font-weight: 600; }
+  .copy {
+    position: absolute; top: 10px; right: 10px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--muted); font-size: 11px; font-weight: 600;
+    padding: 4px 9px; border-radius: 7px; cursor: pointer; transition: all .14s;
+    font-family: var(--sans);
+  }
+  .copy:hover { color: var(--text); border-color: var(--border-strong); }
+  .copy:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .copy.done { color: var(--buy); border-color: var(--buy-line); }
+
+  /* ---------- question list ---------- */
+  .qbox {
+    background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--brand);
+    border-radius: 12px; padding: 16px 18px; margin-top: 10px;
+  }
+  .flow-a .qbox { border-left-color: var(--buy); }
+  .flow-b .qbox { border-left-color: var(--nobuy); }
+  .qbox .qh { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+  .qbox ol, .qbox ul { margin: 0; padding-left: 20px; }
+  .qbox li { margin: 6px 0; font-size: 14px; }
+  .qbox li .why { color: var(--faint); font-size: 12.5px; display: block; }
+
+  /* ---------- table ---------- */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 14px; }
+  thead th {
+    text-align: left; font-size: 11px; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--muted); font-weight: 700; padding: 12px 16px; background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+  tbody td { padding: 13px 16px; border-bottom: 1px solid var(--border); vertical-align: top; background: var(--surface); }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.obj { font-weight: 600; white-space: nowrap; }
+  td .resp { color: var(--muted); }
+
+  /* ---------- checklist ---------- */
+  .check { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 10px; }
+  .check label {
+    display: flex; gap: 11px; align-items: flex-start; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 11px; padding: 13px 15px; font-size: 14px;
+    cursor: pointer;
+  }
+  .check input { margin-top: 3px; accent-color: var(--brand); width: 15px; height: 15px; flex: none; }
+  .check .ct small { display: block; color: var(--faint); font-size: 12.5px; }
+
+  .callout {
+    display: flex; gap: 12px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px; font-size: 13.5px; color: var(--muted); margin-top: 16px;
+  }
+  .callout b { color: var(--text); }
+
+  footer { padding: 40px 0 60px; color: var(--faint); font-size: 13px; border-top: 1px solid var(--border); margin-top: 30px; }
+
+  hr.div { border: 0; border-top: 1px solid var(--border); margin: 6px 0; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brandmark"><span class="brand-dot"></span> Fihan · Atendimento</div>
+    <nav class="navpills">
+      <a href="#principios">Princípios</a>
+      <a href="#comprou">Comprou</a>
+      <a href="#naocomprou">Não comprou</a>
+      <a href="#objecoes">Objeções</a>
+      <a href="#crm">Registro CRM</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Playbook R$24 · Fluxo comercial</p>
+    <h1>Fluxo de atendimento para leads do Playbook</h1>
+    <p class="lede">Dois caminhos a partir do momento em que o lead entra no CRM: quem <b>já comprou</b> — para transformar em projeto — e quem <b>ainda não finalizou</b> — para entender a motivação, quebrar a objeção e recuperar a venda.</p>
+    <div class="meta-row">
+      <span><b>Canais:</b> WhatsApp + E-mail</span>
+      <span><b>Origem dos dados:</b> CRM /admin</span>
+      <span><b>Responsável:</b> Robert · Fihan</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- PRINCÍPIOS -->
+  <section id="principios">
+    <div class="section-head">
+      <span class="num">00</span>
+      <h2>Princípios do atendimento</h2>
+      <span class="goal">Valem para os dois fluxos</span>
+    </div>
+    <div class="cards-3">
+      <div class="pcard">
+        <span class="ico">Velocidade</span>
+        <h3>Responda quente</h3>
+        <p>Comprador: primeiro contato em até 1h. Não-comprador: recuperação em até 15 min do abandono. Quanto mais rápido, maior a conversão.</p>
+      </div>
+      <div class="pcard">
+        <span class="ico">Tom</span>
+        <h3>Pessoa, não robô</h3>
+        <p>Fale como o Robert falaria: direto, próximo, uma pergunta por mensagem. Nada de textão nem cara de automação.</p>
+      </div>
+      <div class="pcard">
+        <span class="ico">Foco</span>
+        <h3>Uma pergunta por vez</h3>
+        <p>Cada contato tem um objetivo único: entregar, qualificar, descobrir ou fechar. Não misture.</p>
+      </div>
+      <div class="pcard">
+        <span class="ico">Registro</span>
+        <h3>Tudo no CRM</h3>
+        <p>Depois de cada interação, atualize status e anotações em <b>/admin</b>. Lead sem registro é lead perdido.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FLUXO A — COMPROU ============ -->
+  <section id="comprou" class="flow flow-a">
+    <div class="flow-banner">
+      <span class="flow-tag">Comprou</span>
+      <div class="btxt">
+        <h2>Fluxo A · De comprador do Playbook a projeto fechado</h2>
+        <p>Objetivo: entregar bem, gerar confiança e conduzir para uma call de diagnóstico que vira proposta.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <!-- D0 -->
+      <div class="step">
+        <div class="step-head">
+          <span class="day">D0</span>
+          <span class="step-title">Entrega + boas-vindas (imediato)</span>
+          <span class="step-sub">confirmar acesso e humanizar</span>
+        </div>
+        <div class="msgs two">
+          <div class="bubble wa">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2 .2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg> WhatsApp</div>
+            <p>Oi <span class="var">[Nome]</span>! Aqui é o Robert, da Fihan 👋</p>
+            <p>Acabei de ver que você garantiu o Playbook — parabéns pela decisão, ele foi feito justamente pra te dar clareza rápida.</p>
+            <p>Mandei o acesso no seu e-mail (<span class="var">[email]</span>). Consegue confirmar que chegou certinho?</p>
+          </div>
+          <div class="bubble em">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> E-mail</div>
+            <p class="subject">Assunto: <span>Seu Playbook chegou 🎉 (comece por aqui)</span></p>
+            <p>Oi <span class="var">[Nome]</span>, seja bem-vindo(a)!</p>
+            <p>Seu acesso ao Playbook está no botão abaixo. Minha sugestão: leia primeiro a seção de diagnóstico — é ela que vai te mostrar onde focar.</p>
+            <p>Qualquer dúvida, é só responder este e-mail. Eu leio pessoalmente.
+— Robert, Fihan</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+1 -->
+      <div class="step">
+        <div class="step-head">
+          <span class="day">D+1</span>
+          <span class="step-title">Check-in + primeira qualificação</span>
+          <span class="step-sub">descobrir o momento do lead</span>
+        </div>
+        <div class="msgs">
+          <div class="bubble wa">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2 .2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg> WhatsApp</div>
+            <p>E aí <span class="var">[Nome]</span>, conseguiu dar uma olhada no Playbook?</p>
+            <p>Me conta uma coisa rápida: o que te fez buscar esse material agora? Assim eu consigo te apontar por onde começar de verdade.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+3 -->
+      <div class="step">
+        <div class="step-head">
+          <span class="day">D+3</span>
+          <span class="step-title">Convite para diagnóstico</span>
+          <span class="step-sub">a ponte do conteúdo para o serviço</span>
+        </div>
+        <div class="msgs two">
+          <div class="bubble wa">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2 .2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg> WhatsApp</div>
+            <p><span class="var">[Nome]</span>, uma coisa que percebo com quem lê o Playbook: dá pra andar muito mais rápido com um plano sob medida do que aplicando tudo sozinho.</p>
+            <p>Topa uma call de 20 min, sem compromisso, pra eu olhar o seu caso e te mostrar o caminho mais curto? Prefere <span class="var">[dia A]</span> ou <span class="var">[dia B]</span>?</p>
+          </div>
+          <div class="bubble em">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> E-mail</div>
+            <p class="subject">Assunto: <span>Do Playbook para a prática — 20 min?</span></p>
+            <p>Oi <span class="var">[Nome]</span>, o Playbook mostra o <i>o quê</i>. Numa call rápida eu te ajudo com o <i>como</i> aplicado ao seu negócio.</p>
+            <p>É um diagnóstico gratuito: eu olho sua presença digital hoje e aponto as 3 prioridades. Sem enrolação e sem obrigação de fechar nada.</p>
+            <p>Escolhe um horário aqui: <span class="var">[link agenda]</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+5 -->
+      <div class="step">
+        <div class="step-head">
+          <span class="day">D+5</span>
+          <span class="step-title">Diagnóstico + proposta</span>
+          <span class="step-sub">na call: descobrir a necessidade e propor o projeto</span>
+        </div>
+        <div class="qbox">
+          <p class="qh">Perguntas para qualificar o projeto (na call)</p>
+          <ol>
+            <li>Como está sua presença digital / site hoje?<span class="why">Situação — entender o ponto de partida.</span></li>
+            <li>O que mais te incomoda nisso atualmente?<span class="why">Problema — trazer a dor à tona.</span></li>
+            <li>Se isso continuar assim pelos próximos meses, o que você deixa de ganhar?<span class="why">Implicação — dimensionar o custo de não agir.</span></li>
+            <li>Qual resultado você quer nos próximos 3 meses?<span class="why">Objetivo — definir a meta e o critério de sucesso.</span></li>
+            <li>Já tentou resolver antes? O que travou?<span class="why">Histórico — antecipar objeções e expectativas.</span></li>
+            <li>Se a gente resolvesse <span class="var">[dor principal]</span>, o que mudaria pra você?<span class="why">Valor — o lead verbaliza o porquê de fechar.</span></li>
+          </ol>
+        </div>
+        <div class="callout">💡 <span><b>Regra de ouro:</b> só apresente preço depois de o lead confirmar a dor e o valor de resolvê-la. Feche a call com um próximo passo agendado — nunca com “te mando a proposta e a gente vê”.</span></div>
+      </div>
+
+      <!-- D+7 -->
+      <div class="step">
+        <div class="step-head">
+          <span class="day">D+7</span>
+          <span class="step-title">Follow-up da proposta</span>
+          <span class="step-sub">manter o calor e remover fricção</span>
+        </div>
+        <div class="msgs">
+          <div class="bubble wa">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2 .2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg> WhatsApp</div>
+            <p><span class="var">[Nome]</span>, tudo certo por aí? Conseguiu ver a proposta que te mandei?</p>
+            <p>Se surgiu qualquer dúvida — prazo, escopo ou forma de pagamento — me fala que eu ajusto. Quero que faça sentido de verdade pro seu momento.</p>
+          </div>
+        </div>
+        <div class="callout">↻ <span><b>Sem resposta?</b> D+10 mande uma prova social (um caso parecido com resultado). D+14 faça a última tentativa com uma condição/prazo real. Depois disso, marque como <b>“frio”</b> no CRM e reative em 30 dias.</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- ============ FLUXO B — NÃO COMPROU ============ -->
+  <section id="naocomprou" class="flow flow-b">
+    <div class="flow-banner">
+      <span class="flow-tag">Não comprou</span>
+      <div class="btxt">
+        <h2>Fluxo B · Lead capturado que não finalizou a compra</h2>
+        <p>Objetivo: descobrir <b>o que motivou o interesse</b> e <b>o que travou a compra</b> — e usar isso para recuperar a venda.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <!-- 15 min -->
+      <div class="step">
+        <div class="step-head">
+          <span class="day">15min</span>
+          <span class="step-title">Recuperação imediata</span>
+          <span class="step-sub">pegar o lead ainda quente</span>
+        </div>
+        <div class="msgs two">
+          <div class="bubble wa">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2 .2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg> WhatsApp</div>
+            <p>Oi <span class="var">[Nome]</span>! Aqui é o Robert, da Fihan 👋</p>
+            <p>Vi que você começou a garantir o Playbook mas talvez tenha travado no checkout. Aconteceu alguma coisa?</p>
+            <p>Se quiser, te mando o link direto pra finalizar aqui mesmo — leva 1 minutinho. 👇</p>
+          </div>
+          <div class="bubble em">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> E-mail</div>
+            <p class="subject">Assunto: <span>Faltou pouco pro seu Playbook, <span class="var">[Nome]</span></span></p>
+            <p>Você estava quase lá! O Playbook ainda está reservado com o valor promocional de <b>R$24</b> (de R$97).</p>
+            <p>É só clicar aqui pra concluir: <span class="var">[link checkout]</span></p>
+            <p>Se travou em algo, me responde este e-mail que eu resolvo pra você.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1h -->
+      <div class="step">
+        <div class="step-head">
+          <span class="day">1h</span>
+          <span class="step-title">Reforço de valor + link</span>
+          <span class="step-sub">se não respondeu ao primeiro</span>
+        </div>
+        <div class="msgs">
+          <div class="bubble wa">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2 .2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg> WhatsApp</div>
+            <p>Só pra deixar registrado, <span class="var">[Nome]</span>: o Playbook está saindo por R$24 em vez de R$97 e vem com <span class="var">[bônus/garantia]</span>.</p>
+            <p>Aqui o link pra finalizar sem complicação: <span class="var">[link checkout]</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+1 -->
+      <div class="step">
+        <div class="step-head">
+          <span class="day">D+1</span>
+          <span class="step-title">Descoberta: motivador + objeção</span>
+          <span class="step-sub">o contato mais importante deste fluxo</span>
+        </div>
+        <div class="msgs">
+          <div class="bubble wa">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2 .2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg> WhatsApp</div>
+            <p><span class="var">[Nome]</span>, sem pressão nenhuma com a compra — mas você me ajudaria demais respondendo duas coisinhas rápidas:</p>
+            <p>1️⃣ O que te chamou atenção no Playbook quando você deixou seu contato?
+2️⃣ E teve algo que te fez segurar a compra na hora?</p>
+            <p>Pode ser sincero — é isso que me ajuda a melhorar. 🙏</p>
+          </div>
+        </div>
+        <div class="qbox">
+          <p class="qh">O que você quer descobrir aqui</p>
+          <ul>
+            <li><b>Motivador do interesse</b> — qual dor/desejo levou o lead a se cadastrar.<span class="why">Ex.: “quero um site”, “não vendo online”, “minha marca parece amadora”.</span></li>
+            <li><b>Desmotivador da compra</b> — o que travou no último passo.<span class="why">Preço, momento, confiança, falta de informação ou distração.</span></li>
+          </ul>
+        </div>
+        <div class="callout">🎯 <span>Anote a resposta no CRM. O <b>motivador</b> vira seu argumento de venda; o <b>desmotivador</b> define qual objeção quebrar no próximo contato (tabela abaixo).</span></div>
+      </div>
+
+      <!-- D+3 -->
+      <div class="step">
+        <div class="step-head">
+          <span class="day">D+3</span>
+          <span class="step-title">Prova social + quebra de objeção</span>
+          <span class="step-sub">responder ao que travou</span>
+        </div>
+        <div class="msgs two">
+          <div class="bubble wa">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2 .2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg> WhatsApp</div>
+            <p><span class="var">[Nome]</span>, lembrei de você 😊</p>
+            <p>Quem aplicou o que está no Playbook conseguiu <span class="var">[resultado/caso]</span>. Por R$24 é literalmente o passo mais barato pra sair do lugar.</p>
+            <p>Ah, e ele tem garantia: se não fizer sentido, é só pedir reembolso. Risco zero. Quer o link?</p>
+          </div>
+          <div class="bubble em">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg> E-mail</div>
+            <p class="subject">Assunto: <span>Por que R$24 muda o jogo (com garantia)</span></p>
+            <p>Oi <span class="var">[Nome]</span>, entendo a hesitação — todo mundo já comprou algo que não usou.</p>
+            <p>Por isso o Playbook tem garantia total: você lê, aplica, e se não valer o que pagou, devolvo seu dinheiro. O único jeito de sair no prejuízo é continuar parado.</p>
+            <p>Garanta o seu: <span class="var">[link checkout]</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- D+5 -->
+      <div class="step">
+        <div class="step-head">
+          <span class="day">D+5</span>
+          <span class="step-title">Última chamada</span>
+          <span class="step-sub">encerrar com clareza</span>
+        </div>
+        <div class="msgs">
+          <div class="bubble wa">
+            <button class="copy" type="button">Copiar</button>
+            <div class="chan"><svg class="glyph" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.7 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2 .2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.2.3-.1.5.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg> WhatsApp</div>
+            <p><span class="var">[Nome]</span>, não quero ficar insistindo 🙂</p>
+            <p>Vou deixar o link reservado com o valor promocional até <span class="var">[data]</span>. Depois disso ele volta pra R$97.</p>
+            <p>Se fizer sentido, é só clicar: <span class="var">[link checkout]</span>. Se não for o momento, sem problema — me avisa que eu paro por aqui. 👊</p>
+          </div>
+        </div>
+        <div class="callout">↻ <span><b>Sem conversão?</b> Marque como <b>“não comprou · nutrir”</b> no CRM e mova para a lista de conteúdo. Reative quando tiver novidade, caso ou nova oferta — o interesse já existiu, ele só não comprou <i>agora</i>.</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- OBJEÇÕES -->
+  <section id="objecoes">
+    <div class="section-head">
+      <span class="num">03</span>
+      <h2>Objeções → resposta rápida</h2>
+      <span class="goal">Para o Fluxo B, a partir do que o lead disser</span>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Objeção (desmotivador)</th><th>Como responder</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="obj">“Tá caro / sem grana”</td>
+            <td class="resp">Ancore no valor: R$24 vs R$97, e menos que uma pizza. Reforce a garantia (risco zero) e o custo de <i>não</i> resolver o problema.</td>
+          </tr>
+          <tr>
+            <td class="obj">“Vou ver depois”</td>
+            <td class="resp">Crie um motivo pra agir agora: o preço promocional tem prazo. Pergunte “o que precisaria acontecer pra ser agora?” e trate a resposta real.</td>
+          </tr>
+          <tr>
+            <td class="obj">“Não sei se serve pra mim”</td>
+            <td class="resp">Faça 1–2 perguntas de contexto e conecte o conteúdo à situação dele. Mostre um caso parecido com o dele.</td>
+          </tr>
+          <tr>
+            <td class="obj">“Já tenho material parecido”</td>
+            <td class="resp">Diferencie: o Playbook é aplicação prática e enxuta, não teoria. Pergunte o que faltou nos outros — normalmente é execução.</td>
+          </tr>
+          <tr>
+            <td class="obj">“Não confio / não conheço”</td>
+            <td class="resp">Prova social + garantia + seu rosto. Ofereça responder qualquer dúvida antes por WhatsApp. Confiança se constrói respondendo rápido.</td>
+          </tr>
+          <tr>
+            <td class="obj">Sumiu / sem resposta</td>
+            <td class="resp">Não empurre. Uma mensagem de encerramento honesta (“me avisa se não for o momento”) costuma reabrir a conversa. Depois, nutrir.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- CRM -->
+  <section id="crm">
+    <div class="section-head">
+      <span class="num">04</span>
+      <h2>Registro no CRM após cada contato</h2>
+      <span class="goal">Painel /admin</span>
+    </div>
+    <div class="check">
+      <label><input type="checkbox"><span class="ct">Atualizei o <b>status</b><small>Comprou · Diagnóstico · Proposta · Fechou · Não comprou · Nutrir · Frio</small></span></label>
+      <label><input type="checkbox"><span class="ct">Registrei o <b>motivador</b><small>O que despertou o interesse do lead</small></span></label>
+      <label><input type="checkbox"><span class="ct">Registrei a <b>objeção</b><small>O que travou a compra (Fluxo B)</small></span></label>
+      <label><input type="checkbox"><span class="ct">Anotei o <b>último contato</b><small>Data, canal e resumo em uma linha</small></span></label>
+      <label><input type="checkbox"><span class="ct">Defini o <b>próximo passo</b><small>Ação + data — nunca deixe em aberto</small></span></label>
+      <label><input type="checkbox"><span class="ct">Exportei/atualizei quando necessário<small>CSV para acompanhamento semanal</small></span></label>
+    </div>
+    <div class="callout">📌 <span><b>Ritmo semanal:</b> revise no /admin todos os leads em “Proposta” e “Nutrir”. Nenhum lead deve ficar mais de 7 dias sem um próximo passo definido.</span></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Fihan · Fluxo de atendimento de leads do Playbook · Uso interno · Substitua os campos <span style="color:var(--brand);font-weight:600">[entre colchetes]</span> antes de enviar.
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var bubble = btn.closest('.bubble');
+      var parts = [];
+      var subj = bubble.querySelector('.subject');
+      if (subj) parts.push(subj.innerText.trim());
+      bubble.querySelectorAll('p:not(.subject)').forEach(function (p) { parts.push(p.innerText.trim()); });
+      var text = parts.join('\n\n');
+      navigator.clipboard.writeText(text).then(function () {
+        var old = btn.textContent;
+        btn.textContent = 'Copiado ✓';
+        btn.classList.add('done');
+        setTimeout(function () { btn.textContent = old; btn.classList.remove('done'); }, 1600);
+      });
+    });
+  });
+</script>

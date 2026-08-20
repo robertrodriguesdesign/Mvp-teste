@@ -1,0 +1,1070 @@
+/* ─────────────────────────────────────────────────────────
+   FIHAN · Território Institucional (Home, Sobre, Trabalhos,
+   Eixo Dev, Contatos)
+   Tema claro fixo, molde: prints da pasta "Website institucional".
+   Reaproveita tokens.css + components/*, soma classes .inst-*
+   ───────────────────────────────────────────────────────── */
+
+
+:root {
+  --inst-dark: #17181A;
+  --inst-dark-2: #202224;
+  --inst-dark-text: #FAFAFA;
+  --inst-dark-muted: #9CA3AF;
+  --inst-dark-border: rgba(250, 250, 250, 0.14);
+
+  /* Escala local de espaçamento/raio — o design-system não define uma (só
+     cores/fontes/gradientes). Cantos retos é a regra do site; o raio do
+     bottom-sheet é a única exceção deliberada (afordância padrão de "gaveta"
+     em mobile). */
+  --inst-space-1: 4px;
+  --inst-space-2: 8px;
+  --inst-space-3: 12px;
+  --inst-space-4: 16px;
+  --inst-space-5: 24px;
+  --inst-space-6: 32px;
+  --inst-space-7: 48px;
+  --inst-space-8: 64px;
+  --inst-space-9: 96px;
+  --inst-radius-sheet: 20px;
+  --inst-shadow-sheet: 0 -8px 40px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="light"] body.inst { background: var(--fihan-dark); }
+
+/* ─── Section tag  "[ Label ]"  ──────────────────────────── */
+.inst-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--fihan-text-muted);
+  margin-bottom: 16px;
+}
+
+.inst-tag--on-dark { color: var(--inst-dark-muted); }
+
+/* ─── Hero (photo) ───────────────────────────────────────── */
+.inst-hero {
+  position: relative;
+  background: var(--inst-dark);
+  color: var(--inst-dark-text);
+  overflow: hidden;
+}
+
+.inst-hero__media {
+  position: relative;
+  min-height: 62vh;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(180deg, rgba(17,19,20,0.35) 0%, rgba(17,19,20,0.85) 100%), var(--inst-dark);
+  background-size: cover;
+  background-position: center;
+}
+
+.inst-hero__media--noimg {
+  background: var(--gradient-light-corner);
+}
+
+.inst-hero__content { position: relative; padding: 64px 0 56px; width: 100%; }
+
+.inst-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  max-width: 820px;
+}
+
+.inst-hero__lede {
+  font-size: 16px;
+  color: var(--inst-dark-muted);
+  max-width: 620px;
+  margin: 20px 0 0;
+  line-height: 1.6;
+}
+
+.inst-hero__scroll {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--inst-dark-muted);
+}
+
+/* ─── Section rhythm ─────────────────────────────────────── */
+.inst-section { padding: 72px 0; }
+.inst-section--tight { padding: 48px 0; }
+.inst-section--border-top { border-top: 1px solid var(--fihan-card-border); }
+
+.inst-section h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 20px;
+  color: var(--fihan-text);
+}
+
+.inst-section p.inst-prosa {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--fihan-text-bright);
+  max-width: 62ch;
+  margin: 0 0 18px;
+}
+
+.inst-prosa--center { max-width: 66ch; margin-left: auto; margin-right: auto; text-align: center; }
+
+.inst-prosa--lg { font-size: 20px; line-height: 1.55; }
+
+/* ─── Pill filter row ────────────────────────────────────── */
+.inst-pills { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0 40px; }
+
+.inst-pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 9px 16px;
+  border: 1px solid var(--fihan-card-border);
+  border-radius: 999px;
+  color: var(--fihan-text-bright);
+  background: var(--fihan-input-bg);
+  white-space: nowrap;
+}
+
+/* ─── Protocolo card ─────────────────────────────────────── */
+.inst-protocolo-card {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: var(--inst-dark);
+  color: var(--inst-dark-text);
+  overflow: hidden;
+}
+
+.inst-protocolo-card__body { padding: 40px; display: flex; flex-direction: column; gap: 16px; }
+
+.inst-protocolo-card__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+
+.inst-protocolo-card__head h3 { margin: 0; font-size: 20px; font-family: var(--font-display); }
+
+.inst-protocolo-card__more { font-size: 12px; color: var(--inst-dark-muted); white-space: nowrap; }
+
+.inst-protocolo-card__desc { font-size: 14.5px; line-height: 1.6; color: var(--inst-dark-muted); margin: 0; }
+
+.inst-protocolo-card__list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+
+.inst-protocolo-card__list li {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--inst-dark-text);
+  border-top: 1px solid var(--inst-dark-border);
+  padding-top: 10px;
+}
+
+.inst-protocolo-card__media {
+  background-size: cover;
+  background-position: center;
+  min-height: 280px;
+  background-color: #2A2C2E;
+}
+
+/* ─── Case cards (molde "place holder cases") ───────────── */
+.inst-case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.inst-case-card {
+  border: 1px solid var(--fihan-card-border);
+  background: var(--fihan-input-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.inst-case-card__media {
+  aspect-ratio: 16/11;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--inst-dark);
+}
+
+.inst-case-card__body { padding: 24px; display: flex; flex-direction: column; gap: 18px; }
+
+.inst-case-card__title-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+
+.inst-case-card__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--fihan-text-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.inst-case-card__title {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--fihan-text);
+  text-transform: uppercase;
+}
+
+.inst-case-card__year {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--fihan-text-muted);
+  white-space: nowrap;
+}
+
+.inst-case-card__field { border-top: 1px solid var(--fihan-card-border); padding-top: 14px; }
+
+.inst-case-card__field-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--fihan-text-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.inst-case-card__field p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--fihan-text-bright); }
+.inst-case-card__desc { margin: 0; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: var(--fihan-text-muted); }
+
+/* ─── Quote / manifesto band ─────────────────────────────── */
+.inst-quote-band {
+  background: var(--inst-dark);
+  color: var(--inst-dark-text);
+  padding: 88px 0;
+}
+
+.inst-quote-band blockquote {
+  margin: 0 auto;
+  max-width: 46ch;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(20px, 2.6vw, 30px);
+  line-height: 1.45;
+  text-align: center;
+}
+
+.inst-quote-band__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 32px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--fihan-green);
+}
+
+/* ─── Eixos accordion ────────────────────────────────────── */
+.inst-eixos { border-top: 1px solid var(--fihan-card-border); }
+
+.inst-eixo { border-bottom: 1px solid var(--fihan-card-border); }
+
+.inst-eixo__btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 26px 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--fihan-text);
+}
+
+.inst-eixo__label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fihan-text-muted);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.inst-eixo__title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.inst-eixo__sign {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--fihan-card-border);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--fihan-text-muted);
+}
+
+.inst-eixo__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 260ms ease;
+}
+
+.inst-eixo.is-open .inst-eixo__panel { max-height: 220px; }
+.inst-eixo.is-open .inst-eixo__sign { transform: rotate(45deg); }
+
+.inst-eixo__panel p {
+  margin: 0 0 26px;
+  max-width: 62ch;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--fihan-text-bright);
+}
+
+/* ─── Founders placeholder grid ──────────────────────────── */
+.inst-founders {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.inst-founder__media {
+  aspect-ratio: 1;
+  background: var(--inst-dark-2);
+}
+
+.inst-founder__name {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  margin: 14px 0 2px;
+  color: var(--fihan-text);
+}
+
+.inst-founder__role {
+  font-size: 13px;
+  color: var(--fihan-text-muted);
+  margin: 0;
+}
+
+/* ─── Naming / símbolo split media ───────────────────────── */
+.inst-media-split {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 4px;
+  margin: 40px 0;
+}
+
+.inst-media-split > div {
+  aspect-ratio: 4/3;
+  background: var(--inst-dark-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inst-media-split img,
+.inst-media-split svg { max-width: 60%; max-height: 60%; width: 40%; height: auto; }
+
+/* ─── Testimonial / contact band ─────────────────────────── */
+.inst-talk-band {
+  background: var(--inst-dark);
+  color: var(--inst-dark-text);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.inst-talk-band__media { min-height: 420px; background-size: cover; background-position: center; background-color: #202224; }
+
+.inst-talk-band__body { padding: 64px 48px; display: flex; flex-direction: column; justify-content: center; gap: 28px; }
+
+.inst-talk-band__quote { font-size: 17px; line-height: 1.65; color: var(--inst-dark-text); margin: 0; max-width: 46ch; }
+.inst-talk-band__quote-attr { color: var(--fihan-green); font-family: var(--font-mono); font-size: 13px; }
+
+.inst-talk-band__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.inst-talk-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border: 1px solid var(--inst-dark-border);
+  border-radius: 999px;
+  color: var(--inst-dark-text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.inst-talk-link:hover { border-color: var(--fihan-green); color: var(--fihan-green); }
+
+/* ─── Final CTA band ─────────────────────────────────────── */
+.inst-cta-band {
+  background: var(--gradient-dark);
+  color: var(--inst-dark-text);
+  padding: 96px 0;
+  text-align: center;
+}
+
+.inst-cta-band h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(26px, 4.4vw, 46px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* ─── Contact form (molde "Botão comece agora") ──────────── */
+.inst-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  min-height: 640px;
+}
+
+.inst-contact-grid__media { background-size: cover; background-position: center; background-color: var(--inst-dark); min-height: 320px; }
+
+.inst-contact-grid__form { padding: 64px 56px; background: var(--fihan-input-bg); }
+
+.inst-contact-grid__form h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.3;
+  margin: 0 0 32px;
+  max-width: 20ch;
+  color: var(--fihan-text);
+}
+
+.inst-field { margin-bottom: 26px; }
+
+.inst-field label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--fihan-text-muted);
+  margin-bottom: 10px;
+}
+
+.inst-field input,
+.inst-field select,
+.inst-field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--fihan-divider);
+  padding: 6px 0 10px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--fihan-text);
+}
+
+.inst-field select { border-radius: 0; appearance: none; cursor: pointer; }
+.inst-field select:invalid { color: var(--fihan-text-muted); }
+
+.inst-field textarea { border: 1px solid var(--fihan-card-border); padding: 12px; min-height: 110px; resize: vertical; }
+
+.inst-field input:focus,
+.inst-field textarea:focus { outline: none; border-color: var(--fihan-text); }
+
+.inst-field__row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+.inst-field__group-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--fihan-green);
+  margin: 36px 0 4px;
+}
+
+.inst-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: 1px solid var(--fihan-text);
+  background: transparent;
+  color: var(--fihan-text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.inst-submit-btn:hover { background: var(--fihan-text); color: var(--fihan-dark); }
+.inst-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.inst-form-note {
+  font-size: 13px;
+  color: var(--fihan-text-muted);
+  margin-top: 16px;
+  display: none;
+}
+.inst-form-note.is-error { color: #C0392B; display: block; }
+.inst-form-note.is-success { color: var(--fihan-green); display: block; }
+
+/* ─── Back link (detail pages) ───────────────────────────── */
+.inst-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--fihan-text-muted);
+  margin-bottom: 24px;
+}
+.inst-back-link:hover { color: var(--fihan-green); }
+
+/* ─── Detail meta row (case: NOME / ANO / CATEGORIA / IMPACTO / DESAFIO) ─ */
+.inst-detail-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 24px;
+  border-top: 1px solid var(--fihan-card-border);
+  border-bottom: 1px solid var(--fihan-card-border);
+  padding: 24px 0;
+  margin: 32px 0 48px;
+}
+.inst-detail-meta__field-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--fihan-text-muted);
+  display: block;
+  margin-bottom: 8px;
+}
+.inst-detail-meta p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--fihan-text-bright); }
+
+/* ─── Article / case body (markdown renderizado) ─────────── */
+.inst-article-body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--fihan-text-bright);
+  max-width: 68ch;
+}
+.inst-article-body h2 {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 600;
+  margin: 40px 0 16px;
+  color: var(--fihan-text);
+}
+.inst-article-body h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  margin: 32px 0 12px;
+  color: var(--fihan-text);
+}
+.inst-article-body p { margin: 0 0 20px; }
+.inst-article-body a { color: var(--fihan-blue-interface); text-decoration: underline; }
+.inst-article-body strong { color: var(--fihan-text); }
+
+/* ─── Anexos (fotos / vídeo / links) ─────────────────────── */
+.inst-attach-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin: 40px 0;
+}
+.inst-attach { margin: 0; }
+.inst-attach--photo img,
+.inst-attach--video video { width: 100%; display: block; background: var(--fihan-input-bg); }
+.inst-attach figcaption {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--fihan-text-muted);
+  margin-top: 8px;
+}
+.inst-attach--link {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--fihan-card-border);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--fihan-text-bright);
+}
+.inst-attach--link:hover { border-color: var(--fihan-green); color: var(--fihan-green); }
+
+/* ─── Blog: grid de cards ─────────────────────────────────── */
+.inst-blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.inst-blog-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--fihan-card-border);
+  background: var(--fihan-input-bg);
+}
+.inst-blog-card__media {
+  aspect-ratio: 16/10;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--inst-dark);
+}
+.inst-blog-card__body { padding: 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.inst-blog-card__date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--fihan-text-muted);
+}
+.inst-blog-card__title { font-family: var(--font-display); font-size: 19px; font-weight: 600; margin: 0; color: var(--fihan-text); }
+.inst-blog-card__summary { font-size: 14px; line-height: 1.55; color: var(--fihan-text-bright); margin: 0; flex: 1; }
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .inst-case-grid { grid-template-columns: 1fr 1fr; }
+  .inst-founders { grid-template-columns: 1fr; max-width: 320px; }
+  .inst-talk-band { grid-template-columns: 1fr; }
+  .inst-talk-band__media { min-height: 260px; }
+  .inst-contact-grid { grid-template-columns: 1fr; }
+  .inst-contact-grid__media { min-height: 240px; }
+  .inst-protocolo-card { grid-template-columns: 1fr; }
+  .inst-blog-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 760px) {
+  .inst-hero__media { min-height: 52vh; }
+  .inst-hero__content { padding: 40px 0; }
+  .inst-case-grid { grid-template-columns: 1fr; }
+  .inst-media-split { grid-template-columns: 1fr; }
+  .inst-contact-grid__form { padding: 40px 20px; }
+  .inst-field__row { grid-template-columns: 1fr; gap: 0; }
+  .inst-protocolo-card__body { padding: 28px 20px; }
+  .inst-blog-grid { grid-template-columns: 1fr; }
+  .inst-attach-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   Homepage redesign (Figma 154:1613) + ROI calculator (168:1160
+   / 168:1571) + formulário/agendador (/contatos)
+   ══════════════════════════════════════════════════════════ */
+
+/* ─── Generic rectangular buttons (hero CTAs, modal, wizard) ─
+   Mesmo padrão visual do .inst-submit-btn já existente — extraído aqui como
+   classe reutilizável com variantes, sem alterar .inst-submit-btn. */
+.inst-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 24px;
+  border: 1px solid var(--fihan-text);
+  background: transparent;
+  color: var(--fihan-text);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 140ms ease, color 140ms ease, opacity 140ms ease;
+}
+.inst-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.inst-btn--primary { background: var(--fihan-text); color: var(--fihan-dark); }
+.inst-btn--primary:hover:not(:disabled) { opacity: 0.85; }
+.inst-btn--secondary:hover:not(:disabled) { background: var(--fihan-text); color: var(--fihan-dark); }
+/* Ghost = texto verde (mesma convenção de components/button/style.css .fihan-btn--ghost) */
+.inst-btn--ghost { border-color: transparent; color: var(--fihan-green); }
+.inst-btn--ghost:hover:not(:disabled) { opacity: 0.8; }
+/* Accent = fundo verde, texto escuro — usado nos CTAs "Continuar" do card de
+   faturamento (ROI) e do teaser de contato, que no Figma usam fill_470c6ec8
+   (#14CC52), não o botão escuro usado no resto do hero/modal. */
+.inst-btn--accent { background: var(--fihan-green); color: #111314; border-color: var(--fihan-green); }
+.inst-btn--accent:hover:not(:disabled) { opacity: 0.85; }
+.inst-btn--block { width: 100%; }
+.inst-btn--sm { padding: 10px 20px; font-size: 13px; }
+
+/* On dark sections, invert the outline so it reads against --inst-dark bg */
+.inst-on-dark .inst-btn { border-color: var(--inst-dark-text); color: var(--inst-dark-text); }
+.inst-on-dark .inst-btn--primary { background: var(--fihan-green); color: #111314; border-color: var(--fihan-green); }
+.inst-on-dark .inst-btn--secondary:hover:not(:disabled) { background: var(--inst-dark-text); color: var(--inst-dark); }
+
+/* ─── Pill single/multi-select active state ─────────────────
+   .inst-pill já existe (base neutra) — só faltava o estado selecionado. */
+.inst-pill { cursor: pointer; transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease; }
+.inst-pill.is-active {
+  background: var(--fihan-text);
+  border-color: var(--fihan-text);
+  color: var(--fihan-dark);
+}
+
+/* ─── Hero claro (texto sobre fundo branco — sem foto) ───────
+   Distinto de .inst-hero (fundo escuro + foto, usado em Eixo Dev/Blog/
+   Trabalhos) — não reaproveitar essa classe pra não quebrar as outras. */
+.inst-hero-light { padding: var(--inst-space-9) 0 var(--inst-space-7); }
+.inst-hero-light h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(32px, 5vw, 52px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 16px 0 20px;
+  max-width: 17ch;
+  color: var(--fihan-text);
+}
+.inst-hero-light__lede { font-size: 16px; line-height: 1.6; color: var(--fihan-text-muted); max-width: 60ch; margin: 0; }
+/* Figma (EL-d8a3e5e9): coluna, gap 16px, botões full-width — não lado a lado */
+.inst-hero__ctas { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; max-width: 400px; }
+.inst-hero__ctas .inst-btn { width: 100%; }
+
+/* ─── Padding exato das 5 "Segunda section" do Figma (ROI, Entregáveis,
+   Metodologia, Cases, Formulário) — todas usam padding:37px 24px 56px.
+   Horizontal já vem do .container (24px), aqui só o vertical. ─── */
+.inst-home-section { padding: 37px 0 56px; }
+
+.inst-trust {
+  display: flex;
+  align-items: center;
+  gap: var(--inst-space-4);
+  padding: var(--inst-space-6) 0;
+  border-top: 1px solid var(--fihan-card-border);
+  border-bottom: 1px solid var(--fihan-card-border);
+}
+.inst-trust__icon {
+  flex-shrink: 0;
+  width: 47px;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inst-trust__icon img { width: 100%; height: 100%; object-fit: contain; }
+.inst-trust p { margin: 0; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: var(--fihan-text-muted); max-width: 62ch; }
+
+/* ─── Founders / clients logo strip — carrossel automático ──
+   Diagramação exata do Figma (165:1101): row, align-items:center, gap:8px,
+   label com largura fixa 163px à esquerda, logos à direita — só que aqui a
+   faixa de logos vira um carrossel automático (2 cópias + loop) em vez de
+   ficar cortada, já que numa tela de 345px de conteúdo os 7 logos originais
+   não cabem de qualquer forma. */
+.inst-founders-strip { display: flex; flex-direction: row; align-items: center; gap: 8px; padding: var(--inst-space-6) 0; }
+.inst-founders-strip__label { flex: 0 0 163px; width: 163px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: var(--fihan-text-muted); }
+.inst-founders-strip__track { flex: 1; min-width: 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.inst-founders-strip__logos {
+  display: flex;
+  align-items: center;
+  gap: var(--inst-space-6);
+  width: max-content;
+  animation: inst-marquee 26s linear infinite;
+}
+.inst-founders-strip__track:hover .inst-founders-strip__logos { animation-play-state: paused; }
+.inst-founders-strip__logos img { height: 34px; width: auto; flex-shrink: 0; opacity: 0.92; }
+@keyframes inst-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .inst-founders-strip__logos { animation: none; }
+  .inst-founders-strip__track { overflow-x: auto; }
+}
+
+/* ─── "Framed card" compartilhado (layout_b4a68445 no Figma) ─
+   Usado literalmente 3x no arquivo: card do ROI (168:1877), card dos
+   Entregáveis (168:1886) e cada card da Metodologia (168:1979/1987/2000).
+   Padding e gap exatos, sem aproximação. */
+.inst-framed-card { padding: 31px 32px 27px; display: flex; flex-direction: column; gap: 55px; box-sizing: border-box; }
+
+/* ─── ROI teaser band (verde) + card (168:1877) ──────────── */
+.inst-roi-teaser { background: var(--fihan-green); color: #111314; padding: 37px 0 56px; }
+.inst-roi-teaser .inst-tag { color: #163B21; }
+.inst-roi-teaser h2 { color: #111314; }
+.inst-roi-teaser__lede { font-size: 15.5px; line-height: 1.6; color: #163B21; max-width: 56ch; margin: 0 0 var(--inst-space-6); }
+
+.inst-roi-card { background: #202224; color: var(--inst-dark-text); max-width: 620px; }
+.inst-roi-card__top { display: flex; flex-direction: column; gap: 32px; }
+.inst-roi-card__group { display: flex; flex-direction: column; gap: 30px; }
+.inst-roi-card__question { font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: var(--inst-dark-text); margin: 0; }
+.inst-roi-card__display { font-family: var(--font-mono); font-weight: 600; font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.0075em; color: var(--fihan-green); margin: 0; }
+.inst-roi-card__actions { display: flex; flex-direction: column; gap: 8px; }
+
+/* ─── Slider custom (168:1133 "Slider-menu") ─────────────────
+   Trilho escuro 14px + preenchimento e alça verdes; a alça (19x19) vaza
+   verticalmente pra fora do trilho, com borda na cor do trilho — exatamente
+   como no Figma. Input nativo fica invisível por cima pra manter teclado/
+   acessibilidade/drag funcionando; os divs visuais só refletem o valor. */
+.inst-slider { position: relative; height: 19px; display: flex; align-items: center; }
+.inst-slider__track { position: absolute; left: 0; right: 0; height: 14px; background: var(--fihan-charcoal); padding: 2px; box-sizing: border-box; pointer-events: none; }
+.inst-slider__fill { height: 100%; background: var(--fihan-green); position: relative; }
+.inst-slider__thumb { position: absolute; top: 50%; right: -9px; width: 19px; height: 19px; background: var(--fihan-green); border: 1px solid var(--fihan-charcoal); transform: translateY(-50%); box-sizing: border-box; }
+.inst-slider__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+.inst-slider__input::-webkit-slider-runnable-track { background: transparent; }
+.inst-slider__input::-webkit-slider-thumb { -webkit-appearance: none; width: 19px; height: 19px; background: transparent; cursor: pointer; }
+.inst-slider__input::-moz-range-track { background: transparent; }
+.inst-slider__input::-moz-range-thumb { width: 19px; height: 19px; background: transparent; border: none; cursor: pointer; }
+
+/* ─── Entregáveis Fihan (168:1886) ───────────────────────────
+   O mesmo .inst-framed-card, borda cinza (o fundo já é igual ao da seção,
+   fill_5479f726 nos dois — não é preenchido, só a borda separa). */
+.inst-deliverables__card { border: 1px solid var(--fihan-card-border); margin-top: var(--inst-space-6); }
+
+/* ─── Cases — "Card Case" (177:2073) em scroll horizontal (177:2072) ─
+   Componente novo, dedicado à home — NÃO usa .inst-case-card (isso é
+   outra composição, usada em /trabalhos, com borda/fundo/ano/categoria
+   que não existem no Card Case do Figma). Sem moldura: só imagem (altura
+   fixa 275px) + título + descrição, gap 19 entre imagem e texto, 14 entre
+   título e descrição. Linha com scroll-snap, cards fixos em 345px (mobile
+   já "vaza" de propósito no Figma — 1 card por vez com scroll). */
+.inst-case2-row {
+  display: flex;
+  gap: 31px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+  margin-top: 32px;
+  -webkit-overflow-scrolling: touch;
+}
+.inst-case2 {
+  flex-shrink: 0;
+  width: 345px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+.inst-case2__media { width: 100%; height: 275px; background-size: cover; background-position: center; background-color: var(--fihan-input-bg); }
+.inst-case2__body { display: flex; flex-direction: column; gap: 14px; }
+.inst-case2__title { margin: 0; font-family: var(--font-mono); font-weight: 600; font-size: 24px; letter-spacing: -0.0125em; color: var(--fihan-text); }
+.inst-case2__desc { margin: 0; font-family: var(--font-mono); font-size: 11px; letter-spacing: -0.0273em; line-height: 1.5; color: var(--fihan-text-bright); }
+.inst-deliverables__item { display: flex; flex-direction: column; gap: 8px; }
+.inst-deliverables__item h3 { margin: 0; font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--fihan-text); }
+.inst-deliverables__item p { margin: 0; font-size: 14px; color: var(--fihan-text-muted); }
+.inst-deliverables__testimonial { display: flex; align-items: center; gap: var(--inst-space-4); margin-top: var(--inst-space-6); }
+.inst-deliverables__testimonial p { margin: 0; font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: var(--fihan-text-muted); }
+
+/* ─── Metodologia (3 eixos, fundo escuro) — cards em acordeão ─
+   Clique no cabeçalho (título+ícone) expande/recolhe a descrição, mesmo
+   padrão de .inst-eixo já usado alhures no site. Cards sem descrição real
+   (Marca/Dev — o Figma não tem esse texto ainda) não recebem o indicador
+   nem o clique, pra não abrir um painel vazio. */
+.inst-methodology { background: var(--inst-dark); color: var(--inst-dark-text); padding: 37px 0 56px; }
+.inst-methodology h2 { color: var(--inst-dark-text); }
+.inst-methodology__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--inst-space-4); margin-top: var(--inst-space-6); }
+.inst-methodology-card { background: var(--inst-dark-2); padding: 31px 32px 27px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box; }
+.inst-methodology-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--inst-space-4); width: 100%; background: none; border: 0; padding: 0; text-align: left; color: inherit; font-family: inherit; }
+.inst-methodology-card__head--interactive { cursor: pointer; }
+.inst-methodology-card__head h3 { margin: 0; font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--inst-dark-text); }
+.inst-methodology-card__head-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.inst-methodology-card__icon { flex-shrink: 0; width: 47px; height: 47px; display: flex; align-items: center; justify-content: center; }
+.inst-methodology-card__icon img { width: 21px; height: 21px; }
+.inst-methodology-card__sign {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--inst-dark-border);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--inst-dark-muted);
+  transition: transform 200ms ease;
+}
+.inst-methodology-card.is-open .inst-methodology-card__sign { transform: rotate(45deg); }
+.inst-methodology-card__body { max-height: 0; overflow: hidden; transition: max-height 260ms ease; }
+.inst-methodology-card.is-open .inst-methodology-card__body { max-height: 260px; }
+.inst-methodology-card p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--inst-dark-muted); }
+
+/* ─── Contact teaser (fundo escuro, formulário curto) ────── */
+.inst-contact-teaser { background: var(--inst-dark); color: var(--inst-dark-text); padding: 37px 0 56px; }
+.inst-contact-teaser h2 { color: var(--inst-dark-text); max-width: 18ch; }
+.inst-contact-teaser__form { max-width: 480px; margin-top: var(--inst-space-6); }
+.inst-contact-teaser .inst-field label { color: var(--inst-dark-muted); }
+.inst-contact-teaser .inst-field input,
+.inst-contact-teaser .inst-field select { color: var(--inst-dark-text); border-bottom-color: var(--inst-dark-border); }
+.inst-contact-teaser .inst-field input::placeholder { color: #5C6066; }
+
+/* ─── Step indicator (compartilhado: modal ROI + wizard) ─── */
+.inst-steps { display: flex; align-items: center; gap: 2px; }
+.inst-step-dot {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 10.5px;
+  color: var(--fihan-text-muted);
+  background: var(--fihan-card-border);
+}
+.inst-step-dot.is-active,
+.inst-step-dot.is-done { background: var(--fihan-green); color: #111314; }
+.inst-step-line { width: 14px; height: 2px; background: var(--fihan-card-border); }
+.inst-step-line.is-done { background: var(--fihan-green); }
+
+/* ─── Choice cards (multi-select — ROI modal step 1) ──────── */
+.inst-choice-cards { display: flex; flex-direction: column; gap: 10px; }
+.inst-choice-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--inst-space-4);
+  padding: 16px;
+  border: 1px solid var(--fihan-card-border);
+  cursor: pointer;
+  text-align: left;
+  background: none;
+  width: 100%;
+  font-family: inherit;
+}
+.inst-choice-card.is-selected { border-color: var(--fihan-green); }
+.inst-choice-card__title { font-family: var(--font-display); font-size: 17px; font-weight: 600; margin: 0 0 4px; color: var(--fihan-text); }
+.inst-choice-card__desc { font-size: 13px; margin: 0; color: var(--fihan-text-muted); }
+.inst-choice-card__box {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border: 1.3px solid var(--fihan-metallic);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inst-choice-card.is-selected .inst-choice-card__box { border-color: var(--fihan-green); }
+.inst-choice-card__box svg { width: 16px; height: 16px; fill: var(--fihan-green); opacity: 0; }
+.inst-choice-card.is-selected .inst-choice-card__box svg { opacity: 1; }
+
+/* ─── Pill-select (single select — wizard: estágio/eixo/faixa) ─ */
+.inst-pill-select { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ─── Bottom sheet (ROI modal) ───────────────────────────── */
+.inst-sheet { position: fixed; inset: 0; z-index: 200; display: flex; align-items: flex-end; justify-content: center; }
+.inst-sheet[hidden] { display: none; }
+.inst-sheet__scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.69); border: 0; padding: 0; cursor: pointer; }
+.inst-sheet__panel {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--fihan-dark);
+  border-radius: var(--inst-radius-sheet) var(--inst-radius-sheet) 0 0;
+  box-shadow: var(--inst-shadow-sheet);
+  padding: var(--inst-space-3) var(--inst-space-6) var(--inst-space-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--inst-space-6);
+}
+.inst-sheet__handle { width: 94px; height: 8px; background: var(--fihan-card-border); border-radius: 999px; margin: 0 auto var(--inst-space-4); }
+.inst-sheet__step { display: none; flex-direction: column; gap: var(--inst-space-6); }
+.inst-sheet__step.is-active { display: flex; }
+.inst-sheet__title { font-family: var(--font-display); font-size: 20px; font-weight: 600; margin: 0; color: var(--fihan-text); }
+.inst-sheet__desc { font-size: 13.5px; line-height: 1.6; color: var(--fihan-text-muted); margin: 0; }
+.inst-sheet__actions { display: flex; gap: 12px; }
+.inst-sheet__actions .inst-btn { flex: 1; }
+
+/* ─── Resultado ROI (comparação) ─────────────────────────── */
+.inst-roi-result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.inst-roi-result-card { border: 1px solid var(--fihan-card-border); padding: var(--inst-space-4); display: flex; flex-direction: column; gap: var(--inst-space-4); }
+.inst-roi-result-card--positive { border-color: var(--fihan-green); }
+.inst-roi-result-card--negative { border-color: var(--fihan-red-alert); }
+.inst-roi-result-card__dots { display: flex; gap: 4px; }
+.inst-roi-result-card__label { font-size: 12px; color: var(--fihan-text-muted); margin: 0; }
+.inst-roi-result-card__value { font-family: var(--font-mono); font-weight: 600; font-size: clamp(20px, 3vw, 28px); margin: 0; }
+.inst-roi-result-card--positive .inst-roi-result-card__value { color: var(--fihan-green); }
+.inst-roi-result-card--negative .inst-roi-result-card__value { color: var(--fihan-red-alert); }
+
+/* ─── Wizard (/contatos) ──────────────────────────────────── */
+.inst-wizard__panel { display: none; flex-direction: column; gap: var(--inst-space-2); }
+.inst-wizard__panel.is-active { display: flex; }
+.inst-wizard__panel h1 { font-family: var(--font-display); font-size: clamp(24px, 3vw, 30px); font-weight: 600; margin: 0 0 var(--inst-space-6); max-width: 22ch; color: var(--fihan-text); }
+.inst-wizard__error { font-size: 13px; color: var(--fihan-danger); margin: 4px 0 0; min-height: 18px; }
+.inst-wizard__footer { display: flex; gap: 12px; margin-top: var(--inst-space-6); }
+.inst-wizard__footer .inst-btn { flex: 1; }
+
+/* Painéis "agenda" e "sucesso" — claros, centralizados, largura de leitura */
+.inst-wizard__panel--centered { max-width: 620px; margin: 0 auto; padding: var(--inst-space-9) var(--inst-space-5); }
+
+/* Painel "form" — etapa única, fundo escuro full-bleed (Figma 177:3199),
+   com todos os campos empilhados numa coluna central. Indicador de step
+   compacto no topo só pra sinalizar que tem mais uma etapa depois (agenda) —
+   não navega pra outra tela até o envio. */
+.inst-wizard__panel--form { background: var(--inst-dark); color: var(--inst-dark-text); padding: 37px 0 56px; }
+.inst-wizard__panel--form .inst-wizard__inner { max-width: 480px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; }
+.inst-wizard__panel--form h1 { color: var(--inst-dark-text); max-width: none; }
+.inst-wizard__panel--form .inst-field label { color: var(--inst-dark-muted); }
+.inst-wizard__panel--form .inst-field input,
+.inst-wizard__panel--form .inst-field textarea { color: var(--inst-dark-text); border-bottom-color: var(--inst-dark-border); }
+.inst-wizard__panel--form .inst-field textarea { border-color: var(--inst-dark-border); }
+.inst-wizard__panel--form .inst-field input::placeholder { color: #5C6066; }
+.inst-wizard__panel--form .inst-pill { background: transparent; border-color: var(--inst-dark-border); color: var(--inst-dark-text); }
+.inst-wizard__panel--form .inst-pill.is-active { background: var(--fihan-green); border-color: var(--fihan-green); color: #111314; }
+
+.inst-steps--compact { margin-bottom: var(--inst-space-6); }
+
+/* ─── Scheduler ───────────────────────────────────────────── */
+.inst-scheduler__label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--fihan-text-muted); margin: 0 0 12px; }
+.inst-scheduler__days { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: var(--inst-space-5); }
+.inst-scheduler__day {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 14px;
+  border: 1px solid var(--fihan-card-border);
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  color: var(--fihan-text);
+}
+.inst-scheduler__day span:first-child { font-size: 10px; text-transform: uppercase; color: var(--fihan-text-muted); }
+.inst-scheduler__day span:last-child { font-size: 16px; font-weight: 600; }
+.inst-scheduler__day.is-selected { background: var(--fihan-text); color: var(--fihan-dark); border-color: var(--fihan-text); }
+.inst-scheduler__day.is-selected span { color: inherit; }
+.inst-scheduler__slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+.inst-scheduler__slot { padding: 10px; border: 1px solid var(--fihan-card-border); background: none; cursor: pointer; font-family: var(--font-mono); font-size: 13px; color: var(--fihan-text); }
+.inst-scheduler__slot.is-selected { background: var(--fihan-green); border-color: var(--fihan-green); color: #111314; }
+.inst-scheduler__empty { padding: var(--inst-space-6); border: 1px dashed var(--fihan-card-border); text-align: center; }
+.inst-scheduler__empty p { font-size: 14px; color: var(--fihan-text-muted); margin: 0 0 12px; }
+.inst-scheduler__loading { font-family: var(--font-mono); font-size: 13px; color: var(--fihan-text-muted); }
+
+/* ─── Success screen ──────────────────────────────────────── */
+.inst-success { text-align: center; padding: var(--inst-space-6) 0; }
+.inst-success__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--inst-space-5);
+  border-radius: 999px;
+  background: var(--fihan-green);
+  color: #111314;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inst-success h1 { max-width: none !important; text-align: center; }
+.inst-success__meta { font-family: var(--font-mono); font-size: 14px; color: var(--fihan-text-muted); margin: 8px 0 var(--inst-space-6); }
+.inst-success__meta strong { color: var(--fihan-text); font-weight: 600; }
+.inst-success__actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+@media (max-width: 760px) {
+  .inst-founders-strip { gap: var(--inst-space-4); }
+  .inst-methodology__grid { grid-template-columns: 1fr; }
+  .inst-roi-result-grid { grid-template-columns: 1fr; }
+  .inst-wizard { padding: var(--inst-space-7) var(--inst-space-4); }
+}

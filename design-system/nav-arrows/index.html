@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Setas de Navegação</title>
+  <style>
+    :root {
+      --bg: #EDEDED;
+      --card-bg: #FFFFFF;
+      --border: #DCDCDC;
+      --text: #202224;
+      --text-dim: #6B6F73;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    h2 { font-size: 13px; margin: 32px 0 12px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .hint { font-size: 12px; color: var(--text-dim); margin: 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 12px;
+      max-width: 900px;
+    }
+    .cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 24px 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      min-height: 90px;
+    }
+    .cell img { max-width: 34px; max-height: 34px; }
+    .label {
+      font-size: 10px;
+      color: var(--text-dim);
+      font-family: ui-monospace, "IBM Plex Mono", monospace;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Setas de Navegação — Fihan</h1>
+  <p class="hint">8 direções × 2 tamanhos (grande/pequeno) · estilo pixel, cor #14CC52</p>
+
+  <h2>Tamanho grande</h2>
+  <div class="grid">
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-cima-grande.svg" alt="cima" /><span class="label">cima</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-cima-direita-grande.svg" alt="cima-direita" /><span class="label">cima-direita</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-direita-grande.svg" alt="direita" /><span class="label">direita</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-baixo-direita-grande.svg" alt="baixo-direita" /><span class="label">baixo-direita</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-baixo-grande.svg" alt="baixo" /><span class="label">baixo</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-baixo-esquerda-grande.svg" alt="baixo-esquerda" /><span class="label">baixo-esquerda</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-esquerda-grande.svg" alt="esquerda" /><span class="label">esquerda</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-cima-esquerda-grande.svg" alt="cima-esquerda" /><span class="label">cima-esquerda</span></div>
+  </div>
+
+  <h2>Tamanho pequeno</h2>
+  <div class="grid">
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-cima-pequeno.svg" alt="cima" /><span class="label">cima</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-cima-direita-pequeno.svg" alt="cima-direita" /><span class="label">cima-direita</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-direita-pequeno.svg" alt="direita" /><span class="label">direita</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-baixo-direita-pequeno.svg" alt="baixo-direita" /><span class="label">baixo-direita</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-baixo-pequeno.svg" alt="baixo" /><span class="label">baixo</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-baixo-esquerda-pequeno.svg" alt="baixo-esquerda" /><span class="label">baixo-esquerda</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-esquerda-pequeno.svg" alt="esquerda" /><span class="label">esquerda</span></div>
+    <div class="cell"><img src="../../images/icons/nav-arrows/seta-nav-cima-esquerda-pequeno.svg" alt="cima-esquerda" /><span class="label">cima-esquerda</span></div>
+  </div>
+</body>
+</html>

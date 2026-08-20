@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Inteligência de Negócio, Marca e Desenvolvimento</title>
+  <meta name="description" content="Transformamos sua ideia em decisão com evidência antes que ela vire um erro de R$50 mil, R$150 mil ou mais." />
+  <link rel="stylesheet" href="design-system/fonts.css" />
+  <link rel="stylesheet" href="design-system/tokens.css" />
+  <link rel="stylesheet" href="styles/landing.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="site-nav__bar">
+      <img class="site-nav__logo" src="images/brand/logo-dark.svg" alt="Fihan" />
+      <button class="cta-btn" type="button" data-scroll-to="#calc">Comece Agora</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <div class="hero__title-block">
+          <p class="eyebrow">INTELIGÊNCIA DE NEGÓCIO, MARCA E DESENVOLVIMENTO</p>
+          <h1 class="hero__heading">A incerteza custa caro.
+A gente mostra exatamente quanto.</h1>
+        </div>
+        <p class="hero__desc">Transformamos sua ideia em decisão com evidência antes que ela vire um erro de R$50 mil, R$150 mil ou mais. Diagnóstico, marca e produto prontos para o mercado em 2 a 6 meses.</p>
+      </div>
+      <div class="hero__actions">
+        <button class="cta-btn" type="button" data-scroll-to="#calc">Calcular ROI do meu negócio</button>
+        <button class="cta-btn cta-btn--outline" type="button" data-scroll-to="#protocolo">Ver como funciona</button>
+      </div>
+    </div>
+
+    <div class="hero__inner">
+      <hr class="hr-line" />
+      <div class="hero__trust-row">
+        <span class="icon-btn-static"><img src="images/icons/ui/icon-lupa.svg" alt="" /></span>
+        <p class="hero__trust-text">Sem achismo. Sem pitch deck genérico. Ativo documentado, pronto para investidor, edital ou lançamento.</p>
+      </div>
+      <hr class="hr-line" />
+    </div>
+
+    <div class="hero__inner hero__clients">
+      <span class="hero__clients-label">Founders que já trocaram achismo por evidência:</span>
+      <div class="hero__clients-logos">
+        <img src="images/logos-clientes/zei.png" alt="Zei" />
+        <img src="images/logos-clientes/vaivan.png" alt="VaiVan" />
+        <img src="images/logos-clientes/the-visit.png" alt="The Visit" />
+        <img src="images/logos-clientes/predator.png" alt="Predator" />
+        <img src="images/logos-clientes/iveco-academy.png" alt="Iveco Academy" />
+        <img src="images/logos-clientes/compropay.png" alt="Compropay" />
+        <img src="images/logos-clientes/auati.png" alt="Auati" />
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULADORA DE ROI (Segunda section) -->
+  <section class="section section--green" id="calc">
+    <div class="section__inner">
+      <div class="section__head">
+        <p class="eyebrow section__eyebrow-dark">RETORNO SOBRE SEU INVESTIMENTO</p>
+        <h2 class="section__heading">Quanto vale destravar o seu negócio?</h2>
+      </div>
+      <p class="section__body">Em menos de 1 minuto, veja o impacto estimado de validar antes de arriscar com os mesmos eixos que aplicamos com você.</p>
+    </div>
+
+    <div class="calc-card">
+      <p class="calc-card__question">Hoje, qual o faturamento mensal aproximado do seu negócio (ou o quanto você projeta faturar com essa ideia)?</p>
+      <div class="calc-card__value-block">
+        <p class="calc-card__value" id="calc-value">R$ 3.500,00</p>
+        <div class="fh-slider">
+          <div class="fh-slider__track">
+            <div class="fh-slider__fill" id="calc-slider-fill">
+              <span class="fh-slider__thumb"></span>
+            </div>
+          </div>
+          <input class="fh-slider__input" type="range" min="0" max="50000" step="500" value="3500" id="calc-slider" aria-label="Faturamento mensal aproximado" />
+        </div>
+      </div>
+      <div class="calc-card__actions">
+        <button class="fh-btn" type="button" data-open-sheet2>Continuar</button>
+        <button class="fh-btn fh-btn--ghost" type="button" data-open-sheet2 data-roi-skip>Não faturo ainda</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROTOCOLO -->
+  <section class="section section--light" id="protocolo">
+    <div class="section__inner">
+      <div class="section__head">
+        <p class="eyebrow section__eyebrow-dark">ENTREGÁVEIS FIHAN</p>
+        <h2 class="section__heading">O Protocolo Fihan. Do achismo à decisão, em 2 a 6 meses.</h2>
+      </div>
+      <p class="section__body">Você entra com uma ideia e um risco. Sai com hipótese validada, marca construída com estratégia e uma solução pronta para o mercado — não um relatório, não um pitch deck. Um ativo completo que separa uma ideia da cabeça de um negócio operando.</p>
+    </div>
+
+    <div class="protocol-card">
+      <h3 class="protocol-card__title">Diagnóstico</h3>
+      <p class="protocol-card__sub">a ideia merece existir?</p>
+    </div>
+    <div class="protocol-card">
+      <h3 class="protocol-card__title">Validação</h3>
+      <p class="protocol-card__sub">dados de campo, não opinião</p>
+    </div>
+    <div class="protocol-card">
+      <h3 class="protocol-card__title">Construção</h3>
+      <p class="protocol-card__sub">marca e produto materializados</p>
+    </div>
+    <div class="protocol-card">
+      <h3 class="protocol-card__title">Entrega</h3>
+      <p class="protocol-card__sub">ativo pronto para operar, captar ou submeter a edital</p>
+    </div>
+
+    <div class="testimonial">
+      <hr class="hr-line" />
+      <div class="testimonial__row">
+        <span class="icon-btn-static"><img src="images/icons/ui/icon-enter.svg" alt="" /></span>
+        <p class="testimonial__text">Sabemos como é ter uma ideia e não saber se vale a aposta. Passamos por isso com o Zei App. A validação nos impediu de desperdiçar R$150 mil antes de provar a demanda.</p>
+      </div>
+      <hr class="hr-line" />
+    </div>
+  </section>
+
+  <!-- TRÊS EIXOS -->
+  <section class="section section--dark">
+    <div class="section__inner">
+      <div class="section__head">
+        <p class="eyebrow" style="color:#FAFAFA">METODOLOGIA PROPRIETÁRIA</p>
+        <h2 class="section__heading" style="color:#FAFAFA">Três eixos. Uma solução completa.</h2>
+      </div>
+    </div>
+
+    <div class="eixo-list" id="eixo-list">
+      <div class="card-eixo is-expanded">
+        <button class="card-eixo__header" type="button">
+          <span class="card-eixo__title">Eixo de Negócio</span>
+          <img class="card-eixo__icon" src="images/icons/ui/icon-close.svg" alt="Recolher" />
+        </button>
+        <p class="card-eixo__body">A ideia merece existir? Respondemos antes que o capital seja comprometido. Diagnóstico, escuta de cliente, inteligência competitiva e projeção de viabilidade — dez frentes que transformam hipótese em evidência documentada.</p>
+      </div>
+      <div class="card-eixo">
+        <button class="card-eixo__header" type="button">
+          <span class="card-eixo__title">Eixo de Marca</span>
+          <img class="card-eixo__icon" src="images/icons/ui/icon-mais.svg" alt="Expandir" />
+        </button>
+        <p class="card-eixo__body">Identidade construída com estratégia — marca que gera confiança e reconhecimento desde o primeiro contato.</p>
+      </div>
+      <div class="card-eixo">
+        <button class="card-eixo__header" type="button">
+          <span class="card-eixo__title">Eixo de Desenvolvimento</span>
+          <img class="card-eixo__icon" src="images/icons/ui/icon-mais.svg" alt="Expandir" />
+        </button>
+        <p class="card-eixo__body">Produto pronto para operar — solução construída e testada, pronta para o mercado real.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section class="section section--light">
+    <div class="section__inner">
+      <div class="section__head">
+        <p class="eyebrow section__eyebrow-dark">NOSSOS CASES</p>
+        <h2 class="section__heading">Não é discurso. É o que aconteceu com quem já passou pelo Protocolo.</h2>
+      </div>
+    </div>
+
+    <div class="cases-row" id="cases-row">
+      <a class="card-case" href="#">
+        <img class="card-case__image" src="images/cases/case-vaivan-cover.jpg" alt="VaiVan" />
+        <div class="card-case__body">
+          <div class="card-case__header">
+            <h3 class="card-case__title">VaiVan</h3>
+            <img class="card-case__arrow" src="images/cases/arrow-nav-up-right.svg" alt="" />
+          </div>
+          <p class="card-case__desc">WPA focado em ajudar motoristas de Van e ônibus escolares a gerenciarem embarques, rotas e financeiro de clientes.</p>
+        </div>
+      </a>
+      <a class="card-case" href="#">
+        <img class="card-case__image" src="images/cases/case-zei-cover.jpg" alt="Zei Technology" />
+        <div class="card-case__body">
+          <div class="card-case__header">
+            <h3 class="card-case__title">Zei Technology</h3>
+            <img class="card-case__arrow" src="images/cases/arrow-nav-up-right.svg" alt="" />
+          </div>
+          <p class="card-case__desc">Zei é um app de lista de compras que ajuda usuários a fazerem suas compras sem ter que usar papel ou calcular o total na calculadora.</p>
+        </div>
+      </a>
+      <a class="card-case" href="#">
+        <img class="card-case__image" src="images/cases/case-compropay-cover.jpg" alt="ComproPay App" />
+        <div class="card-case__body">
+          <div class="card-case__header">
+            <h3 class="card-case__title">ComproPay App</h3>
+            <img class="card-case__arrow" src="images/cases/arrow-nav-up-right.svg" alt="" />
+          </div>
+          <p class="card-case__desc">Fintech do cartão ComproCard, tem como foco principal a facilidade em pagamentos de serviços em alimentação fornecidos pelos cartões.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="cases-nav">
+      <button type="button" id="cases-prev" aria-label="Case anterior">
+        <img src="images/arrows/seta-verde-esquerda.svg" alt="" />
+      </button>
+      <button type="button" id="cases-next" aria-label="Próximo case">
+        <img src="images/arrows/seta-verde-direita.svg" alt="" />
+      </button>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="section section--dark" id="contato" style="padding-left:0; padding-right:0;">
+    <div class="form-card">
+      <!-- Step 1 -->
+      <div class="form-panel is-active" data-step="1">
+        <div class="fh-stepper">
+          <span class="fh-step fh-step--active">1</span>
+          <span class="fh-connector fh-connector--inactive"></span>
+          <span class="fh-step fh-step--inactive">2</span>
+          <span class="fh-connector fh-connector--inactive"></span>
+          <span class="fh-step fh-step--inactive">3</span>
+        </div>
+        <div class="fh-title-block">
+          <p class="eyebrow" style="color:#FAFAFA">ENTRAR EM CONTATO</p>
+          <p class="fh-heading">Vamos ver se sua ideia merece existir?</p>
+        </div>
+        <div class="fh-field">
+          <label>Seu nome completo</label>
+          <input type="text" id="f-name" placeholder="Ex: Maria Silva" />
+        </div>
+        <div class="fh-field">
+          <label>E-mail</label>
+          <input type="email" id="f-email" placeholder="Ex: maria@gmail.com" />
+        </div>
+        <div class="fh-field">
+          <label>Número de WhatsApp</label>
+          <input type="text" id="f-whatsapp" placeholder="Ex: (DDD) 0000-0000" />
+        </div>
+        <div class="fh-field">
+          <label>Nome do negócio/ideia</label>
+          <input type="text" id="f-business" placeholder="Ex: PicPay fintech" />
+        </div>
+        <div class="fh-field">
+          <label>Estágio</label>
+          <select id="f-stage-select" data-sync-group="stage">
+            <option value="" disabled selected>Selecione</option>
+            <option value="ideia">Ainda é ideia</option>
+            <option value="mvp">Tenho MVP</option>
+            <option value="fatura">Já fatura</option>
+            <option value="escalar">Preciso escalar</option>
+          </select>
+        </div>
+        <p class="fh-error" id="step1-error"></p>
+        <button class="fh-btn" type="button" data-next>
+          Continuar
+          <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg>
+        </button>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-panel" data-step="2">
+        <div class="fh-stepper">
+          <span class="fh-step fh-step--active">1</span>
+          <span class="fh-connector fh-connector--active"></span>
+          <span class="fh-step fh-step--active">2</span>
+          <span class="fh-connector fh-connector--inactive"></span>
+          <span class="fh-step fh-step--inactive">3</span>
+        </div>
+        <div class="fh-title-block">
+          <p class="eyebrow" style="color:#FAFAFA">ENTRAR EM CONTATO</p>
+          <p class="fh-heading">Vamos ver se sua ideia merece existir?</p>
+        </div>
+        <div class="fh-group">
+          <label>Estágio</label>
+          <div class="fh-chips" data-sync-group="stage">
+            <button class="fh-chip" type="button" data-value="ideia">Ainda é ideia</button>
+            <button class="fh-chip" type="button" data-value="mvp">Tenho MVP</button>
+            <button class="fh-chip" type="button" data-value="fatura">Já fatura</button>
+            <button class="fh-chip" type="button" data-value="escalar">Preciso escalar</button>
+          </div>
+        </div>
+        <div class="fh-group">
+          <label>Qual eixo mais te preocupa hoje?</label>
+          <div class="fh-chips" data-group="eixo">
+            <button class="fh-chip" type="button" data-value="negocio">Negócio</button>
+            <button class="fh-chip" type="button" data-value="marca">Marca</button>
+            <button class="fh-chip" type="button" data-value="dev">Dev</button>
+            <button class="fh-chip" type="button" data-value="todos">Os três</button>
+          </div>
+        </div>
+        <div class="fh-group">
+          <label>Faturamento mensal atual</label>
+          <div class="fh-chips" data-group="revenueRange">
+            <button class="fh-chip" type="button" data-value="pre">Pré-receita</button>
+            <button class="fh-chip" type="button" data-value="ate10k">Até R$10k</button>
+            <button class="fh-chip" type="button" data-value="10-50k">R$10k - R$50K</button>
+            <button class="fh-chip" type="button" data-value="50-200k">R$50k - R$200K</button>
+            <button class="fh-chip" type="button" data-value="200k+">R$200K+</button>
+          </div>
+        </div>
+        <p class="fh-error" id="step2-error"></p>
+        <button class="fh-btn" type="button" id="step2-submit" data-submit-lead>
+          <span data-btn-label>Continuar</span>
+          <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg>
+        </button>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-panel" data-step="3">
+        <div class="fh-stepper">
+          <span class="fh-step fh-step--active">1</span>
+          <span class="fh-connector fh-connector--active"></span>
+          <span class="fh-step fh-step--active">2</span>
+          <span class="fh-connector fh-connector--active"></span>
+          <span class="fh-step fh-step--active">3</span>
+        </div>
+        <div class="fh-title-block">
+          <p class="eyebrow" style="color:#FAFAFA">ENTRAR EM CONTATO</p>
+          <p class="fh-heading">Escolha um horário para conversarmos.</p>
+        </div>
+        <div class="fh-group">
+          <label>Escolha o dia</label>
+          <div class="fh-dates" id="date-cells" data-state="loading">
+            <p class="fh-availability-status">Carregando horários disponíveis…</p>
+          </div>
+        </div>
+        <div class="fh-group">
+          <label>Escolha o melhor horário</label>
+          <div class="fh-chips" id="time-chips" data-group="slot"></div>
+        </div>
+        <p class="fh-error" id="step3-error"></p>
+        <button class="fh-btn" type="button" id="step3-submit" data-submit-booking>
+          <span data-btn-label>Continuar</span>
+          <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg>
+        </button>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="form-panel" data-step="4">
+        <p class="eyebrow" style="color:#FAFAFA">ENTRAR EM CONTATO</p>
+        <div>
+          <div class="fh-confirm-badge">
+            <img src="images/icons/ui/check-confirm.svg" alt="" />
+          </div>
+          <p class="fh-heading">Reunião confirmada.</p>
+          <p class="fh-confirm-sub">Protocolo <span id="confirm-protocol">—</span> · <span id="confirm-datetime">—</span></p>
+        </div>
+        <a class="fh-btn" id="confirm-add-calendar" href="#" target="_blank" rel="noopener">Adicionar ao calendário</a>
+        <a class="fh-btn fh-btn--ghost" id="confirm-join-meet" href="#" target="_blank" rel="noopener" style="display:none;">Entrar na reunião</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__info">
+        <p class="footer__tagline">Fihan | Inteligência de Negócio, Marca e Desenvolvimento</p>
+        <hr class="hr-line" style="border-color:#494B4B" />
+        <div class="footer__contact">
+          <a class="footer__email" href="mailto:contato@fihan.com.br">contato@fihan.com.br</a>
+          <a class="footer__whatsapp" href="https://wa.me/5500000000000">
+            <img src="images/icons/ui/icon-whatsapp.svg" alt="WhatsApp" />
+            <span>+55 00 00000-0000</span>
+          </a>
+          <p class="footer__caption">ESPÍRITO SANTO, BRASIL</p>
+        </div>
+        <hr class="hr-line" style="border-color:#494B4B" />
+        <div class="footer__links">
+          <a class="footer-pill" href="https://instagram.com" target="_blank" rel="noopener">INSTAGRAM</a>
+          <a class="footer-pill" href="https://linkedin.com" target="_blank" rel="noopener">LINKEDIN</a>
+          <a class="footer-pill" href="https://youtube.com" target="_blank" rel="noopener">YOUTUBE</a>
+        </div>
+      </div>
+
+      <div class="footer__right">
+        <img class="footer__glitch" src="images/footer/footer-glitch-art.png" alt="Fihan" />
+        <div class="footer__other-links">
+          <div class="footer__col">
+            <p class="footer__col-label">[ INDEX ]</p>
+            <div class="footer__col-list">
+              <a href="/trabalhos/">Trabalhos</a>
+              <a href="/sobre/">Sobre</a>
+              <a href="/eixo-dev/">Dev</a>
+            </div>
+          </div>
+          <div class="footer__col">
+            <p class="footer__col-label">[ ECOSSISTEMAS ]</p>
+            <div class="footer__col-list">
+              <a href="#">Fihan academy</a>
+              <a href="#">Parceiros</a>
+              <a href="/blog/">Blog</a>
+            </div>
+          </div>
+          <div class="footer__col">
+            <p class="footer__col-label">[ EIXOS ]</p>
+            <div class="footer__col-list">
+              <a href="#protocolo">Negócio</a>
+              <a href="#protocolo">Marca</a>
+              <a href="#protocolo">Dev</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <hr class="hr-line" style="border-color:#65696E" />
+      <p class="footer__copyright">© 2026 Fihan. All rights reserved. Inteligência de negócio, marca e desenvolvimento</p>
+    </div>
+  </footer>
+
+  <!-- BACKDROP compartilhado pelos sheetmenus (seleção de eixos e resultado) -->
+  <div class="sheet-backdrop" id="sheet-backdrop"></div>
+
+  <!-- BOTTOM SHEET 1/2 — Seleção de eixos -->
+  <div class="bottom-sheet sheet-menu" id="eixo-sheet" role="dialog" aria-modal="true" aria-labelledby="eixo-sheet-title">
+    <button class="sheet-menu__grip" type="button" data-close-sheet aria-label="Fechar"></button>
+    <div class="sheet-menu__inner">
+      <div class="sheet-menu__head">
+        <div class="fh-stepper">
+          <span class="fh-step fh-step--active">1</span>
+          <span class="fh-connector fh-connector--active"></span>
+          <span class="fh-step fh-step--active">2</span>
+          <span class="fh-connector fh-connector--inactive"></span>
+          <span class="fh-step fh-step--inactive">3</span>
+        </div>
+        <h2 class="sheet-menu__heading" id="eixo-sheet-title">Onde você sente mais dor hoje? Selecione um ou mais eixos.</h2>
+      </div>
+
+      <div class="selectable-list" id="eixo-select-list">
+        <button class="selectable-card is-selected" type="button" aria-pressed="true" data-eixo="negocio">
+          <span class="selectable-card__text">
+            <span class="selectable-card__title">Negócio</span>
+            <span class="selectable-card__desc">Não sei se essa ideia tem demanda real</span>
+          </span>
+          <img class="selectable-card__check" src="images/icons/ui/checkbox-checked.svg" alt="" />
+        </button>
+        <button class="selectable-card" type="button" aria-pressed="false" data-eixo="marca">
+          <span class="selectable-card__text">
+            <span class="selectable-card__title">Marca</span>
+            <span class="selectable-card__desc">Minha marca não gera confiança nem reconhecimento</span>
+          </span>
+          <img class="selectable-card__check" src="images/icons/ui/checkbox-unchecked.svg" alt="" />
+        </button>
+        <button class="selectable-card" type="button" aria-pressed="false" data-eixo="dev">
+          <span class="selectable-card__text">
+            <span class="selectable-card__title">Dev</span>
+            <span class="selectable-card__desc">Tenho a ideia, mas não tenho o produto pronto</span>
+          </span>
+          <img class="selectable-card__check" src="images/icons/ui/checkbox-unchecked.svg" alt="" />
+        </button>
+      </div>
+
+      <div class="sheet-menu__actions">
+        <button class="cta-btn cta-btn--outline" type="button" data-close-sheet>Fechar</button>
+        <button class="cta-btn" type="button" data-open-sheet3>Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM SHEET 2/2 — Resultado estimado -->
+  <div class="bottom-sheet sheet-menu" id="result-sheet" role="dialog" aria-modal="true" aria-labelledby="result-sheet-title">
+    <button class="sheet-menu__grip" type="button" data-close-sheet aria-label="Fechar"></button>
+    <div class="sheet-menu__inner">
+      <div class="sheet-menu__head">
+        <div class="fh-stepper">
+          <span class="fh-step fh-step--active">1</span>
+          <span class="fh-connector fh-connector--active"></span>
+          <span class="fh-step fh-step--active">2</span>
+          <span class="fh-connector fh-connector--active"></span>
+          <span class="fh-step fh-step--active">3</span>
+        </div>
+        <h2 class="sheet-menu__heading" id="result-sheet-title">Resultado estimado</h2>
+        <p class="sheet-menu__body-text">Essa projeção é baseada em benchmarks reais de clientes que passaram pelo Protocolo (veja os números na seção abaixo). Não é promessa — é estimativa fundamentada em dados.</p>
+      </div>
+
+      <div class="result-list">
+        <div class="card-result">
+          <div class="card-result__dots">
+            <img src="images/icons/ui/dot-simples.svg" alt="" />
+            <img src="images/icons/ui/dot-simples.svg" alt="" />
+            <img src="images/icons/ui/dot-simples.svg" alt="" />
+          </div>
+          <div>
+            <p class="card-result__label" id="result-com-label">Com Fihan</p>
+            <p class="card-result__value" id="result-com-value">R$ 0,00</p>
+          </div>
+        </div>
+        <div class="card-result card-result--negative">
+          <div class="card-result__dots">
+            <img src="images/icons/ui/dot-simples.svg" alt="" />
+            <img src="images/icons/ui/dot-simples.svg" alt="" />
+            <img src="images/icons/ui/dot-simples.svg" alt="" />
+          </div>
+          <div>
+            <p class="card-result__label">Sem Fihan</p>
+            <p class="card-result__value" id="result-sem-value">R$ 0,00</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="cta-btn" type="button" data-go-to-contact>Quero esse resultado</button>
+    </div>
+  </div>
+
+  <script src="js/landing.js"></script>
+</body>
+</html>

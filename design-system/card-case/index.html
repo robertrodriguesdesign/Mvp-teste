@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Card Case</title>
+  <style>
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-SemiBold.ttf") format("truetype");
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    :root {
+      --bg: #EDEDED;
+      --text-dim: #6B6F73;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: #202224;
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    .hint { font-size: 12px; color: var(--text-dim); margin: 0 0 32px; }
+
+    .row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    /* Card Case component */
+    .card-case {
+      display: flex;
+      flex-direction: column;
+      gap: 19px;
+      width: 345px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    .card-case__image {
+      width: 100%;
+      height: 275px;
+      object-fit: cover;
+      border-radius: 4px;
+      background: #ccc;
+    }
+    .card-case__body {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .card-case__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .card-case__title {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-weight: 600;
+      font-size: 24px;
+      letter-spacing: -0.0125em;
+      color: #202224;
+      margin: 0;
+    }
+    .card-case__arrow {
+      flex-shrink: 0;
+      width: 14.32px;
+      height: 14.32px;
+      transition: transform 0.15s ease;
+    }
+    .card-case:hover .card-case__arrow {
+      transform: translate(2px, -2px);
+    }
+    .card-case__desc {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-weight: 400;
+      font-size: 11px;
+      letter-spacing: -0.0273em;
+      color: #111314;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Card Case — Fihan</h1>
+  <p class="hint">345px · imagem 275px cover · título IBM Plex Mono SemiBold 24px · descrição IBM Plex Mono 11px</p>
+
+  <div class="row">
+    <a class="card-case" href="#">
+      <img class="card-case__image" src="../../images/cases/case-zei-cover.jpg" alt="Zei Technology" />
+      <div class="card-case__body">
+        <div class="card-case__header">
+          <h2 class="card-case__title">Zei Technology</h2>
+          <img class="card-case__arrow" src="../../images/cases/arrow-nav-up-right.svg" alt="" />
+        </div>
+        <p class="card-case__desc">Descrição do projeto de forma curta e objetiva</p>
+      </div>
+    </a>
+  </div>
+</body>
+</html>

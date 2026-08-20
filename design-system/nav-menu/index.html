@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Nav Menu</title>
+  <style>
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    :root {
+      --bg: #EDEDED;
+      --text-dim: #6B6F73;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: #202224;
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    .hint { font-size: 12px; color: var(--text-dim); margin: 0 0 32px; }
+
+    /* Nav-menu component */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 345px;
+      padding: 16px;
+      background: #F9F9F9;
+      border: 1px solid #D7D9DB;
+    }
+    .nav-menu__logo {
+      width: 72px;
+      height: 28.75px;
+    }
+    .nav-menu__cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: #202224;
+      border: none;
+      color: #FAFAFA;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-weight: 400;
+      font-size: 15px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .nav-menu__cta svg {
+      width: 9px;
+      height: 7px;
+      flex-shrink: 0;
+      transition: transform 0.15s ease;
+    }
+    .nav-menu__cta:hover svg {
+      transform: translateX(2px);
+    }
+  </style>
+</head>
+<body>
+  <h1>Nav Menu — Fihan</h1>
+  <p class="hint">345×61 · bg #F9F9F9 · borda #D7D9DB · botão primário #202224</p>
+
+  <nav class="nav-menu">
+    <img class="nav-menu__logo" src="../../images/brand/logo-dark.svg" alt="Fihan" />
+    <button class="nav-menu__cta" type="button">
+      Comece Agora
+      <svg viewBox="0 0 9 7" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.85437 3.14458L5.85388 0.144095C5.76532 0.0540358 5.63924 0 5.49964 0C5.22496 0 4.99981 0.223648 4.99981 0.499831C4.99981 0.639424 5.05385 0.764006 5.14391 0.854066L7.29483 2.99899H0.499831C0.225149 2.99899 0 3.22414 0 3.50032C0 3.775 0.225149 4.00015 0.499831 4.00015H7.29483L5.14991 6.14507C5.05385 6.23513 4.99981 6.35971 4.99981 6.49931C4.99981 6.77399 5.22496 6.99914 5.49964 6.99914C5.63924 6.99914 5.76532 6.9451 5.85388 6.85504L8.85437 3.85455C8.94443 3.76449 8.99996 3.63991 8.99996 3.50032C8.99996 3.35923 8.94443 3.23464 8.85437 3.14458Z" fill="currentColor"/>
+      </svg>
+    </button>
+  </nav>
+</body>
+</html>

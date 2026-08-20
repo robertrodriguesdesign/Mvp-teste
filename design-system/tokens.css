@@ -1,0 +1,48 @@
+/* Fihan Design System — Color Tokens
+   Extraído do arquivo Figma "Fihan" (ueMtlfPTSxT0KiZlEhipvC). */
+:root {
+  /* Brand / verde */
+  --fh-green-500: #14CC52; /* cor primária da marca */
+  --fh-green-600: #159139; /* hover */
+  --fh-green-700: #163B21; /* press / fundo escuro verde */
+  --fh-mint-100: #DAF2E2;  /* texto sobre verde escuro */
+
+  /* Neutros escuros */
+  --fh-black-900: #111314;
+  --fh-black-800: #161917;
+  --fh-black-700: #202224; /* fundo escuro padrão */
+  --fh-gray-900: #333536;  /* estados inativos/disabled */
+  --fh-gray-800: #43464A;  /* cards escuros / hover secundário */
+  --fh-gray-700: #494B4B;  /* bordas em fundo escuro */
+  --fh-gray-600: #5F6061;  /* borda padrão (pill, arrows) */
+  --fh-gray-500: #65696E;  /* borda chips/select */
+  --fh-gray-400: #757677;  /* borda inputs, terminal */
+  --fh-gray-300: #888C91;  /* texto esmaecido */
+
+  /* Neutros claros */
+  --fh-gray-200: #9A9EA1;
+  --fh-gray-100: #AEB1B5;
+  --fh-gray-50: #D7D9DB;   /* bordas em fundo claro */
+  --fh-gray-25: #CDCDCE;   /* hover pill claro */
+  --fh-white-100: #E6E6E6; /* caption footer */
+  --fh-white-50: #F9F9F9;
+  --fh-white-25: #FAFAFA;
+  --fh-white: #FFFFFF;
+  --fh-black: #000000;
+
+  /* Estados / feedback */
+  --fh-warning-500: #D45113;
+  --fh-warning-glow: rgba(85, 45, 27, 1);
+  --fh-focus-glow: rgba(21, 128, 52, 0.25);
+  --fh-red-500: #F5423D; /* comparativo "sem Fihan" */
+
+  /* Aliases semânticos */
+  --fh-bg-page: #FFFFFF;
+  --fh-bg-dark: var(--fh-black-700);
+  --fh-bg-darker: var(--fh-black-800);
+  --fh-text-primary: var(--fh-black-700);
+  --fh-text-inverse: var(--fh-white-25);
+  --fh-text-dim: var(--fh-gray-300);
+  --fh-border-light: var(--fh-gray-50);
+  --fh-border-dark: var(--fh-gray-700);
+}

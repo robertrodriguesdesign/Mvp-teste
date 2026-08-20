@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Fihan Meet</title>
+  <link rel="stylesheet" href="/design-system/fonts.css" />
+  <link rel="stylesheet" href="/design-system/tokens.css" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--fh-font-mono);
+      background: var(--fh-bg-dark);
+      color: var(--fh-white-25);
+      min-height: 100vh;
+    }
+    a { color: inherit; }
+    .wrap { max-width: 760px; margin: 0 auto; padding: 32px 24px 80px; }
+
+    /* ---- Login ---- */
+    #loginView { max-width: 345px; margin: 80px auto; display: flex; flex-direction: column; gap: 24px; }
+    #loginView h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.0125em; margin: 0; }
+    .fh-field { display: flex; flex-direction: column; gap: 8px; }
+    .fh-field label { font-size: 11px; letter-spacing: -0.0273em; }
+    .fh-field input {
+      all: unset; box-sizing: border-box; width: 100%; height: 47px; padding: 0 10px;
+      border: 1px solid var(--fh-gray-400); font-family: var(--fh-font-mono); font-size: 15px; color: var(--fh-white-25);
+    }
+    .fh-field input:focus { border-color: var(--fh-green-500); box-shadow: 0 0 0 3px var(--fh-focus-glow); background: var(--fh-black-800); }
+    .fh-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 10px 24px;
+      background: var(--fh-green-500); border: none; color: var(--fh-bg-dark); font-family: var(--fh-font-mono); font-size: 15px; cursor: pointer;
+    }
+    .fh-btn:hover { background: var(--fh-green-600); }
+    .fh-btn:disabled { opacity: .55; cursor: not-allowed; }
+    .fh-btn--outline { background: transparent; border: 1px solid var(--fh-gray-500); color: var(--fh-white-25); }
+    .fh-btn--outline:hover { background: var(--fh-gray-800); }
+    .fh-error { display: none; font-size: 12px; color: var(--fh-red-500); margin: -8px 0 0; }
+    .fh-error.is-visible { display: block; }
+
+    /* ---- Dashboard shell ---- */
+    #dashView { display: none; }
+    #dashView.is-active { display: block; }
+    .header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+    .header h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.0125em; margin: 0; }
+    .header .actions { display: flex; gap: 8px; }
+    .btn-sm {
+      padding: 8px 16px; background: transparent; border: 1px solid var(--fh-gray-500); color: var(--fh-white-25);
+      font-family: var(--fh-font-mono); font-size: 12px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
+    }
+    .btn-sm:hover { background: var(--fh-gray-800); }
+
+    /* ---- New meeting actions ---- */
+    .new-meeting-row { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+    .new-meeting-row .fh-btn, .new-meeting-row .fh-btn--outline { width: auto; flex: 1; min-width: 200px; }
+
+    .schedule-form {
+      display: none; flex-direction: column; gap: 16px; padding: 20px; border: 1px solid var(--fh-gray-700); background: var(--fh-black-800); margin-bottom: 32px;
+    }
+    .schedule-form.is-open { display: flex; }
+    .schedule-form__row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .schedule-form__row .fh-field { flex: 1; min-width: 140px; }
+    .schedule-form__actions { display: flex; gap: 12px; }
+    .schedule-form__actions .fh-btn, .schedule-form__actions .fh-btn--outline { width: auto; flex: 1; }
+
+    .link-result {
+      display: none; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--fh-green-500); background: rgba(20,204,82,0.08); margin-bottom: 32px; font-size: 13px; flex-wrap: wrap;
+    }
+    .link-result.is-open { display: flex; }
+    .link-result code { color: var(--fh-green-500); word-break: break-all; }
+
+    /* ---- Meetings list ---- */
+    h2.section-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.0067em; color: var(--fh-gray-300); margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--fh-gray-700); }
+    .meeting-row {
+      display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--fh-black-800); flex-wrap: wrap;
+    }
+    .meeting-row__time { width: 130px; flex-shrink: 0; font-size: 13px; color: var(--fh-green-500); }
+    .meeting-row__body { flex: 1; min-width: 160px; }
+    .meeting-row__title { font-size: 15px; color: var(--fh-white-25); margin: 0; }
+    .meeting-row__sub { font-size: 11px; color: var(--fh-gray-300); margin: 2px 0 0; }
+    .meeting-row__actions { display: flex; gap: 14px; }
+    .meeting-row__actions a, .meeting-row__actions button {
+      font-size: 12px; color: var(--fh-green-500); text-decoration: none; background: none; border: none; cursor: pointer; font-family: var(--fh-font-mono); padding: 0;
+    }
+    .meeting-row__actions .end-btn { color: var(--fh-red-500); }
+    .meeting-row.is-ended { opacity: 0.5; }
+
+    .empty-state { text-align: center; padding: 32px 0; color: var(--fh-gray-300); font-size: 13px; margin-bottom: 32px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- LOGIN -->
+    <div id="loginView">
+      <h1>Fihan Meet</h1>
+      <form id="loginForm" style="display:flex; flex-direction:column; gap:16px;">
+        <div class="fh-field">
+          <label>E-mail</label>
+          <input type="email" id="admEmail" autocomplete="username" required />
+        </div>
+        <div class="fh-field">
+          <label>Senha</label>
+          <input type="password" id="admPass" autocomplete="current-password" required />
+        </div>
+        <p class="fh-error" id="loginError"></p>
+        <button class="fh-btn" type="submit" id="loginBtn">Entrar</button>
+      </form>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashView">
+      <div class="header">
+        <h1>Fihan Meet</h1>
+        <div class="actions">
+          <a class="btn-sm" href="/admin/">CRM</a>
+          <a class="btn-sm" href="/admin/agenda/">Agenda</a>
+          <button class="btn-sm" id="refreshBtn" type="button">Atualizar</button>
+          <button class="btn-sm" id="logoutBtn" type="button">Sair</button>
+        </div>
+      </div>
+
+      <div class="new-meeting-row">
+        <button class="fh-btn" id="instantBtn" type="button">+ Nova reunião agora</button>
+        <button class="fh-btn fh-btn--outline" id="scheduleToggleBtn" type="button">Agendar para depois</button>
+      </div>
+
+      <div class="schedule-form" id="scheduleForm">
+        <div class="fh-field">
+          <label>Título (opcional)</label>
+          <input type="text" id="schTitle" placeholder="Ex: Reunião com Zei Technology" />
+        </div>
+        <div class="schedule-form__row">
+          <div class="fh-field">
+            <label>Data</label>
+            <input type="date" id="schDate" />
+          </div>
+          <div class="fh-field">
+            <label>Horário</label>
+            <input type="time" id="schTime" />
+          </div>
+        </div>
+        <p class="fh-error" id="scheduleError"></p>
+        <div class="schedule-form__actions">
+          <button class="fh-btn fh-btn--outline" type="button" id="scheduleCancelBtn">Cancelar</button>
+          <button class="fh-btn" type="button" id="scheduleSubmitBtn">Criar reunião agendada</button>
+        </div>
+      </div>
+
+      <div class="link-result" id="linkResult">
+        <span>Link criado:</span>
+        <code id="linkResultUrl"></code>
+        <button class="btn-sm" id="linkCopyBtn" type="button">Copiar</button>
+      </div>
+
+      <h2 class="section-title">Agendadas</h2>
+      <div id="scheduledList"></div>
+      <p class="empty-state" id="scheduledEmpty" style="display:none;">Nenhuma reunião agendada.</p>
+
+      <h2 class="section-title">Recentes</h2>
+      <div id="recentList"></div>
+      <p class="empty-state" id="recentEmpty" style="display:none;">Nenhuma reunião criada ainda.</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var authHeader = null;
+      var allMeetings = [];
+
+      var WEEKDAY_ABBR = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
+      var MONTH_ABBR = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+
+      function localParts(iso) {
+        var d = new Date(new Date(iso).getTime() - 3 * 60 * 60000);
+        return { weekday: d.getUTCDay(), day: d.getUTCDate(), month: d.getUTCMonth(), year: d.getUTCFullYear(),
+          hh: String(d.getUTCHours()).padStart(2, '0'), mm: String(d.getUTCMinutes()).padStart(2, '0') };
+      }
+      function fmt(iso) {
+        var p = localParts(iso);
+        return WEEKDAY_ABBR[p.weekday] + ', ' + p.day + ' ' + MONTH_ABBR[p.month] + ' · ' + p.hh + ':' + p.mm;
+      }
+
+      /* ---------- Sessão ---------- */
+      try {
+        var stored = sessionStorage.getItem('fihan-admin-auth');
+        if (stored) { authHeader = stored; showDash(); loadMeetings(); }
+      } catch (e) {}
+
+      /* ---------- Login ---------- */
+      $('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = $('admEmail').value.trim();
+        var pass = $('admPass').value;
+        var errBox = $('loginError');
+        errBox.classList.remove('is-visible');
+        var btn = $('loginBtn');
+        btn.disabled = true; btn.textContent = 'Entrando…';
+
+        var header = 'Basic ' + btoa(email + ':' + pass);
+        fetch('/api/meet-rooms?action=list', { headers: { Authorization: header } })
+          .then(function (r) {
+            if (r.status === 401) throw new Error('Credenciais inválidas.');
+            if (!r.ok) throw new Error('Erro ao conectar (' + r.status + ').');
+            return r.json();
+          })
+          .then(function (data) {
+            authHeader = header;
+            try { sessionStorage.setItem('fihan-admin-auth', header); } catch (e) {}
+            showDash();
+            renderMeetings(data.meetings || []);
+          })
+          .catch(function (err) {
+            errBox.textContent = err.message || 'Falha no login.';
+            errBox.classList.add('is-visible');
+          })
+          .finally(function () { btn.disabled = false; btn.textContent = 'Entrar'; });
+      });
+
+      function showDash() { $('loginView').style.display = 'none'; $('dashView').classList.add('is-active'); }
+      function logout() {
+        authHeader = null;
+        try { sessionStorage.removeItem('fihan-admin-auth'); } catch (e) {}
+        $('dashView').classList.remove('is-active');
+        $('loginView').style.display = '';
+      }
+      $('logoutBtn').addEventListener('click', logout);
+      $('refreshBtn').addEventListener('click', loadMeetings);
+
+      function loadMeetings() {
+        if (!authHeader) return;
+        fetch('/api/meet-rooms?action=list', { headers: { Authorization: authHeader } })
+          .then(function (r) {
+            if (r.status === 401) { logout(); throw new Error('Sessão expirada.'); }
+            if (!r.ok) throw new Error('Erro ' + r.status);
+            return r.json();
+          })
+          .then(function (data) { renderMeetings(data.meetings || []); })
+          .catch(function () {});
+      }
+
+      /* ---------- Nova reunião agora ---------- */
+      $('instantBtn').addEventListener('click', function () {
+        var btn = $('instantBtn');
+        btn.disabled = true; btn.textContent = 'Criando…';
+        fetch('/api/meet-rooms', {
+          method: 'POST',
+          headers: { Authorization: authHeader, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title: '' })
+        })
+          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.body.error || 'Falha ao criar reunião.');
+            location.href = res.body.meeting.url;
+          })
+          .catch(function (err) {
+            alert(err.message || 'Não foi possível criar a reunião.');
+            btn.disabled = false; btn.textContent = '+ Nova reunião agora';
+          });
+      });
+
+      /* ---------- Agendar para depois ---------- */
+      $('scheduleToggleBtn').addEventListener('click', function () {
+        var form = $('scheduleForm');
+        form.classList.toggle('is-open');
+        if (form.classList.contains('is-open')) {
+          var now = new Date(Date.now() - 3 * 60 * 60000);
+          $('schDate').value = now.toISOString().slice(0, 10);
+        }
+      });
+      $('scheduleCancelBtn').addEventListener('click', function () { $('scheduleForm').classList.remove('is-open'); });
+
+      $('scheduleSubmitBtn').addEventListener('click', function () {
+        var title = $('schTitle').value.trim();
+        var date = $('schDate').value;
+        var time = $('schTime').value;
+        if (!date || !time) return showScheduleError('Escolha data e horário.');
+        // Interpreta o input como horário local America/Sao_Paulo (UTC-3 fixo).
+        var scheduledUtc = new Date(date + 'T' + time + ':00-03:00');
+        if (Number.isNaN(scheduledUtc.getTime())) return showScheduleError('Data/horário inválidos.');
+        if (scheduledUtc.getTime() < Date.now() - 5 * 60000) return showScheduleError('Escolha um horário no futuro.');
+        showScheduleError('');
+
+        var btn = $('scheduleSubmitBtn');
+        btn.disabled = true; btn.textContent = 'Criando…';
+        fetch('/api/meet-rooms', {
+          method: 'POST',
+          headers: { Authorization: authHeader, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title: title, scheduledAt: scheduledUtc.toISOString() })
+        })
+          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.body.error || 'Falha ao agendar.');
+            $('scheduleForm').classList.remove('is-open');
+            $('schTitle').value = ''; $('schTime').value = '';
+            showLinkResult(res.body.meeting.url);
+            loadMeetings();
+          })
+          .catch(function (err) { showScheduleError(err.message || 'Não foi possível agendar.'); })
+          .finally(function () { btn.disabled = false; btn.textContent = 'Criar reunião agendada'; });
+      });
+
+      function showScheduleError(msg) {
+        var el = $('scheduleError');
+        el.textContent = msg;
+        el.classList.toggle('is-visible', !!msg);
+      }
+
+      function showLinkResult(url) {
+        $('linkResultUrl').textContent = url;
+        $('linkResult').classList.add('is-open');
+        $('linkCopyBtn').onclick = function () {
+          navigator.clipboard.writeText(url).then(function () {
+            $('linkCopyBtn').textContent = 'Copiado!';
+            setTimeout(function () { $('linkCopyBtn').textContent = 'Copiar'; }, 1500);
+          });
+        };
+      }
+
+      /* ---------- Lista ---------- */
+      function renderMeetings(meetings) {
+        allMeetings = meetings;
+        var now = Date.now();
+        var scheduled = meetings.filter(function (m) { return m.scheduledAt && !m.endedAt && new Date(m.scheduledAt).getTime() >= now - 30 * 60000; })
+          .sort(function (a, b) { return new Date(a.scheduledAt) - new Date(b.scheduledAt); });
+        var recent = meetings.filter(function (m) { return !scheduled.includes(m); })
+          .sort(function (a, b) { return new Date(b.createdAt) - new Date(a.createdAt); })
+          .slice(0, 15);
+
+        renderList('scheduledList', 'scheduledEmpty', scheduled, true);
+        renderList('recentList', 'recentEmpty', recent, false);
+      }
+
+      function renderList(listId, emptyId, meetings, isScheduled) {
+        var container = $(listId);
+        $(emptyId).style.display = meetings.length ? 'none' : '';
+        container.innerHTML = meetings.map(function (m) {
+          var when = isScheduled ? fmt(m.scheduledAt) : fmt(m.createdAt);
+          var title = m.title || 'Reunião sem título';
+          return '<div class="meeting-row' + (m.endedAt ? ' is-ended' : '') + '" data-id="' + m.id + '">' +
+            '<div class="meeting-row__time">' + when + '</div>' +
+            '<div class="meeting-row__body">' +
+              '<p class="meeting-row__title">' + escapeHtml(title) + '</p>' +
+              '<p class="meeting-row__sub">' + (m.endedAt ? 'Encerrada' : escapeHtml(m.roomId)) + '</p>' +
+            '</div>' +
+            '<div class="meeting-row__actions">' +
+              (!m.endedAt ? '<a href="' + escapeHtml(m.url) + '" target="_blank" rel="noopener">Entrar</a>' : '') +
+              (!m.endedAt ? '<button type="button" class="copy-btn" data-url="' + escapeHtml(m.url) + '">Copiar link</button>' : '') +
+              (!m.endedAt ? '<button type="button" class="end-btn" data-id="' + m.id + '">Encerrar</button>' : '') +
+            '</div>' +
+          '</div>';
+        }).join('');
+
+        container.querySelectorAll('.copy-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            navigator.clipboard.writeText(btn.dataset.url).then(function () {
+              btn.textContent = 'Copiado!';
+              setTimeout(function () { btn.textContent = 'Copiar link'; }, 1500);
+            });
+          });
+        });
+        container.querySelectorAll('.end-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () { endMeeting(btn.dataset.id); });
+        });
+      }
+
+      function endMeeting(id) {
+        if (!authHeader) return;
+        if (!confirm('Encerrar esta reunião?')) return;
+        fetch('/api/meet-rooms?id=' + encodeURIComponent(id), { method: 'DELETE', headers: { Authorization: authHeader } })
+          .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+          .then(function () { loadMeetings(); })
+          .catch(function () { alert('Não foi possível encerrar. Tente novamente.'); });
+      }
+
+      function escapeHtml(str) {
+        return String(str == null ? '' : str)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Form Flow</title>
+  <style>
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-SemiBold.ttf") format("truetype");
+      font-weight: 600;
+      font-style: normal;
+    }
+    :root {
+      --page-bg: #EDEDED;
+      --text-dim: #6B6F73;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 100px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--page-bg);
+      color: #202224;
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    .hint { font-size: 12px; color: var(--text-dim); margin: 0 0 32px; }
+
+    .form-card {
+      width: 393px;
+      background: #202224;
+      padding: 37px 24px 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 31px;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      color: #FAFAFA;
+    }
+    .form-panel { display: none; flex-direction: column; gap: 31px; }
+    .form-panel.is-active { display: flex; }
+
+    /* Stepper */
+    .fh-stepper { display: flex; align-items: center; gap: 2px; }
+    .fh-step {
+      width: 25.04px;
+      height: 25.04px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 10.73px;
+      letter-spacing: -0.0125em;
+    }
+    .fh-step--active { background: #14CC52; color: #202224; }
+    .fh-step--inactive { background: #D7D9DB; color: #888C91; }
+    .fh-connector { width: 13.86px; height: 1.79px; }
+    .fh-connector--active { background: #14CC52; }
+    .fh-connector--inactive { background: #D7D9DB; }
+
+    /* Title block */
+    .fh-eyebrow { font-size: 11px; letter-spacing: -0.0273em; color: #FAFAFA; margin: 0; }
+    .fh-heading { font-size: 24px; font-weight: 600; letter-spacing: -0.0125em; color: #FAFAFA; margin: 0; }
+    .fh-title-block { display: flex; flex-direction: column; gap: 14px; }
+
+    /* Fields */
+    .fh-field { display: flex; flex-direction: column; gap: 8px; }
+    .fh-field label { font-size: 11px; letter-spacing: -0.0273em; color: #FAFAFA; }
+    .fh-field input, .fh-field select {
+      all: unset;
+      box-sizing: border-box;
+      width: 100%;
+      height: 47px;
+      padding: 0 10px;
+      border: 1px solid #757677;
+      font-family: inherit;
+      font-size: 15px;
+      color: #FAFAFA;
+    }
+    .fh-field input::placeholder { color: #494B4B; }
+    .fh-field input:focus, .fh-field select:focus {
+      border-color: #14CC52;
+      box-shadow: 0 0 0 3px rgba(21, 128, 52, 0.25);
+      background: #161917;
+    }
+    .fh-field select { cursor: pointer; }
+    .fh-field select option { background: #161917; }
+
+    /* Select chip group */
+    .fh-group { display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
+    .fh-chips { display: flex; flex-wrap: wrap; gap: 13px; }
+    .fh-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      border: 1px solid #65696E;
+      background: transparent;
+      color: #FAFAFA;
+      font-family: inherit;
+      font-size: 11px;
+      letter-spacing: -0.0273em;
+      cursor: pointer;
+    }
+    .fh-chip.is-selected { border-color: transparent; background: #14CC52; color: #202224; }
+
+    /* Date row */
+    .fh-dates { display: flex; align-items: center; justify-content: space-between; }
+    .fh-date-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid #65696E;
+      background: transparent;
+      color: #FAFAFA;
+      font-family: inherit;
+      cursor: pointer;
+      min-width: 46px;
+    }
+    .fh-date-cell__day { font-size: 11px; letter-spacing: -0.0273em; }
+    .fh-date-cell__num { font-size: 18px; font-weight: 500; }
+    .fh-date-cell.is-selected { border-color: transparent; background: #14CC52; color: #202224; }
+
+    /* Button */
+    .fh-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 10px 24px;
+      background: #14CC52;
+      border: none;
+      color: #202224;
+      font-family: inherit;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .fh-btn:hover { background: #159139; }
+    .fh-btn:active { background: #163B21; color: #DAF2E2; }
+    .fh-btn svg { width: 14.51px; height: 10.4px; }
+
+    /* Confirmation */
+    .fh-confirm-badge {
+      width: 46.67px;
+      height: 46.67px;
+      border-radius: 100px;
+      background: #14CC52;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .fh-confirm-badge img { width: 25.35px; height: 19.56px; }
+    .fh-confirm-sub { font-size: 11px; letter-spacing: -0.0273em; color: #FAFAFA; margin: 8px 0 0; }
+  </style>
+</head>
+<body>
+  <h1>Form Flow — Fihan</h1>
+  <p class="hint">wizard de contato em 4 etapas · 393px · avance clicando em "Continuar"</p>
+
+  <div class="form-card">
+    <!-- Step 1 -->
+    <div class="form-panel is-active" data-step="1">
+      <div class="fh-stepper">
+        <span class="fh-step fh-step--active">1</span>
+        <span class="fh-connector fh-connector--inactive"></span>
+        <span class="fh-step fh-step--inactive">2</span>
+        <span class="fh-connector fh-connector--inactive"></span>
+        <span class="fh-step fh-step--inactive">3</span>
+      </div>
+      <div class="fh-title-block">
+        <p class="fh-eyebrow">ENTRAR EM CONTATO</p>
+        <p class="fh-heading">Vamos ver se sua ideia merece existir?</p>
+      </div>
+      <div class="fh-field">
+        <label>Seu nome completo</label>
+        <input type="text" placeholder="Ex: Maria Silva" />
+      </div>
+      <div class="fh-field">
+        <label>E-mail</label>
+        <input type="email" placeholder="Ex: maria@gmail.com" />
+      </div>
+      <div class="fh-field">
+        <label>Número de WhatsApp</label>
+        <input type="text" placeholder="Ex: (DDD) 0000-0000" />
+      </div>
+      <div class="fh-field">
+        <label>Nome do negócio/ideia</label>
+        <input type="text" placeholder="Ex: PicPay fintech" />
+      </div>
+      <div class="fh-field">
+        <label>Estágio</label>
+        <select>
+          <option value="" disabled selected>Selecione</option>
+          <option>Ainda é ideia</option>
+          <option>Tenho MVP</option>
+          <option>Já fatura</option>
+          <option>Preciso escalar</option>
+        </select>
+      </div>
+      <button class="fh-btn" type="button" data-next>
+        Continuar
+        <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="form-panel" data-step="2">
+      <div class="fh-stepper">
+        <span class="fh-step fh-step--active">1</span>
+        <span class="fh-connector fh-connector--active"></span>
+        <span class="fh-step fh-step--active">2</span>
+        <span class="fh-connector fh-connector--inactive"></span>
+        <span class="fh-step fh-step--inactive">3</span>
+      </div>
+      <div class="fh-title-block">
+        <p class="fh-eyebrow">ENTRAR EM CONTATO</p>
+        <p class="fh-heading">Vamos ver se sua ideia merece existir?</p>
+      </div>
+      <div class="fh-group">
+        <label>Estágio</label>
+        <div class="fh-chips">
+          <button class="fh-chip is-selected" type="button">Ainda é ideia</button>
+          <button class="fh-chip" type="button">Tenho MVP</button>
+          <button class="fh-chip" type="button">Já fatura</button>
+          <button class="fh-chip" type="button">Preciso escalar</button>
+        </div>
+      </div>
+      <div class="fh-group">
+        <label>Qual eixo mais te preocupa hoje?</label>
+        <div class="fh-chips">
+          <button class="fh-chip is-selected" type="button">Negócio</button>
+          <button class="fh-chip" type="button">Marca</button>
+          <button class="fh-chip" type="button">Dev</button>
+          <button class="fh-chip" type="button">Os três</button>
+        </div>
+      </div>
+      <div class="fh-group">
+        <label>Faturamento mensal atual</label>
+        <div class="fh-chips">
+          <button class="fh-chip" type="button">Pré-receita</button>
+          <button class="fh-chip" type="button">Até R$10k</button>
+          <button class="fh-chip" type="button">R$10k - R$50K</button>
+          <button class="fh-chip" type="button">R$50k - R$200K</button>
+          <button class="fh-chip" type="button">R$200K+</button>
+        </div>
+      </div>
+      <button class="fh-btn" type="button" data-next>
+        Continuar
+        <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="form-panel" data-step="3">
+      <div class="fh-stepper">
+        <span class="fh-step fh-step--active">1</span>
+        <span class="fh-connector fh-connector--active"></span>
+        <span class="fh-step fh-step--active">2</span>
+        <span class="fh-connector fh-connector--active"></span>
+        <span class="fh-step fh-step--active">3</span>
+      </div>
+      <div class="fh-title-block">
+        <p class="fh-eyebrow">ENTRAR EM CONTATO</p>
+        <p class="fh-heading">Escolha um horário para conversarmos.</p>
+      </div>
+      <div class="fh-group">
+        <label>Escolha o dia</label>
+        <div class="fh-dates">
+          <button class="fh-date-cell" type="button"><span class="fh-date-cell__day">SEG</span><span class="fh-date-cell__num">20</span></button>
+          <button class="fh-date-cell is-selected" type="button"><span class="fh-date-cell__day">TER</span><span class="fh-date-cell__num">21</span></button>
+          <button class="fh-date-cell" type="button"><span class="fh-date-cell__day">QUA</span><span class="fh-date-cell__num">22</span></button>
+          <button class="fh-date-cell" type="button"><span class="fh-date-cell__day">QUI</span><span class="fh-date-cell__num">23</span></button>
+          <button class="fh-date-cell" type="button"><span class="fh-date-cell__day">SEX</span><span class="fh-date-cell__num">24</span></button>
+          <button class="fh-date-cell" type="button"><span class="fh-date-cell__day">SAB</span><span class="fh-date-cell__num">25</span></button>
+        </div>
+      </div>
+      <div class="fh-group">
+        <label>Escolha o melhor horário</label>
+        <div class="fh-chips">
+          <button class="fh-chip" type="button">13:00</button>
+          <button class="fh-chip is-selected" type="button">13:30</button>
+          <button class="fh-chip" type="button">14:00</button>
+          <button class="fh-chip" type="button">14:30</button>
+          <button class="fh-chip" type="button">15:00</button>
+          <button class="fh-chip" type="button">15:30</button>
+          <button class="fh-chip" type="button">16:00</button>
+          <button class="fh-chip" type="button">16:30</button>
+          <button class="fh-chip" type="button">17:00</button>
+          <button class="fh-chip" type="button">17:30</button>
+        </div>
+      </div>
+      <button class="fh-btn" type="button" data-next>
+        Continuar
+        <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg>
+      </button>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="form-panel" data-step="4">
+      <p class="fh-eyebrow">ENTRAR EM CONTATO</p>
+      <div>
+        <div class="fh-confirm-badge">
+          <img src="../../images/icons/ui/check-confirm.svg" alt="" />
+        </div>
+        <p class="fh-heading">Reunião confirmada.</p>
+        <p class="fh-confirm-sub">Protocolo FH-2026-1100 · quinta-feira, 20 de agosto às 13:30</p>
+      </div>
+      <button class="fh-btn" type="button" data-restart>Adicionar ao calendário</button>
+    </div>
+  </div>
+
+  <script>
+    const panels = document.querySelectorAll('.form-panel');
+    const card = document.querySelector('.form-card');
+
+    function goTo(step) {
+      panels.forEach(p => p.classList.toggle('is-active', p.dataset.step === String(step)));
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    document.querySelectorAll('[data-next]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const current = Number(btn.closest('.form-panel').dataset.step);
+        goTo(current + 1);
+      });
+    });
+
+    document.querySelector('[data-restart]').addEventListener('click', () => goTo(1));
+
+    document.querySelectorAll('.fh-chips').forEach(group => {
+      group.querySelectorAll('.fh-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          group.querySelectorAll('.fh-chip').forEach(c => c.classList.remove('is-selected'));
+          chip.classList.add('is-selected');
+        });
+      });
+    });
+
+    document.querySelectorAll('.fh-date-cell').forEach(cell => {
+      cell.addEventListener('click', () => {
+        cell.parentElement.querySelectorAll('.fh-date-cell').forEach(c => c.classList.remove('is-selected'));
+        cell.classList.add('is-selected');
+      });
+    });
+  </script>
+</body>
+</html>

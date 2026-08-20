@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Dot</title>
+  <style>
+    :root {
+      --page-bg: #202224;
+      --text-dim: #9A9EA1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--page-bg);
+      color: #F9F9F9;
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    .hint { font-size: 12px; color: var(--text-dim); margin: 0 0 32px; }
+    .row { display: flex; gap: 32px; align-items: center; }
+    .cell { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .label { font-size: 11px; color: var(--text-dim); font-family: ui-monospace, "IBM Plex Mono", monospace; }
+  </style>
+</head>
+<body>
+  <h1>Dot — Fihan</h1>
+  <p class="hint">indicadores pontuais · verde #14CC52</p>
+  <div class="row">
+    <div class="cell">
+      <img src="../../images/icons/ui/dot-simples.svg" alt="dot simples" width="15" height="15" />
+      <span class="label">dot=simples</span>
+    </div>
+    <div class="cell">
+      <img src="../../images/icons/ui/dot-status.svg" alt="dot status" width="29" height="29" />
+      <span class="label">dot=status</span>
+    </div>
+  </div>
+</body>
+</html>

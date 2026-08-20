@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#161917" />
+<meta name="robots" content="noindex" />
+<title>Pagamento aprovado · Playbook Editais de Fomento — Fihan</title>
+<meta name="description" content="Pagamento aprovado. Seu Playbook Editais de Fomento está liberado para download." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<!-- Design system tokens & components -->
+<link rel="stylesheet" href="../design-system/tokens.css?v=8" />
+<link rel="stylesheet" href="../design-system/fonts.css" />
+<link rel="stylesheet" href="../components/button/style.css?v=8" />
+<link rel="stylesheet" href="../components/card/style.css?v=8" />
+<link rel="stylesheet" href="../components/dot/style.css?v=8" />
+<link rel="stylesheet" href="../components/terminal/style.css?v=8" />
+
+<!-- Page styles (reuso da landing) -->
+<link rel="stylesheet" href="/playbook/landing.css?v=8" />
+
+<link rel="icon" type="image/svg+xml" href="../components/logo/logo-fill.svg" />
+
+<style>
+  /* ─── Thank-you page ─── */
+  .ty { padding: 72px 0 96px; }
+  .ty__inner {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    gap: 18px; max-width: 720px; margin: 0 auto;
+  }
+  .ty__seal {
+    width: 96px; height: 96px; flex-shrink: 0;
+    border: 2px solid var(--fihan-green);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 8px;
+    box-shadow: 12px 12px 0 -4px var(--fihan-green);
+  }
+  .ty__seal svg { width: 46px; height: 46px; }
+  .ty__inner .display { margin: 6px 0 6px; }
+  .ty__actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 8px; }
+  .ty__download { padding: 16px 28px; font-size: 15px; }
+  .ty__note { font-size: 13px; color: var(--fihan-text-muted); margin: 6px 0 0; }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+  .step {
+    border: 1px solid var(--fihan-card-border);
+    border-left: 3px solid var(--fihan-green);
+    padding: 24px; text-align: left;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .step__num {
+    font-family: 'IBM Plex Mono', ui-monospace, monospace;
+    font-size: 12px; letter-spacing: 0.08em; color: var(--fihan-green);
+  }
+  .step__title { font-size: 16px; font-weight: 600; margin: 0; color: var(--fihan-text); }
+  .step__desc { font-size: 13px; line-height: 1.55; color: var(--fihan-text-bright); margin: 0; }
+
+  .upsell {
+    max-width: 820px; margin: 0 auto;
+    border: 1px solid var(--fihan-green);
+    background: rgba(20, 204, 82, 0.04);
+    padding: 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .upsell__text { min-width: 0; text-align: left; }
+  .upsell__text h3 { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 20px; font-weight: 600; margin: 6px 0 8px; color: var(--fihan-text); }
+  .upsell__text p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--fihan-text-bright); }
+  .upsell .fihan-btn { flex-shrink: 0; }
+
+  @media (max-width: 760px) {
+    .ty { padding: 48px 0 64px; }
+    .steps { grid-template-columns: 1fr; }
+    .upsell { flex-direction: column; align-items: flex-start; padding: 24px; }
+    .upsell__text { text-align: left; }
+  }
+</style>
+
+<!-- ────────── Meta Pixel (base) ────────── -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '888400407002791');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=888400407002791&ev=PageView&noscript=1" /></noscript>
+<!-- End Meta Pixel -->
+
+<!-- Theme bootstrap (no flash) -->
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('fihan-theme'); } catch (e) {}
+    var theme = saved || (window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+</head>
+<body>
+
+<!-- ─────────── HEADER ─────────── -->
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo" aria-label="Fihan">
+      <img src="../components/logo/logo-fill-light.svg" alt="Fihan" class="header__logo-img header__logo-img--dark">
+      <img src="../components/logo/logo-fill.svg" alt="Fihan" class="header__logo-img header__logo-img--light">
+    </a>
+    <div class="header__actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ─────────── THANK YOU HERO ─────────── -->
+<section class="ty">
+  <div class="container">
+    <div class="ty__inner">
+      <div class="ty__seal" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--fihan-green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 6 L9 17 l-5-5"/>
+        </svg>
+      </div>
+      <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ PAGAMENTO APROVADO</span></span>
+      <h1 class="display display--xl">Tá na mão.<br><span class="display__accent">Seu playbook está liberado.</span></h1>
+      <p class="lede">
+        Compra confirmada — obrigado por confiar na Fihan. Você já pode baixar o <strong>Playbook Editais de Fomento</strong> agora mesmo. O link também chega no seu email e fica salvo na sua conta Hotmart.
+      </p>
+
+      <div class="ty__actions">
+        <a href="/playbook/playbook-editais-fomento.pdf" target="_blank" rel="noopener" download class="fihan-btn fihan-btn--primary ty__download" id="downloadBtn">
+          Baixar o playbook (PDF)
+          <span class="fihan-btn__icon" aria-hidden="true" data-arrow></span>
+        </a>
+      </div>
+      <p class="ty__note">Arquivo: playbook-editais-fomento.pdf · 14 páginas · A4</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── PRÓXIMOS PASSOS ─────────── -->
+<section class="section section--alt">
+  <div class="container">
+    <header class="section__head" style="max-width:720px;margin:0 auto 40px;text-align:center;">
+      <span class="eyebrow" style="justify-content:center;"><span class="fihan-dot" aria-hidden="true"></span><span>/ COMO APROVEITAR</span></span>
+      <h2 class="display">Três passos<br><span class="display__accent">pra começar hoje.</span></h2>
+    </header>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step__num">/ 01</span>
+        <h3 class="step__title">Baixe e leia</h3>
+        <p class="step__desc">São 14 páginas, ~12 minutos. Comece pelo capítulo da agência que mais combina com o seu estágio (TRL).</p>
+      </div>
+      <div class="step">
+        <span class="step__num">/ 02</span>
+        <h3 class="step__title">Marque um edital</h3>
+        <p class="step__desc">Escolha uma porta concreta — FINEP, sua FAP estadual ou SEBRAE — e use o checklist documental do playbook.</p>
+      </div>
+      <div class="step">
+        <span class="step__num">/ 03</span>
+        <h3 class="step__title">Prepare a aplicação</h3>
+        <p class="step__desc">Estruture o plano de trabalho respondendo as 4 perguntas que todo avaliador faz. O mapa está no material.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── UPSELL / PRÓXIMO NÍVEL ─────────── -->
+<section class="section section--center">
+  <div class="container">
+    <div class="upsell">
+      <div class="upsell__text">
+        <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ QUANDO QUISER MÃO NA MASSA</span></span>
+        <h3>Protocolo Fihan</h3>
+        <p>Da validação de demanda à apresentação técnica final, em 6 a 8 semanas — o mesmo rigor que um edital cobra pra aprovar projeto. A cada ciclo abrimos vagas para poucos founders.</p>
+      </div>
+      <a href="https://wa.me/5527997289739?text=Comprei%20o%20playbook%20e%20quero%20saber%20do%20Protocolo%20Fihan" target="_blank" rel="noopener" class="fihan-btn fihan-btn--primary">
+        Falar com a Fihan
+        <span class="fihan-btn__icon" aria-hidden="true" data-arrow></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FOOTER ─────────── -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="/" class="footer__logo">
+        <img src="../components/logo/logo-fill-light.svg" alt="Fihan" class="header__logo-img header__logo-img--dark" />
+        <img src="../components/logo/logo-fill.svg" alt="Fihan" class="header__logo-img header__logo-img--light" />
+      </a>
+      <p class="footer__tag">Valide antes de arriscar.</p>
+      <p class="footer__desc">Inteligência de Negócio, Marca e Desenvolvimento. O sistema completo de validação antes da decisão de capital.</p>
+    </div>
+    <div class="footer__contact">
+      <h4 class="card-eyebrow">/ SUPORTE</h4>
+      <ul>
+        <li><a href="mailto:wellington@fihan.com.br">wellington@fihan.com.br</a></li>
+        <li><a href="mailto:robert@fihan.com.br">robert@fihan.com.br</a></li>
+        <li><a href="https://wa.me/5527997289739" target="_blank" rel="noopener">+55 (27) 99728-9739</a></li>
+        <li><a href="/">fihan.com.br</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container">
+      <span>© 2026 Fihan validação de negócios.</span>
+      <span>Playbook · Edição 2026 · v1.0</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Arrow SVG template -->
+<template id="arrow-tpl"><svg viewBox="0 0 15 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.01 2.15h2.15V0H8.01v2.15Z"/><path d="M10.16 4.3h2.15V2.15h-2.15V4.3Z"/><path d="M8.01 10.75h2.15V8.6H8.01v2.15Z"/><path d="M10.16 8.6h2.15V6.45h-2.15v2.15Z"/><path d="M9.62 4.57H0v1.62h9.62V4.57Z"/><path d="M12.31 6.45H15V4.3h-2.69v2.15Z"/></svg></template>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Arrow injection ---------- */
+  var tpl = document.getElementById('arrow-tpl');
+  if (tpl) {
+    document.querySelectorAll('[data-arrow]').forEach(function (s) {
+      s.appendChild(tpl.content.cloneNode(true));
+    });
+  }
+
+  /* ---------- Theme toggle ---------- */
+  var tt = document.getElementById('themeToggle');
+  if (tt) {
+    tt.addEventListener('click', function () {
+      var c = document.documentElement.getAttribute('data-theme') || 'dark';
+      var n = c === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', n);
+      try { localStorage.setItem('fihan-theme', n); } catch (e) {}
+    });
+  }
+
+  /* ════════════════════════════════════════════════════════
+     META PIXEL — PURCHASE (dispara quando o pagamento é aprovado
+     e a Hotmart redireciona o comprador pra esta página).
+     A Hotmart pode anexar parâmetros na URL de retorno (transaction,
+     email, name, value). Lê se existirem; senão usa fallback R$ 97.
+     ════════════════════════════════════════════════════════ */
+  var PRICE_FALLBACK = 97.00;
+  var q = new URLSearchParams(location.search);
+
+  var transaction = q.get('transaction') || q.get('trans') || q.get('order') || '';
+  var email = (q.get('email') || '').trim().toLowerCase();
+  var name  = (q.get('name') || '').trim();
+  var rawValue = (q.get('value') || q.get('price') || '').toString().replace(',', '.');
+  var value = parseFloat(rawValue) || PRICE_FALLBACK;
+
+  // event_id p/ dedup com a Conversions API — usa a transação da Hotmart quando houver
+  var eventId = transaction
+    ? ('hotmart-' + transaction)
+    : (window.crypto && crypto.randomUUID
+        ? crypto.randomUUID()
+        : 'ev-' + Date.now() + '-' + Math.random().toString(16).slice(2));
+
+  // Evita disparo duplicado no refresh da mesma compra
+  var dedupeKey = 'fihan_purchase_' + (transaction || 'session');
+  var already = false;
+  try { already = sessionStorage.getItem(dedupeKey) === '1'; } catch (e) {}
+
+  if (typeof window.fbq === 'function' && !already) {
+    // Advanced Matching quando a Hotmart passar o email
+    if (email) {
+      var parts = name.split(/\s+/);
+      window.fbq('init', '888400407002791', {
+        em: email,
+        fn: (parts.shift() || '').toLowerCase(),
+        ln: parts.join(' ').toLowerCase(),
+        country: 'br'
+      });
+    }
+    window.fbq('track', 'Purchase', {
+      content_name: 'Playbook Editais de Fomento',
+      content_type: 'product',
+      content_ids: ['playbook-editais-fomento'],
+      num_items: 1,
+      value: value,
+      currency: 'BRL'
+    }, { eventID: eventId });
+
+    try { sessionStorage.setItem(dedupeKey, '1'); } catch (e) {}
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Button</title>
+  <style>
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    :root {
+      --bg: #EDEDED;
+      --card-bg: #FFFFFF;
+      --border: #DCDCDC;
+      --text-dim: #6B6F73;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: #202224;
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    h2 { font-size: 13px; margin: 32px 0 12px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .hint { font-size: 12px; color: var(--text-dim); margin: 0; }
+
+    table.matrix {
+      border-collapse: collapse;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+    }
+    table.matrix th, table.matrix td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    table.matrix th {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: ui-monospace, "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    table.matrix tr:last-child td { border-bottom: none; }
+    .row-label {
+      font-size: 12px;
+      font-family: ui-monospace, "IBM Plex Mono", monospace;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    /* Button component */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 24px;
+      border: none;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-weight: 400;
+      font-size: 15px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .btn svg { width: 14.51px; height: 10.4px; flex-shrink: 0; }
+    .btn--icon-only { padding: 10px 16px; height: 40px; }
+
+    /* Primary */
+    .btn--primary {
+      background: #14CC52;
+      color: #202224;
+    }
+    .btn--primary:hover, .btn--primary.is-hover { background: #159139; color: #202224; }
+    .btn--primary:active, .btn--primary.is-press { background: #163B21; color: #DAF2E2; }
+    .btn--primary:disabled, .btn--primary.is-inactive { background: #333536; color: #757677; cursor: not-allowed; }
+
+    /* Secondary */
+    .btn--secondary {
+      background: #202224;
+      border: 1px solid #494B4B;
+      color: #DAF2E2;
+    }
+    .btn--secondary:hover, .btn--secondary.is-hover { background: #43464A; border-color: #494B4B; color: #DAF2E2; }
+    .btn--secondary:active, .btn--secondary.is-press { background: #D7D9DB; border-color: transparent; color: #2E332F; }
+    .btn--secondary:disabled, .btn--secondary.is-inactive { background: #202224; border-color: transparent; color: #494B4B; cursor: not-allowed; }
+
+    /* Ghost */
+    .btn--ghost {
+      background: transparent;
+      color: #14CC52;
+    }
+    .btn--ghost:hover, .btn--ghost.is-hover { background: #163B21; color: #14CC52; }
+    .btn--ghost:active, .btn--ghost.is-press { background: #14CC52; color: #202224; }
+    .btn--ghost:disabled, .btn--ghost.is-inactive { background: transparent; color: #5F6061; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <h1>Button — Fihan</h1>
+  <p class="hint">3 tipos (primary / secondary / ghost) × 4 estados × com/sem ícone · IBM Plex Mono 15px</p>
+
+  <h2>Matriz de estados (referência estática)</h2>
+  <table class="matrix">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Default</th>
+        <th>Hover</th>
+        <th>Press</th>
+        <th>Inative</th>
+        <th>Icon-only</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="row-label">Primary</td>
+        <td><button class="btn btn--primary" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--primary is-hover" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--primary is-press" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--primary is-inactive" type="button" disabled>Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--primary btn--icon-only" type="button" aria-label="Comece Agora"><svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+      </tr>
+      <tr>
+        <td class="row-label">Secondary</td>
+        <td><button class="btn btn--secondary" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--secondary is-hover" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--secondary is-press" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--secondary is-inactive" type="button" disabled>Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--secondary btn--icon-only" type="button" aria-label="Comece Agora"><svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+      </tr>
+      <tr>
+        <td class="row-label">Ghost</td>
+        <td><button class="btn btn--ghost" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--ghost is-hover" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--ghost is-press" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--ghost is-inactive" type="button" disabled>Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+        <td><button class="btn btn--ghost btn--icon-only" type="button" aria-label="Comece Agora"><svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Interativo (passe o mouse / clique de verdade)</h2>
+  <div style="display:flex; gap:16px; flex-wrap:wrap; align-items:center;">
+    <button class="btn btn--primary" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button>
+    <button class="btn btn--secondary" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button>
+    <button class="btn btn--ghost" type="button">Comece Agora <svg viewBox="0 0 15 11" fill="none"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg></button>
+  </div>
+</body>
+</html>

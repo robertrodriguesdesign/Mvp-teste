@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Agenda · Fihan Admin</title>
+  <link rel="stylesheet" href="/design-system/fonts.css" />
+  <link rel="stylesheet" href="/design-system/tokens.css" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--fh-font-mono);
+      background: var(--fh-bg-dark);
+      color: var(--fh-white-25);
+      min-height: 100vh;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 32px 24px 80px; }
+
+    /* ---- Login ---- */
+    #loginView { max-width: 345px; margin: 80px auto; display: flex; flex-direction: column; gap: 24px; }
+    #loginView h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.0125em; margin: 0; }
+    .fh-field { display: flex; flex-direction: column; gap: 8px; }
+    .fh-field label { font-size: 11px; letter-spacing: -0.0273em; }
+    .fh-field input {
+      all: unset; box-sizing: border-box; width: 100%; height: 47px; padding: 0 10px;
+      border: 1px solid var(--fh-gray-400); font-family: var(--fh-font-mono); font-size: 15px; color: var(--fh-white-25);
+    }
+    .fh-field input:focus { border-color: var(--fh-green-500); box-shadow: 0 0 0 3px var(--fh-focus-glow); background: var(--fh-black-800); }
+    .fh-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 10px 24px;
+      background: var(--fh-green-500); border: none; color: var(--fh-bg-dark); font-family: var(--fh-font-mono); font-size: 15px; cursor: pointer;
+    }
+    .fh-btn:hover { background: var(--fh-green-600); }
+    .fh-btn:disabled { opacity: .55; cursor: not-allowed; }
+    .fh-error { display: none; font-size: 12px; color: var(--fh-red-500); margin: -8px 0 0; }
+    .fh-error.is-visible { display: block; }
+
+    /* ---- Dashboard ---- */
+    #dashView { display: none; }
+    #dashView.is-active { display: block; }
+    .agenda-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+    .agenda-header h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.0125em; margin: 0; }
+    .agenda-header .actions { display: flex; gap: 8px; }
+    .btn-sm {
+      padding: 8px 16px; background: transparent; border: 1px solid var(--fh-gray-500); color: var(--fh-white-25);
+      font-family: var(--fh-font-mono); font-size: 12px; cursor: pointer;
+    }
+    .btn-sm:hover { background: var(--fh-gray-800); }
+
+    .status-line { font-size: 12px; color: var(--fh-gray-300); margin: 0 0 24px; }
+
+    .day-group { margin-bottom: 32px; }
+    .day-group__label {
+      font-size: 11px; letter-spacing: 0.0067em; text-transform: uppercase; color: var(--fh-gray-100);
+      margin: 0 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--fh-gray-700);
+    }
+    .booking-row {
+      display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--fh-black-800);
+    }
+    .booking-row__time { width: 56px; flex-shrink: 0; font-size: 15px; font-weight: 500; color: var(--fh-green-500); }
+    .booking-row__body { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .booking-row__name { font-size: 18px; font-weight: 500; margin: 0; color: var(--fh-white-25); }
+    .booking-row__meta { font-size: 12px; color: var(--fh-gray-300); margin: 0; }
+    .booking-row__tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag {
+      font-size: 10px; letter-spacing: -0.0273em; padding: 3px 8px; border: 1px solid var(--fh-gray-500); color: var(--fh-gray-100);
+    }
+    .booking-row__links { display: flex; gap: 12px; margin-top: 2px; }
+    .booking-row__links a { font-size: 12px; color: var(--fh-green-500); text-decoration: none; }
+    .booking-row__links a:hover { text-decoration: underline; }
+    .booking-row__protocol { font-size: 10px; color: var(--fh-gray-300); font-family: var(--fh-font-mono); }
+
+    .empty-state { text-align: center; padding: 64px 0; color: var(--fh-gray-300); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- LOGIN -->
+    <div id="loginView">
+      <h1>Agenda Fihan</h1>
+      <form id="loginForm" style="display:flex; flex-direction:column; gap:16px;">
+        <div class="fh-field">
+          <label>E-mail</label>
+          <input type="email" id="admEmail" autocomplete="username" required />
+        </div>
+        <div class="fh-field">
+          <label>Senha</label>
+          <input type="password" id="admPass" autocomplete="current-password" required />
+        </div>
+        <p class="fh-error" id="loginError"></p>
+        <button class="fh-btn" type="submit" id="loginBtn">Entrar</button>
+      </form>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashView">
+      <div class="agenda-header">
+        <h1>Agenda</h1>
+        <div class="actions">
+          <a class="btn-sm" href="/admin/" style="text-decoration:none; display:inline-flex; align-items:center;">CRM</a>
+          <a class="btn-sm" href="/meet/" style="text-decoration:none; display:inline-flex; align-items:center;">Meet</a>
+          <button class="btn-sm" id="refreshBtn" type="button">Atualizar</button>
+          <button class="btn-sm" id="logoutBtn" type="button">Sair</button>
+        </div>
+      </div>
+      <p class="status-line" id="statusLine">Carregando…</p>
+      <div id="agendaList"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+      var $ = function (id) { return document.getElementById(id); };
+      var authHeader = null;
+
+      var WEEKDAY_FULL = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+      var MONTH_NAME = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+      var STAGE_LABEL = { ideia: 'Ainda é ideia', mvp: 'Tenho MVP', fatura: 'Já fatura', escalar: 'Preciso escalar' };
+      var EIXO_LABEL = { negocio: 'Negócio', marca: 'Marca', dev: 'Dev', todos: 'Os três' };
+      var REVENUE_LABEL = { pre: 'Pré-receita', ate10k: 'Até R$10k', '10-50k': 'R$10k–50k', '50-200k': 'R$50k–200k', '200k+': 'R$200k+' };
+
+      function localParts(iso) {
+        var d = new Date(new Date(iso).getTime() - 3 * 60 * 60000); // fuso fixo America/Sao_Paulo (UTC-3)
+        return { weekday: d.getUTCDay(), day: d.getUTCDate(), month: d.getUTCMonth(), year: d.getUTCFullYear(),
+          hh: String(d.getUTCHours()).padStart(2, '0'), mm: String(d.getUTCMinutes()).padStart(2, '0') };
+      }
+      function dateKey(p) { return p.year + '-' + p.month + '-' + p.day; }
+
+      /* ---------- Sessão ---------- */
+      try {
+        var stored = sessionStorage.getItem('fihan-admin-auth');
+        if (stored) { authHeader = stored; showDash(); loadAgenda(); }
+      } catch (e) {}
+
+      /* ---------- Login ---------- */
+      $('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = $('admEmail').value.trim();
+        var pass = $('admPass').value;
+        var errBox = $('loginError');
+        errBox.classList.remove('is-visible');
+        var btn = $('loginBtn');
+        btn.disabled = true; btn.textContent = 'Entrando…';
+
+        var header = 'Basic ' + btoa(email + ':' + pass);
+        fetch('/api/bookings?action=agenda', { headers: { Authorization: header } })
+          .then(function (r) {
+            if (r.status === 401) throw new Error('Credenciais inválidas.');
+            if (!r.ok) throw new Error('Erro ao conectar (' + r.status + ').');
+            return r.json();
+          })
+          .then(function (data) {
+            authHeader = header;
+            try { sessionStorage.setItem('fihan-admin-auth', header); } catch (e) {}
+            showDash();
+            renderAgenda(data.bookings || []);
+          })
+          .catch(function (err) {
+            errBox.textContent = err.message || 'Falha no login.';
+            errBox.classList.add('is-visible');
+          })
+          .finally(function () { btn.disabled = false; btn.textContent = 'Entrar'; });
+      });
+
+      function showDash() { $('loginView').style.display = 'none'; $('dashView').classList.add('is-active'); }
+      function logout() {
+        authHeader = null;
+        try { sessionStorage.removeItem('fihan-admin-auth'); } catch (e) {}
+        $('dashView').classList.remove('is-active');
+        $('loginView').style.display = '';
+      }
+      $('logoutBtn').addEventListener('click', logout);
+      $('refreshBtn').addEventListener('click', loadAgenda);
+
+      function loadAgenda() {
+        if (!authHeader) return;
+        $('statusLine').textContent = 'Carregando…';
+        fetch('/api/bookings?action=agenda', { headers: { Authorization: authHeader } })
+          .then(function (r) {
+            if (r.status === 401) { logout(); throw new Error('Sessão expirada.'); }
+            if (!r.ok) throw new Error('Erro ' + r.status);
+            return r.json();
+          })
+          .then(function (data) { renderAgenda(data.bookings || []); })
+          .catch(function (err) { $('statusLine').textContent = err.message || 'Erro ao carregar.'; });
+      }
+
+      function renderAgenda(bookings) {
+        var list = $('agendaList');
+        list.innerHTML = '';
+
+        if (!bookings.length) {
+          $('statusLine').textContent = '0 reuniões no período.';
+          var empty = document.createElement('p');
+          empty.className = 'empty-state';
+          empty.textContent = 'Nenhuma reunião agendada.';
+          list.appendChild(empty);
+          return;
+        }
+
+        $('statusLine').textContent = bookings.length + ' ' + (bookings.length === 1 ? 'reunião' : 'reuniões') + ' no período.';
+
+        var groups = {};
+        var order = [];
+        bookings.forEach(function (b) {
+          var p = localParts(b.startUtc);
+          var key = dateKey(p);
+          if (!groups[key]) { groups[key] = { p: p, items: [] }; order.push(key); }
+          groups[key].items.push(b);
+        });
+
+        order.forEach(function (key) {
+          var group = groups[key];
+          var section = document.createElement('div');
+          section.className = 'day-group';
+
+          var label = document.createElement('p');
+          label.className = 'day-group__label';
+          label.textContent = WEEKDAY_FULL[group.p.weekday] + ', ' + group.p.day + ' de ' + MONTH_NAME[group.p.month] + ' de ' + group.p.year;
+          section.appendChild(label);
+
+          group.items.forEach(function (b) {
+            var p = localParts(b.startUtc);
+            var lead = b.lead || {};
+            var row = document.createElement('div');
+            row.className = 'booking-row';
+
+            var tags = [];
+            if (lead.stage) tags.push(STAGE_LABEL[lead.stage] || lead.stage);
+            if (lead.eixo) tags.push(EIXO_LABEL[lead.eixo] || lead.eixo);
+            if (lead.revenueRange) tags.push(REVENUE_LABEL[lead.revenueRange] || lead.revenueRange);
+
+            row.innerHTML =
+              '<div class="booking-row__time">' + p.hh + ':' + p.mm + '</div>' +
+              '<div class="booking-row__body">' +
+                '<p class="booking-row__name">' + escapeHtml(lead.businessName || lead.name || 'Sem nome') + '</p>' +
+                '<p class="booking-row__meta">' + escapeHtml(lead.name || '') + (lead.whatsapp ? ' · ' + escapeHtml(lead.whatsapp) : '') + (lead.email ? ' · ' + escapeHtml(lead.email) : '') + '</p>' +
+                '<div class="booking-row__tags">' + tags.map(function (t) { return '<span class="tag">' + escapeHtml(t) + '</span>'; }).join('') + '</div>' +
+                '<div class="booking-row__links">' +
+                  (b.meetingUrl ? '<a href="' + escapeHtml(b.meetingUrl) + '" target="_blank" rel="noopener">Entrar na reunião ↗</a>' : '') +
+                  (lead.whatsapp ? '<a href="https://wa.me/55' + escapeHtml(String(lead.whatsapp).replace(/\D/g, '')) + '" target="_blank" rel="noopener">WhatsApp ↗</a>' : '') +
+                '</div>' +
+                '<span class="booking-row__protocol">' + escapeHtml(b.protocolId) + '</span>' +
+              '</div>';
+            section.appendChild(row);
+          });
+
+          list.appendChild(section);
+        });
+      }
+
+      function escapeHtml(str) {
+        return String(str == null ? '' : str)
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      }
+    })();
+  </script>
+</body>
+</html>

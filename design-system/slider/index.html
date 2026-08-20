@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Slider</title>
+  <style>
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    :root {
+      --page-bg: #202224;
+      --text-dim: #9A9EA1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--page-bg);
+      color: #F9F9F9;
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    .hint { font-size: 12px; color: var(--text-dim); margin: 0 0 32px; }
+    .demo {
+      max-width: 345px;
+      padding: 31px 32px 27px;
+      background: #111314;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .demo__value {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 40px;
+      font-weight: 600;
+      letter-spacing: -0.0075em;
+      text-align: center;
+      color: #14CC52;
+      margin: 0;
+    }
+
+    /* Slider-menu (Figma 168:1133) */
+    .fh-slider { position: relative; width: 100%; height: 19px; }
+    .fh-slider__track {
+      position: absolute; top: 2.5px; left: 0; right: 0; height: 14px;
+      background: #43464A; padding: 2px; box-sizing: border-box;
+      display: flex; align-items: center;
+    }
+    .fh-slider__fill {
+      height: 100%; background: #14CC52; display: flex; align-items: center;
+      justify-content: flex-end; min-width: 19px;
+    }
+    .fh-slider__thumb {
+      width: 19px; height: 19px; background: #14CC52; border: 1px solid #43464A;
+      box-sizing: border-box; flex-shrink: 0; margin-right: -9.5px;
+    }
+    .fh-slider__input {
+      position: absolute; inset: 0; width: 100%; height: 100%; margin: 0;
+      opacity: 0; cursor: pointer; -webkit-appearance: none; appearance: none; background: transparent;
+    }
+    .fh-slider__input::-webkit-slider-runnable-track { background: transparent; }
+    .fh-slider__input::-webkit-slider-thumb { -webkit-appearance: none; width: 19px; height: 19px; opacity: 0; }
+    .fh-slider__input::-moz-range-track { background: transparent; }
+    .fh-slider__input::-moz-range-thumb { width: 19px; height: 19px; opacity: 0; border: none; }
+  </style>
+</head>
+<body>
+  <h1>Slider — Fihan</h1>
+  <p class="hint">trilha #43464A 14px · preenchimento verde · thumb quadrado 19×19 que transborda a trilha · arraste para testar</p>
+
+  <div class="demo">
+    <p class="demo__value" id="value">R$ 3.500,00</p>
+    <div class="fh-slider">
+      <div class="fh-slider__track">
+        <div class="fh-slider__fill" id="fill">
+          <span class="fh-slider__thumb"></span>
+        </div>
+      </div>
+      <input class="fh-slider__input" type="range" min="0" max="50000" step="500" value="3500" id="slider" aria-label="Valor" />
+    </div>
+  </div>
+
+  <script>
+    var slider = document.getElementById('slider');
+    var fill = document.getElementById('fill');
+    var value = document.getElementById('value');
+    function update() {
+      value.textContent = 'R$ ' + Number(slider.value).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      var pct = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+      fill.style.width = pct + '%';
+    }
+    slider.addEventListener('input', update);
+    update();
+  </script>
+</body>
+</html>

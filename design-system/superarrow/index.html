@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Superarrow</title>
+  <style>
+    :root {
+      --bg: #EDEDED;
+      --card-bg: #FFFFFF;
+      --border: #DCDCDC;
+      --text: #202224;
+      --text-dim: #6B6F73;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    h1 { font-size: 20px; margin: 0 0 24px; }
+    h2 { font-size: 13px; margin: 32px 0 12px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+      max-width: 700px;
+    }
+    .cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 20px 8px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .cell img { width: 60px; height: 60px; }
+    .label {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: ui-monospace, "IBM Plex Mono", monospace;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Superarrow — Fihan</h1>
+
+  <h2>Borda escura</h2>
+  <div class="grid">
+    <div class="cell">
+      <img src="../../images/arrows/seta-direita.svg" alt="Seta direita" />
+      <span class="label">seta-direita.svg</span>
+    </div>
+    <div class="cell">
+      <img src="../../images/arrows/seta-esquerda.svg" alt="Seta esquerda" />
+      <span class="label">seta-esquerda.svg</span>
+    </div>
+    <div class="cell">
+      <img src="../../images/arrows/seta-cima-baixo.svg" alt="Seta cima-baixo" />
+      <span class="label">seta-cima-baixo.svg</span>
+    </div>
+    <div class="cell">
+      <img src="../../images/arrows/seta-direita-esquerda.svg" alt="Seta direita-esquerda" />
+      <span class="label">seta-direita-esquerda.svg</span>
+    </div>
+    <div class="cell">
+      <img src="../../images/arrows/seta-enter-direita.svg" alt="Seta enter-direita" />
+      <span class="label">seta-enter-direita.svg</span>
+    </div>
+    <div class="cell">
+      <img src="../../images/arrows/seta-enter-esquerda.svg" alt="Seta enter-esquerda" />
+      <span class="label">seta-enter-esquerda.svg</span>
+    </div>
+  </div>
+
+  <h2>Borda verde</h2>
+  <div class="grid">
+    <div class="cell">
+      <img src="../../images/arrows/seta-verde-direita.svg" alt="Seta verde direita" />
+      <span class="label">seta-verde-direita.svg</span>
+    </div>
+    <div class="cell">
+      <img src="../../images/arrows/seta-verde-esquerda.svg" alt="Seta verde esquerda" />
+      <span class="label">seta-verde-esquerda.svg</span>
+    </div>
+    <div class="cell">
+      <img src="../../images/arrows/seta-verde-cima-baixo.svg" alt="Seta verde cima-baixo" />
+      <span class="label">seta-verde-cima-baixo.svg</span>
+    </div>
+    <div class="cell">
+      <img src="../../images/arrows/seta-verde-direita-esquerda.svg" alt="Seta verde direita-esquerda" />
+      <span class="label">seta-verde-direita-esquerda.svg</span>
+    </div>
+    <div class="cell">
+      <img src="../../images/arrows/seta-verde-enter.svg" alt="Seta verde enter" />
+      <span class="label">seta-verde-enter.svg</span>
+    </div>
+  </div>
+</body>
+</html>

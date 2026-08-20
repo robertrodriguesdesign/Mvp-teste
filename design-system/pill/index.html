@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Pill</title>
+  <style>
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    :root {
+      --bg: #EDEDED;
+      --card-bg: #FFFFFF;
+      --border: #DCDCDC;
+      --text: #202224;
+      --text-dim: #6B6F73;
+
+      --pill-border: #5F6061;
+      --pill-bg-default: transparent;
+      --pill-bg-hover: #CDCDCE;
+      --pill-bg-press: #757677;
+      --pill-text-default: #000000;
+      --pill-text-press: #FFFFFF;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    h2 { font-size: 13px; margin: 32px 0 12px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .hint { font-size: 12px; color: var(--text-dim); margin: 0; }
+
+    /* Pill component */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 32px;
+      border-radius: 100px;
+      border: 1px solid var(--pill-border);
+      background: var(--pill-bg-default);
+      color: var(--pill-text-default);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 15px;
+      font-weight: 400;
+      text-align: center;
+      cursor: default;
+      user-select: none;
+      transition: background 0.1s ease, color 0.1s ease;
+    }
+    .pill:hover {
+      background: var(--pill-bg-hover);
+    }
+    .pill:active {
+      background: var(--pill-bg-press);
+      color: var(--pill-text-press);
+    }
+
+    .row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    .state-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 24px 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .label {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: ui-monospace, "IBM Plex Mono", monospace;
+    }
+    /* Force pseudo-states for the static reference row */
+    .pill.force-hover { background: var(--pill-bg-hover); }
+    .pill.force-press { background: var(--pill-bg-press); color: var(--pill-text-press); }
+  </style>
+</head>
+<body>
+  <h1>Pill — Fihan</h1>
+  <p class="hint">Border-radius 100px · padding 10px 32px · IBM Plex Mono 15px · borda #5F6061</p>
+
+  <h2>Estados (referência estática)</h2>
+  <div class="row">
+    <div class="state-card">
+      <span class="pill">YOUTUBE</span>
+      <span class="label">default</span>
+    </div>
+    <div class="state-card">
+      <span class="pill force-hover">YOUTUBE</span>
+      <span class="label">hover — bg #CDCDCE</span>
+    </div>
+    <div class="state-card">
+      <span class="pill force-press">YOUTUBE</span>
+      <span class="label">press — bg #757677, texto branco</span>
+    </div>
+  </div>
+
+  <h2>Interativo (passe o mouse / clique)</h2>
+  <div class="row">
+    <span class="pill">YOUTUBE</span>
+    <span class="pill">INSTAGRAM</span>
+    <span class="pill">LINKEDIN</span>
+  </div>
+</body>
+</html>

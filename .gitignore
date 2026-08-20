@@ -1,0 +1,13 @@
+.vercel
+.env*
+node_modules
+.DS_Store
+.claude
+
+# Arquivos internos / não relacionados ao site
+Propostas comerciais/
+Planejador de lançamento pago - Modelo.xlsx
+Pagina reduzida.zip
+Pagina reduzida/
+572b7831-3cce-4c12-8212-33e544a44fca-uihbihdz2n.webp
+images/icons/plus 2.svg

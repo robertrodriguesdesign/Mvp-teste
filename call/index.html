@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Fihan Meet</title>
+  <link rel="stylesheet" href="/design-system/fonts.css" />
+  <link rel="stylesheet" href="/design-system/tokens.css" />
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; height: 100%;
+      background: var(--fh-black-900);
+      color: var(--fh-white-25);
+      font-family: var(--fh-font-mono);
+      overflow: hidden;
+    }
+    .screen { display: none; height: 100vh; width: 100%; }
+    .screen.is-active { display: flex; }
+
+    /* ---- Lobby ---- */
+    #lobbyScreen { align-items: center; justify-content: center; padding: 24px; overflow-y: auto; }
+    .lobby-card { width: 100%; max-width: 345px; display: flex; flex-direction: column; gap: 24px; }
+    .lobby-card__logo { width: 72px; height: 28.75px; }
+    .lobby-card__title { font-size: 24px; font-weight: 600; letter-spacing: -0.0125em; margin: 0; color: var(--fh-white-25); }
+    .lobby-card__sub { font-size: 11px; letter-spacing: -0.0273em; color: var(--fh-gray-300); margin: 0; }
+
+    .preview-box {
+      position: relative; width: 100%; aspect-ratio: 4/3; background: var(--fh-black-800);
+      border: 1px solid var(--fh-gray-700); overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .preview-box video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+    .preview-box__placeholder { font-size: 12px; color: var(--fh-gray-300); text-align: center; padding: 16px; }
+    .preview-controls { position: absolute; bottom: 12px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; }
+
+    .icon-btn {
+      width: 47px; height: 47px; display: flex; align-items: center; justify-content: center;
+      background: var(--fh-gray-800); border: none; cursor: pointer; border-radius: 100px;
+    }
+    .icon-btn img { width: 22px; height: 22px; filter: invert(1); }
+    .icon-btn.is-off { background: var(--fh-red-500); }
+    .icon-btn.is-off img { filter: none; }
+    .icon-btn:hover { opacity: 0.85; }
+
+    .fh-field { display: flex; flex-direction: column; gap: 8px; }
+    .fh-field label { font-size: 11px; letter-spacing: -0.0273em; }
+    .fh-field input {
+      all: unset; box-sizing: border-box; width: 100%; height: 47px; padding: 0 10px;
+      border: 1px solid var(--fh-gray-400); font-family: var(--fh-font-mono); font-size: 15px; color: var(--fh-white-25);
+    }
+    .fh-field input:focus { border-color: var(--fh-green-500); box-shadow: 0 0 0 3px var(--fh-focus-glow); background: var(--fh-black-800); }
+
+    .fh-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 10px 24px;
+      background: var(--fh-green-500); border: none; color: var(--fh-bg-dark); font-family: var(--fh-font-mono); font-size: 15px; cursor: pointer;
+    }
+    .fh-btn:hover { background: var(--fh-green-600); }
+    .fh-btn:disabled { opacity: .55; cursor: not-allowed; }
+    .fh-error { display: none; font-size: 12px; color: var(--fh-red-500); margin: 0; }
+    .fh-error.is-visible { display: block; }
+
+    /* ---- Call ---- */
+    #callScreen { flex-direction: column; }
+    .call-header {
+      flex-shrink: 0; display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; font-size: 12px; color: var(--fh-gray-300);
+    }
+    .call-header__title { color: var(--fh-white-25); font-size: 14px; }
+    .video-grid {
+      flex: 1; display: grid; gap: 8px; padding: 0 16px; overflow: auto;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      align-content: center;
+    }
+    .tile {
+      position: relative; background: var(--fh-black-800); border: 1px solid var(--fh-gray-700);
+      aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .tile video { width: 100%; height: 100%; object-fit: cover; }
+    .tile.is-local video { transform: scaleX(-1); }
+    .tile__avatar {
+      width: 64px; height: 64px; border-radius: 100px; background: var(--fh-gray-800);
+      display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 600; color: var(--fh-green-500);
+    }
+    .tile__label {
+      position: absolute; left: 8px; bottom: 8px; font-size: 11px; padding: 4px 8px;
+      background: rgba(17, 19, 20, 0.7); color: var(--fh-white-25);
+    }
+    .tile__mute { position: absolute; right: 8px; bottom: 8px; width: 20px; height: 20px; opacity: .85; }
+    .tile__mute img { width: 100%; height: 100%; filter: invert(1); }
+
+    .call-bar { flex-shrink: 0; display: flex; justify-content: center; align-items: center; gap: 12px; padding: 20px; }
+    .call-bar .icon-btn { width: 52px; height: 52px; }
+    .call-bar .icon-btn img { width: 24px; height: 24px; }
+    .call-bar .leave-btn { background: var(--fh-red-500); }
+    .call-bar .leave-btn img { filter: none; }
+
+    /* ---- Ended / error ---- */
+    #endedScreen, #errorScreen { align-items: center; justify-content: center; flex-direction: column; gap: 16px; text-align: center; padding: 24px; }
+    #endedScreen p, #errorScreen p { max-width: 320px; font-size: 13px; color: var(--fh-gray-300); margin: 0; }
+    #endedScreen h1, #errorScreen h1 { font-size: 24px; font-weight: 600; letter-spacing: -0.0125em; margin: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- LOBBY -->
+  <div class="screen is-active" id="lobbyScreen">
+    <div class="lobby-card">
+      <img class="lobby-card__logo" src="/images/brand/logo-light.svg" alt="Fihan" />
+      <div>
+        <p class="lobby-card__title" id="meetingTitle">Fihan Meet</p>
+        <p class="lobby-card__sub" id="meetingSub">Carregando sala…</p>
+      </div>
+
+      <div class="preview-box" id="previewBox">
+        <p class="preview-box__placeholder" id="previewPlaceholder">Ativando câmera…</p>
+        <video id="previewVideo" autoplay playsinline muted style="display:none;"></video>
+        <div class="preview-controls">
+          <button class="icon-btn" type="button" id="toggleMicLobby" aria-label="Microfone">
+            <img src="/images/icons/microphone-01.svg" alt="" />
+          </button>
+          <button class="icon-btn" type="button" id="toggleCamLobby" aria-label="Câmera">
+            <img src="/images/icons/video-recorder.svg" alt="" />
+          </button>
+        </div>
+      </div>
+
+      <div class="fh-field">
+        <label>Seu nome</label>
+        <input type="text" id="guestName" placeholder="Ex: Maria Silva" maxlength="60" />
+      </div>
+      <p class="fh-error" id="lobbyError"></p>
+      <button class="fh-btn" type="button" id="joinBtn" disabled>Entrar na reunião</button>
+    </div>
+  </div>
+
+  <!-- CALL -->
+  <div class="screen" id="callScreen">
+    <div class="call-header">
+      <span class="call-header__title" id="callTitle">Fihan Meet</span>
+      <span id="callStatus">conectando…</span>
+    </div>
+    <div class="video-grid" id="videoGrid"></div>
+    <div class="call-bar">
+      <button class="icon-btn" type="button" id="toggleMicCall" aria-label="Microfone">
+        <img src="/images/icons/microphone-01.svg" alt="" />
+      </button>
+      <button class="icon-btn" type="button" id="toggleCamCall" aria-label="Câmera">
+        <img src="/images/icons/video-recorder.svg" alt="" />
+      </button>
+      <button class="icon-btn leave-btn" type="button" id="leaveBtn" aria-label="Sair">
+        <img src="/images/icons/phone-hang-up.svg" alt="" />
+      </button>
+    </div>
+  </div>
+
+  <!-- ENDED -->
+  <div class="screen" id="endedScreen">
+    <h1>Você saiu da reunião.</h1>
+    <p>Obrigado por usar o Fihan Meet.</p>
+    <button class="fh-btn" type="button" style="max-width:220px;" onclick="location.reload()">Entrar novamente</button>
+  </div>
+
+  <!-- ERROR -->
+  <div class="screen" id="errorScreen">
+    <h1>Não foi possível entrar</h1>
+    <p id="errorMessage">Essa sala não existe ou o link expirou.</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/livekit-client@2/dist/livekit-client.umd.min.js"></script>
+  <script src="/js/meet.js"></script>
+</body>
+</html>

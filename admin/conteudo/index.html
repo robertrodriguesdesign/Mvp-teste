@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#161917" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Conteúdo · Fihan</title>
+
+<!-- Design system -->
+<link rel="stylesheet" href="/design-system/tokens.css?v=8" />
+<link rel="stylesheet" href="/design-system/fonts.css" />
+<link rel="stylesheet" href="/components/button/style.css?v=8" />
+<link rel="stylesheet" href="/components/input/style.css?v=8" />
+<link rel="stylesheet" href="/components/card/style.css?v=8" />
+<link rel="stylesheet" href="/components/dot/style.css?v=8" />
+
+<link rel="icon" type="image/svg+xml" href="/components/logo/logo-fill.svg" />
+
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('fihan-theme'); } catch (e) {}
+    var theme = saved || (window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--fihan-dark);
+    color: var(--fihan-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--fihan-green); text-decoration: none; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 24px 80px; }
+
+  .crm-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; margin-bottom: 28px;
+  }
+  .crm-head__brand { display: flex; align-items: center; gap: 12px; }
+  .crm-head__logo { height: 30px; width: auto; }
+  img.crm-logo--light { display: none; }
+  [data-theme="light"] img.crm-logo--dark { display: none; }
+  [data-theme="light"] img.crm-logo--light { display: block; }
+  .crm-head__title { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fihan-green); }
+  .crm-head__actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--fihan-green); margin-bottom: 12px;
+  }
+
+  /* ─── Login ─── */
+  .login {
+    max-width: 420px; margin: 8vh auto 0;
+    border: 1px solid var(--fihan-card-border);
+    border-left: 3px solid var(--fihan-green);
+    background: var(--fihan-input-bg);
+    padding: 36px 32px;
+  }
+  .login h1 { font-family: var(--font-display); font-size: 22px; font-weight: 600; margin: 0 0 6px; color: var(--fihan-text); }
+  .login p { font-size: 13px; color: var(--fihan-text-muted); margin: 0 0 24px; }
+  .login form { display: flex; flex-direction: column; gap: 16px; }
+  .login .fihan-input--info,
+  .login .fihan-input--info .fihan-input__field { width: 100%; max-width: none; }
+  .login__submit { justify-content: center; padding: 13px 24px; width: 100%; }
+  .login__error {
+    display: none; padding: 10px 14px; font-size: 13px;
+    background: rgba(212, 81, 19, 0.1); border-left: 2px solid var(--fihan-danger);
+    color: var(--fihan-danger);
+  }
+  .login__error.is-active { display: block; }
+
+  /* ─── Tabs (Todos / Artigo / Case) ─── */
+  .filterbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .filter-btn {
+    padding: 8px 16px; font-family: var(--font-mono); font-size: 13px;
+    background: transparent; border: 1px solid var(--fihan-card-border);
+    color: var(--fihan-text-muted); cursor: pointer;
+    transition: border-color 120ms ease, color 120ms ease, background 120ms ease;
+  }
+  .filter-btn:hover { border-color: var(--fihan-green); color: var(--fihan-text); }
+  .filter-btn.is-active { border-color: var(--fihan-green); color: var(--fihan-green); background: rgba(20, 204, 82, 0.08); }
+
+  /* ─── List ─── */
+  .table-shell { border: 1px solid var(--fihan-card-border); overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 760px; }
+  thead th {
+    text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--fihan-text-muted); font-weight: 500;
+    padding: 14px 16px; background: var(--fihan-input-bg);
+    border-bottom: 1px solid var(--fihan-card-border); white-space: nowrap;
+  }
+  tbody td {
+    padding: 14px 16px; font-size: 14px; color: var(--fihan-text-bright);
+    border-bottom: 1px solid rgba(115, 128, 119, 0.2); vertical-align: top;
+  }
+  tbody tr:hover td { background: var(--fihan-input-bg); }
+  td.col-when { color: var(--fihan-text-muted); font-size: 12px; white-space: nowrap; font-family: var(--font-mono); }
+  td.col-type { font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; color: var(--fihan-text-muted); white-space: nowrap; }
+
+  .status-badge {
+    display: inline-block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em;
+    padding: 4px 10px; border: 1px solid var(--fihan-card-border); white-space: nowrap;
+  }
+  .status-badge[data-status="published"] { color: var(--fihan-green); border-color: var(--fihan-green); }
+  .status-badge[data-status="draft"] { color: var(--fihan-text-muted); }
+
+  td.col-act { text-align: right; white-space: nowrap; }
+  .row-btn {
+    padding: 6px 12px; font-family: var(--font-mono); font-size: 12px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: 1px solid var(--fihan-card-border);
+    color: var(--fihan-text-muted); cursor: pointer; margin-left: 6px;
+    transition: border-color 120ms ease, color 120ms ease;
+  }
+  .row-btn:hover { border-color: var(--fihan-green); color: var(--fihan-green); }
+  .row-btn--danger:hover { border-color: var(--fihan-danger); color: var(--fihan-danger); }
+
+  .empty { padding: 48px 24px; text-align: center; color: var(--fihan-text-muted); font-size: 14px; }
+  .toast-msg { margin-top: 14px; font-size: 13px; color: var(--fihan-text-muted); min-height: 18px; }
+
+  /* ─── Form (drawer-like section) ─── */
+  .content-form {
+    border: 1px solid var(--fihan-card-border); border-left: 3px solid var(--fihan-green);
+    background: var(--fihan-input-bg); padding: 28px; margin-bottom: 24px;
+  }
+  .content-form h2 { font-family: var(--font-display); font-size: 18px; margin: 0 0 20px; color: var(--fihan-text); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .form-grid--full { grid-template-columns: 1fr; }
+  .form-row { grid-column: 1 / -1; }
+  .fihan-input--full,
+  .fihan-input--full .fihan-input__field { width: 100%; max-width: none; }
+  textarea.fihan-input__field { resize: vertical; min-height: 90px; font-family: var(--font-mono); font-size: 13px; }
+  .field-label {
+    display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--fihan-text-muted); margin: 0 0 8px;
+  }
+  .case-only { display: none; }
+  .case-only.is-visible { display: block; }
+
+  .attach-row { display: grid; grid-template-columns: 110px 1fr 1fr auto auto; gap: 10px; margin-bottom: 6px; align-items: center; }
+  .attach-row select,
+  .attach-row input {
+    width: 100%; background: var(--fihan-dark); border: 1px solid var(--fihan-card-border);
+    color: var(--fihan-text); font-family: var(--font-mono); font-size: 12px; padding: 9px 10px;
+  }
+  .attach-remove,
+  .attach-upload {
+    width: 30px; height: 30px; border: 1px solid var(--fihan-card-border); background: transparent;
+    color: var(--fihan-text-muted); cursor: pointer; flex-shrink: 0;
+  }
+  .attach-remove:hover { border-color: var(--fihan-danger); color: var(--fihan-danger); }
+  .attach-upload:hover { border-color: var(--fihan-green); color: var(--fihan-green); }
+  .attach-upload:disabled { opacity: 0.5; cursor: wait; }
+  .attach-status { grid-column: 1 / -1; font-size: 11px; color: var(--fihan-text-muted); margin: -4px 0 4px; }
+  .attach-status.is-error { color: var(--fihan-danger); }
+  .attach-note { font-size: 12px; color: var(--fihan-text-muted); margin: -4px 0 14px; }
+
+  .status-toggle { display: flex; gap: 10px; align-items: center; margin-top: 6px; }
+  .status-toggle label { display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 13px; color: var(--fihan-text-bright); cursor: pointer; }
+
+  .form-actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+
+  [hidden] { display: none !important; }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 20px 14px 64px; }
+    .login { padding: 28px 20px; margin-top: 4vh; }
+    .form-grid { grid-template-columns: 1fr; }
+    .attach-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── LOGIN ─── -->
+<section id="loginView" class="wrap">
+  <div class="login">
+    <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span> / FIHAN · Conteúdo</span>
+    <h1>Publicar conteúdo</h1>
+    <p>Artigos e cases de portfólio do site institucional.</p>
+    <form id="loginForm" autocomplete="on">
+      <div class="fihan-input fihan-input--info">
+        <label class="fihan-input__label" for="admEmail">E-mail</label>
+        <input class="fihan-input__field" type="email" id="admEmail" name="email" placeholder="robert@fihan.com.br" required autocomplete="username" />
+      </div>
+      <div class="fihan-input fihan-input--info">
+        <label class="fihan-input__label" for="admPass">Senha</label>
+        <input class="fihan-input__field" type="password" id="admPass" name="password" placeholder="••••••" required autocomplete="current-password" />
+      </div>
+      <div class="login__error" id="loginError"></div>
+      <button type="submit" class="fihan-btn fihan-btn--primary login__submit" id="loginBtn">Entrar</button>
+    </form>
+  </div>
+</section>
+
+<!-- ─── DASHBOARD ─── -->
+<section id="dashView" class="wrap" hidden>
+  <header class="crm-head">
+    <div class="crm-head__brand">
+      <img src="/components/logo/logo-fill-light.svg" alt="Fihan" class="crm-head__logo crm-logo--dark" />
+      <img src="/components/logo/logo-fill.svg" alt="Fihan" class="crm-head__logo crm-logo--light" />
+      <span class="crm-head__title">/ Conteúdo</span>
+    </div>
+    <div class="crm-head__actions">
+      <a class="fihan-btn fihan-btn--secondary" href="/admin/">CRM de leads</a>
+      <button class="fihan-btn fihan-btn--secondary" id="refreshBtn" type="button">Atualizar</button>
+      <button class="fihan-btn fihan-btn--secondary" id="logoutBtn" type="button">Sair</button>
+    </div>
+  </header>
+
+  <div class="filterbar" id="filterbar">
+    <button class="filter-btn is-active" type="button" data-filter="">Todos</button>
+    <button class="filter-btn" type="button" data-filter="artigo">Artigos</button>
+    <button class="filter-btn" type="button" data-filter="case">Cases</button>
+  </div>
+
+  <div class="form-actions" style="margin-bottom:24px;">
+    <button class="fihan-btn fihan-btn--primary" id="newArtigoBtn" type="button">+ Novo artigo</button>
+    <button class="fihan-btn fihan-btn--primary" id="newCaseBtn" type="button">+ Novo case</button>
+  </div>
+
+  <!-- ─── Formulário (criar/editar) ─── -->
+  <div class="content-form" id="contentForm" hidden>
+    <h2 id="formTitle">Novo artigo</h2>
+    <form id="itemForm">
+      <input type="hidden" id="fId" />
+      <input type="hidden" id="fType" value="artigo" />
+
+      <div class="form-grid">
+        <div class="fihan-input fihan-input--info fihan-input--full form-row">
+          <label class="fihan-input__label" for="fTitle">Título</label>
+          <input class="fihan-input__field" type="text" id="fTitle" required />
+        </div>
+
+        <div class="fihan-input fihan-input--info fihan-input--full">
+          <label class="fihan-input__label" for="fSlug">Slug (URL)</label>
+          <input class="fihan-input__field" type="text" id="fSlug" placeholder="gerado a partir do título" />
+        </div>
+        <div class="fihan-input fihan-input--info fihan-input--full">
+          <label class="fihan-input__label" for="fCover">Capa (URL da imagem)</label>
+          <input class="fihan-input__field" type="url" id="fCover" placeholder="https://..." />
+        </div>
+
+        <div class="fihan-input fihan-input--info fihan-input--full form-row">
+          <label class="fihan-input__label" for="fSummary">Resumo</label>
+          <input class="fihan-input__field" type="text" id="fSummary" maxlength="240" />
+        </div>
+
+        <!-- campos exclusivos de case -->
+        <div class="fihan-input fihan-input--info fihan-input--full case-only" id="fCategoryWrap">
+          <label class="fihan-input__label" for="fCategory">Categoria</label>
+          <input class="fihan-input__field" type="text" id="fCategory" placeholder="Produto digital" />
+        </div>
+        <div class="fihan-input fihan-input--info fihan-input--full case-only" id="fYearWrap">
+          <label class="fihan-input__label" for="fYear">Ano</label>
+          <input class="fihan-input__field" type="text" id="fYear" placeholder="2026" />
+        </div>
+        <div class="fihan-input fihan-input--info fihan-input--full case-only" id="fImpactWrap">
+          <label class="fihan-input__label" for="fImpact">Impacto</label>
+          <input class="fihan-input__field" type="text" id="fImpact" />
+        </div>
+        <div class="fihan-input fihan-input--info fihan-input--full case-only" id="fChallengeWrap">
+          <label class="fihan-input__label" for="fChallenge">Problema / Desafio</label>
+          <input class="fihan-input__field" type="text" id="fChallenge" />
+        </div>
+
+        <div class="fihan-input fihan-input--info fihan-input--full form-row">
+          <label class="fihan-input__label" for="fBody">Corpo (markdown simples: ## título, **negrito**, *itálico*, links, parágrafos em branco)</label>
+          <textarea class="fihan-input__field" id="fBody" rows="10"></textarea>
+        </div>
+      </div>
+
+      <div class="form-row" style="margin-top:20px;">
+        <span class="field-label">Anexos (fotos, vídeos, links)</span>
+        <div id="attachList"></div>
+        <button type="button" class="fihan-btn fihan-btn--secondary" id="addAttachBtn">+ Adicionar anexo</button>
+        <p class="attach-note">Foto: pode enviar o arquivo (📎) ou colar a URL. Vídeo: cole o link (YouTube, Vimeo, ou já hospedado em algum lugar) — upload direto de vídeo não é suportado.</p>
+      </div>
+
+      <div class="form-row status-toggle">
+        <label><input type="radio" name="fStatus" value="draft" checked /> Rascunho</label>
+        <label><input type="radio" name="fStatus" value="published" /> Publicado</label>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="fihan-btn fihan-btn--primary" id="saveBtn">Salvar</button>
+        <button type="button" class="fihan-btn fihan-btn--secondary" id="cancelFormBtn">Cancelar</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="table-shell">
+    <table>
+      <thead>
+        <tr>
+          <th>Título</th><th>Tipo</th><th>Status</th><th>Atualizado</th><th aria-label="Ações"></th>
+        </tr>
+      </thead>
+      <tbody id="itemsBody"></tbody>
+    </table>
+    <div class="empty" id="emptyState" hidden>Nenhum conteúdo ainda. Crie um artigo ou case acima.</div>
+  </div>
+  <div class="toast-msg" id="toastMsg"></div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+  var API = '/api/content';
+  var authHeader = null;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  };
+  var slugify = function (s) {
+    return String(s || '')
+      .normalize('NFD').replace(/[̀-ͯ]/g, '')
+      .toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
+  };
+
+  /* ---------- Restaura sessão ---------- */
+  try {
+    var stored = sessionStorage.getItem('fihan-content-auth');
+    if (stored) { authHeader = stored; showDash(); loadItems(); }
+  } catch (e) {}
+
+  /* ---------- Login ---------- */
+  $('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = $('admEmail').value.trim();
+    var pass = $('admPass').value;
+    var errBox = $('loginError');
+    errBox.classList.remove('is-active');
+    var btn = $('loginBtn');
+    btn.disabled = true; btn.textContent = 'Entrando…';
+
+    var header = 'Basic ' + btoa(email + ':' + pass);
+    fetch(API + '?action=list', { headers: { Authorization: header } })
+      .then(function (r) {
+        if (r.status === 401) { throw new Error('Credenciais inválidas.'); }
+        if (!r.ok) { throw new Error('Erro ao conectar (' + r.status + ').'); }
+        return r.json();
+      })
+      .then(function (data) {
+        authHeader = header;
+        try { sessionStorage.setItem('fihan-content-auth', header); } catch (e) {}
+        showDash();
+        setItems(data.items || []);
+      })
+      .catch(function (err) {
+        errBox.textContent = err.message || 'Falha no login.';
+        errBox.classList.add('is-active');
+      })
+      .finally(function () { btn.disabled = false; btn.textContent = 'Entrar'; });
+  });
+
+  function showDash() { $('loginView').hidden = true; $('dashView').hidden = false; }
+  function showLogin() { $('dashView').hidden = true; $('loginView').hidden = false; }
+
+  function loadItems() {
+    if (!authHeader) return;
+    $('toastMsg').textContent = 'Carregando…';
+    fetch(API + '?action=list', { headers: { Authorization: authHeader } })
+      .then(function (r) {
+        if (r.status === 401) { logout(); throw new Error('Sessão expirada.'); }
+        if (!r.ok) throw new Error('Erro ' + r.status);
+        return r.json();
+      })
+      .then(function (data) { setItems(data.items || []); })
+      .catch(function (err) { $('toastMsg').textContent = err.message || 'Erro ao carregar.'; });
+  }
+
+  var allItems = [];
+  var currentFilter = '';
+
+  function setItems(items) { allItems = items || []; applyView(); }
+
+  function applyView() {
+    var rows = currentFilter ? allItems.filter(function (i) { return i.type === currentFilter; }) : allItems;
+    var body = $('itemsBody');
+    body.innerHTML = '';
+    $('emptyState').hidden = rows.length > 0;
+
+    rows.forEach(function (item) {
+      var tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td>' + esc(item.title) + '</td>' +
+        '<td class="col-type">' + esc(item.type) + '</td>' +
+        '<td><span class="status-badge" data-status="' + esc(item.status) + '">' + (item.status === 'published' ? 'Publicado' : 'Rascunho') + '</span></td>' +
+        '<td class="col-when">' + fmt(item.updated_at) + '</td>' +
+        '<td class="col-act">' +
+          '<button class="row-btn" type="button" data-action="edit" data-id="' + esc(item.id) + '">Editar</button>' +
+          '<button class="row-btn row-btn--danger" type="button" data-action="delete" data-id="' + esc(item.id) + '">Remover</button>' +
+        '</td>';
+      body.appendChild(tr);
+    });
+
+    $('toastMsg').textContent = allItems.length + ' item(ns) · atualizado ' + fmt(new Date().toISOString());
+  }
+
+  function fmt(iso) {
+    try {
+      return new Date(iso).toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
+    } catch (e) { return iso || ''; }
+  }
+
+  $('filterbar').addEventListener('click', function (e) {
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    currentFilter = btn.getAttribute('data-filter') || '';
+    Array.prototype.forEach.call($('filterbar').querySelectorAll('.filter-btn'), function (b) {
+      b.classList.toggle('is-active', b === btn);
+    });
+    applyView();
+  });
+
+  /* ---------- Formulário ---------- */
+  var form = $('itemForm');
+  var formEl = $('contentForm');
+
+  function toggleCaseFields(isCase) {
+    ['fCategoryWrap', 'fYearWrap', 'fImpactWrap', 'fChallengeWrap'].forEach(function (id) {
+      $(id).classList.toggle('is-visible', isCase);
+    });
+  }
+
+  function resetForm(type) {
+    form.reset();
+    $('fId').value = '';
+    $('fType').value = type;
+    $('attachList').innerHTML = '';
+    toggleCaseFields(type === 'case');
+    $('formTitle').textContent = type === 'case' ? 'Novo case' : 'Novo artigo';
+    formEl.hidden = false;
+    $('fTitle').focus();
+  }
+
+  $('newArtigoBtn').addEventListener('click', function () { resetForm('artigo'); });
+  $('newCaseBtn').addEventListener('click', function () { resetForm('case'); });
+  $('cancelFormBtn').addEventListener('click', function () { formEl.hidden = true; });
+
+  $('fTitle').addEventListener('input', function () {
+    if (!$('fId').value && !$('fSlug').dataset.touched) {
+      $('fSlug').value = slugify($('fTitle').value);
+    }
+  });
+  $('fSlug').addEventListener('input', function () { $('fSlug').dataset.touched = '1'; });
+
+  /* ---------- Anexos ---------- */
+  function addAttachRow(data) {
+    data = data || {};
+    var row = document.createElement('div');
+    row.className = 'attach-row';
+    row.innerHTML =
+      '<select class="attach-kind">' +
+        '<option value="photo"' + (data.kind === 'photo' ? ' selected' : '') + '>Foto</option>' +
+        '<option value="video"' + (data.kind === 'video' ? ' selected' : '') + '>Vídeo</option>' +
+        '<option value="link"' + (data.kind === 'link' ? ' selected' : '') + '>Link</option>' +
+      '</select>' +
+      '<input class="attach-url" type="url" placeholder="https://..." value="' + esc(data.url || '') + '" />' +
+      '<input class="attach-caption" type="text" placeholder="Legenda (opcional)" value="' + esc(data.caption || '') + '" />' +
+      '<button type="button" class="attach-upload" title="Enviar arquivo de imagem" aria-label="Enviar arquivo de imagem">📎</button>' +
+      '<button type="button" class="attach-remove" aria-label="Remover anexo">✕</button>' +
+      '<input type="file" accept="image/*" class="attach-file-input" hidden />' +
+      '<div class="attach-status" hidden></div>';
+
+    row.querySelector('.attach-remove').addEventListener('click', function () { row.remove(); });
+
+    var fileInput = row.querySelector('.attach-file-input');
+    var uploadBtn = row.querySelector('.attach-upload');
+    var statusEl = row.querySelector('.attach-status');
+    var urlInput = row.querySelector('.attach-url');
+
+    uploadBtn.addEventListener('click', function () { fileInput.click(); });
+
+    fileInput.addEventListener('change', function () {
+      var file = fileInput.files && fileInput.files[0];
+      if (!file || !authHeader) return;
+      statusEl.hidden = false;
+      statusEl.classList.remove('is-error');
+      statusEl.textContent = 'Enviando ' + file.name + '…';
+      uploadBtn.disabled = true;
+
+      fetch('/api/admin/upload', {
+        method: 'POST',
+        headers: {
+          Authorization: authHeader,
+          'Content-Type': file.type,
+          'X-Filename': encodeURIComponent(file.name),
+        },
+        body: file,
+      })
+        .then(function (r) {
+          if (r.status === 401) { logout(); throw new Error('Sessão expirada.'); }
+          return r.json().then(function (out) {
+            if (!r.ok) throw new Error(out.detail || out.error || ('Erro ' + r.status));
+            return out;
+          });
+        })
+        .then(function (out) {
+          urlInput.value = out.url;
+          statusEl.textContent = 'Enviado.';
+          setTimeout(function () { statusEl.hidden = true; }, 2500);
+        })
+        .catch(function (err) {
+          statusEl.classList.add('is-error');
+          statusEl.textContent = err.message || 'Erro ao enviar.';
+        })
+        .finally(function () {
+          uploadBtn.disabled = false;
+          fileInput.value = '';
+        });
+    });
+
+    $('attachList').appendChild(row);
+  }
+  $('addAttachBtn').addEventListener('click', function () { addAttachRow(); });
+
+  function collectAttachments() {
+    return Array.prototype.map.call($('attachList').querySelectorAll('.attach-row'), function (row) {
+      return {
+        kind: row.querySelector('.attach-kind').value,
+        url: row.querySelector('.attach-url').value.trim(),
+        caption: row.querySelector('.attach-caption').value.trim(),
+      };
+    }).filter(function (a) { return a.url; });
+  }
+
+  /* ---------- Editar ---------- */
+  function openEdit(item) {
+    $('fId').value = item.id;
+    $('fType').value = item.type;
+    $('fTitle').value = item.title || '';
+    $('fSlug').value = item.slug || '';
+    $('fSlug').dataset.touched = '1';
+    $('fCover').value = item.cover_url || '';
+    $('fSummary').value = item.summary || '';
+    $('fCategory').value = item.category || '';
+    $('fYear').value = item.year || '';
+    $('fImpact').value = item.impact || '';
+    $('fChallenge').value = item.challenge || '';
+    $('fBody').value = item.body || '';
+    toggleCaseFields(item.type === 'case');
+    $('attachList').innerHTML = '';
+    (item.attachments || []).forEach(addAttachRow);
+    Array.prototype.forEach.call(document.querySelectorAll('input[name="fStatus"]'), function (r) {
+      r.checked = r.value === (item.status || 'draft');
+    });
+    $('formTitle').textContent = 'Editar ' + (item.type === 'case' ? 'case' : 'artigo');
+    formEl.hidden = false;
+    formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  $('itemsBody').addEventListener('click', function (e) {
+    var btn = e.target.closest('.row-btn');
+    if (!btn || !authHeader) return;
+    var id = btn.getAttribute('data-id');
+    var action = btn.getAttribute('data-action');
+    var item = allItems.filter(function (i) { return String(i.id) === String(id); })[0];
+    if (!item) return;
+
+    if (action === 'edit') { openEdit(item); return; }
+
+    if (action === 'delete') {
+      if (!confirm('Remover "' + item.title + '"? Essa ação não pode ser desfeita.')) return;
+      btn.disabled = true;
+      fetch(API + '?id=' + encodeURIComponent(id), { method: 'DELETE', headers: { Authorization: authHeader } })
+        .then(function (r) {
+          if (r.status === 401) { logout(); throw new Error('Sessão expirada.'); }
+          if (!r.ok) throw new Error('Erro ' + r.status);
+          return r.json();
+        })
+        .then(function () { loadItems(); })
+        .catch(function (err) { btn.disabled = false; $('toastMsg').textContent = err.message || 'Erro ao remover.'; });
+    }
+  });
+
+  /* ---------- Salvar (criar ou editar) ---------- */
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var id = $('fId').value;
+    var statusEl = document.querySelector('input[name="fStatus"]:checked');
+    var payload = {
+      type: $('fType').value,
+      title: $('fTitle').value.trim(),
+      slug: $('fSlug').value.trim() || undefined,
+      coverUrl: $('fCover').value.trim(),
+      summary: $('fSummary').value.trim(),
+      category: $('fCategory').value.trim(),
+      year: $('fYear').value.trim(),
+      impact: $('fImpact').value.trim(),
+      challenge: $('fChallenge').value.trim(),
+      body: $('fBody').value,
+      attachments: collectAttachments(),
+      status: statusEl ? statusEl.value : 'draft',
+    };
+
+    var saveBtn = $('saveBtn');
+    saveBtn.disabled = true; saveBtn.textContent = 'Salvando…';
+
+    var req = id
+      ? fetch(API + '?id=' + encodeURIComponent(id), {
+          method: 'PATCH',
+          headers: { Authorization: authHeader, 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+      : fetch(API, {
+          method: 'POST',
+          headers: { Authorization: authHeader, 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+    req
+      .then(function (r) {
+        if (r.status === 401) { logout(); throw new Error('Sessão expirada.'); }
+        if (!r.ok) return r.json().then(function (out) { throw new Error(out.detail || out.error || ('Erro ' + r.status)); });
+        return r.json();
+      })
+      .then(function () {
+        formEl.hidden = true;
+        loadItems();
+      })
+      .catch(function (err) { $('toastMsg').textContent = err.message || 'Erro ao salvar.'; })
+      .finally(function () { saveBtn.disabled = false; saveBtn.textContent = 'Salvar'; });
+  });
+
+  $('refreshBtn').addEventListener('click', loadItems);
+  $('logoutBtn').addEventListener('click', logout);
+
+  function logout() {
+    authHeader = null;
+    try { sessionStorage.removeItem('fihan-content-auth'); } catch (e) {}
+    $('admPass').value = '';
+    showLogin();
+  }
+})();
+</script>
+</body>
+</html>

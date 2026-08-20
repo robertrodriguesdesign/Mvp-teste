@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Client Logos</title>
+  <style>
+    :root {
+      --bg: #EDEDED;
+      --card-bg: #FFFFFF;
+      --border: #DCDCDC;
+      --text: #202224;
+      --text-dim: #6B6F73;
+      --dark-bg: #111314;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    h2 { font-size: 13px; margin: 32px 0 12px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 780px;
+    }
+    .strip.dark {
+      background: #000;
+      border-color: #000;
+    }
+    .logo-cell {
+      width: 110px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--card-bg);
+    }
+    .strip.dark .logo-cell {
+      background: var(--dark-bg);
+    }
+    .logo-cell img {
+      max-width: 78px;
+      max-height: 28px;
+      object-fit: contain;
+    }
+    .label {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: ui-monospace, "IBM Plex Mono", monospace;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Client Logos — Fihan</h1>
+  <span class="label">7 clientes · cartão 110×54</span>
+
+  <h2>Sobre fundo claro</h2>
+  <div class="strip">
+    <div class="logo-cell"><img src="../../images/logos-clientes/zei.png" alt="Zei" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/vaivan.png" alt="VaiVan" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/the-visit.png" alt="The Visit" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/compropay.png" alt="Compropay" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/auati.png" alt="Auati" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/predator.png" alt="Predator" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/iveco-academy.png" alt="Iveco Academy" /></div>
+  </div>
+
+  <h2>Sobre fundo escuro</h2>
+  <div class="strip dark">
+    <div class="logo-cell"><img src="../../images/logos-clientes/zei.png" alt="Zei" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/vaivan.png" alt="VaiVan" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/the-visit.png" alt="The Visit" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/compropay.png" alt="Compropay" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/auati.png" alt="Auati" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/predator.png" alt="Predator" /></div>
+    <div class="logo-cell"><img src="../../images/logos-clientes/iveco-academy.png" alt="Iveco Academy" /></div>
+  </div>
+</body>
+</html>

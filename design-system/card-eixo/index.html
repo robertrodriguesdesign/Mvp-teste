@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Card Eixo</title>
+  <style>
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+    }
+    :root {
+      --page-bg: #202224;
+      --text-dim: #9A9EA1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--page-bg);
+      color: #F9F9F9;
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    .hint { font-size: 12px; color: var(--text-dim); margin: 0 0 32px; }
+
+    .stack { display: flex; flex-direction: column; gap: 1px; max-width: 345px; }
+
+    .card-eixo {
+      width: 345px;
+      background: #43464A;
+    }
+    .card-eixo__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0;
+      background: none;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      text-align: left;
+    }
+    .card-eixo__title {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-weight: 500;
+      font-size: 18px;
+      color: #FAFAFA;
+    }
+    .card-eixo__icon {
+      flex-shrink: 0;
+      width: 47px;
+      height: 47px;
+    }
+    .card-eixo__body {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: -0.0273em;
+      color: #FAFAFA;
+      margin: 55px 0 0;
+    }
+
+    .card-eixo.is-expanded {
+      padding: 31px 32px 27px;
+    }
+    .card-eixo:not(.is-expanded) {
+      padding: 16px 0;
+      background: transparent;
+      border-bottom: 1px solid #AEB1B5;
+    }
+    .card-eixo:not(.is-expanded) .card-eixo__header {
+      padding: 0 32px;
+    }
+    .card-eixo:not(.is-expanded) .card-eixo__body {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Card Eixo — Fihan</h1>
+  <p class="hint">acordeão expansível · expandido (bg #43464A) / recolhido (borda inferior)</p>
+
+  <div class="stack" id="accordion">
+    <div class="card-eixo is-expanded">
+      <button class="card-eixo__header" type="button">
+        <span class="card-eixo__title">Eixo de Negócio</span>
+        <img class="card-eixo__icon" src="../../images/icons/ui/icon-close.svg" alt="Recolher" />
+      </button>
+      <p class="card-eixo__body">A ideia merece existir? Respondemos antes que o capital seja comprometido. Diagnóstico, escuta de cliente, inteligência competitiva e projeção de viabilidade — dez frentes que transformam hipótese em evidência documentada.</p>
+    </div>
+    <div class="card-eixo">
+      <button class="card-eixo__header" type="button">
+        <span class="card-eixo__title">Eixo de Marca</span>
+        <img class="card-eixo__icon" src="../../images/icons/ui/icon-mais.svg" alt="Expandir" />
+      </button>
+      <p class="card-eixo__body">Conteúdo do eixo de marca.</p>
+    </div>
+    <div class="card-eixo">
+      <button class="card-eixo__header" type="button">
+        <span class="card-eixo__title">Eixo de Dev</span>
+        <img class="card-eixo__icon" src="../../images/icons/ui/icon-mais.svg" alt="Expandir" />
+      </button>
+      <p class="card-eixo__body">Conteúdo do eixo de dev.</p>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('#accordion .card-eixo__header').forEach(header => {
+      header.addEventListener('click', () => {
+        const card = header.closest('.card-eixo');
+        const expanding = !card.classList.contains('is-expanded');
+        card.classList.toggle('is-expanded');
+        card.querySelector('.card-eixo__icon').src = expanding
+          ? '../../images/icons/ui/icon-close.svg'
+          : '../../images/icons/ui/icon-mais.svg';
+      });
+    });
+  </script>
+</body>
+</html>

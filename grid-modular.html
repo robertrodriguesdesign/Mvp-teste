@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grid Modular · Construção de ícones Fihan</title>
+<style>
+  :root {
+    --green: #14CC52;
+    --purple: #8A38F5;
+    --dark: #202224;
+    --mint: #DAF2E2;
+    --card: #161917;
+    --border: #2c302e;
+    --muted: #9CA3AF;
+    --cells: 24;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--dark); color: #F9F9F9;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  header { padding: 48px 32px 8px; max-width: 1080px; margin: 0 auto; }
+  .kicker { color: var(--green); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: 12px; }
+  h1 { font-size: clamp(26px, 5vw, 40px); margin: 10px 0 8px; letter-spacing: -.02em; }
+  p.sub { color: var(--muted); max-width: 70ch; line-height: 1.6; margin: 0; }
+  code { background: #11130f; padding: 1px 5px; border-radius: 4px; color: var(--mint); font-size: .92em; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 24px 32px 80px; }
+
+  /* ---- As três variantes oficiais (LR/MD/SM) — agora grid 24x24 ---- */
+  .specs { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-end; margin: 8px 0 44px; }
+  .spec { text-align: center; }
+  .frame { border: 1px dashed var(--purple); border-radius: 5px; padding: 18px; display: inline-block; }
+  /* O grid modular é desenhado com gradientes (linhas verdes a cada célula) */
+  .modgrid {
+    background-color: transparent;
+    background-image:
+      linear-gradient(to right, var(--green) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--green) 1px, transparent 1px);
+    outline: 1px solid var(--green);
+  }
+  .spec figcaption { margin-top: 12px; font-size: 13px; color: var(--muted); }
+  .spec figcaption b { color: #F9F9F9; display: block; font-size: 14px; }
+
+  /* ---- Editor ---- */
+  .editor { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 32px; align-items: start; }
+  @media (max-width: 780px) { .editor { grid-template-columns: 1fr; } }
+  .stage { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  .canvasframe { border: 1px dashed var(--purple); border-radius: 8px; padding: 14px; display: inline-block; background: var(--dark); }
+  .canvas {
+    --u: 17px; display: grid;
+    grid-template-columns: repeat(var(--cells), var(--u));
+    grid-template-rows: repeat(var(--cells), var(--u));
+    background: var(--dark); gap: 1px; border: 1px solid var(--green);
+    box-shadow: 0 0 0 0.5px var(--green);
+  }
+  .canvas > button { all: unset; width: var(--u); height: var(--u); cursor: crosshair; background: var(--dark); }
+  .canvas.show-grid > button { box-shadow: inset 0 0 0 0.5px rgba(20,204,82,.22); }
+  .canvas > button[aria-pressed="true"] { background: var(--green); }
+
+  aside h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin: 0 0 12px; }
+  .preview { display: flex; gap: 14px; align-items: center; margin-bottom: 22px; }
+  .preview .chip { background: var(--dark); border: 1px solid var(--border); border-radius: 12px; padding: 10px; display: grid; place-items: center; }
+  .preview svg { display: block; color: var(--green); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+  button.btn, label.btn { all: unset; cursor: pointer; font-size: 13px; font-weight: 500; padding: 9px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--dark); color: #F9F9F9; transition: border-color .15s, background .15s; display: inline-flex; align-items: center; gap: 7px; }
+  button.btn:hover { border-color: var(--green); }
+  button.btn.primary { background: var(--green); color: var(--dark); border-color: var(--green); font-weight: 600; }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .field input[type=text] { width: 100%; background: var(--dark); border: 1px solid var(--border); color: #fff; padding: 9px 11px; border-radius: 9px; font-size: 14px; }
+  .field input[type=color] { width: 40px; height: 34px; padding: 0; border: 1px solid var(--border); border-radius: 8px; background: none; vertical-align: middle; }
+  .hint { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  textarea#code { width: 100%; height: 130px; margin-top: 8px; background: var(--dark); color: var(--mint); border: 1px solid var(--border); border-radius: 10px; padding: 12px; font-family: ui-monospace, Menlo, monospace; font-size: 11px; resize: vertical; }
+  .presets { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; max-height: 168px; overflow: auto; padding: 2px; }
+  .presets button { all: unset; cursor: pointer; padding: 6px; border: 1px solid var(--border); border-radius: 9px; background: var(--dark); }
+  .presets button:hover { border-color: var(--green); }
+  .presets svg { display: block; color: var(--green); width: 22px; height: 22px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="kicker">Fihan · Grid modular de ícones</div>
+    <h1>Grid de construção pixelado</h1>
+    <p class="sub">Grade modular <strong id="res">10×10</strong> — o grid 5×5 da Fihan com cada
+    módulo dividido em 2 (meio-módulo): é a resolução em que a <strong>superarrow</strong> foi
+    construída. Estilo: blocos sólidos de 1 módulo (2 células), diagonais em escada de blocos que
+    se tocam pelo canto e espaço negativo intencional. As linhas verdes (<code>#14CC52</code>) são
+    o grid; o contorno roxo tracejado (<code>#8A38F5</code>) é a área da arte. Pinte e exporte o SVG.</p>
+  </header>
+
+  <div class="wrap">
+    <section class="specs" aria-label="Variantes do grid">
+      <figure class="spec">
+        <div class="frame"><div class="modgrid" id="g-lr"></div></div>
+        <figcaption><b>LR — 90 px</b><span class="cap" data-px="90"></span></figcaption>
+      </figure>
+      <figure class="spec">
+        <div class="frame"><div class="modgrid" id="g-md"></div></div>
+        <figcaption><b>MD — 60 px</b><span class="cap" data-px="60"></span></figcaption>
+      </figure>
+      <figure class="spec">
+        <div class="frame"><div class="modgrid" id="g-sm"></div></div>
+        <figcaption><b>SM — 40 px</b><span class="cap" data-px="40"></span></figcaption>
+      </figure>
+    </section>
+
+    <section class="editor">
+      <div class="stage">
+        <div class="canvasframe"><div class="canvas show-grid" id="canvas" role="grid" aria-label="Grade de construção 24 por 24"></div></div>
+      </div>
+
+      <aside>
+        <h2>Pré-visualização</h2>
+        <div class="preview" id="preview"></div>
+
+        <h2>Carregar ícone</h2>
+        <div class="presets" id="presets"></div>
+
+        <div class="row">
+          <button class="btn" id="clear">Limpar</button>
+          <button class="btn" id="invert">Inverter</button>
+          <button class="btn" id="toggleGrid">Grid</button>
+        </div>
+
+        <div class="field"><label for="name">Nome do arquivo</label><input type="text" id="name" value="meu-icone" autocomplete="off"></div>
+        <div class="field"><label for="color">Cor</label><input type="color" id="color" value="#14CC52"></div>
+
+        <div class="row">
+          <button class="btn primary" id="dl">Baixar SVG</button>
+          <button class="btn" id="copy">Copiar código</button>
+        </div>
+
+        <p class="hint">Clique para acender/apagar uma célula, ou arraste para pintar várias.
+        O SVG usa <code>viewBox="0 0 24 24"</code> e <code>fill="currentColor"</code> — nítido em
+        qualquer tamanho e recolorível.</p>
+
+        <textarea id="code" readonly aria-label="Código SVG gerado"></textarea>
+      </aside>
+    </section>
+  </div>
+
+<script src="icons-data.js"></script>
+<script>
+  const N = window.FIHAN_GRID || 24;
+  document.documentElement.style.setProperty("--cells", N);
+  document.getElementById("res").textContent = N + "×" + N;
+
+  // Demonstração das três variantes (tamanho do container x célula)
+  function paintDemo(id, px) {
+    const el = document.getElementById(id);
+    el.style.width = px + "px"; el.style.height = px + "px";
+    el.style.backgroundSize = (px / N) + "px " + (px / N) + "px";
+  }
+  paintDemo("g-lr", 90); paintDemo("g-md", 60); paintDemo("g-sm", 40);
+  document.querySelectorAll(".cap").forEach(s => {
+    const px = +s.dataset.px;
+    s.textContent = `grid ${N}×${N} · célula ${(px / N).toFixed(1)} px`;
+  });
+
+  // ---- Editor ----
+  const state = Array.from({ length: N * N }, () => false);
+  const canvas = document.getElementById("canvas");
+  const cells = [];
+  let painting = false, paintVal = true;
+  for (let i = 0; i < N * N; i++) {
+    const b = document.createElement("button");
+    b.setAttribute("role", "gridcell");
+    b.setAttribute("aria-pressed", "false");
+    b.addEventListener("mousedown", (e) => { e.preventDefault(); painting = true; paintVal = !state[i]; set(i, paintVal); });
+    b.addEventListener("mouseenter", () => { if (painting) set(i, paintVal); });
+    cells.push(b); canvas.appendChild(b);
+  }
+  window.addEventListener("mouseup", () => { painting = false; });
+
+  function set(i, v) { state[i] = v; cells[i].setAttribute("aria-pressed", v ? "true" : "false"); render(); }
+
+  function svgString(color, withColor) {
+    let rects = "";
+    for (let y = 0; y < N; y++) {
+      let x = 0;
+      while (x < N) {
+        if (state[y * N + x]) { const s = x; while (x < N && state[y * N + x]) x++; rects += `<rect x="${s}" y="${y}" width="${x - s}" height="1"/>`; }
+        else x++;
+      }
+    }
+    const ca = withColor ? ` color="${color}"` : "";
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${N} ${N}" width="48" height="48" fill="currentColor"${ca} shape-rendering="crispEdges">${rects}</svg>`;
+  }
+
+  const preview = document.getElementById("preview");
+  const code = document.getElementById("code");
+  const colorInp = document.getElementById("color");
+  function render() {
+    const color = colorInp.value;
+    preview.innerHTML = [48, 28, 16].map(s => {
+      const svg = svgString(color, false).replace('width="48" height="48"', `width="${s}" height="${s}"`);
+      return `<span class="chip" style="color:${color}">${svg}</span>`;
+    }).join("");
+    code.value = svgString(color, true);
+  }
+
+  document.getElementById("clear").onclick = () => { state.fill(false); cells.forEach(c => c.setAttribute("aria-pressed", "false")); render(); };
+  document.getElementById("invert").onclick = () => { for (let i = 0; i < state.length; i++) set(i, !state[i]); };
+  document.getElementById("toggleGrid").onclick = () => canvas.classList.toggle("show-grid");
+  colorInp.oninput = render;
+  document.getElementById("dl").onclick = () => {
+    const name = (document.getElementById("name").value || "icone").replace(/[^a-z0-9_-]+/gi, "-");
+    const blob = new Blob([svgString(colorInp.value, true)], { type: "image/svg+xml" });
+    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name + ".svg"; a.click(); URL.revokeObjectURL(a.href);
+  };
+  document.getElementById("copy").onclick = async () => {
+    try { await navigator.clipboard.writeText(svgString(colorInp.value, true)); } catch (e) { code.select(); document.execCommand("copy"); }
+    const b = document.getElementById("copy"), t = b.textContent; b.textContent = "Copiado ✓"; setTimeout(() => b.textContent = t, 1200);
+  };
+
+  // ---- Presets: carrega qualquer um dos 40 ícones para editar ----
+  function load(rows) { state.fill(false); rows.forEach((row, y) => [...row].forEach((ch, x) => { const i = y * N + x; state[i] = ch === "#"; cells[i].setAttribute("aria-pressed", state[i] ? "true" : "false"); })); render(); }
+  const presetsEl = document.getElementById("presets");
+  const ICONS = window.FIHAN_ICONS || {};
+  for (const name of Object.keys(ICONS)) {
+    const rows = ICONS[name];
+    const b = document.createElement("button");
+    b.title = (window.FIHAN_LABELS && window.FIHAN_LABELS[name]) || name;
+    let rects = "";
+    rows.forEach((row, y) => { let x = 0; while (x < N) { if (row[x] === "#") { const s = x; while (x < N && row[x] === "#") x++; rects += `<rect x="${s}" y="${y}" width="${x - s}" height="1"/>`; } else x++; } });
+    b.innerHTML = `<svg viewBox="0 0 ${N} ${N}" fill="currentColor" shape-rendering="crispEdges">${rects}</svg>`;
+    b.onclick = () => load(rows);
+    presetsEl.appendChild(b);
+  }
+
+  if (ICONS.home) load(ICONS.home); else render();
+</script>
+</body>
+</html>

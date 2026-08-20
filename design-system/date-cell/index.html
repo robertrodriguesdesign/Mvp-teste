@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fihan — Design System / Date Cell</title>
+  <style>
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "IBM Plex Mono";
+      src: url("../../fonts/ibm-plex-mono/IBMPlexMono-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+    }
+    :root {
+      --page-bg: #202224;
+      --text-dim: #9A9EA1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 40px 80px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--page-bg);
+      color: #F9F9F9;
+    }
+    h1 { font-size: 20px; margin: 0 0 8px; }
+    h2 { font-size: 13px; margin: 32px 0 12px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .hint { font-size: 12px; color: var(--text-dim); margin: 0; }
+
+    .row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    .date-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      border: 1px solid #65696E;
+      background: transparent;
+      color: #FAFAFA;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      cursor: pointer;
+      min-width: 54px;
+    }
+    .date-cell__day {
+      font-size: 11px;
+      letter-spacing: -0.0273em;
+    }
+    .date-cell__num {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    .date-cell.is-selected {
+      border-color: transparent;
+      background: #14CC52;
+      color: #202224;
+    }
+  </style>
+</head>
+<body>
+  <h1>Date Cell — Fihan</h1>
+  <p class="hint">célula de dia do seletor de agenda · IBM Plex Mono</p>
+
+  <h2>Estados</h2>
+  <div class="row">
+    <div class="date-cell">
+      <span class="date-cell__day">QUI</span>
+      <span class="date-cell__num">20</span>
+    </div>
+    <div class="date-cell is-selected">
+      <span class="date-cell__day">QUI</span>
+      <span class="date-cell__num">20</span>
+    </div>
+  </div>
+
+  <h2>Exemplo de semana (interativo)</h2>
+  <div class="row" id="week">
+    <button class="date-cell" type="button"><span class="date-cell__day">SEG</span><span class="date-cell__num">20</span></button>
+    <button class="date-cell is-selected" type="button"><span class="date-cell__day">TER</span><span class="date-cell__num">21</span></button>
+    <button class="date-cell" type="button"><span class="date-cell__day">QUA</span><span class="date-cell__num">22</span></button>
+    <button class="date-cell" type="button"><span class="date-cell__day">QUI</span><span class="date-cell__num">23</span></button>
+    <button class="date-cell" type="button"><span class="date-cell__day">SEX</span><span class="date-cell__num">24</span></button>
+    <button class="date-cell" type="button"><span class="date-cell__day">SAB</span><span class="date-cell__num">25</span></button>
+  </div>
+
+  <script>
+    const week = document.getElementById('week');
+    week.querySelectorAll('.date-cell').forEach(cell => {
+      cell.addEventListener('click', () => {
+        week.querySelectorAll('.date-cell').forEach(c => c.classList.remove('is-selected'));
+        cell.classList.add('is-selected');
+      });
+    });
+  </script>
+</body>
+</html>
