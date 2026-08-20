@@ -1,0 +1,197 @@
+/* ══════════════════════════════════════════════════════════
+   Fihan Design System — Componentes compartilhados
+   (button, dot, input, card, terminal, list/checkbox-item, checkbox)
+
+   Substitui a antiga pasta /components (perdida, nunca versionada).
+   Implementado sobre os tokens --fh-* de tokens.css, seguindo as
+   specs visuais em design-system/{button,input,dot,terminal}/index.html.
+   Usado por: /playbook, /playbook/obrigado, /admin/conteudo.
+   ══════════════════════════════════════════════════════════ */
+
+:root {
+  --fihan-dark: var(--fh-bg-darker);       /* #161917 · fundo de página */
+  --fihan-input-bg: var(--fh-bg-dark);     /* #202224 · seções alt, cards, footer */
+  --fihan-header-bg: rgba(22, 25, 23, 0.85);
+  --fihan-card-border: var(--fh-border-dark); /* #494B4B */
+  --fihan-divider: var(--fh-gray-700);
+  --fihan-text: var(--fh-text-inverse);       /* #FAFAFA */
+  --fihan-text-bright: var(--fh-white-50);    /* #F9F9F9 */
+  --fihan-text-muted: var(--fh-text-dim);     /* #888C91 */
+  --fihan-green: var(--fh-green-500);
+  --fihan-danger: var(--fh-red-500);
+}
+
+/* ─── Dot ────────────────────────────────────────────────── */
+.fihan-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fh-green-500);
+  flex-shrink: 0;
+}
+.fihan-dot--status {
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 0 3px rgba(20, 204, 82, 0.25);
+}
+
+/* ─── Button ─────────────────────────────────────────────── */
+.fihan-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 24px;
+  border: none;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.fihan-btn--primary { background: var(--fh-green-500); color: var(--fh-black-700); }
+.fihan-btn--primary:hover:not(:disabled) { background: var(--fh-green-600); }
+.fihan-btn--primary:active:not(:disabled) { background: var(--fh-green-700); color: var(--fh-mint-100); }
+.fihan-btn--primary:disabled { background: var(--fh-gray-900); color: var(--fh-gray-400); cursor: not-allowed; }
+
+.fihan-btn--secondary { background: var(--fh-black-700); border: 1px solid var(--fh-gray-700); color: var(--fh-mint-100); }
+.fihan-btn--secondary:hover:not(:disabled) { background: var(--fh-gray-800); }
+.fihan-btn--secondary:active:not(:disabled) { background: var(--fh-gray-50); border-color: transparent; color: #2E332F; }
+.fihan-btn--secondary:disabled { background: var(--fh-black-700); border-color: transparent; color: var(--fh-gray-700); cursor: not-allowed; }
+
+.fihan-btn--ghost { background: transparent; color: var(--fh-green-500); }
+.fihan-btn--ghost:hover:not(:disabled) { background: var(--fh-green-700); }
+.fihan-btn--ghost:active:not(:disabled) { background: var(--fh-green-500); color: var(--fh-black-700); }
+.fihan-btn--ghost:disabled { color: var(--fh-gray-600); cursor: not-allowed; }
+
+.fihan-btn--danger { background: transparent; border: 1px solid var(--fh-red-500); color: var(--fh-red-500); }
+.fihan-btn--danger:hover:not(:disabled) { background: var(--fh-red-500); color: var(--fh-white); }
+
+.fihan-btn__icon {
+  display: inline-block;
+  width: 14.51px;
+  height: 10.4px;
+  flex-shrink: 0;
+}
+.fihan-btn__icon svg { display: block; width: 100%; height: 100%; }
+
+/* ─── Input ──────────────────────────────────────────────── */
+.fihan-input { display: flex; flex-direction: column; gap: 8px; }
+.fihan-input--full { width: 100%; }
+
+.fihan-input__label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: -0.0273em;
+  color: var(--fihan-text-bright);
+}
+
+.fihan-input__field {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--fh-gray-400);
+  background: transparent;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 15px;
+  color: var(--fihan-text-bright);
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+.fihan-input__field::placeholder { color: var(--fh-gray-600); }
+.fihan-input__field:focus {
+  outline: none;
+  background: var(--fihan-dark);
+  border-color: var(--fh-green-500);
+  box-shadow: 0 0 0 3px var(--fh-focus-glow);
+}
+.fihan-input__field:disabled {
+  background: var(--fihan-dark);
+  color: var(--fh-gray-700);
+  cursor: not-allowed;
+}
+
+/* ─── Card ───────────────────────────────────────────────── */
+.fihan-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 218px;
+  padding: 20px;
+  background: var(--fihan-input-bg);
+  border: 1px solid var(--fihan-card-border);
+}
+.fihan-card__title { margin: 0; font-size: 16px; font-weight: 600; color: var(--fihan-text); }
+.fihan-card__desc { margin: 0; font-size: 13px; line-height: 1.5; color: var(--fh-gray-200); }
+
+/* ─── Terminal ───────────────────────────────────────────── */
+.fihan-terminal {
+  width: 100%;
+  background: var(--fihan-dark);
+  border: 1px solid var(--fihan-card-border);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+.fihan-terminal__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--fihan-card-border);
+}
+.fihan-terminal__header .fihan-dot { width: 12px; height: 12px; box-shadow: none; }
+.fihan-terminal__body { display: flex; align-items: flex-start; gap: 24px; padding: 28px 24px; }
+.fihan-terminal__numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--fh-gray-400);
+}
+.fihan-terminal__lines { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
+.fihan-terminal__lines p { margin: 0; font-size: 15px; color: var(--fihan-text-bright); overflow-wrap: anywhere; }
+.fihan-terminal__lines p.is-green { color: var(--fh-green-500); }
+
+.fihan-terminal--detalhado .fihan-terminal__header { border-color: var(--fh-green-500); }
+.fihan-terminal--detalhado .fihan-terminal__numbers { font-size: 20px; font-weight: 600; color: var(--fh-white); }
+.fihan-terminal--detalhado .fihan-terminal__lines p { font-size: 18px; font-weight: 600; letter-spacing: -0.0125em; color: var(--fh-white); }
+
+/* ─── List / Checkbox item ───────────────────────────────── */
+.fihan-list { list-style: none; margin: 0; padding: 0; }
+.fihan-list--checkbox { display: flex; flex-direction: column; }
+
+.fihan-checkbox-item__row { display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; }
+.fihan-checkbox-item__label { font-size: 15px; line-height: 1.5; color: var(--fihan-text-bright); }
+.fihan-checkbox-item__divider { border: none; border-top: 1px solid var(--fihan-card-border); margin: 0; }
+.fihan-checkbox-item:last-child .fihan-checkbox-item__divider { display: none; }
+
+/* ─── Checkbox ───────────────────────────────────────────── */
+.fihan-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin: 2px 0 0;
+  border: 1px solid var(--fh-gray-400);
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+}
+.fihan-checkbox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 11px;
+  height: 8px;
+  opacity: 0;
+  background: var(--fihan-dark);
+  clip-path: polygon(9% 41%, 0 60%, 35% 100%, 100% 22%, 88% 8%, 33% 71%);
+}
+.fihan-checkbox:checked { background: var(--fh-green-500); border-color: var(--fh-green-500); }
+.fihan-checkbox:checked::before { opacity: 1; }
+.fihan-checkbox:disabled { cursor: default; }
+.fihan-checkbox:focus-visible { outline: 2px solid var(--fh-green-500); outline-offset: 2px; }
