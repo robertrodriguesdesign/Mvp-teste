@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#161917" />
+<title>Playbook · Editais de Fomento no Brasil — capte capital não-dilutivo | Fihan</title>
+<meta name="description" content="O mapa completo dos editais de fomento do Brasil: FINEP, BNDES, SEBRAE, Embrapii, FAPs, Lei do Bem. Ebook direto ao ponto para founders captarem capital que não devolvem nem dividem. Lote 0 por R$35 — sobe para R$55 no próximo lote. Acesso imediato." />
+<meta property="og:title" content="Playbook · Editais de Fomento no Brasil" />
+<meta property="og:description" content="O mapa completo dos editais de fomento do Brasil para captar capital não-dilutivo. Lote 0 por R$35 — sobe para R$55 no próximo lote. Acesso imediato." />
+<meta property="og:type" content="product" />
+<meta property="og:image" content="/playbook/cover-editais.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<!-- Design system tokens & components (mesmos do site principal) -->
+<link rel="stylesheet" href="../design-system/tokens.css?v=9" />
+<link rel="stylesheet" href="../design-system/fonts.css" />
+<link rel="stylesheet" href="../components/button/style.css?v=9" />
+<link rel="stylesheet" href="../components/card/style.css?v=9" />
+<link rel="stylesheet" href="../components/checkbox/style.css?v=9" />
+<link rel="stylesheet" href="../components/checkbox-item/style.css?v=9" />
+<link rel="stylesheet" href="../components/input/style.css?v=9" />
+<link rel="stylesheet" href="../components/dot/style.css?v=9" />
+<link rel="stylesheet" href="../components/list/style.css?v=9" />
+<link rel="stylesheet" href="../components/terminal/style.css?v=9" />
+
+<!-- Page styles -->
+<link rel="stylesheet" href="/playbook/landing.css?v=9" />
+
+<link rel="icon" type="image/svg+xml" href="../components/logo/logo-fill.svg" />
+
+<!-- Theme bootstrap (no flash) -->
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('fihan-theme'); } catch (e) {}
+    var theme = saved || (window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<!-- ────────── Meta Pixel (Facebook/Instagram Ads) ────────── -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '888400407002791');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {content_name: 'Playbook Editais de Fomento', content_type: 'product', value: 35.00, currency: 'BRL'});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=888400407002791&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<!-- ─────────── ANNOUNCEMENT BAR ─────────── -->
+<div class="announce">
+  <div class="container announce__inner">
+    <div class="announce__msg">
+      <span class="fihan-dot fihan-dot--status" aria-hidden="true"></span>
+      <span class="announce__text"><strong>Lote 0 aberto</strong> · Playbook Editais de Fomento por <strong>R$ 35</strong> · no próximo lote sobe para R$ 55</span>
+    </div>
+    <a class="announce__link js-buy" href="#comprar">Comprar agora →</a>
+  </div>
+</div>
+
+<!-- ─────────── HEADER ─────────── -->
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo" aria-label="Fihan">
+      <img src="../components/logo/logo-fill-light.svg" alt="Fihan" class="header__logo-img header__logo-img--dark">
+      <img src="../components/logo/logo-fill.svg" alt="Fihan" class="header__logo-img header__logo-img--light">
+    </a>
+    <div class="header__actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema">
+        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <a href="#comprar" class="fihan-btn fihan-btn--primary header__cta js-buy">
+        Comprar · R$ 35
+        <span class="fihan-btn__icon" aria-hidden="true" data-arrow></span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ─────────── HERO ─────────── -->
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <span class="eyebrow">
+        <span class="fihan-dot" aria-hidden="true"></span>
+        <span>/ EBOOK · EDIÇÃO 2026 · 14 PÁGINAS</span>
+      </span>
+      <h1 class="display display--xl">
+        Existe capital pra<br>
+        financiar seu R&amp;D.<br>
+        <span class="display__accent">Você só não sabe onde.</span>
+      </h1>
+      <p class="lede">
+        O <strong>Playbook Editais de Fomento</strong> é o mapa direto dos programas que pagam pra você inovar — FINEP, BNDES, SEBRAE, Embrapii, FAPs e Lei do Bem. Capital <strong>não-dilutivo</strong>: você não devolve equity, não devolve controle. Sem corporativês, sem enrolação.
+      </p>
+
+      <div class="hero__pricebar">
+        <div class="price">
+          <span class="price__label">Lote 0 · preço de lançamento</span>
+          <span class="price__value">R$ 35<span class="price__cents">,00</span></span>
+          <span class="price__install">à vista · ou em até 12x no cartão</span>
+        </div>
+        <a href="#comprar" class="fihan-btn fihan-btn--primary hero__cta js-buy">
+          Quero o playbook
+          <span class="fihan-btn__icon" aria-hidden="true" data-arrow></span>
+        </a>
+      </div>
+
+      <div class="scarcity js-scarcity is-empty" role="group" aria-label="Progresso do lote 0">
+        <div class="scarcity__top">
+          <span class="scarcity__label">Lote 0 · R$ 35</span>
+          <span class="scarcity__count"><strong class="js-scarcity-sold">0</strong> de <span class="js-scarcity-total">50</span> cópias vendidas</span>
+        </div>
+        <div class="scarcity__track"><div class="scarcity__fill js-scarcity-fill" style="width:0%"></div></div>
+        <span class="scarcity__note">Lote 0 recém-aberto. Quando as <span class="js-scarcity-total">50</span> cópias acabarem, o próximo lote sai por <strong class="scarcity__next">R$ 55</strong>.</span>
+      </div>
+
+      <ul class="trust-row">
+        <li class="trust-row__item"><span class="trust-check" aria-hidden="true"></span> Compra segura via Hotmart</li>
+        <li class="trust-row__item"><span class="trust-check" aria-hidden="true"></span> Acesso imediato após o pagamento</li>
+        <li class="trust-row__item"><span class="trust-check" aria-hidden="true"></span> Garantia de 7 dias</li>
+      </ul>
+    </div>
+
+    <aside class="hero__product" aria-label="Capa do playbook">
+      <figure class="product-figure">
+        <img src="/playbook/cover-editais.png" alt="Capa do Playbook Editais de Fomento — Fihan" width="600" height="800" />
+      </figure>
+      <div class="product-figure__meta">
+        <span>/ PDF · A4 · 14 páginas</span>
+        <span>/ 11 capítulos + glossário</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ─────────── DOR / PROBLEMA ─────────── -->
+<section class="section section--alt" id="problema">
+  <div class="container">
+    <header class="section__head">
+      <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ O PROBLEMA</span></span>
+      <h2 class="display">Todo ano o governo distribui bilhões.<br><span class="display__accent">A maior parte volta sem ser usada.</span></h2>
+      <p class="lede">
+        Não é falta de dinheiro. É falta de mapa. Founder bom perde edital por três motivos — e nenhum deles é o mérito do projeto.
+      </p>
+    </header>
+
+    <div class="grid grid--3">
+      <article class="pain-card">
+        <span class="pain-card__num">/ 01</span>
+        <h3 class="pain-card__title">Não sabia que existia</h3>
+        <p class="pain-card__desc">O edital abriu, ficou 30 dias no ar e fechou. Você descobriu depois, no LinkedIn de outra pessoa.</p>
+      </article>
+      <article class="pain-card">
+        <span class="pain-card__num">/ 02</span>
+        <h3 class="pain-card__title">Aplicou no lugar errado</h3>
+        <p class="pain-card__desc">TRL fora da faixa, CNAE incompatível, estágio de empresa que o edital nem aceita. Desclassificado antes da análise de mérito.</p>
+      </article>
+      <article class="pain-card">
+        <span class="pain-card__num">/ 03</span>
+        <h3 class="pain-card__title">Foi de VC porque era o caminho óbvio</h3>
+        <p class="pain-card__desc">Deu equity e controle cedo demais — quando dava pra financiar o mesmo R&amp;D sem diluir ninguém.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── A SOLUÇÃO ─────────── -->
+<section class="section" id="solucao">
+  <div class="container split">
+    <div>
+      <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ A SOLUÇÃO</span></span>
+      <h2 class="display">O ecossistema inteiro<br><span class="display__accent">em 14 páginas.</span></h2>
+      <p class="lede">
+        A gente comprimiu o que normalmente está espalhado em dezenas de sites, editais e siglas num único documento que você lê em 12 minutos. Cada capítulo entrega uma agência ou programa concreto — com o <strong>TRL-alvo</strong> e o <strong>"pra você se…"</strong> pra você saber se aplica <em>antes</em> de gastar semanas escrevendo proposta.
+      </p>
+    </div>
+
+    <aside class="fihan-terminal fihan-terminal--detalhado solucao__terminal" aria-label="Resumo do playbook">
+      <header class="fihan-terminal__header">
+        <span class="fihan-dot" aria-hidden="true"></span>
+        <span class="fihan-dot" aria-hidden="true"></span>
+        <span class="fihan-dot" aria-hidden="true"></span>
+      </header>
+      <div class="fihan-terminal__body">
+        <div class="fihan-terminal__numbers">
+          <span>1</span><span>2</span><span>3</span><span>4</span>
+        </div>
+        <div class="fihan-terminal__lines">
+          <p>$ fihan open editais-de-fomento</p>
+          <p>&gt; 11 capítulos · 6 agências</p>
+          <p>&gt; TRL · checklist · timeline</p>
+          <p class="is-green">/ acesso liberado</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ─────────── O QUE TEM DENTRO ─────────── -->
+<section class="section section--alt" id="conteudo">
+  <div class="container">
+    <header class="section__head">
+      <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ O QUE TEM DENTRO</span></span>
+      <h2 class="display">11 capítulos<br><span class="display__accent">pra destravar.</span></h2>
+      <p class="lede">
+        Nada de teoria. Cada bloco aponta pra onde o dinheiro está e como chegar lá.
+      </p>
+    </header>
+
+    <div class="grid grid--3">
+      <article class="fihan-card fihan-card--simples grid__item">
+        <p class="card-eyebrow">/ 01</p>
+        <h3 class="fihan-card__title">O que é fomento e por que existe</h3>
+        <p class="fihan-card__desc">Capital não-dilutivo · diferença pra venture capital · 3 tipos de fomento</p>
+      </article>
+      <article class="fihan-card fihan-card--simples grid__item">
+        <p class="card-eyebrow">/ 02</p>
+        <h3 class="fihan-card__title">O ecossistema brasileiro</h3>
+        <p class="fihan-card__desc">Camadas federal · estadual · setorial — quem faz o quê</p>
+      </article>
+      <article class="fihan-card fihan-card--simples grid__item">
+        <p class="card-eyebrow">/ 03</p>
+        <h3 class="fihan-card__title">FINEP</h3>
+        <p class="fihan-card__desc">Centelha · Tecnova · Subvenção Econômica — a principal porta federal</p>
+      </article>
+      <article class="fihan-card fihan-card--simples grid__item">
+        <p class="card-eyebrow">/ 04</p>
+        <h3 class="fihan-card__title">BNDES</h3>
+        <p class="fihan-card__desc">Garagem · Conexão Startup Brasil · MPME Inovadora</p>
+      </article>
+      <article class="fihan-card fihan-card--simples grid__item">
+        <p class="card-eyebrow">/ 05</p>
+        <h3 class="fihan-card__title">CNPq e Embrapii</h3>
+        <p class="fihan-card__desc">RHAE para empresas · co-financiamento de PD&amp;I com ICTs</p>
+      </article>
+      <article class="fihan-card fihan-card--simples grid__item">
+        <p class="card-eyebrow">/ 06</p>
+        <h3 class="fihan-card__title">SEBRAE</h3>
+        <p class="fihan-card__desc">Sebraetec · ALI · Conexão Startup Brasil</p>
+      </article>
+      <article class="fihan-card fihan-card--simples grid__item">
+        <p class="card-eyebrow">/ 07</p>
+        <h3 class="fihan-card__title">FAPs estaduais</h3>
+        <p class="fihan-card__desc">FAPESP PIPE · FAPERJ · FAPEMIG · outras 24 fundações</p>
+      </article>
+      <article class="fihan-card fihan-card--simples grid__item">
+        <p class="card-eyebrow">/ 08</p>
+        <h3 class="fihan-card__title">Lei do Bem e incentivos fiscais</h3>
+        <p class="fihan-card__desc">Dedução de P&amp;D · Lei de Informática · regime tributário</p>
+      </article>
+      <article class="fihan-card fihan-card--simples grid__item">
+        <p class="card-eyebrow">/ 09</p>
+        <h3 class="fihan-card__title">Como se preparar</h3>
+        <p class="fihan-card__desc">TRL · plano de trabalho · checklist documental mínimo</p>
+      </article>
+      <article class="fihan-card fihan-card--simples grid__item">
+        <p class="card-eyebrow">/ 10</p>
+        <h3 class="fihan-card__title">Timeline e erros comuns</h3>
+        <p class="fihan-card__desc">Quando aplicar · armadilhas que reprovam bom projeto</p>
+      </article>
+      <article class="fihan-card fihan-card--simples grid__item grid__item--span-3">
+        <p class="card-eyebrow">/ 11</p>
+        <h3 class="fihan-card__title">Glossário rápido</h3>
+        <p class="fihan-card__desc">TRL · ICT · Subvenção · Lattes · Lucro Real · FAP · contrapartida · CNAE — os termos técnicos traduzidos</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── VALUE STACK / PRA QUEM ─────────── -->
+<section class="section" id="incluso">
+  <div class="container split">
+    <div>
+      <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ O QUE VOCÊ LEVA</span></span>
+      <h2 class="display">Tudo que vem<br><span class="display__accent">no pacote.</span></h2>
+      <p class="lede">
+        Um único PDF, direto ao ponto, pra consultar toda vez que um edital abrir.
+      </p>
+      <div class="hero__pricebar hero__pricebar--inline">
+        <div class="price">
+          <span class="price__label">Tudo isso no lote 0 por</span>
+          <span class="price__value">R$ 35<span class="price__cents">,00</span></span>
+          <span class="price__install">pagamento único · sem assinatura</span>
+        </div>
+        <a href="#comprar" class="fihan-btn fihan-btn--primary js-buy">
+          Comprar agora
+          <span class="fihan-btn__icon" aria-hidden="true" data-arrow></span>
+        </a>
+      </div>
+
+      <div class="scarcity js-scarcity is-empty" role="group" aria-label="Progresso do lote 0">
+        <div class="scarcity__top">
+          <span class="scarcity__label">Lote 0 · R$ 35</span>
+          <span class="scarcity__count"><strong class="js-scarcity-sold">0</strong> de <span class="js-scarcity-total">50</span> cópias vendidas</span>
+        </div>
+        <div class="scarcity__track"><div class="scarcity__fill js-scarcity-fill" style="width:0%"></div></div>
+        <span class="scarcity__note">Lote 0 recém-aberto. Quando as <span class="js-scarcity-total">50</span> cópias acabarem, o próximo lote sai por <strong class="scarcity__next">R$ 55</strong>.</span>
+      </div>
+    </div>
+    <ul class="fihan-list fihan-list--checkbox audience-list">
+      <li class="fihan-checkbox-item">
+        <div class="fihan-checkbox-item__row">
+          <input class="fihan-checkbox" type="checkbox" checked disabled>
+          <label class="fihan-checkbox-item__label">Playbook completo em PDF — 14 páginas, formato A4, pronto pra imprimir ou ler no celular</label>
+        </div>
+        <hr class="fihan-checkbox-item__divider">
+      </li>
+      <li class="fihan-checkbox-item">
+        <div class="fihan-checkbox-item__row">
+          <input class="fihan-checkbox" type="checkbox" checked disabled>
+          <label class="fihan-checkbox-item__label">6 agências e +10 programas de fomento mapeados, com TRL-alvo de cada um</label>
+        </div>
+        <hr class="fihan-checkbox-item__divider">
+      </li>
+      <li class="fihan-checkbox-item">
+        <div class="fihan-checkbox-item__row">
+          <input class="fihan-checkbox" type="checkbox" checked disabled>
+          <label class="fihan-checkbox-item__label">Checklist documental mínimo pra não travar na hora de submeter</label>
+        </div>
+        <hr class="fihan-checkbox-item__divider">
+      </li>
+      <li class="fihan-checkbox-item">
+        <div class="fihan-checkbox-item__row">
+          <input class="fihan-checkbox" type="checkbox" checked disabled>
+          <label class="fihan-checkbox-item__label">Guia de TRL e timeline dos editais ao longo do ano — quando cada porta abre</label>
+        </div>
+        <hr class="fihan-checkbox-item__divider">
+      </li>
+      <li class="fihan-checkbox-item">
+        <div class="fihan-checkbox-item__row">
+          <input class="fihan-checkbox" type="checkbox" checked disabled>
+          <label class="fihan-checkbox-item__label">Glossário dos termos técnicos que aparecem em todo edital</label>
+        </div>
+        <hr class="fihan-checkbox-item__divider">
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ─────────── PRA QUEM SERVE / NÃO SERVE ─────────── -->
+<section class="section section--alt" id="pra-quem">
+  <div class="container">
+    <header class="section__head">
+      <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ HONESTIDADE ANTES DA COMPRA</span></span>
+      <h2 class="display">É pra você?<br><span class="display__accent">Depende.</span></h2>
+    </header>
+    <div class="fit-grid">
+      <div class="fit-col fit-col--yes">
+        <h3 class="fit-col__title"><span class="fit-tag fit-tag--yes">/ É pra você se</span></h3>
+        <ul class="fit-list">
+          <li>Está validando um produto com componente técnico-científico (deep tech, biotech, agtech, healthtech, edtech)</li>
+          <li>Quer financiar P&amp;D, contratar pesquisador ou acessar laboratório sem diluir equity</li>
+          <li>Nunca aplicou em edital e quer entender o mapa antes de mergulhar</li>
+          <li>Já pensou em fomento mas se perdeu na sopa de siglas e desistiu</li>
+        </ul>
+      </div>
+      <div class="fit-col fit-col--no">
+        <h3 class="fit-col__title"><span class="fit-tag fit-tag--no">/ Não é pra você se</span></h3>
+        <ul class="fit-list fit-list--no">
+          <li>Procura uma consultoria que escreve a proposta por você (isso é outro serviço)</li>
+          <li>Quer garantia de aprovação — nenhum material entrega isso, e quem promete está mentindo</li>
+          <li>Seu negócio não tem nenhum elemento de inovação ou tecnologia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── GARANTIA ─────────── -->
+<section class="section" id="garantia">
+  <div class="container">
+    <div class="guarantee">
+      <div class="guarantee__seal" aria-hidden="true">
+        <span class="guarantee__days">7</span>
+        <span class="guarantee__unit">dias</span>
+      </div>
+      <div class="guarantee__body">
+        <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ RISCO ZERO</span></span>
+        <h2 class="display guarantee__title">Garantia incondicional de 7 dias.</h2>
+        <p class="lede">
+          Comprou, abriu, achou que não era pra você? É só pedir reembolso dentro de 7 dias direto pela Hotmart — <strong>sem pergunta, sem burocracia, 100% do valor de volta</strong>. O risco é todo nosso.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── AUTORIDADE / FIHAN ─────────── -->
+<section class="section section--alt" id="autoridade">
+  <div class="container split">
+    <div>
+      <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ QUEM ESCREVEU</span></span>
+      <h2 class="display">Feito por quem<br><span class="display__accent">valida negócios.</span></h2>
+      <p class="lede">
+        A Fihan é uma casa de inteligência de negócio, marca e desenvolvimento. Nosso trabalho é transformar hipótese em ativo documentado — exatamente o que um edital cobra pra aprovar projeto.
+      </p>
+      <p class="lede">
+        Esse playbook é a versão condensada do mapa que usamos com founders no dia a dia. Se depois de ler você quiser mão na massa, o <strong>Protocolo Fihan</strong> continua a conversa.
+      </p>
+      <a href="/" class="fihan-btn fihan-btn--secondary">
+        Conhecer a Fihan
+        <span class="fihan-btn__icon" aria-hidden="true" data-arrow></span>
+      </a>
+    </div>
+    <div class="stat-stack">
+      <div class="stat-block">
+        <span class="stat-block__num">6</span>
+        <span class="stat-block__label">agências de fomento mapeadas, das federais às estaduais</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-block__num">+100</span>
+        <span class="stat-block__label">editais publicados por ano só no nível federal</span>
+      </div>
+      <div class="stat-block">
+        <span class="stat-block__num">12min</span>
+        <span class="stat-block__label">de leitura pra entender o caminho inteiro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FAQ ─────────── -->
+<section class="section" id="faq">
+  <div class="container">
+    <header class="section__head">
+      <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ PERGUNTAS FREQUENTES</span></span>
+      <h2 class="display">Antes de você<br><span class="display__accent">perguntar.</span></h2>
+    </header>
+
+    <div class="faq">
+      <details class="faq__item">
+        <summary class="faq__q">Como recebo o material depois de comprar?<span class="faq__icon" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>Na hora. O pagamento é processado pela Hotmart e o acesso ao PDF é liberado imediatamente por email e na área de membros. Sem espera, sem envio manual.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">É só um PDF? Vale R$ 35?<span class="faq__icon" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>É um PDF de 14 páginas — e é justamente por ser enxuto que ele vale. Você paga pelo mapa, não pelo peso. Um único edital captado paga o playbook milhares de vezes. E se achar que não valeu, tem 7 dias de garantia total.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Os editais mudam toda hora. O conteúdo não desatualiza?<span class="faq__icon" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>As datas mudam, sim. Mas as agências, os programas e a lógica de como o fomento funciona no Brasil são estruturais — FINEP, BNDES, SEBRAE e as FAPs não vão a lugar nenhum. O playbook te ensina o mapa e o método pra achar o edital certo em qualquer ano.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Isso substitui uma consultoria de captação?<span class="faq__icon" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>Não — e não tenta. O playbook te dá o mapa pra decidir onde aplicar e chegar preparado. Escrever e submeter a proposta com acompanhamento é o Protocolo Fihan, um serviço à parte. Muita gente resolve sozinha só com o mapa.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">Quais as formas de pagamento?<span class="faq__icon" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>Cartão de crédito (em até 12x), Pix e boleto — tudo pela Hotmart, ambiente 100% seguro.</p></div>
+      </details>
+      <details class="faq__item">
+        <summary class="faq__q">E se eu não gostar?<span class="faq__icon" aria-hidden="true"></span></summary>
+        <div class="faq__a"><p>Você tem 7 dias pra pedir reembolso direto na Hotmart e recebe 100% do valor de volta. Sem justificar, sem falar com ninguém.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── PROVA SOCIAL / DEPOIMENTOS ───────────
+     ⚠️  ATRIBUIÇÃO: os cards abaixo trazem os feedbacks dos primeiros leitores
+     RESUMIDOS — sem nome, empresa ou foto inventados. Quando você tiver a
+     autorização de cada pessoa, troque:
+       · o texto do <p> pela frase EXATA que ela mandou;
+       · o <strong> de .proof-card__who pelo nome real e o <span> pelo cargo/empresa;
+       · e remova o aviso .proof-notice logo acima do grid.
+     Se tiver print, troque o <blockquote> inteiro por:
+       <img src="/playbook/depoimentos/print-1.png" alt="Depoimento de [nome]" loading="lazy">
+     O grid se ajusta sozinho. -->
+<section class="section section--alt" id="depoimentos">
+  <div class="container">
+    <header class="section__head">
+      <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ QUEM JÁ PEGOU</span></span>
+      <h2 class="display">A parede dos<br><span class="display__accent">primeiros leitores.</span></h2>
+      <p class="lede">
+        O que voltou de quem leu o playbook antes de você. Três coisas aparecem em quase todo feedback: é direto, mostra quais recursos existem de verdade e deixa claro se a sua empresa dá match.
+      </p>
+    </header>
+
+    <div class="proof-notice" role="status">
+      <span class="proof-notice__pulse" aria-hidden="true"></span>
+      <p>
+        <strong>Feedbacks resumidos.</strong> São retornos reais dos primeiros leitores, condensados por nós. Nomes, empresas e prints entram nesta parede conforme cada pessoa autoriza.
+      </p>
+    </div>
+
+    <div class="proof-grid">
+      <figure class="proof-card">
+        <blockquote class="proof-card__body">
+          <span class="proof-card__mark" aria-hidden="true">”</span>
+          <p>Material muito bom. Em menos de meia hora eu tinha na cabeça o mapa que eu vinha tentando montar há meses catando site de agência.</p>
+        </blockquote>
+        <figcaption class="proof-card__meta proof-card__meta--filled">
+          <span class="proof-card__badge" aria-hidden="true">01</span>
+          <span class="proof-card__who">
+            <strong>Leitor do lote 0</strong>
+            <span>feedback coletado na pré-venda</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <figure class="proof-card">
+        <blockquote class="proof-card__body">
+          <span class="proof-card__mark" aria-hidden="true">”</span>
+          <p>O que mais me ajudou foi ver preto no branco quais recursos existem e de onde vem cada um. Eu conhecia a FINEP só de nome e nem sabia que a FAP do meu estado tinha edital.</p>
+        </blockquote>
+        <figcaption class="proof-card__meta proof-card__meta--filled">
+          <span class="proof-card__badge" aria-hidden="true">02</span>
+          <span class="proof-card__who">
+            <strong>Leitor do lote 0</strong>
+            <span>feedback coletado na pré-venda</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <figure class="proof-card">
+        <blockquote class="proof-card__body">
+          <span class="proof-card__mark" aria-hidden="true">”</span>
+          <p>Deu pra entender rápido se a minha empresa tinha match. Cortei dois programas da lista antes de perder semana escrevendo proposta que ia ser desclassificada.</p>
+        </blockquote>
+        <figcaption class="proof-card__meta proof-card__meta--filled">
+          <span class="proof-card__badge" aria-hidden="true">03</span>
+          <span class="proof-card__who">
+            <strong>Leitor do lote 0</strong>
+            <span>feedback coletado na pré-venda</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <figure class="proof-card">
+        <blockquote class="proof-card__body">
+          <span class="proof-card__mark" aria-hidden="true">”</span>
+          <p>Direto ao ponto, sem corporativês. A parte de TRL e o “é pra você se” de cada programa foi o que fechou a conta pra mim.</p>
+        </blockquote>
+        <figcaption class="proof-card__meta proof-card__meta--filled">
+          <span class="proof-card__badge" aria-hidden="true">04</span>
+          <span class="proof-card__who">
+            <strong>Leitor do lote 0</strong>
+            <span>feedback coletado na pré-venda</span>
+          </span>
+        </figcaption>
+      </figure>
+
+      <figure class="proof-card">
+        <blockquote class="proof-card__body">
+          <span class="proof-card__mark" aria-hidden="true">”</span>
+          <p>Peguei achando que era mais um PDF genérico. É o oposto: cada capítulo aponta pra um programa concreto e diz na lata se você se encaixa ou não.</p>
+        </blockquote>
+        <figcaption class="proof-card__meta proof-card__meta--filled">
+          <span class="proof-card__badge" aria-hidden="true">05</span>
+          <span class="proof-card__who">
+            <strong>Leitor do lote 0</strong>
+            <span>feedback coletado na pré-venda</span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="proof-cta">
+      <p>Já é comprador e aplicou o playbook?</p>
+      <a href="https://wa.me/5527997289739?text=Comprei%20o%20Playbook%20e%20quero%20deixar%20meu%20depoimento" target="_blank" rel="noopener" class="fihan-btn fihan-btn--secondary">
+        Mandar meu depoimento
+        <span class="fihan-btn__icon" aria-hidden="true" data-arrow></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FINAL CTA ─────────── -->
+<section class="section section--center" id="comprar">
+  <div class="container final-cta">
+    <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ ÚLTIMO PASSO</span></span>
+    <h2 class="display display--xl">Pega o mapa.<br><span class="display__accent">O dinheiro já existe.</span></h2>
+    <p class="lede">
+      14 páginas é menos tempo que você gasta lendo um deck de venture capital — e provavelmente vale muito mais. Acesso imediato, garantia de 7 dias.
+    </p>
+
+    <div class="checkout-card">
+      <div class="checkout-card__price">
+        <span class="price__label">Playbook Editais de Fomento</span>
+        <span class="price__old--lg">Lote 0 · preço de lançamento</span>
+        <span class="price__value">R$ 35<span class="price__cents">,00</span></span>
+        <span class="price__install">à vista · ou em até 12x no cartão</span>
+      </div>
+      <a href="#comprar" class="fihan-btn fihan-btn--primary checkout-card__btn js-buy">
+        Comprar com acesso imediato
+        <span class="fihan-btn__icon" aria-hidden="true" data-arrow></span>
+      </a>
+      <div class="scarcity scarcity--center js-scarcity is-empty" role="group" aria-label="Progresso do lote 0">
+        <div class="scarcity__top">
+          <span class="scarcity__label">Lote 0 · R$ 35</span>
+          <span class="scarcity__count"><strong class="js-scarcity-sold">0</strong> de <span class="js-scarcity-total">50</span> vendidas</span>
+        </div>
+        <div class="scarcity__track"><div class="scarcity__fill js-scarcity-fill" style="width:0%"></div></div>
+        <span class="scarcity__note">Lote 0 recém-aberto. Quando as <span class="js-scarcity-total">50</span> cópias acabarem, o próximo lote sai por <strong class="scarcity__next">R$ 55</strong>.</span>
+      </div>
+      <ul class="trust-row trust-row--center">
+        <li class="trust-row__item"><span class="trust-check" aria-hidden="true"></span> Hotmart</li>
+        <li class="trust-row__item"><span class="trust-check" aria-hidden="true"></span> Pagamento seguro</li>
+        <li class="trust-row__item"><span class="trust-check" aria-hidden="true"></span> Garantia 7 dias</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FOOTER ─────────── -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="/" class="footer__logo">
+        <img src="../components/logo/logo-fill-light.svg" alt="Fihan" class="header__logo-img header__logo-img--dark" />
+        <img src="../components/logo/logo-fill.svg" alt="Fihan" class="header__logo-img header__logo-img--light" />
+      </a>
+      <p class="footer__tag">Valide antes de arriscar.</p>
+      <p class="footer__desc">Inteligência de Negócio, Marca e Desenvolvimento. O sistema completo de validação antes da decisão de capital.</p>
+    </div>
+    <div class="footer__contact">
+      <h4 class="card-eyebrow">/ CONTATO</h4>
+      <ul>
+        <li><a href="mailto:wellington@fihan.com.br">wellington@fihan.com.br</a></li>
+        <li><a href="mailto:robert@fihan.com.br">robert@fihan.com.br</a></li>
+        <li><a href="https://wa.me/5527997289739" target="_blank" rel="noopener">+55 (27) 99728-9739</a></li>
+        <li><a href="/">fihan.com.br</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <div class="container">
+      <span>© 2026 Fihan validação de negócios.</span>
+      <span>Playbook · Edição 2026 · v1.0</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ─────────── STICKY MOBILE CTA ─────────── -->
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <div class="sticky-cta__price">
+    <span class="sticky-cta__value">R$ 35 <span class="sticky-cta__next">→ R$ 55</span></span>
+    <span class="sticky-cta__label">lote 0 · acesso imediato</span>
+  </div>
+  <a href="#comprar" class="fihan-btn fihan-btn--primary sticky-cta__btn js-buy">
+    Comprar
+    <span class="fihan-btn__icon" aria-hidden="true" data-arrow></span>
+  </a>
+</div>
+
+<!-- ─────────── LEAD MODAL · captura antes do checkout ─────────── -->
+<div class="lead-modal" id="leadModal" aria-hidden="true">
+  <div class="lead-modal__overlay" data-close></div>
+  <div class="lead-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+    <button class="lead-modal__close" type="button" aria-label="Fechar" data-close>×</button>
+    <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ ÚLTIMO PASSO</span></span>
+    <h2 class="lead-modal__title" id="leadModalTitle">Pra onde mandamos seu acesso?</h2>
+    <p class="lead-modal__sub">Preenche rapidinho — em seguida você vai direto pro pagamento seguro na Hotmart (lote 0 · <strong>R$ 35</strong>).</p>
+
+    <form class="lead-modal__form" id="leadModalForm" novalidate>
+      <!-- honeypot -->
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+      <div class="fihan-input fihan-input--info">
+        <label class="fihan-input__label" for="lmName">Nome completo *</label>
+        <input class="fihan-input__field" type="text" id="lmName" name="name" placeholder="Seu nome" required autocomplete="name" />
+      </div>
+      <div class="fihan-input fihan-input--info">
+        <label class="fihan-input__label" for="lmEmail">E-mail *</label>
+        <input class="fihan-input__field" type="email" id="lmEmail" name="email" placeholder="voce@email.com" required autocomplete="email" />
+      </div>
+      <div class="fihan-input fihan-input--info">
+        <label class="fihan-input__label" for="lmPhone">WhatsApp / número *</label>
+        <input class="fihan-input__field" type="tel" id="lmPhone" name="phone" placeholder="(27) 99999-9999" required autocomplete="tel" inputmode="tel" />
+      </div>
+      <div class="fihan-input fihan-input--info">
+        <label class="fihan-input__label" for="lmIdea">Nome da sua ideia / projeto *</label>
+        <input class="fihan-input__field" type="text" id="lmIdea" name="idea" placeholder="Ex.: Agtech de sensores de solo" required autocomplete="off" />
+      </div>
+
+      <div class="lead-modal__error" id="lmError" role="alert"></div>
+
+      <button type="submit" class="fihan-btn fihan-btn--primary lead-modal__submit" id="lmSubmit">
+        Ir para o pagamento
+        <span class="fihan-btn__icon" aria-hidden="true" data-arrow></span>
+      </button>
+      <p class="lead-modal__legal">Seus dados são usados só para liberar o acesso e falar sobre o playbook. Sem spam.</p>
+    </form>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- Arrow SVG template -->
+<template id="arrow-tpl"><svg viewBox="0 0 15 11" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.01 2.15h2.15V0H8.01v2.15Z"/><path d="M10.16 4.3h2.15V2.15h-2.15V4.3Z"/><path d="M8.01 10.75h2.15V8.6H8.01v2.15Z"/><path d="M10.16 8.6h2.15V6.45h-2.15v2.15Z"/><path d="M9.62 4.57H0v1.62h9.62V4.57Z"/><path d="M12.31 6.45H15V4.3h-2.69v2.15Z"/></svg></template>
+
+<script src="/playbook/landing.js?v=9"></script>
+</body>
+</html>

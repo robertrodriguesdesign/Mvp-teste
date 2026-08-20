@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<title>Fihan · Playbook · Como Construir User Stories</title>
+<link rel="stylesheet" href="../design-system/tokens.css">
+<link rel="stylesheet" href="../playbook/playbook.css">
+<style>
+  /* Bloco terminal com rótulos largos (página Modelo pronto) */
+  .terminal--labels .terminal-row { grid-template-columns: 18mm 1fr; }
+</style>
+</head>
+<body>
+
+<!-- ════════════ PÁGINA 1 · CAPA ════════════ -->
+<section class="page">
+  <div class="cover">
+    <header class="cover__top">
+      <img class="cover__logo" src="../components/logo/logo-fill-light.svg" alt="Fihan">
+      <div class="cover__edition">
+        Playbook<br>
+        <small>Edição 2026 · v1.0</small>
+      </div>
+    </header>
+
+    <div class="cover__middle">
+      <span class="eyebrow"><span class="fihan-dot"></span> METODOLOGIA SYSTEM UX</span>
+      <h1 class="cover__title">
+        Como construir<br>
+        User<br>
+        <em>Stories.</em>
+      </h1>
+      <p class="cover__subtitle">
+        Pensar componente e tela <strong>antes</strong> de abrir o Figma. Um guia direto para transformar dor de pesquisa em backlog pronto para o Jira — sem corporativês, sem palpite, com o caminho real da necessidade até a interface.
+      </p>
+    </div>
+
+    <footer class="cover__bottom">
+      <div class="cover__meta">
+        <span class="cover__meta-label">/ Para quem</span>
+        <span class="cover__meta-value">Product, UX e founders</span>
+      </div>
+      <div class="cover__meta">
+        <span class="cover__meta-label">/ Leitura</span>
+        <span class="cover__meta-value">~ 12 minutos</span>
+      </div>
+      <div class="cover__meta">
+        <span class="cover__meta-label">/ Próximos passos</span>
+        <span class="cover__meta-value">fihan.com.br</span>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<!-- ════════════ PÁGINA 2 · SUMÁRIO ════════════ -->
+<section class="page">
+  <header class="page__head">
+    <img src="../components/logo/logo-fill-light.svg" alt="Fihan">
+    <span class="page__head-section">/ Sumário</span>
+  </header>
+
+  <div class="page__body">
+    <span class="eyebrow"><span class="fihan-dot"></span> O QUE VEM</span>
+    <h1 class="title">Conteúdo<br><em>do playbook.</em></h1>
+
+    <nav class="toc">
+      <a class="toc__item">
+        <span class="toc__num">01</span>
+        <span class="toc__label">O que é uma User Story<small class="toc__label-detail">A menor unidade de valor · necessidade, não solução · a regra de ouro</small></span>
+        <span class="toc__page">p. 03</span>
+      </a>
+      <a class="toc__item">
+        <span class="toc__num">02</span>
+        <span class="toc__label">A estrutura base<small class="toc__label-detail">Como · Quero · Para que · certo vs. errado</small></span>
+        <span class="toc__page">p. 04</span>
+      </a>
+      <a class="toc__item">
+        <span class="toc__num">03</span>
+        <span class="toc__label">O card completo<small class="toc__label-detail">ID · título · prioridade · story points · épico · sprint</small></span>
+        <span class="toc__page">p. 05</span>
+      </a>
+      <a class="toc__item">
+        <span class="toc__num">04</span>
+        <span class="toc__label">Critérios de aceitação<small class="toc__label-detail">O coração do card · a ponte para os componentes</small></span>
+        <span class="toc__page">p. 06</span>
+      </a>
+      <a class="toc__item">
+        <span class="toc__num">05</span>
+        <span class="toc__label">Épicos<small class="toc__label-detail">Agrupar por objetivo · a cor que organiza o board</small></span>
+        <span class="toc__page">p. 07</span>
+      </a>
+      <a class="toc__item">
+        <span class="toc__num">06</span>
+        <span class="toc__label">Sprints<small class="toc__label-detail">Sequenciar dos fundamentos ao avançado</small></span>
+        <span class="toc__page">p. 08</span>
+      </a>
+      <a class="toc__item">
+        <span class="toc__num">07</span>
+        <span class="toc__label">O fluxo completo (System UX)<small class="toc__label-detail">Da discovery ao Figma · a ordem importa</small></span>
+        <span class="toc__page">p. 09</span>
+      </a>
+      <a class="toc__item">
+        <span class="toc__num">08</span>
+        <span class="toc__label">Mapa de componentes &amp; telas<small class="toc__label-detail">O entregável-ponte entre história e interface</small></span>
+        <span class="toc__page">p. 10</span>
+      </a>
+      <a class="toc__item">
+        <span class="toc__num">09</span>
+        <span class="toc__label">Checklist de qualidade<small class="toc__label-detail">O que conferir antes de mandar para o backlog</small></span>
+        <span class="toc__page">p. 11</span>
+      </a>
+      <a class="toc__item">
+        <span class="toc__num">10</span>
+        <span class="toc__label">Modelo pronto<small class="toc__label-detail">Copie, preencha · exemplo completo</small></span>
+        <span class="toc__page">p. 12</span>
+      </a>
+    </nav>
+  </div>
+
+  <footer class="page__foot">
+    <span>/ Fihan · Playbook 2026</span>
+    <span class="page__foot-num">02 / 13</span>
+  </footer>
+</section>
+
+<!-- ════════════ PÁGINA 3 · O QUE É UMA USER STORY ════════════ -->
+<section class="page">
+  <header class="page__head">
+    <img src="../components/logo/logo-fill-light.svg" alt="Fihan">
+    <span class="page__head-section">/ Capítulo 01</span>
+  </header>
+
+  <div class="page__body">
+    <span class="eyebrow"><span class="fihan-dot"></span> O CONCEITO</span>
+    <h1 class="title">O que é uma<br><em>User Story.</em></h1>
+
+    <p class="lede">
+      Uma User Story é a <strong>menor unidade de valor entregável</strong> de um produto, escrita do ponto
+      de vista de quem usa — não do ponto de vista técnico. Ela não descreve a solução: descreve a
+      <strong>necessidade</strong> e o <strong>motivo</strong>. A solução nasce depois, a partir dela.
+    </p>
+
+    <div class="grid grid--2">
+      <div class="card card--accent">
+        <span class="card__head-tag">/ A HISTÓRIA DIZ</span>
+        <h3 class="card__title">A necessidade</h3>
+        <p class="card__desc">
+          <strong>Quem</strong> precisa, <strong>o quê</strong> e <strong>por quê</strong>. É um pedaço
+          de valor sob o olhar do usuário. A equipe ainda tem liberdade para propor a melhor solução.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__head-tag">/ A HISTÓRIA NÃO DIZ</span>
+        <h3 class="card__title">A solução</h3>
+        <p class="card__desc">
+          Componente, tela, "botão azul". Isso vem depois — derivado dos critérios. Descrever a interface
+          cedo demais <strong>amarra o time</strong> e mata alternativas melhores.
+        </p>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      Regra de ouro: <em>toda história começa numa dor real validada na pesquisa</em> — nunca num palpite.
+      Se você não consegue apontar o dado que sustenta a história, ela ainda não está pronta para o backlog.
+    </div>
+
+    <h3 class="sub">Por que escrever assim</h3>
+    <ul class="fihan-list">
+      <li>Mantém o foco no <strong>problema do usuário</strong>, não na preferência de quem desenvolve</li>
+      <li>Cria uma unidade pequena o bastante para caber numa sprint e ser priorizada</li>
+      <li>Abre espaço para a equipe propor soluções — a história define o "o quê", não o "como"</li>
+    </ul>
+  </div>
+
+  <footer class="page__foot">
+    <span>/ Capítulo 01 · O conceito</span>
+    <span class="page__foot-num">03 / 13</span>
+  </footer>
+</section>
+
+<!-- ════════════ PÁGINA 4 · A ESTRUTURA BASE ════════════ -->
+<section class="page">
+  <header class="page__head">
+    <img src="../components/logo/logo-fill-light.svg" alt="Fihan">
+    <span class="page__head-section">/ Capítulo 02</span>
+  </header>
+
+  <div class="page__body">
+    <span class="eyebrow"><span class="fihan-dot"></span> A FÓRMULA</span>
+    <h1 class="title">Como · Quero<br><em>· Para que.</em></h1>
+
+    <p class="lede">
+      Toda história segue exatamente este formato de três partes. Cada parte responde uma pergunta —
+      e pular qualquer uma delas quebra a priorização.
+    </p>
+
+    <div class="terminal">
+      <div class="terminal-row">
+        <span class="terminal-row__num">Como</span>
+        <span class="terminal-row__text">[persona / tipo de usuário específico]</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">Quero</span>
+        <span class="terminal-row__text">[ação ou capacidade]</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">P/ que</span>
+        <span class="terminal-row__text">[benefício · motivo · resultado esperado]</span>
+      </div>
+    </div>
+
+    <h3 class="sub">Cada parte tem um erro a evitar</h3>
+    <div class="grid grid--3">
+      <div class="card">
+        <span class="card__head-tag">/ COMO…</span>
+        <h3 class="card__title">Quem?</h3>
+        <p class="card__desc">
+          Use persona <strong>específica</strong>. Troque "usuário" por "usuário recém-cadastrado"
+          ou "pai próximo à van".
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__head-tag">/ QUERO…</span>
+        <h3 class="card__title">O quê?</h3>
+        <p class="card__desc">
+          Descreva a <strong>capacidade</strong> ("registrar o preço"), não a interface
+          ("um botão azul").
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__head-tag">/ PARA QUE…</span>
+        <h3 class="card__title">Por quê?</h3>
+        <p class="card__desc">
+          Nunca pule o benefício. Sem ele, o time não entende a <strong>prioridade</strong> nem propõe
+          soluções melhores.
+        </p>
+      </div>
+    </div>
+
+    <div class="card card--accent-bg">
+      <span class="card__head-tag">/ EXEMPLO CORRETO</span>
+      <p class="card__desc">
+        Como <strong>novo usuário</strong>, quero <strong>criar minha conta usando apenas e-mail e senha</strong>,
+        sem fornecer dados sensíveis no primeiro contato, para <strong>manter o anonimato como diferencial do produto</strong>.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="card__head-tag">/ EXEMPLO ERRADO · DESCREVE SOLUÇÃO</span>
+      <p class="card__desc muted">
+        Quero uma tela de cadastro com campo de e-mail, campo de senha e um botão verde.
+      </p>
+    </div>
+  </div>
+
+  <footer class="page__foot">
+    <span>/ Capítulo 02 · A estrutura base</span>
+    <span class="page__foot-num">04 / 13</span>
+  </footer>
+</section>
+
+<!-- ════════════ PÁGINA 5 · O CARD COMPLETO ════════════ -->
+<section class="page">
+  <header class="page__head">
+    <img src="../components/logo/logo-fill-light.svg" alt="Fihan">
+    <span class="page__head-section">/ Capítulo 03</span>
+  </header>
+
+  <div class="page__body">
+    <span class="eyebrow"><span class="fihan-dot"></span> O OBJETO DO BACKLOG</span>
+    <h1 class="title">O card<br><em>completo.</em></h1>
+
+    <p class="lede">
+      Cada história vira um <strong>card</strong> com estes campos. É o objeto que você importa no Jira,
+      Linear, Trello ou Notion — pronto para o board.
+    </p>
+
+    <div class="grid grid--2">
+      <div class="card">
+        <span class="card__head-tag">/ ID</span>
+        <h3 class="card__title">Identificador único</h3>
+        <p class="card__desc">Com prefixo do projeto. <strong>ZEI-001</strong>, <strong>TE-014</strong>, <strong>EC-003</strong>.</p>
+      </div>
+      <div class="card">
+        <span class="card__head-tag">/ TÍTULO</span>
+        <h3 class="card__title">Nome curto</h3>
+        <p class="card__desc">Descritivo da funcionalidade. "Criação de conta com e-mail".</p>
+      </div>
+      <div class="card">
+        <span class="card__head-tag">/ HISTÓRIA</span>
+        <h3 class="card__title">Como · Quero · Para que</h3>
+        <p class="card__desc">O texto no formato de três partes do capítulo anterior.</p>
+      </div>
+      <div class="card">
+        <span class="card__head-tag">/ CRITÉRIOS</span>
+        <h3 class="card__title">Aceitação</h3>
+        <p class="card__desc">O que precisa ser verdade para a história estar "pronta". Apontam para a UI.</p>
+      </div>
+      <div class="card">
+        <span class="card__head-tag">/ PRIORIDADE</span>
+        <h3 class="card__title">Alta · Média · Baixa</h3>
+        <p class="card__desc">A urgência relativa da história no backlog.</p>
+      </div>
+      <div class="card">
+        <span class="card__head-tag">/ STORY POINTS</span>
+        <h3 class="card__title">Esforço relativo</h3>
+        <p class="card__desc">Fibonacci: <strong>1 · 2 · 3 · 5 · 8 · 13</strong>. Não é hora, é tamanho.</p>
+      </div>
+      <div class="card">
+        <span class="card__head-tag">/ ÉPICO</span>
+        <h3 class="card__title">Agrupamento temático</h3>
+        <p class="card__desc">A que conjunto maior a história pertence. Ex.: E1 — Onboarding.</p>
+      </div>
+      <div class="card">
+        <span class="card__head-tag">/ SPRINT</span>
+        <h3 class="card__title">Ciclo designado</h3>
+        <p class="card__desc">O ciclo de desenvolvimento em que a história será entregue.</p>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      O card transforma a história em algo <em>gerenciável</em>: estimável, priorizável e rastreável
+      do discovery à entrega.
+    </div>
+  </div>
+
+  <footer class="page__foot">
+    <span>/ Capítulo 03 · O card completo</span>
+    <span class="page__foot-num">05 / 13</span>
+  </footer>
+</section>
+
+<!-- ════════════ PÁGINA 6 · CRITÉRIOS DE ACEITAÇÃO ════════════ -->
+<section class="page">
+  <header class="page__head">
+    <img src="../components/logo/logo-fill-light.svg" alt="Fihan">
+    <span class="page__head-section">/ Capítulo 04</span>
+  </header>
+
+  <div class="page__body">
+    <span class="eyebrow"><span class="fihan-dot"></span> O CORAÇÃO DO CARD</span>
+    <h1 class="title">Critérios de<br><em>aceitação.</em></h1>
+
+    <p class="lede">
+      É aqui que a história deixa de ser abstrata. Cada critério é uma <strong>condição verificável</strong>.
+      Escreva de <strong>5 a 7 por história</strong> e faça cada um apontar para um componente ou
+      comportamento de UI — porque é dali que você deriva as telas.
+    </p>
+
+    <h3 class="sub">Exemplo · localização em tempo real</h3>
+    <ul class="fihan-list">
+      <li>Mapa exibe a posição atual da van atualizada a cada X segundos</li>
+      <li>Pino do veículo com ícone distinto do pino de destino</li>
+      <li>Badge de ETA (tempo estimado de chegada) visível sem rolar a tela</li>
+      <li>Estado de "sinal perdido" tratado com mensagem clara</li>
+      <li>Botão de centralizar o mapa na van</li>
+    </ul>
+
+    <h3 class="sub">Cada critério já sugere um componente molecular</h3>
+    <div class="terminal">
+      <div class="terminal-row">
+        <span class="terminal-row__num">→</span>
+        <span class="terminal-row__text">posição no mapa &nbsp;·&nbsp; <strong>MapPin</strong></span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">→</span>
+        <span class="terminal-row__text">tempo de chegada &nbsp;·&nbsp; <strong>EtaBadge</strong></span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">→</span>
+        <span class="terminal-row__text">sinal perdido &nbsp;·&nbsp; <strong>StatusCard</strong></span>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      É essa ponte — critério → componente — que faz o <em>System UX</em> funcionar. A história revela
+      a necessidade; o critério revela a interface.
+    </div>
+  </div>
+
+  <footer class="page__foot">
+    <span>/ Capítulo 04 · Critérios de aceitação</span>
+    <span class="page__foot-num">06 / 13</span>
+  </footer>
+</section>
+
+<!-- ════════════ PÁGINA 7 · ÉPICOS ════════════ -->
+<section class="page">
+  <header class="page__head">
+    <img src="../components/logo/logo-fill-light.svg" alt="Fihan">
+    <span class="page__head-section">/ Capítulo 05</span>
+  </header>
+
+  <div class="page__body">
+    <span class="eyebrow"><span class="fihan-dot"></span> AGRUPANDO AS HISTÓRIAS</span>
+    <h1 class="title">Épicos.</h1>
+
+    <p class="lede">
+      Um <strong>épico</strong> é um conjunto de histórias que servem a um mesmo objetivo maior. Você
+      organiza o backlog inteiro em épicos e dá a cada um uma <strong>cor</strong> — que vira a borda do
+      card e facilita a leitura do board.
+    </p>
+
+    <h3 class="sub">Exemplo · app de transporte escolar</h3>
+    <div class="terminal">
+      <div class="terminal-row">
+        <span class="terminal-row__num">E1</span>
+        <span class="terminal-row__text">Onboarding &amp; Conexão &nbsp;·&nbsp; Roxo &nbsp;·&nbsp; 5 histórias · 26 pts</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">E2</span>
+        <span class="terminal-row__text">Localização em Tempo Real &nbsp;·&nbsp; Azul &nbsp;·&nbsp; 5 histórias · 29 pts</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">E3</span>
+        <span class="terminal-row__text">Eventos do Trajeto &nbsp;·&nbsp; Laranja &nbsp;·&nbsp; 5 histórias · 25 pts</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">E4</span>
+        <span class="terminal-row__text">Segurança &amp; Emergência &nbsp;·&nbsp; Vermelho &nbsp;·&nbsp; 3 histórias</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">E5</span>
+        <span class="terminal-row__text">Histórico &amp; Transparência &nbsp;·&nbsp; Verde &nbsp;·&nbsp; 2 histórias</span>
+      </div>
+    </div>
+
+    <div class="grid grid--3">
+      <div class="stat">
+        <span class="stat__num">5</span>
+        <span class="stat__label">épicos cobrem o produto inteiro neste exemplo</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">20</span>
+        <span class="stat__label">histórias distribuídas entre os épicos</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">1</span>
+        <span class="stat__label">cor por épico — leitura visual de relance</span>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      A cor do épico <em>não é decoração</em>: ela ajuda o time a enxergar concentração de esforço e
+      dependências de relance.
+    </div>
+  </div>
+
+  <footer class="page__foot">
+    <span>/ Capítulo 05 · Épicos</span>
+    <span class="page__foot-num">07 / 13</span>
+  </footer>
+</section>
+
+<!-- ════════════ PÁGINA 8 · SPRINTS ════════════ -->
+<section class="page">
+  <header class="page__head">
+    <img src="../components/logo/logo-fill-light.svg" alt="Fihan">
+    <span class="page__head-section">/ Capítulo 06</span>
+  </header>
+
+  <div class="page__body">
+    <span class="eyebrow"><span class="fihan-dot"></span> SEQUENCIANDO A ENTREGA</span>
+    <h1 class="title">Sprints.</h1>
+
+    <p class="lede">
+      As histórias, agrupadas em épicos, são distribuídas em <strong>sprints</strong> (ciclos de 2 semanas).
+      Ordene sempre dos <strong>fundamentos para o avançado</strong>: nada de gamificação no Sprint 1 se o
+      login ainda não existe.
+    </p>
+
+    <h3 class="sub">Sequência típica de um app</h3>
+    <ol class="fihan-list">
+      <li><strong>Sprint 1 — Fundamentos:</strong> cadastro, login, onboarding, navegação, home</li>
+      <li><strong>Sprint 2 — Core:</strong> a feature que justifica o app existir</li>
+      <li><strong>Intermediários:</strong> busca, comparação, listas, alertas</li>
+      <li><strong>Engajamento:</strong> gamificação, social, rede</li>
+      <li><strong>Finais:</strong> monetização, perfil/config, lançamento/viralização</li>
+    </ol>
+
+    <div class="card card--accent-bg">
+      <span class="card__head-tag">/ COMO PROJETAR O PRAZO</span>
+      <p class="card__desc">
+        Cada sprint tem um <strong>tema</strong> e um total de story points. Somando os pontos e dividindo
+        pela <strong>velocidade do time</strong>, você projeta as semanas de desenvolvimento. É daqui que
+        sai a estimativa de prazo — não de um chute.
+      </p>
+    </div>
+
+    <div class="pullquote">
+      A ordem importa: <em>fundamento primeiro</em>. Toda feature avançada depende de uma base que
+      precisa existir antes.
+    </div>
+  </div>
+
+  <footer class="page__foot">
+    <span>/ Capítulo 06 · Sprints</span>
+    <span class="page__foot-num">08 / 13</span>
+  </footer>
+</section>
+
+<!-- ════════════ PÁGINA 9 · O FLUXO SYSTEM UX ════════════ -->
+<section class="page">
+  <header class="page__head">
+    <img src="../components/logo/logo-fill-light.svg" alt="Fihan">
+    <span class="page__head-section">/ Capítulo 07</span>
+  </header>
+
+  <div class="page__body">
+    <span class="eyebrow"><span class="fihan-dot"></span> A ORDEM IMPORTA</span>
+    <h1 class="title">O fluxo<br><em>System UX.</em></h1>
+
+    <p class="lede">
+      Componente e tela vêm <strong>depois</strong> da história, nunca antes. Este é o caminho completo —
+      da dor de pesquisa ao primeiro traço no Figma.
+    </p>
+
+    <div class="terminal">
+      <div class="terminal-row">
+        <span class="terminal-row__num">01</span>
+        <span class="terminal-row__text">Discovery &nbsp;· pesquisa com usuários · identifica dores reais</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">02</span>
+        <span class="terminal-row__text">Priorização &nbsp;· escolhe o problema mais latente (com dados)</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">03</span>
+        <span class="terminal-row__text">User Stories &nbsp;· escreve Como / Quero / Para que</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">04</span>
+        <span class="terminal-row__text">Critérios &nbsp;· condições que apontam para UI</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">05</span>
+        <span class="terminal-row__text">Épicos + Sprints &nbsp;· agrupa e sequencia</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">06</span>
+        <span class="terminal-row__text">Componentes &nbsp;· deriva os moleculares dos critérios</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">07</span>
+        <span class="terminal-row__text">Telas &nbsp;· compõe as telas a partir dos componentes</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">08</span>
+        <span class="terminal-row__text">Figma &nbsp;· só agora abre o Figma para desenhar</span>
+      </div>
+    </div>
+
+    <div class="pullquote">
+      <em>Princípio System UX:</em> pensar molecular/componente antes de abrir o Figma. A história
+      define a necessidade, os critérios revelam os componentes, os componentes montam as telas.
+      O Figma é a última etapa, não a primeira.
+    </div>
+  </div>
+
+  <footer class="page__foot">
+    <span>/ Capítulo 07 · O fluxo System UX</span>
+    <span class="page__foot-num">09 / 13</span>
+  </footer>
+</section>
+
+<!-- ════════════ PÁGINA 10 · MAPA DE COMPONENTES & TELAS ════════════ -->
+<section class="page">
+  <header class="page__head">
+    <img src="../components/logo/logo-fill-light.svg" alt="Fihan">
+    <span class="page__head-section">/ Capítulo 08</span>
+  </header>
+
+  <div class="page__body">
+    <span class="eyebrow"><span class="fihan-dot"></span> ENTREGÁVEL BÔNUS</span>
+    <h1 class="title">Mapa de<br>componentes<br><em>&amp; telas.</em></h1>
+
+    <p class="lede">
+      Ao final de cada backlog, vale entregar um <strong>mapa</strong> que faz a ponte história → interface.
+      É o que você leva para o caderno de wireframes <strong>antes</strong> de abrir o Figma.
+    </p>
+
+    <div class="grid grid--2">
+      <div class="card card--accent-bg">
+        <span class="card__head-tag">/ LISTA DE TELAS</span>
+        <h3 class="card__title">Derivadas do backlog</h3>
+        <p class="card__desc">
+          Onboarding · Home · Mapa · Histórico… As telas que emergem do conjunto de histórias e critérios.
+        </p>
+      </div>
+      <div class="card card--accent-bg">
+        <span class="card__head-tag">/ COMPONENTES MOLECULARES</span>
+        <h3 class="card__title">Os que se repetem</h3>
+        <p class="card__desc">
+          <strong>StatusCard · MapPin · EtaBadge · TimelineEvent · DriverCard</strong>. Os blocos que
+          aparecem em mais de uma tela.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="sub">Por que o mapa importa</h3>
+    <ul class="fihan-list">
+      <li>Revela os componentes que se <strong>repetem</strong> — base de um design system enxuto</li>
+      <li>Mostra a cobertura: cada tela tem histórias por trás? cada história aparece em alguma tela?</li>
+      <li>Dá ao time um vocabulário comum entre <strong>produto, UX e dev</strong> antes do desenho</li>
+    </ul>
+
+    <div class="pullquote">
+      O mapa é a prova de que você pensou em <em>componente antes de pixel</em>. O wireframe vira
+      montagem, não invenção.
+    </div>
+  </div>
+
+  <footer class="page__foot">
+    <span>/ Capítulo 08 · Mapa de componentes</span>
+    <span class="page__foot-num">10 / 13</span>
+  </footer>
+</section>
+
+<!-- ════════════ PÁGINA 11 · CHECKLIST DE QUALIDADE ════════════ -->
+<section class="page">
+  <header class="page__head">
+    <img src="../components/logo/logo-fill-light.svg" alt="Fihan">
+    <span class="page__head-section">/ Capítulo 09</span>
+  </header>
+
+  <div class="page__body">
+    <span class="eyebrow"><span class="fihan-dot"></span> ANTES DO BACKLOG</span>
+    <h1 class="title">Checklist de<br><em>qualidade.</em></h1>
+
+    <p class="lede">
+      Antes de mandar uma história para o backlog, confirme cada ponto. Se algum falhar, a história
+      ainda <strong>não está pronta</strong>.
+    </p>
+
+    <ul class="fihan-list">
+      <li>A história nasce de uma dor <strong>validada na pesquisa</strong> (tem dado por trás)</li>
+      <li>Está no formato <strong>Como / Quero / Para que</strong> completo — as três partes</li>
+      <li>O "Como" usa uma persona <strong>específica</strong>, não "usuário" genérico</li>
+      <li>O "Quero" descreve <strong>capacidade</strong>, não interface</li>
+      <li>O "Para que" deixa o <strong>benefício</strong> claro</li>
+      <li>Tem <strong>5 a 7 critérios de aceitação</strong> verificáveis</li>
+      <li>Os critérios <strong>apontam para componentes/comportamentos de UI</strong></li>
+      <li>Tem ID, prioridade, story points, épico e sprint definidos</li>
+      <li>Pertence a um <strong>épico colorido</strong> e a um <strong>sprint sequenciado</strong></li>
+    </ul>
+
+    <div class="card card--accent-bg">
+      <span class="card__head-tag">/ O TESTE FINAL</span>
+      <p class="card__desc">
+        Consegue apontar <strong>o dado de pesquisa</strong> que justifica a história e <strong>o componente</strong>
+        que cada critério sugere? Se sim, está pronta. Se não, volte ao discovery.
+      </p>
+    </div>
+  </div>
+
+  <footer class="page__foot">
+    <span>/ Capítulo 09 · Checklist de qualidade</span>
+    <span class="page__foot-num">11 / 13</span>
+  </footer>
+</section>
+
+<!-- ════════════ PÁGINA 12 · MODELO PRONTO ════════════ -->
+<section class="page">
+  <header class="page__head">
+    <img src="../components/logo/logo-fill-light.svg" alt="Fihan">
+    <span class="page__head-section">/ Capítulo 10</span>
+  </header>
+
+  <div class="page__body">
+    <span class="eyebrow"><span class="fihan-dot"></span> COPIE E PREENCHA</span>
+    <h1 class="title">Modelo<br><em>pronto.</em></h1>
+
+    <p class="lede">
+      O template do card e um exemplo preenchido. Use no Claude Code como referência para gerar
+      backlogs completos a partir de dados de pesquisa.
+    </p>
+
+    <div class="terminal terminal--labels">
+      <div class="terminal-row">
+        <span class="terminal-row__num">ID</span>
+        <span class="terminal-row__text">[PREFIXO]-[NNN]</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">Título</span>
+        <span class="terminal-row__text">[nome curto da funcionalidade]</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">Épico</span>
+        <span class="terminal-row__text">[EX — Nome] · Cor: [cor]</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">Meta</span>
+        <span class="terminal-row__text">Prioridade · Story Points · Sprint</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">História</span>
+        <span class="terminal-row__text">Como [persona], quero [ação], para que [benefício]</span>
+      </div>
+      <div class="terminal-row">
+        <span class="terminal-row__num">Critér.</span>
+        <span class="terminal-row__text">5 a 7 itens → cada um aponta para um componente</span>
+      </div>
+    </div>
+
+    <div class="card card--accent-bg">
+      <div class="card__head">
+        <h3 class="card__title">ZEI-001 · Criação de conta com e-mail</h3>
+        <span class="card__head-tag">/ EXEMPLO</span>
+      </div>
+      <p class="card__desc">
+        <strong>Épico:</strong> E1 — Onboarding &amp; Conexão · Roxo &nbsp;·&nbsp;
+        <strong>Prioridade:</strong> Alta · <strong>8 pts</strong> · Sprint 1
+      </p>
+      <div class="card__meta">
+        <strong>História:</strong> Como novo usuário, quero criar minha conta usando apenas e-mail e senha,
+        para manter o anonimato como diferencial do produto.
+      </div>
+    </div>
+
+    <h3 class="sub">Critérios de aceitação · ZEI-001</h3>
+    <ul class="fihan-list">
+      <li>Validação de formato de e-mail em tempo real</li>
+      <li>Senha com regras de força visíveis — <strong>PasswordStrengthMeter</strong></li>
+      <li>Termos e política LGPD aceitos explicitamente — <strong>ConsentCheckbox</strong></li>
+      <li>Envio de e-mail de confirmação</li>
+      <li>Estado de erro tratado com mensagem clara — <strong>InlineError</strong></li>
+    </ul>
+  </div>
+
+  <footer class="page__foot">
+    <span>/ Capítulo 10 · Modelo pronto</span>
+    <span class="page__foot-num">12 / 13</span>
+  </footer>
+</section>
+
+<!-- ════════════ PÁGINA 13 · BACK COVER ════════════ -->
+<section class="page">
+  <div class="back-cover">
+    <header class="cover__top">
+      <img class="cover__logo" src="../components/logo/logo-fill-light.svg" alt="Fihan">
+      <div class="cover__edition">
+        Fim<br>
+        <small>continua online em fihan.com.br</small>
+      </div>
+    </header>
+
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+      <span class="eyebrow" style="justify-content:center;"><span class="fihan-dot"></span> O QUE FAZER AGORA</span>
+      <h2 class="back-cover__title">
+        Transforme pesquisa<br>
+        <em>em backlog pronto.</em>
+      </h2>
+      <p class="back-cover__lede">
+        O System UX leva sua descoberta da dor à interface sem pular etapas: história, critério,
+        componente, tela. O Figma vira a última etapa — e o backlog chega no board pronto para
+        priorizar e estimar.
+      </p>
+      <div style="text-align:center;">
+        <span class="back-cover__contact">fihan.com.br</span>
+      </div>
+    </div>
+
+    <footer style="display:flex; flex-direction:column; gap:3mm; border-top:1px solid var(--fihan-card-border); padding-top:8mm;">
+      <div class="cover__meta">
+        <span class="cover__meta-label">/ Contato</span>
+        <span class="cover__meta-value">wellington@fihan.com.br · robert@fihan.com.br</span>
+      </div>
+      <div class="cover__meta">
+        <span class="cover__meta-label">/ Método</span>
+        <span class="cover__meta-value">System UX · pensar componente antes do Figma</span>
+      </div>
+      <div class="cover__meta">
+        <span class="cover__meta-label">/ Edição</span>
+        <span class="cover__meta-value">2026 · v1.0 · Fihan Inteligência Aplicada</span>
+      </div>
+    </footer>
+  </div>
+</section>
+
+</body>
+</html>

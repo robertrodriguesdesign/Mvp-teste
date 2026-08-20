@@ -1,0 +1,508 @@
+/* ──────────────────────────────────────────────────────────
+   FIHAN · Playbook · Editais de Fomento
+   A4 dark · IBM Plex Mono (títulos/técnico) · Golos Text (corpo)
+   ────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Golos+Text:wght@400;500;600;700&display=swap');
+
+/* Page size — uniform across the whole book so the vertical
+   rhythm ("respiro") is identical on every page. Taller than A4
+   so the densest pages (glossário, FAPs) are never clipped. */
+:root { --page-w: 210mm; --page-h: 335mm; }
+
+@page {
+  size: var(--page-w) var(--page-h);
+  margin: 0;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--fihan-dark);
+  color: var(--fihan-text);
+  font-family: 'Golos Text', system-ui, sans-serif;
+  font-size: 11pt;
+  line-height: 1.55;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  width: var(--page-w);
+  height: var(--page-h);
+  padding: 18mm 18mm 14mm;
+  background: var(--fihan-dark);
+  color: var(--fihan-text);
+  display: flex;
+  flex-direction: column;
+  page-break-after: always;
+  break-after: page;
+  position: relative;
+  overflow: hidden;
+}
+
+.page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+/* ─── Header (mini brand bar) ────────────────────────────── */
+.page__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--fihan-card-border);
+  padding-bottom: 8mm;
+  margin-bottom: 8mm;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 9pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fihan-text-bright);
+}
+
+.page__head img { height: 7mm; width: auto; }
+
+.page__head-section { color: var(--fihan-green); }
+
+/* ─── Body ───────────────────────────────────────────────── */
+.page__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6mm;
+}
+
+/* ─── Footer ─────────────────────────────────────────────── */
+.page__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 6mm;
+  border-top: 1px solid var(--fihan-card-border);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 8pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fihan-text-muted);
+}
+
+.page__foot-num { color: var(--fihan-green); }
+
+/* ─── Typography ─────────────────────────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10pt;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fihan-green);
+  margin-bottom: 4mm;
+}
+
+.eyebrow .fihan-dot { width: 10px; height: 10px; }
+
+h1.title {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 36pt;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin: 0 0 6mm;
+  color: var(--fihan-text);
+}
+
+h1.title--xl {
+  font-size: 48pt;
+}
+
+h1.title em { color: var(--fihan-green); font-style: normal; }
+
+h2.section {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 24pt;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 4mm;
+  color: var(--fihan-text);
+}
+
+h2.section em { color: var(--fihan-green); font-style: normal; }
+
+h3.sub {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 14pt;
+  font-weight: 600;
+  margin: 0 0 2mm;
+  color: var(--fihan-green);
+}
+
+p { margin: 0 0 3mm; }
+p strong { color: var(--fihan-text); font-weight: 600; }
+
+.lede {
+  font-size: 12.5pt;
+  line-height: 1.55;
+  color: var(--fihan-text-bright);
+  margin: 0 0 6mm;
+}
+
+.lede strong { color: var(--fihan-text); }
+
+.muted { color: var(--fihan-text-muted); }
+
+/* ─── Lists ──────────────────────────────────────────────── */
+ul.fihan-list, ol.fihan-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 4mm;
+}
+
+ul.fihan-list li,
+ol.fihan-list li {
+  position: relative;
+  padding-left: 8mm;
+  margin-bottom: 2mm;
+  line-height: 1.5;
+}
+
+ul.fihan-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2mm;
+  width: 3mm;
+  height: 3mm;
+  border-radius: 50%;
+  background: var(--fihan-green);
+}
+
+ol.fihan-list { counter-reset: item; }
+ol.fihan-list li::before {
+  counter-increment: item;
+  content: counter(item, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-weight: 500;
+  color: var(--fihan-green);
+  font-size: 10pt;
+}
+
+/* ─── Cards / Boxes ──────────────────────────────────────── */
+.card {
+  border: 1px solid var(--fihan-card-border);
+  padding: 6mm;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.card--accent { border-color: var(--fihan-green); }
+.card--accent-bg {
+  background: rgba(20, 204, 82, 0.06);
+  border-color: var(--fihan-green);
+}
+
+.card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+.card__head-tag {
+  font-size: 8pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fihan-green);
+}
+
+.card__title {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 14pt;
+  font-weight: 600;
+  margin: 0 0 2mm;
+  color: var(--fihan-text);
+}
+
+.card__desc {
+  font-size: 10pt;
+  line-height: 1.5;
+  color: var(--fihan-text-bright);
+  margin: 0;
+}
+
+.card__meta {
+  margin-top: 2mm;
+  padding-top: 2mm;
+  border-top: 1px dashed var(--fihan-card-border);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 9pt;
+  color: var(--fihan-text-muted);
+}
+
+.card__meta strong { color: var(--fihan-text-bright); font-weight: 500; }
+
+/* ─── Grid ───────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  gap: 4mm;
+}
+
+.grid--2 { grid-template-columns: 1fr 1fr; }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+/* ─── Terminal block ─────────────────────────────────────── */
+.terminal {
+  border: 1px solid var(--fihan-green);
+  background: var(--fihan-input-bg);
+  padding: 4mm 6mm;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10pt;
+  line-height: 1.8;
+}
+
+.terminal-row {
+  display: grid;
+  grid-template-columns: 8mm 1fr;
+  gap: 4mm;
+}
+
+.terminal-row__num {
+  color: var(--fihan-green);
+  font-weight: 600;
+}
+
+.terminal-row__text {
+  color: var(--fihan-text);
+}
+
+/* ─── Cover ──────────────────────────────────────────────── */
+.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.cover__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cover__logo { width: 36mm; height: auto; }
+
+.cover__edition {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10pt;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fihan-green);
+  text-align: right;
+}
+
+.cover__edition small { display: block; color: var(--fihan-text-muted); margin-top: 1mm; }
+
+.cover__middle {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 12mm 0;
+}
+
+.cover__title {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 56pt;
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 4mm 0;
+  color: var(--fihan-text);
+}
+
+.cover__title em {
+  color: var(--fihan-green);
+  font-style: normal;
+}
+
+.cover__subtitle {
+  font-size: 14pt;
+  line-height: 1.45;
+  color: var(--fihan-text-bright);
+  margin: 4mm 0 0;
+  max-width: 130mm;
+}
+
+.cover__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+  border-top: 1px solid var(--fihan-card-border);
+  padding-top: 8mm;
+}
+
+.cover__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 9pt;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cover__meta-label { color: var(--fihan-text-muted); }
+.cover__meta-value { color: var(--fihan-text); }
+
+/* ─── TOC ───────────────────────────────────────────────── */
+.toc {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.toc__item {
+  display: grid;
+  grid-template-columns: 10mm 1fr auto;
+  align-items: baseline;
+  gap: 4mm;
+  padding: 3mm 0;
+  border-bottom: 1px solid var(--fihan-card-border);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+.toc__num {
+  color: var(--fihan-green);
+  font-size: 10pt;
+  font-weight: 500;
+}
+
+.toc__label {
+  font-size: 11pt;
+  color: var(--fihan-text);
+}
+
+.toc__label-detail {
+  display: block;
+  font-family: 'Golos Text', sans-serif;
+  font-size: 9pt;
+  color: var(--fihan-text-muted);
+  margin-top: 0.5mm;
+}
+
+.toc__page {
+  font-size: 10pt;
+  color: var(--fihan-text-muted);
+}
+
+/* ─── Stat block ─────────────────────────────────────────── */
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+}
+
+.stat__num {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 32pt;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--fihan-green);
+}
+
+.stat__label {
+  font-size: 9.5pt;
+  line-height: 1.4;
+  color: var(--fihan-text-bright);
+}
+
+/* ─── Pull quote ─────────────────────────────────────────── */
+.pullquote {
+  border-left: 3px solid var(--fihan-green);
+  padding: 2mm 0 2mm 5mm;
+  font-style: italic;
+  font-size: 12pt;
+  line-height: 1.5;
+  color: var(--fihan-text-bright);
+  margin: 4mm 0;
+}
+
+.pullquote em { color: var(--fihan-green); font-style: normal; }
+
+/* ─── Tag / chip ─────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: 1mm 3mm;
+  border: 1px solid var(--fihan-green);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 8.5pt;
+  letter-spacing: 0.04em;
+  color: var(--fihan-green);
+  text-transform: uppercase;
+  margin-right: 2mm;
+}
+
+/* ─── Two-col split ──────────────────────────────────────── */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8mm;
+}
+
+/* ─── Fihan dot (local override since we want bigger) ───── */
+.fihan-dot {
+  display: inline-block;
+  border-radius: 50%;
+  background: var(--fihan-green);
+  vertical-align: middle;
+}
+
+/* ─── Back cover ─────────────────────────────────────────── */
+.back-cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  text-align: center;
+}
+
+.back-cover__title {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 32pt;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 6mm;
+}
+
+.back-cover__title em { color: var(--fihan-green); font-style: normal; }
+
+.back-cover__lede {
+  font-size: 13pt;
+  line-height: 1.55;
+  color: var(--fihan-text-bright);
+  max-width: 140mm;
+  margin: 0 auto 8mm;
+}
+
+.back-cover__contact {
+  display: inline-block;
+  padding: 4mm 8mm;
+  border: 1px solid var(--fihan-green);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 14pt;
+  color: var(--fihan-green);
+}
