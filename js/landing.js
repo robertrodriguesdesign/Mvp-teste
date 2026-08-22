@@ -261,6 +261,13 @@
           return;
         }
         formState.protocolId = res.body.protocolId;
+        if (typeof window.fbq === 'function') {
+          window.fbq('track', 'Lead', {
+            content_name: 'Diagnóstico Fihan',
+            stage: formState.stage,
+            eixo: formState.eixo
+          });
+        }
         goToStep(3);
         loadAvailability();
       })

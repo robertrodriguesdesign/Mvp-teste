@@ -6,8 +6,7 @@
 //
 // Env vars (opcionais, na Vercel):
 //   SALES_GOAL      → meta de cópias no lote (default 50)
-//   SALES_BASELINE  → "semente" somada às vendas reais. Default 0: o lote 0
-//                     começa zerado e a barra só anda com venda de verdade.
+//   SALES_BASELINE  → "semente" somada às vendas reais. Default 48.
 //   LOTE_START      → data/hora de abertura do lote atual (ISO). Só as compras
 //                     com purchased_at a partir daí entram na conta — as vendas
 //                     do lote anterior (a R$ 24) ficam de fora e o lote 0
@@ -40,7 +39,7 @@ export default async function handler(req, res) {
   }
 
   const goal = int(process.env.SALES_GOAL, 50);
-  const baseline = int(process.env.SALES_BASELINE, 0);
+  const baseline = int(process.env.SALES_BASELINE, 48);
   const since = loteStart();
 
   // Cache curto na borda: a barra não precisa ser real-time ao segundo.
