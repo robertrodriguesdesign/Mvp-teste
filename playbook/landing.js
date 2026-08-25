@@ -1,24 +1,12 @@
 /* ──────────────────────────────────────────────────────────
-   FIHAN · Playbook — Sales page (Editais de Fomento · Lote 0 a R$ 35,
-   sobe para R$ 55 no próximo lote)
-   Captura o lead num modal (nome, email, telefone, ideia) e salva no
-   mini-CRM (/api/leads) ANTES de redirecionar pro checkout da Hotmart.
+   FIHAN · Playbook — Landing gratuita (Editais de Fomento)
+   Captura o lead num modal (nome, email, telefone, ideia), salva no
+   mini-CRM (/api/leads) e dispara o email com o PDF (/api/playbook).
+   100% gratuito — sem checkout, sem Hotmart.
    ────────────────────────────────────────────────────────── */
 
 (function () {
   'use strict';
-
-  /* ════════════════════════════════════════════════════════
-     ⚠️  LINK DE CHECKOUT DA HOTMART
-     Cole aqui a URL de checkout quando ela estiver pronta.
-     Enquanto estiver com o placeholder abaixo, os botões
-     mostram um aviso e rolam até a seção de compra.
-     ════════════════════════════════════════════════════════ */
-  const CHECKOUT_URL = 'https://pay.hotmart.com/U106593671N';
-  const PRICE = 35.0;
-  const NEXT_PRICE = 55.0;
-
-  const checkoutReady = CHECKOUT_URL && !/COLAR_LINK_HOTMART_AQUI/.test(CHECKOUT_URL);
 
   /* ---------- Meta attribution signals (Conversions API dedup) ---------- */
   const getCookie = (name) => {
@@ -56,17 +44,6 @@
     });
   }
 
-  /* ---------- Toast ---------- */
-  const toastEl = document.getElementById('toast');
-  let toastTimer = null;
-  const showToast = (msg) => {
-    if (!toastEl) return;
-    toastEl.textContent = msg;
-    toastEl.classList.add('is-visible');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toastEl.classList.remove('is-visible'), 3800);
-  };
-
   const smoothTo = (sel) => {
     const target = document.querySelector(sel);
     if (!target) return;
@@ -85,22 +62,7 @@
     });
   });
 
-  /* ---------- Redireciona pro checkout Hotmart (com atribuição) ---------- */
-  const goToCheckout = () => {
-    if (!checkoutReady) {
-      showToast('🔗 O link de checkout da Hotmart será conectado aqui.');
-      smoothTo('#comprar');
-      return;
-    }
-    let url = CHECKOUT_URL;
-    const fbc = getFbc();
-    if (fbc) {
-      url += (url.includes('?') ? '&' : '?') + 'xcod=' + encodeURIComponent(fbc);
-    }
-    window.location.href = url;
-  };
-
-  /* ---------- Lead modal (captura os dados antes do checkout) ---------- */
+  /* ---------- Lead modal (captura os dados antes de liberar o download) ---------- */
   const modal = document.getElementById('leadModal');
   const modalForm = document.getElementById('leadModalForm');
   const modalError = document.getElementById('lmError');
@@ -108,7 +70,7 @@
   let lastFocus = null;
 
   const openModal = () => {
-    if (!modal) { goToCheckout(); return; }
+    if (!modal) { smoothTo('#comprar'); return; }
     lastFocus = document.activeElement;
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
@@ -153,7 +115,7 @@
     });
   }
 
-  /* ---------- Modal: submit → salva lead → checkout ---------- */
+  /* ---------- Modal: submit → salva lead → libera o download ---------- */
   if (modalForm) {
     modalForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -189,10 +151,10 @@
       // event_id compartilhado (dedup Pixel ↔ Conversions API)
       const eventId = newEventId();
       if (typeof window.fbq === 'function') {
-        window.fbq('track', 'InitiateCheckout', {
+        window.fbq('track', 'Lead', {
           content_name: 'Playbook Editais de Fomento',
           content_type: 'product',
-          value: PRICE,
+          value: 0,
           currency: 'BRL',
         }, { eventID: eventId });
       }
@@ -205,69 +167,30 @@
       };
 
       modalSubmit.disabled = true;
-      const originalLabel = modalSubmit.innerHTML;
-      modalSubmit.textContent = 'Salvando…';
+      modalSubmit.textContent = 'Enviando…';
 
-      // Salva o lead no CRM. Nunca bloqueia a venda: em qualquer desfecho,
-      // segue pro checkout depois de tentar salvar.
-      const proceed = () => { closeModal(); goToCheckout(); };
+      // Salva o lead no mini-CRM e dispara o email com o PDF. Nunca bloqueia:
+      // em qualquer desfecho, segue pra página de agradecimento com o link
+      // de download direto (o PDF é público, então o acesso nunca falha).
+      const proceed = () => {
+        closeModal();
+        const q = new URLSearchParams({ name: values.name, email: values.email });
+        window.location.href = '/playbook/obrigado.html?' + q.toString();
+      };
 
-      fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      })
-        .then((r) => r.json().catch(() => ({})))
-        .then(() => proceed())
-        .catch(() => proceed());
+      Promise.allSettled([
+        fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values),
+        }),
+        fetch('/api/playbook', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values),
+        }),
+      ]).then(proceed);
     });
-  }
-
-  /* ---------- Barra de progresso do lote 0 (vendas reais / meta do lote) ------
-     Busca /api/sales-count e atualiza todas as barras da página. As vendas são
-     marcadas pelo webhook da Hotmart, então a barra cresce sozinha a partir do
-     zero. Se a API falhar, mantém o valor estático que já está no HTML. */
-  const reduceMotion =
-    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const countUp = (el, target) => {
-    const start = parseInt(el.textContent, 10) || 0;
-    if (start === target || reduceMotion) { el.textContent = target; return; }
-    const dur = 900;
-    let t0 = null;
-    const tick = (now) => {
-      if (t0 === null) t0 = now;
-      const p = Math.min(1, (now - t0) / dur);
-      const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(start + (target - start) * eased);
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  };
-
-  const paintScarcity = (sold, total) => {
-    if (!total || total < 1) total = 50;
-    const pct = Math.min(100, (sold / total) * 100);
-    document.querySelectorAll('.js-scarcity-total').forEach((el) => { el.textContent = total; });
-    document.querySelectorAll('.js-scarcity-fill').forEach((el) => { el.style.width = pct.toFixed(1) + '%'; });
-    document.querySelectorAll('.js-scarcity-sold').forEach((el) => countUp(el, sold));
-    // Lote ainda zerado → mantém o varrimento no trilho vazio
-    document.querySelectorAll('.js-scarcity').forEach((el) => {
-      el.classList.toggle('is-empty', sold <= 0);
-    });
-    if (sold >= total) {
-      document.querySelectorAll('.js-scarcity .scarcity__note').forEach((el) => {
-        el.textContent =
-          'Lote 0 esgotado — as próximas cópias saem por R$ ' + NEXT_PRICE.toFixed(0) + '.';
-      });
-    }
-  };
-
-  if (document.querySelector('.js-scarcity')) {
-    fetch('/api/sales-count', { headers: { Accept: 'application/json' } })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d) => { if (d && typeof d.sold === 'number') paintScarcity(d.sold, d.total); })
-      .catch(() => { /* mantém o fallback do HTML */ });
   }
 
   /* ---------- Sticky mobile CTA visibility ---------- */

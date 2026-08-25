@@ -29,16 +29,28 @@
 </head>
 <body>
 
-  <!-- NAV -->
-  <header class="site-nav">
-    <div class="site-nav__bar">
-      <img class="site-nav__logo" src="images/brand/logo-dark.svg" alt="Fihan" />
-      <button class="cta-btn" type="button" data-scroll-to="#calc">Comece Agora</button>
+  <!-- HEADER + HERO com fundo animado (wave fallback) -->
+  <div class="header-wave">
+    <div class="header-wave__bg" aria-hidden="true">
+      <picture>
+        <source media="(min-width: 1024px)" srcset="images/hero/wave-fallback-desktop.webp" type="image/webp" />
+        <source media="(min-width: 700px)" srcset="images/hero/wave-fallback-tablet.webp" type="image/webp" />
+        <source srcset="images/hero/wave-fallback-mobile.webp" type="image/webp" />
+        <img src="images/hero/wave-fallback-desktop.png" alt="" loading="eager" fetchpriority="high" />
+      </picture>
     </div>
-  </header>
+    <div class="header-wave__fade"></div>
 
-  <!-- HERO -->
-  <section class="hero">
+    <!-- NAV -->
+    <header class="site-nav">
+      <div class="site-nav__bar">
+        <img class="site-nav__logo" src="images/brand/logo-dark.svg" alt="Fihan" />
+        <button class="cta-btn" type="button" data-scroll-to="#calc">Comece Agora</button>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
     <div class="hero__inner">
       <div class="hero__copy">
         <div class="hero__title-block">
@@ -75,7 +87,8 @@ A gente mostra exatamente quanto.</h1>
         <img src="images/logos-clientes/auati.png" alt="Auati" />
       </div>
     </div>
-  </section>
+    </section>
+  </div>
 
   <!-- CALCULADORA DE ROI (Segunda section) -->
   <section class="section section--green" id="calc">

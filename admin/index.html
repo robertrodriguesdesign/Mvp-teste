@@ -176,12 +176,54 @@
     .icon-action { background: none; border: none; cursor: pointer; padding: 4px; opacity: 0.7; }
     .icon-action:hover { opacity: 1; }
     .icon-action img { width: 15px; height: 15px; filter: invert(1); }
+    .row-actions { display: flex; align-items: center; gap: 2px; justify-content: flex-end; }
 
     .empty-state { text-align: center; padding: 48px 0; color: var(--fh-gray-300); font-size: 13px; }
 
     /* ---- Pagination ---- */
     .pagination { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; }
     .pagination span { font-size: 12px; color: var(--fh-gray-300); }
+
+    /* ---- Painel de perfil do cliente ---- */
+    .overlay {
+      position: fixed; inset: 0; background: rgba(10,11,12,0.6); z-index: 100;
+      display: none; align-items: flex-start; justify-content: flex-end; padding: 0;
+    }
+    .overlay.is-active { display: flex; }
+    .profile-panel {
+      width: 100%; max-width: 400px; height: 100vh; background: var(--fh-black-800); border-left: 1px solid var(--fh-gray-700);
+      padding: 28px 24px 32px; overflow-y: auto; box-sizing: border-box;
+    }
+    .profile-panel__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .profile-panel__head h2 { font-size: 16px; font-weight: 600; margin: 0; color: var(--fh-white-25); }
+    .profile-panel__close { background: none; border: none; cursor: pointer; padding: 4px; opacity: 0.75; }
+    .profile-panel__close:hover { opacity: 1; }
+    .profile-panel__close img { width: 18px; height: 18px; filter: invert(1); }
+
+    .profile-panel__id { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+    .profile-panel__avatar {
+      width: 52px; height: 52px; border-radius: 100px; background: var(--fh-green-500); color: var(--fh-bg-dark);
+      display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; flex-shrink: 0;
+    }
+    .profile-panel__name { font-size: 17px; font-weight: 600; color: var(--fh-white-25); margin: 0; }
+    .profile-panel__status { margin-top: 4px; }
+
+    .profile-fields { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; padding-top: 20px; border-top: 1px solid var(--fh-gray-700); }
+    .profile-field__label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fh-gray-300); margin: 0 0 4px; }
+    .profile-field__value { font-size: 14px; color: var(--fh-white-25); margin: 0; word-break: break-word; }
+
+    .profile-panel__actions { display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 1px solid var(--fh-gray-700); }
+    .profile-action {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px;
+      font-family: var(--fh-font-mono); font-size: 13px; text-decoration: none; cursor: pointer; border: 1px solid transparent;
+    }
+    .profile-action img { width: 16px; height: 16px; filter: invert(1); }
+    .profile-action--email { background: var(--fh-gray-700); color: var(--fh-white-25); }
+    .profile-action--email:hover { background: var(--fh-gray-600); }
+    .profile-action--whatsapp { background: #1DA851; color: #05210E; }
+    .profile-action--whatsapp:hover { background: #17a04a; }
+    .profile-action--whatsapp img { filter: none; }
+    .profile-action[disabled] { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -312,6 +354,56 @@
         <button class="btn-sm" id="nextPageBtn" type="button">Próxima</button>
       </div>
     </main>
+  </div>
+
+  <!-- PERFIL DO CLIENTE -->
+  <div class="overlay" id="profileOverlay">
+    <div class="profile-panel" role="dialog" aria-modal="true" aria-labelledby="profileName">
+      <div class="profile-panel__head">
+        <h2>Perfil do cliente</h2>
+        <button class="profile-panel__close" id="profileCloseBtn" type="button" title="Fechar"><img src="/images/icons/x-close.svg" alt="Fechar" /></button>
+      </div>
+
+      <div class="profile-panel__id">
+        <span class="profile-panel__avatar" id="profileAvatar">·</span>
+        <div>
+          <p class="profile-panel__name" id="profileName">—</p>
+          <div class="profile-panel__status" id="profileStatus"></div>
+        </div>
+      </div>
+
+      <div class="profile-fields">
+        <div>
+          <p class="profile-field__label">E-mail</p>
+          <p class="profile-field__value" id="profileEmail">—</p>
+        </div>
+        <div>
+          <p class="profile-field__label">WhatsApp / telefone</p>
+          <p class="profile-field__value" id="profilePhone">—</p>
+        </div>
+        <div>
+          <p class="profile-field__label">Origem</p>
+          <p class="profile-field__value" id="profileSource">—</p>
+        </div>
+        <div>
+          <p class="profile-field__label">Ideia / contexto</p>
+          <p class="profile-field__value" id="profileIdea">—</p>
+        </div>
+        <div>
+          <p class="profile-field__label">Recebido em</p>
+          <p class="profile-field__value" id="profileCreated">—</p>
+        </div>
+      </div>
+
+      <div class="profile-panel__actions">
+        <a class="profile-action profile-action--email" id="profileEmailBtn" href="#" target="_blank" rel="noopener">
+          <img src="/images/icons/mail-01.svg" alt="" />Enviar e-mail
+        </a>
+        <a class="profile-action profile-action--whatsapp" id="profileWhatsappBtn" href="#" target="_blank" rel="noopener">
+          <img src="/images/icons/message-chat-circle.svg" alt="" />Mandar mensagem no WhatsApp
+        </a>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -548,7 +640,10 @@
             '<td>' + statusPillHtml(l.id, status) + '</td>' +
             '<td class="lead-sub" style="max-width:240px;">' + escapeHtml(detail) + '</td>' +
             '<td class="lead-sub">' + formatDate(l.created_at) + (l.purchased_at ? '<div>comprou ' + formatDate(l.purchased_at) + '</div>' : '') + '</td>' +
-            '<td><button type="button" class="icon-action del-btn" data-id="' + l.id + '" title="Excluir"><img src="/images/icons/trash-01.svg" alt="Excluir" /></button></td>' +
+            '<td><div class="row-actions">' +
+              '<button type="button" class="icon-action view-btn" data-id="' + l.id + '" title="Ver perfil"><img src="/images/icons/eye.svg" alt="Ver perfil" /></button>' +
+              '<button type="button" class="icon-action del-btn" data-id="' + l.id + '" title="Excluir"><img src="/images/icons/trash-01.svg" alt="Excluir" /></button>' +
+            '</div></td>' +
           '</tr>';
         }).join('');
 
@@ -558,7 +653,59 @@
         body.querySelectorAll('.del-btn').forEach(function (btn) {
           btn.addEventListener('click', function () { deleteLead(btn.dataset.id); });
         });
+        body.querySelectorAll('.view-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () { openProfile(btn.dataset.id); });
+        });
       }
+
+      /* ---------- Perfil do cliente (email + WhatsApp) ---------- */
+      function waDigits(phone) {
+        var digits = String(phone || '').replace(/\D/g, '');
+        if (!digits) return '';
+        if (digits.length <= 11) digits = '55' + digits; // adiciona DDI Brasil se vier só DDD+número
+        return digits;
+      }
+
+      function openProfile(id) {
+        var lead = allLeads.find(function (l) { return String(l.id) === String(id); });
+        if (!lead) return;
+
+        $('profileAvatar').textContent = initials(lead.name);
+        $('profileName').textContent = lead.name || '—';
+        var status = lead.status || 'lead';
+        $('profileStatus').innerHTML = '<span class="status-pill st-' + status + '" style="pointer-events:none; display:inline-flex;">' + STATUS_LABEL[status] + '</span>';
+        $('profileEmail').textContent = lead.email || '—';
+        $('profilePhone').textContent = lead.phone || '—';
+        $('profileSource').textContent = SOURCE_LABEL[lead.source] || lead.source || '—';
+        $('profileIdea').textContent = lead.idea || '—';
+        $('profileCreated').textContent = formatDate(lead.created_at);
+
+        var emailBtn = $('profileEmailBtn');
+        if (lead.email) {
+          emailBtn.href = 'mailto:' + encodeURIComponent(lead.email) + '?subject=' + encodeURIComponent('Fihan · contato');
+          emailBtn.removeAttribute('disabled');
+        } else {
+          emailBtn.href = '#';
+          emailBtn.setAttribute('disabled', 'disabled');
+        }
+
+        var waBtn = $('profileWhatsappBtn');
+        var digits = waDigits(lead.phone);
+        if (digits) {
+          waBtn.href = 'https://wa.me/' + digits + '?text=' + encodeURIComponent('Olá ' + (lead.name || '') + ', aqui é da Fihan!');
+          waBtn.removeAttribute('disabled');
+        } else {
+          waBtn.href = '#';
+          waBtn.setAttribute('disabled', 'disabled');
+        }
+
+        $('profileOverlay').classList.add('is-active');
+      }
+
+      function closeProfile() { $('profileOverlay').classList.remove('is-active'); }
+      $('profileCloseBtn').addEventListener('click', closeProfile);
+      $('profileOverlay').addEventListener('click', function (e) { if (e.target === $('profileOverlay')) closeProfile(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeProfile(); });
 
       $('prevPageBtn').addEventListener('click', function () { currentPage--; applyFilters(); });
       $('nextPageBtn').addEventListener('click', function () { currentPage++; applyFilters(); });

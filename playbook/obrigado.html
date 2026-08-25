@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#161917" />
 <meta name="robots" content="noindex" />
-<title>Pagamento aprovado · Playbook Editais de Fomento — Fihan</title>
-<meta name="description" content="Pagamento aprovado. Seu Playbook Editais de Fomento está liberado para download." />
+<title>Seu playbook está liberado · Playbook Editais de Fomento — Fihan</title>
+<meta name="description" content="Seu Playbook Editais de Fomento está liberado para download, 100% gratuito." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -134,10 +134,10 @@ src="https://www.facebook.com/tr?id=888400407002791&ev=PageView&noscript=1" /></
           <path d="M20 6 L9 17 l-5-5"/>
         </svg>
       </div>
-      <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ PAGAMENTO APROVADO</span></span>
+      <span class="eyebrow"><span class="fihan-dot" aria-hidden="true"></span><span>/ TUDO CERTO</span></span>
       <h1 class="display display--xl">Tá na mão.<br><span class="display__accent">Seu playbook está liberado.</span></h1>
-      <p class="lede">
-        Compra confirmada — obrigado por confiar na Fihan. Você já pode baixar o <strong>Playbook Editais de Fomento</strong> agora mesmo. O link também chega no seu email e fica salvo na sua conta Hotmart.
+      <p class="lede" id="tyLede">
+        Obrigado por topar essa com a gente. Você já pode baixar o <strong>Playbook Editais de Fomento</strong> agora mesmo — 100% gratuito. O link também chega no seu email.
       </p>
 
       <div class="ty__actions">
@@ -188,7 +188,7 @@ src="https://www.facebook.com/tr?id=888400407002791&ev=PageView&noscript=1" /></
         <h3>Protocolo Fihan</h3>
         <p>Da validação de demanda à apresentação técnica final, em 6 a 8 semanas — o mesmo rigor que um edital cobra pra aprovar projeto. A cada ciclo abrimos vagas para poucos founders.</p>
       </div>
-      <a href="https://wa.me/5527997289739?text=Comprei%20o%20playbook%20e%20quero%20saber%20do%20Protocolo%20Fihan" target="_blank" rel="noopener" class="fihan-btn fihan-btn--primary">
+      <a href="https://wa.me/5527997289739?text=Baixei%20o%20playbook%20e%20quero%20saber%20do%20Protocolo%20Fihan" target="_blank" rel="noopener" class="fihan-btn fihan-btn--primary">
         Falar com a Fihan
         <span class="fihan-btn__icon" aria-hidden="true" data-arrow></span>
       </a>
@@ -252,34 +252,31 @@ src="https://www.facebook.com/tr?id=888400407002791&ev=PageView&noscript=1" /></
   }
 
   /* ════════════════════════════════════════════════════════
-     META PIXEL — PURCHASE (dispara quando o pagamento é aprovado
-     e a Hotmart redireciona o comprador pra esta página).
-     A Hotmart pode anexar parâmetros na URL de retorno (transaction,
-     email, name, value). Lê se existirem; senão usa fallback R$ 97.
+     Página de agradecimento do download gratuito. `name`/`email`
+     vêm da própria landing (playbook/landing.js), não da Hotmart —
+     usamos só pra personalizar a saudação e completar o Advanced
+     Matching do Pixel. O evento 'Lead' já foi disparado na landing;
+     aqui só reforçamos com 'CompleteRegistration' (dedup por eventId).
      ════════════════════════════════════════════════════════ */
-  var PRICE_FALLBACK = 97.00;
   var q = new URLSearchParams(location.search);
-
-  var transaction = q.get('transaction') || q.get('trans') || q.get('order') || '';
   var email = (q.get('email') || '').trim().toLowerCase();
   var name  = (q.get('name') || '').trim();
-  var rawValue = (q.get('value') || q.get('price') || '').toString().replace(',', '.');
-  var value = parseFloat(rawValue) || PRICE_FALLBACK;
 
-  // event_id p/ dedup com a Conversions API — usa a transação da Hotmart quando houver
-  var eventId = transaction
-    ? ('hotmart-' + transaction)
-    : (window.crypto && crypto.randomUUID
-        ? crypto.randomUUID()
-        : 'ev-' + Date.now() + '-' + Math.random().toString(16).slice(2));
+  if (name) {
+    var firstName = name.split(/\s+/)[0];
+    var ledeEl = document.getElementById('tyLede');
+    if (ledeEl) ledeEl.innerHTML = 'Valeu, ' + firstName + ' — obrigado por topar essa com a gente. Você já pode baixar o <strong>Playbook Editais de Fomento</strong> agora mesmo, 100% gratuito. O link também chega no seu email.';
+  }
 
-  // Evita disparo duplicado no refresh da mesma compra
-  var dedupeKey = 'fihan_purchase_' + (transaction || 'session');
+  var eventId = window.crypto && crypto.randomUUID
+    ? crypto.randomUUID()
+    : 'ev-' + Date.now() + '-' + Math.random().toString(16).slice(2);
+
+  var dedupeKey = 'fihan_playbook_download_' + (email || 'session');
   var already = false;
   try { already = sessionStorage.getItem(dedupeKey) === '1'; } catch (e) {}
 
   if (typeof window.fbq === 'function' && !already) {
-    // Advanced Matching quando a Hotmart passar o email
     if (email) {
       var parts = name.split(/\s+/);
       window.fbq('init', '888400407002791', {
@@ -289,12 +286,10 @@ src="https://www.facebook.com/tr?id=888400407002791&ev=PageView&noscript=1" /></
         country: 'br'
       });
     }
-    window.fbq('track', 'Purchase', {
+    window.fbq('track', 'CompleteRegistration', {
       content_name: 'Playbook Editais de Fomento',
       content_type: 'product',
-      content_ids: ['playbook-editais-fomento'],
-      num_items: 1,
-      value: value,
+      value: 0,
       currency: 'BRL'
     }, { eventID: eventId });
 

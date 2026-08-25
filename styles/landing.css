@@ -13,6 +13,64 @@ img { max-width: 100%; display: block; }
 button { font-family: inherit; }
 .container { max-width: 393px; margin: 0 auto; }
 
+/* ============ HEADER WAVE BACKGROUND ============ */
+.header-wave {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--fh-bg-page);
+}
+.header-wave__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.header-wave__bg picture,
+.header-wave__bg img {
+  display: block;
+}
+.header-wave__bg img {
+  position: absolute;
+  top: -10%;
+  right: -20%;
+  width: 140%;
+  max-width: none;
+  height: auto;
+  min-height: 120%;
+  object-fit: cover;
+  animation: wave-drift 24s ease-in-out infinite;
+  transform-origin: 70% 20%;
+  will-change: transform;
+}
+.header-wave__fade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.55) 45%,
+    var(--fh-bg-page) 88%);
+}
+.header-wave > .site-nav,
+.header-wave > .hero {
+  position: relative;
+  z-index: 2;
+}
+@keyframes wave-drift {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50%  { transform: translate3d(-3%, 2%, 0) rotate(2deg) scale(1.06); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .header-wave__bg img { animation: none; }
+}
+@media (min-width: 700px) {
+  .header-wave__bg img { top: -20%; right: -10%; width: 100%; min-height: 140%; }
+}
+
 /* ============ NAV ============ */
 .site-nav {
   position: sticky;
