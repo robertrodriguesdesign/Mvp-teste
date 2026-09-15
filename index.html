@@ -129,26 +129,34 @@
     <p class="rail-label"><span class="rail-label__dot"></span>OS QUATRO ATIVOS</p>
     <div class="ativos__cols">
       <div class="ativos__col">
-        <p class="ativos__tag">ATIVO 01</p>
-        <h3 class="ativos__title">Dossiê de Mercado</h3>
+        <div class="ativos__top">
+          <p class="ativos__tag">ATIVO 01</p>
+          <h3 class="ativos__title">Dossiê de Mercado</h3>
+        </div>
         <img class="mesh" src="images/home/ativo-01-dossie.svg" alt="" aria-hidden="true" />
         <p class="ativos__desc">Quem sente o problema, quem já tenta resolver e quanto vale esse mercado. Com fonte em cada número.</p>
       </div>
       <div class="ativos__col">
-        <p class="ativos__tag">ATIVO 02</p>
-        <h3 class="ativos__title">Relatório de Viabilidade</h3>
+        <div class="ativos__top">
+          <p class="ativos__tag">ATIVO 02</p>
+          <h3 class="ativos__title">Relatório de Viabilidade</h3>
+        </div>
         <img class="mesh" src="images/home/ativo-02-relatorio.svg" alt="" aria-hidden="true" />
         <p class="ativos__desc">O modelo de receita, o preço e o mês exato em que a operação se paga.</p>
       </div>
       <div class="ativos__col">
-        <p class="ativos__tag">ATIVO 03</p>
-        <h3 class="ativos__title">DNA e Codex da Marca</h3>
+        <div class="ativos__top">
+          <p class="ativos__tag">ATIVO 03</p>
+          <h3 class="ativos__title">DNA e Codex da Marca</h3>
+        </div>
         <img class="mesh" src="images/home/ativo-03-dna.svg" alt="" aria-hidden="true" />
         <p class="ativos__desc">Quem a sua marca é e como ela é reconhecida, do arquétipo ao tom de voz.</p>
       </div>
       <div class="ativos__col">
-        <p class="ativos__tag">ATIVO 04</p>
-        <h3 class="ativos__title">Solução Operando</h3>
+        <div class="ativos__top">
+          <p class="ativos__tag">ATIVO 04</p>
+          <h3 class="ativos__title">Solução Operando</h3>
+        </div>
         <img class="mesh" src="images/home/ativo-04-solucao.svg" alt="" aria-hidden="true" />
         <p class="ativos__desc">O produto no ar, com pagamento funcionando e os primeiros dados de uso real. Não é protótipo.</p>
       </div>
@@ -300,7 +308,7 @@
 
     <div class="caso-zei">
       <div class="caso-zei__text">
-        <p class="rail-label"><span class="rail-label__dot rail-label__dot--dark"></span>CASO ZEI</p>
+        <p class="rail-label"><span class="rail-label__dot"></span>CASO ZEI</p>
         <h3 class="caso-zei__title">No Zei, a evidência custou cerca de R$ 2 mil e evitou um erro na faixa de R$ 20 a 30 mil.</h3>
         <p class="caso-zei__body">O Zei nasceu como uma solução para consumidor final. A pesquisa de campo mostrou que o caminho era outro, e o modelo mudou antes de o dinheiro ser gasto na versão errada.</p>
         <p class="caso-zei__body">Foi o método funcionando contra a nossa própria vontade.</p>
@@ -428,67 +436,73 @@
 
       <fieldset class="intake__section">
         <legend>[ CONTATO ]</legend>
-        <div class="intake__field">
-          <label for="in-nome">NOME</label>
-          <input type="text" id="in-nome" name="nome" required />
-        </div>
-        <div class="intake__field">
-          <label for="in-email">E-MAIL</label>
-          <input type="email" id="in-email" name="email" required />
-        </div>
-        <div class="intake__field">
-          <label for="in-whatsapp">WHATSAPP</label>
-          <input type="tel" id="in-whatsapp" name="whatsapp" required />
+        <div class="intake__fields">
+          <div class="intake__field">
+            <label for="in-nome">NOME</label>
+            <input type="text" id="in-nome" name="nome" required />
+          </div>
+          <div class="intake__field">
+            <label for="in-email">E-MAIL</label>
+            <input type="email" id="in-email" name="email" required />
+          </div>
+          <div class="intake__field">
+            <label for="in-whatsapp">WHATSAPP</label>
+            <input type="tel" id="in-whatsapp" name="whatsapp" required />
+          </div>
         </div>
       </fieldset>
 
       <fieldset class="intake__section">
         <legend>[ PROJETO ]</legend>
-        <div class="intake__field">
-          <label for="in-empresa">EMPRESA/PROJETO</label>
-          <input type="text" id="in-empresa" name="empresa" />
-        </div>
-        <div class="intake__field">
-          <label for="in-estagio">ESTÁGIO</label>
-          <select id="in-estagio" name="estagio">
-            <option value="" disabled selected>Selecione</option>
-            <option value="ideia">Ainda é ideia</option>
-            <option value="mvp">Tenho MVP</option>
-            <option value="fatura">Já fatura</option>
-            <option value="escalar">Preciso escalar</option>
-          </select>
-        </div>
-        <div class="intake__field">
-          <label for="in-eixos">EIXOS DE INTERESSE</label>
-          <select id="in-eixos" name="eixos" multiple>
-            <option value="negocio">Negócio</option>
-            <option value="marca">Marca</option>
-            <option value="dev">Dev</option>
-            <option value="todos">Os três</option>
-          </select>
+        <div class="intake__fields">
+          <div class="intake__field">
+            <label for="in-empresa">EMPRESA/PROJETO</label>
+            <input type="text" id="in-empresa" name="empresa" />
+          </div>
+          <div class="intake__field">
+            <label for="in-estagio">ESTÁGIO</label>
+            <select id="in-estagio" name="estagio">
+              <option value="" disabled selected>Selecione</option>
+              <option value="ideia">Ainda é ideia</option>
+              <option value="mvp">Tenho MVP</option>
+              <option value="fatura">Já fatura</option>
+              <option value="escalar">Preciso escalar</option>
+            </select>
+          </div>
+          <div class="intake__field">
+            <label for="in-eixos">EIXOS DE INTERESSE</label>
+            <select id="in-eixos" name="eixos" multiple>
+              <option value="negocio">Negócio</option>
+              <option value="marca">Marca</option>
+              <option value="dev">Dev</option>
+              <option value="todos">Os três</option>
+            </select>
+          </div>
         </div>
       </fieldset>
 
       <fieldset class="intake__section">
         <legend>[ DECISÃO ]</legend>
-        <div class="intake__field">
-          <label for="in-investimento">INVESTIMENTO</label>
-          <select id="in-investimento" name="investimento">
-            <option value="" disabled selected>Selecione</option>
-            <option value="sem-orcamento">Ainda não tenho orçamento</option>
-            <option value="ate10k">Até R$10k</option>
-            <option value="10-50k">R$10k – R$50k</option>
-            <option value="50k+">R$50k+</option>
-          </select>
-        </div>
-        <div class="intake__field">
-          <label for="in-urgencia">URGÊNCIA</label>
-          <select id="in-urgencia" name="urgencia">
-            <option value="" disabled selected>Selecione</option>
-            <option value="sem-pressa">Sem pressa, explorando</option>
-            <option value="3-meses">Nos próximos 3 meses</option>
-            <option value="agora">Preciso começar agora</option>
-          </select>
+        <div class="intake__fields">
+          <div class="intake__field">
+            <label for="in-investimento">INVESTIMENTO</label>
+            <select id="in-investimento" name="investimento">
+              <option value="" disabled selected>Selecione</option>
+              <option value="sem-orcamento">Ainda não tenho orçamento</option>
+              <option value="ate10k">Até R$10k</option>
+              <option value="10-50k">R$10k – R$50k</option>
+              <option value="50k+">R$50k+</option>
+            </select>
+          </div>
+          <div class="intake__field">
+            <label for="in-urgencia">URGÊNCIA</label>
+            <select id="in-urgencia" name="urgencia">
+              <option value="" disabled selected>Selecione</option>
+              <option value="sem-pressa">Sem pressa, explorando</option>
+              <option value="3-meses">Nos próximos 3 meses</option>
+              <option value="agora">Preciso começar agora</option>
+            </select>
+          </div>
         </div>
       </fieldset>
 

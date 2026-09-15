@@ -34,7 +34,7 @@ h1, h2, h3, p { margin: 0; }
 }
 .rail-label__dot { width: 10px; height: 10px; background: var(--fh-white-25); flex-shrink: 0; }
 .rail-label__dot--dark { background: var(--fh-black-900); }
-.prova .rail-label, .caso-zei .rail-label { color: var(--fh-black-900); }
+.prova .rail-label { color: var(--fh-black-900); }
 
 .section-head { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--fh-gray-500); }
 .section-head__title {
@@ -64,7 +64,7 @@ h1, h2, h3, p { margin: 0; }
 .pill-btn--inverse { border-color: var(--fh-white-100); color: var(--fh-white-25); }
 .pill-btn--inverse:hover { background: rgba(255,255,255,0.08); }
 
-.eyebrow { font-family: var(--fh-font-mono); font-weight: 500; font-size: 19px; letter-spacing: 0; margin: 0; }
+.eyebrow { font-family: var(--fh-font-mono); font-weight: 500; font-size: 19px; line-height: 26px; letter-spacing: 0; margin: 0; max-width: 1126px; }
 .eyebrow--inverse { color: var(--fh-gray-100); }
 
 /* ============ CAROUSEL CONTROLS (shared) ============ */
@@ -87,10 +87,10 @@ h1, h2, h3, p { margin: 0; }
    2333:2786) — cada Ativo usa uma forma de pontos própria (diamante,
    quadrado, raio circular, quadrado), não reproduzível fielmente em
    gradiente CSS puro. */
-.mesh { width: 100%; max-width: 203px; height: auto; object-fit: contain; }
+.mesh { width: 203px; max-width: 100%; height: auto; object-fit: contain; }
 
 /* ============ NAVBAR ============ */
-.navbar { position: absolute; top: 25px; left: 0; right: 0; z-index: 2; padding: 0 var(--home-margin); }
+.navbar { position: absolute; top: 0; left: 0; right: 0; z-index: 2; padding: 25px; }
 .navbar__panel {
   height: 98px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
   padding: 0 24px 0 38px; background: rgba(241,242,242,0.26); border: 1px solid rgba(241,242,242,0.2);
@@ -120,17 +120,19 @@ h1, h2, h3, p { margin: 0; }
 .hero__photo { position: absolute; inset: 0; z-index: 0; }
 .hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
 .hero__photo-veil { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17,19,20,0.18) 0%, rgba(17,19,20,0.32) 40%, rgba(17,19,20,0.62) 72%, rgba(17,19,20,0.8) 100%); }
-.hero__content { position: relative; z-index: 1; width: 100%; max-width: 1206px; padding: 0 var(--home-margin); display: flex; flex-direction: column; gap: 32px; }
+.hero__content { position: relative; z-index: 1; width: 100%; padding: 0 var(--home-margin); display: flex; flex-direction: column; align-items: center; gap: 32px; }
 .hero__heading { font-family: var(--fh-font-sans); font-weight: 400; font-size: 82px; line-height: 92px; letter-spacing: -1.5px; color: var(--fh-white-25); max-width: 1126px; }
 .hero__scroll {
-  position: absolute; z-index: 1; bottom: 53.75px; right: var(--home-margin);
+  position: absolute; z-index: 1; bottom: 53.75px; left: calc(50% + 504.5px); transform: translateX(-50%);
   display: flex; flex-direction: column; align-items: center; gap: 10px; background: none; border: none; cursor: pointer;
 }
 .hero__scroll img { width: 44px; height: 44px; }
 .hero__scroll span { font-family: var(--fh-font-mono); font-weight: 500; font-size: 15px; color: var(--fh-gray-100); white-space: nowrap; }
 
 /* ============ OFERTA ============ */
-.oferta { background: var(--fh-black-700); padding: 84px var(--home-margin); display: flex; justify-content: center; }
+/* 124px = 84px da seção (Dobra 1b) + 40px do wrapper "Corpo" interno no
+   Figma — mesmo fundo nos dois níveis, então soma num único padding. */
+.oferta { background: var(--fh-black-700); padding: 124px var(--home-margin); display: flex; justify-content: center; }
 .oferta__text {
   max-width: 1107px; text-align: center; font-family: var(--fh-font-sans); font-weight: 400;
   font-size: 48px; line-height: 52px; letter-spacing: -0.96px; color: var(--fh-white-25);
@@ -138,6 +140,10 @@ h1, h2, h3, p { margin: 0; }
 
 /* ============ TRÊS EIXOS ============ */
 .eixos { background: var(--fh-black-700); padding: var(--home-section-py) var(--home-margin); color: var(--fh-white-25); }
+/* SectionHeader deste bloco não tem régua no Figma (border-0), e o gap até
+   os numerais é 72px de gap do container + os 24px de pb próprios do
+   header = 96px, não os 48px genéricos do .section-head compartilhado. */
+.eixos .section-head { border-bottom: none; margin-bottom: 72px; }
 /* Diagramação real do Figma: Numeral → 40px → Bloco (flexível, absorve a
    diferença de tamanho do texto) → 40px → Botão. O Bloco com flex:1 é o que
    garante os três botões alinhados na mesma linha, mesmo com descrições de
@@ -167,18 +173,26 @@ h1, h2, h3, p { margin: 0; }
    continua empilhado a partir do topo (comportamento padrão do flex
    column, sem stretch/center vertical). */
 .ativos__cols { display: flex; margin-top: 24px; align-items: flex-start; }
-.ativos__col { flex: 1; display: flex; flex-direction: column; gap: 24px; padding: 2px 20px 0 24px; border-left: 1px solid var(--fh-gray-300); height: 528px; }
+/* gap:40 e items-center são os valores reais do Figma (node 247:8426) —
+   o ícone de malha (203px) fica centralizado na largura da coluna, só o
+   bloco de título e a descrição são full-width (align-self:stretch). */
+.ativos__col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 2px 20px 0 24px; border-left: 1px solid var(--fh-gray-300); height: 528px; }
+/* Altura fixa de 102px (node "Topo") para tag+título — sem isso os 4
+   ícones começavam em alturas diferentes conforme o título quebrava em
+   1 ou 2 linhas ("Relatório de Viabilidade" e "DNA e Codex da Marca"
+   quebram, "Dossiê de Mercado" e "Solução Operando" não). */
+.ativos__top { align-self: stretch; display: flex; flex-direction: column; gap: 10px; height: 102px; }
 .ativos__tag { font-family: var(--fh-font-mono); font-size: 15px; line-height: 24px; color: var(--fh-white-25); }
 .ativos__title { font-family: var(--fh-font-sans); font-weight: 400; font-size: 28px; line-height: 34px; color: var(--fh-white-25); }
-.ativos__desc { font-family: var(--fh-font-display); font-size: 17px; line-height: 26px; color: var(--fh-gray-100); }
+.ativos__desc { align-self: stretch; font-family: var(--fh-font-display); font-size: 17px; line-height: 26px; color: var(--fh-gray-100); }
 .ativos__closing { max-width: 620px; margin-top: 56px; font-family: var(--fh-font-display); font-size: 22px; line-height: 32px; color: var(--fh-white-25); }
 
 /* ============ QUATRO VÉRTICES ============ */
 .vertices { background: var(--fh-black-700); padding: var(--home-section-py) var(--home-margin); color: var(--fh-white-25); display: flex; flex-direction: column; gap: 56px; }
 .vertices .section-head { border-bottom: none; margin-bottom: 0; }
 .vertices__intro { max-width: 1091px; font-family: var(--fh-font-display); font-size: 22px; line-height: 32px; color: var(--fh-gray-100); }
-.vertices__cards { display: flex; gap: 0; }
-.vertice-card { flex: 1; border: 1px solid var(--fh-gray-300); display: flex; flex-direction: column; margin-left: -1px; }
+.vertices__cards { display: flex; gap: 0; padding: 10px 0; }
+.vertice-card { flex: 1; height: 491px; border: 1px solid var(--fh-gray-300); display: flex; flex-direction: column; margin-left: -1px; }
 .vertice-card:first-child { margin-left: 0; }
 .vertice-card__top { padding: 24px; border-bottom: 1px solid var(--fh-gray-300); display: flex; flex-direction: column; gap: 14px; }
 .vertice-card__tag { font-family: var(--fh-font-mono); font-size: 15px; line-height: 24px; color: var(--fh-white-25); }
@@ -216,10 +230,12 @@ h1, h2, h3, p { margin: 0; }
 .proof-card__bar i { position: absolute; inset: 0 auto 0 0; background: #574e8f; display: block; }
 .proof-card__caption { font-family: var(--fh-font-display); font-size: 17px; line-height: 26px; color: var(--fh-black-700); }
 
-.caso-zei { background: var(--fh-white-100); border-radius: 8px; padding: 40px; display: flex; gap: 48px; }
+/* Card escuro (node 160:4733) — estava com o esquema de cores de card
+   claro por engano (fundo, título e corpo invertidos). */
+.caso-zei { background: var(--fh-black-700); border-radius: 8px; padding: 40px; display: flex; gap: 48px; }
 .caso-zei__text { flex: 0 0 583px; display: flex; flex-direction: column; gap: 24px; }
-.caso-zei__title { font-family: var(--fh-font-sans); font-weight: 400; font-size: 36px; line-height: 42px; letter-spacing: -0.36px; color: var(--fh-black-900); }
-.caso-zei__body { font-family: var(--fh-font-display); font-size: 22px; line-height: 32px; color: var(--fh-black-700); }
+.caso-zei__title { font-family: var(--fh-font-sans); font-weight: 400; font-size: 36px; line-height: 42px; letter-spacing: -0.36px; color: var(--fh-white-25); }
+.caso-zei__body { font-family: var(--fh-font-display); font-size: 22px; line-height: 32px; color: var(--fh-gray-100); }
 .caso-zei__carousel { position: relative; flex: 1; border-radius: 2px; overflow: hidden; }
 .caso-zei__track { display: flex; height: 480px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .caso-zei__track::-webkit-scrollbar { display: none; }
@@ -240,7 +256,7 @@ h1, h2, h3, p { margin: 0; }
 .paraquem__panel { background: var(--fh-white-25); border-radius: 8px; padding: 40px; display: flex; flex-direction: column; gap: 40px; align-items: center; }
 .paraquem__pills { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; padding: 16px; }
 .paraquem__pills button { border: none; background: none; border-radius: 999px; padding: 10px 20px; font-family: var(--fh-font-mono); font-size: 16px; color: var(--fh-black-700); cursor: pointer; }
-.paraquem__pills button.is-active { color: var(--fh-black-900); background: var(--fh-gray-50); }
+.paraquem__pills button.is-active { color: var(--fh-black-900); }
 .paraquem__stage { display: flex; align-items: center; justify-content: center; gap: 40px; width: 100%; }
 .paraquem__capsule {
   background: var(--fh-white-25); border-radius: 50px; width: 176px; height: 200px; position: relative;
@@ -277,13 +293,14 @@ h1, h2, h3, p { margin: 0; }
 .quemsomos__track img { width: 100%; height: 100%; object-fit: cover; }
 .quemsomos__track figcaption {
   position: absolute; left: 24px; bottom: 116px; display: inline-flex; align-items: center; gap: 10px;
-  background: rgba(255,255,255,0.68); padding: 0 10px; height: 28px; font-family: var(--fh-font-mono); font-size: 15px; color: #111314;
+  background: rgba(255,255,255,0.68); padding: 0 10px; height: 28px; font-family: var(--fh-font-mono);
+  font-size: 17px; line-height: 26px; color: #111314;
 }
 .quemsomos__track figcaption::before { content:''; width: 10px; height: 10px; background: #202224; }
 .quemsomos__carousel .carousel-controls { position: absolute; left: 0; right: 0; bottom: 0; padding: 24px; background: linear-gradient(0deg, rgba(17,19,20,0.62), rgba(17,19,20,0)); }
 
 /* ============ PROPÓSITO ============ */
-.proposito { background: var(--fh-white-100); padding: 96px var(--home-margin); display: flex; align-items: center; justify-content: center; text-align: center; min-height: 550px; }
+.proposito { background: var(--fh-white-100); border-bottom: 0.5px solid #000; padding: 96px var(--home-margin); display: flex; align-items: center; justify-content: center; text-align: center; min-height: 550px; }
 .proposito p { font-family: var(--fh-font-sans); font-weight: 400; font-size: 48px; line-height: 52px; letter-spacing: -0.96px; color: var(--fh-black-900); text-transform: uppercase; }
 
 /* ============ CONTATO ============ */
@@ -294,12 +311,15 @@ h1, h2, h3, p { margin: 0; }
 }
 .intake { display: flex; flex-direction: column; gap: 56px; padding: 32px 0; }
 .intake__honeypot { position: absolute; left: -9999px; }
-.intake__section { border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 29px; }
+/* Três níveis de respiro distintos no Figma (não um único valor genérico):
+   legenda→campos 58px, campo→campo 56px, label→fio 29px. */
+.intake__section { border: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 .intake__section legend {
-  padding: 0; margin-bottom: 27px; font-family: var(--fh-font-mono); font-size: 15px; color: var(--fh-black-900);
+  padding: 0; margin-bottom: 58px; font-family: var(--fh-font-mono); font-size: 15px; color: var(--fh-black-900);
 }
-.intake__field { display: flex; flex-direction: column; gap: 8px; }
-.intake__field label { font-family: var(--fh-font-mono); font-size: 15px; color: var(--fh-gray-600); }
+.intake__fields { display: flex; flex-direction: column; gap: 56px; }
+.intake__field { display: flex; flex-direction: column; gap: 29px; }
+.intake__field label { font-family: var(--fh-font-mono); font-size: 15px; color: var(--fh-black-700); }
 .intake__field input, .intake__field select {
   all: unset; box-sizing: border-box; width: 100%; padding-bottom: 12px; border-bottom: 1px solid var(--fh-gray-500);
   font-family: var(--fh-font-sans); font-size: 17px; color: var(--fh-black-900); cursor: text;
@@ -314,7 +334,7 @@ h1, h2, h3, p { margin: 0; }
 .intake textarea::placeholder { color: var(--fh-gray-300); }
 .intake textarea:focus { outline: none; border-color: var(--fh-black-900); }
 .submit-btn {
-  width: 100%; height: 40px; background: var(--fh-white-100); border: 1px solid var(--fh-black-900);
+  width: 100%; height: 40px; background: var(--fh-white-100); border: 1px solid var(--fh-gray-500);
   color: var(--fh-black-900); font-family: var(--fh-font-mono); font-size: 16px; cursor: pointer;
 }
 .submit-btn img { width: 20px; height: 20px; }
