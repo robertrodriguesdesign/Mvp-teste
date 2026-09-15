@@ -138,18 +138,23 @@ h1, h2, h3, p { margin: 0; }
 
 /* ============ TRÊS EIXOS ============ */
 .eixos { background: var(--fh-black-700); padding: var(--home-section-py) var(--home-margin); color: var(--fh-white-25); }
+/* Diagramação real do Figma: Numeral → 40px → Bloco (flexível, absorve a
+   diferença de tamanho do texto) → 40px → Botão. O Bloco com flex:1 é o que
+   garante os três botões alinhados na mesma linha, mesmo com descrições de
+   tamanhos diferentes — sem isso os botões ficam em alturas distintas. */
 .eixos__cols { display: flex; gap: 40px; align-items: stretch; }
-.eixos__col { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+.eixos__col { flex: 1; display: flex; flex-direction: column; gap: 40px; }
 .eixos__num {
   width: 128px; height: 128px; border: 1px solid var(--fh-gray-500); border-radius: 64px;
   display: flex; align-items: center; justify-content: center; font-family: var(--fh-font-mono);
-  font-weight: 300; font-size: 64px; line-height: 66px; letter-spacing: -1.92px; color: var(--fh-white-25); margin-bottom: 16px;
+  font-weight: 300; font-size: 64px; line-height: 66px; letter-spacing: -1.92px; color: var(--fh-white-25);
 }
-.eixos__row { display: flex; flex-direction: column; gap: 8px; padding: 24px 0; border-top: 1px solid var(--fh-gray-500); }
+.eixos__block { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+.eixos__row { display: flex; flex-direction: column; gap: 8px; padding: 24px 0; }
 .eixos__label { font-family: var(--fh-font-mono); font-weight: 500; font-size: 13px; letter-spacing: 0.65px; text-transform: uppercase; color: var(--fh-white-25); }
 .eixos__word { font-family: var(--fh-font-mono); font-weight: 300; font-size: 64px; line-height: 66px; letter-spacing: -1.92px; color: var(--fh-white-25); }
 .eixos__question { font-family: var(--fh-font-display); font-size: 19px; line-height: 28px; color: var(--fh-gray-100); }
-.eixos__desc { font-family: var(--fh-font-display); font-size: 19px; line-height: 28px; color: var(--fh-gray-300); flex: 1; }
+.eixos__desc { font-family: var(--fh-font-display); font-size: 19px; line-height: 28px; color: var(--fh-gray-300); }
 
 /* ============ QUATRO ATIVOS ============ */
 .ativos { background: var(--fh-black-700); padding: var(--home-section-py) var(--home-margin); color: var(--fh-white-25); }
