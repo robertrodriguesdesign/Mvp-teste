@@ -159,8 +159,14 @@ h1, h2, h3, p { margin: 0; }
 /* ============ QUATRO ATIVOS ============ */
 .ativos { background: var(--fh-black-700); padding: var(--home-section-py) var(--home-margin); color: var(--fh-white-25); }
 .ativos .section-head { border-bottom: none; }
-.ativos__cols { display: flex; margin-top: 24px; }
-.ativos__col { flex: 1; display: flex; flex-direction: column; gap: 24px; padding: 2px 20px 0 24px; border-left: 1px solid var(--fh-gray-300); }
+/* Altura fixa de 528px em cada card (node 247:8426, "h-full" contra o
+   container de 528px) — sem isso a borda esquerda (divisória entre
+   Ativos) parava na altura do conteúdo de cada card em vez de ir até o
+   fim da linha, e os 4 cards não ficavam com a mesma altura. O conteúdo
+   continua empilhado a partir do topo (comportamento padrão do flex
+   column, sem stretch/center vertical). */
+.ativos__cols { display: flex; margin-top: 24px; align-items: flex-start; }
+.ativos__col { flex: 1; display: flex; flex-direction: column; gap: 24px; padding: 2px 20px 0 24px; border-left: 1px solid var(--fh-gray-300); height: 528px; }
 .ativos__tag { font-family: var(--fh-font-mono); font-size: 15px; line-height: 24px; color: var(--fh-white-25); }
 .ativos__title { font-family: var(--fh-font-sans); font-weight: 400; font-size: 28px; line-height: 34px; color: var(--fh-white-25); }
 .ativos__desc { font-family: var(--fh-font-display); font-size: 17px; line-height: 26px; color: var(--fh-gray-100); }
@@ -433,7 +439,7 @@ h1, h2, h3, p { margin: 0; }
      ponto de quebra. Aqui só empilhamos as colunas que no Tablet ainda
      ficam lado a lado. */
   .eixos__cols, .ativos__cols, .vertices__cards { flex-direction: column; }
-  .ativos__col { flex: none; }
+  .ativos__col { flex: none; height: auto; border-left: none; border-top: 1px solid var(--fh-gray-300); padding: 24px 0 0; }
   .vertice-card { flex: none; margin-left: 0; margin-top: -1px; }
   .vertice-card:first-child { margin-top: 0; }
   .eixos__desc, .vertice-card__desc { font-size: 16px; line-height: 24px; }
