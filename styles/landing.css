@@ -159,6 +159,7 @@ h1, h2, h3, p { margin: 0; }
 /* ============ QUATRO ATIVOS ============ */
 .ativos { background: var(--fh-black-700); padding: var(--home-section-py) var(--home-margin); color: var(--fh-white-25); }
 .ativos .section-head { border-bottom: none; }
+.ativos .rule { margin: 24px 0; }
 /* Altura fixa de 528px em cada card (node 247:8426, "h-full" contra o
    container de 528px) — sem isso a borda esquerda (divisória entre
    Ativos) parava na altura do conteúdo de cada card em vez de ir até o
