@@ -332,6 +332,35 @@ document.querySelectorAll('[data-carousel-track]').forEach(initCarousel);
     return cells[0].getBoundingClientRect().width;
   }
 
+  // Cada persona tem título/descrição de tamanho diferente, então o card em
+  // destaque (capsule--lg) tem uma altura natural distinta pra cada uma —
+  // sem isso, a seção inteira crescia/encolhia sozinha a cada troca automática
+  // e empurrava o resto da página. Mede a altura "em destaque" de cada persona
+  // real (a maior variante possível) e trava todos os cards nesse valor.
+  function applyFixedCellHeight() {
+    realCells.forEach((cell) => { cell.style.height = ''; });
+    let max = 0;
+    realCells.forEach((cell) => {
+      const capsule = cell.querySelector('.decision__capsule');
+      const persona = cell.querySelector('.decision__persona');
+      capsule.style.transition = 'none';
+      persona.style.transition = 'none';
+      capsule.classList.add('decision__capsule--lg');
+      capsule.classList.remove('decision__capsule--sm');
+      persona.classList.add('decision__persona--main');
+      persona.classList.remove('decision__persona--muted');
+      max = Math.max(max, cell.getBoundingClientRect().height);
+    });
+    cells.forEach((cell) => {
+      cell.style.height = `${max}px`;
+      const capsule = cell.querySelector('.decision__capsule');
+      const persona = cell.querySelector('.decision__persona');
+      capsule.style.transition = '';
+      persona.style.transition = '';
+    });
+    render(false);
+  }
+
   // desloca o track até o meio da célula ativa coincidir com o meio do
   // viewport — funciona tanto quando 3 células cabem inteiras (desktop)
   // quanto quando o viewport é mais estreito que 3 células e só sobra um
@@ -431,8 +460,16 @@ document.querySelectorAll('[data-carousel-track]').forEach(initCarousel);
 
   wrap.addEventListener('mouseenter', stopAuto);
   wrap.addEventListener('mouseleave', () => activate(realIndex()));
-  window.addEventListener('resize', () => render(false));
+  let resizeTimer = null;
+  window.addEventListener('resize', () => {
+    render(false);
+    // a largura do card responde ao container query — recalcula a altura
+    // travada só depois que o resize assentar, pra não refazer a cada pixel
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(applyFixedCellHeight, 150);
+  });
 
+  applyFixedCellHeight();
   activate(1, { init: true }); // "Eixo de Negócio" começa selecionado
 })();
 
