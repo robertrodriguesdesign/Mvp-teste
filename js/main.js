@@ -1,5 +1,51 @@
 // Fihan — comportamentos de interface (carrossel do case Zei, founders, etc.)
 
+// ---- formulário de contato: envia pro CRM (via /api/submit-lead) ----
+(function () {
+  const form = document.querySelector('.contact__form');
+  const status = document.querySelector('[data-contact-status]');
+  if (!form || !status) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = form.querySelector('.contact__submit button');
+    const data = new FormData(form);
+    const payload = {
+      nome: data.get('nome'),
+      email: data.get('email'),
+      whatsapp: data.get('whatsapp'),
+      empresa: data.get('empresa'),
+      estagio: data.get('estagio'),
+      eixos: data.getAll('eixos'),
+      investimento: data.get('investimento'),
+      urgencia: data.get('urgencia'),
+      mensagem: data.get('mensagem'),
+    };
+
+    submitBtn.disabled = true;
+    status.dataset.state = '';
+    status.textContent = 'Enviando…';
+
+    try {
+      const res = await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error(`status ${res.status}`);
+      status.dataset.state = 'ok';
+      status.textContent = 'Recebemos sua mensagem — vamos entrar em contato em breve.';
+      form.reset();
+    } catch (err) {
+      console.error('falha ao enviar formulário:', err);
+      status.dataset.state = 'error';
+      status.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+})();
+
 // ---- formulário de contato: "Todos" e os eixos individuais se excluem ----
 document.querySelectorAll('[data-checkbox-group]').forEach((group) => {
   const boxes = Array.from(group.querySelectorAll('input[type="checkbox"]'));

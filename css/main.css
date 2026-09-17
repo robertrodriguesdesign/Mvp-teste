@@ -1899,6 +1899,16 @@ body.nav-menu-open { overflow: hidden; }
   cursor: pointer;
 }
 .contact__submit svg { width: 20px; height: 20px; flex-shrink: 0; }
+.contact__status {
+  align-self: stretch;
+  margin: 0;
+  color: var(--fihan-text-secondary);
+  font-family: var(--fihan-family-mono);
+  font-size: 14px;
+  min-height: 20px;
+}
+.contact__status[data-state="error"] { color: #B8221D; }
+.contact__status[data-state="ok"] { color: var(--fihan-icon-brand); }
 
 @media (max-width: 1023px) {
   .contact__inner { padding: 24px 0; gap: 48px; }

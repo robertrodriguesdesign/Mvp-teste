@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Fihan · CRM</title>
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/fonts.css" />
+  <link rel="stylesheet" href="../css/crm.css" />
+</head>
+<body>
+
+  <header class="crm-header">
+    <a class="crm-header__logo" href="../index.html">
+      <img src="../images/brand/logo.svg" alt="Fihan" />
+    </a>
+    <p class="crm-header__title">CRM · Leads</p>
+  </header>
+
+  <main class="crm-main">
+    <nav class="crm-tabs" role="tablist">
+      <button class="crm-tabs__btn is-active" type="button" role="tab" data-tab="overview">Visão Geral</button>
+      <button class="crm-tabs__btn" type="button" role="tab" data-tab="leads">Leads</button>
+    </nav>
+
+    <div class="crm-filter">
+      <div class="crm-filter__mode" role="radiogroup" aria-label="Tipo de filtro">
+        <label class="crm-pill"><input type="radio" name="filter-mode" value="dia" checked /><span>Dia</span></label>
+        <label class="crm-pill"><input type="radio" name="filter-mode" value="periodo" /><span>Período</span></label>
+      </div>
+      <div class="crm-filter__fields">
+        <input type="date" class="crm-date" data-field="date" aria-label="Dia" />
+        <input type="date" class="crm-date" data-field="from" aria-label="De" hidden />
+        <span class="crm-filter__sep" hidden>até</span>
+        <input type="date" class="crm-date" data-field="to" aria-label="Até" hidden />
+      </div>
+      <button class="crm-btn" type="button" data-action="apply-filter">
+        Filtrar
+        <svg viewBox="0 0 15 11" fill="none" aria-hidden="true"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg>
+      </button>
+      <button class="crm-btn crm-btn--ghost" type="button" data-action="clear-filter">Limpar</button>
+    </div>
+
+    <!-- VISÃO GERAL -->
+    <section class="crm-panel is-active" data-panel="overview">
+      <div class="crm-stats">
+        <div class="crm-stat">
+          <p class="crm-stat__label">Leads no período</p>
+          <p class="crm-stat__value" data-stat="total">0</p>
+        </div>
+        <div class="crm-stat">
+          <p class="crm-stat__label">Dia com mais leads</p>
+          <p class="crm-stat__value" data-stat="peak-day">—</p>
+        </div>
+        <div class="crm-stat">
+          <p class="crm-stat__label">Média por dia</p>
+          <p class="crm-stat__value" data-stat="avg">0</p>
+        </div>
+      </div>
+      <div class="crm-chart-card">
+        <p class="crm-chart-card__label">Leads por dia</p>
+        <div class="crm-chart" data-chart></div>
+      </div>
+    </section>
+
+    <!-- LEADS -->
+    <section class="crm-panel" data-panel="leads">
+      <div class="crm-table" data-leads-table>
+        <div class="crm-table__head">
+          <span>Nome</span>
+          <span>E-mail</span>
+          <span>WhatsApp</span>
+          <span></span>
+        </div>
+        <div class="crm-table__body" data-leads-body>
+          <p class="crm-empty" data-empty>Nenhum lead no período selecionado.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL DE DETALHES -->
+  <div class="crm-modal" data-modal aria-hidden="true">
+    <div class="crm-modal__backdrop" data-modal-close></div>
+    <div class="crm-modal__panel" role="dialog" aria-modal="true" aria-label="Detalhes do lead">
+      <button class="crm-modal__close" type="button" data-modal-close aria-label="Fechar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.43 3.43L20.57 20.57M20.57 3.43L3.43 20.57" stroke="currentColor" stroke-width="1.7"/></svg>
+      </button>
+      <p class="crm-modal__date" data-detail="created_at"></p>
+      <h2 class="crm-modal__name" data-detail="nome"></h2>
+
+      <div class="crm-modal__actions">
+        <a class="crm-btn" data-detail-href="email" target="_blank" rel="noopener">
+          Enviar e-mail
+          <svg viewBox="0 0 15 11" fill="none" aria-hidden="true"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg>
+        </a>
+        <a class="crm-btn crm-btn--whatsapp" data-detail-href="whatsapp" target="_blank" rel="noopener">
+          WhatsApp
+          <svg viewBox="0 0 15 11" fill="none" aria-hidden="true"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+
+      <dl class="crm-modal__grid">
+        <div><dt>E-mail</dt><dd data-detail="email"></dd></div>
+        <div><dt>WhatsApp</dt><dd data-detail="whatsapp"></dd></div>
+        <div><dt>Empresa/Projeto</dt><dd data-detail="empresa"></dd></div>
+        <div><dt>Estágio</dt><dd data-detail="estagio"></dd></div>
+        <div><dt>Eixos de interesse</dt><dd data-detail="eixos"></dd></div>
+        <div><dt>Investimento</dt><dd data-detail="investimento"></dd></div>
+        <div><dt>Urgência</dt><dd data-detail="urgencia"></dd></div>
+      </dl>
+
+      <div class="crm-modal__stakes">
+        <dt>O que está em jogo</dt>
+        <dd data-detail="mensagem"></dd>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/crm.js" defer></script>
+</body>
+</html>
