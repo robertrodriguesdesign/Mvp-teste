@@ -1263,7 +1263,7 @@ body.nav-menu-open { overflow: hidden; }
 .decision {
   width: 100%;
   padding: 140px var(--fihan-viewport-margin);
-  overflow: visible;
+  overflow: hidden;
   background: var(--fihan-background-white);
   display: flex;
   flex-direction: column;
@@ -1663,7 +1663,10 @@ body.nav-menu-open { overflow: hidden; }
   .about__intro-content { padding: 40px; }
 }
 @media (max-width: 699px) {
-  .about { padding-top: 40px; padding-bottom: 40px; }
+  /* sem padding-bottom: a foto já termina escura (scrim + controles), então
+     zerar aqui cola direto na próxima seção (também escura) sem a faixa
+     branca que sobrava entre as duas */
+  .about { padding-top: 40px; padding-bottom: 0; }
   .about__grid { height: auto; flex-direction: column; }
   /* com o grid em altura auto (column), flex-basis:0 + overflow:hidden faz
      esse painel colapsar pra 0px (o mínimo automático do flex some quando
