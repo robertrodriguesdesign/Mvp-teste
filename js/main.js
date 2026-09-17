@@ -1,10 +1,5 @@
 // Fihan — comportamentos de interface (carrossel do case Zei, founders, etc.)
 
-// ---- ativos: para o shimmer em loop dos gradientes se o usuário pedir menos movimento ----
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.querySelectorAll('radialGradient > animateTransform').forEach((anim) => anim.remove());
-}
-
 // ---- formulário de contato: envia pro CRM (via /api/submit-lead) ----
 (function () {
   const form = document.querySelector('.contact__form');

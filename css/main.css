@@ -646,6 +646,23 @@ body.nav-menu-open { overflow: hidden; }
   max-width: 100%;
 }
 
+/* ícones dos ativos: cada "pixel" do ícone pulsa em loop, formando uma onda
+   que se propaga do centro pra fora (delay calculado por distância ao centro) */
+.ativo-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-name: ativo-pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+@keyframes ativo-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.88; }
+  50% { transform: scale(1.16); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ativo-dot { animation: none; }
+}
+
 .asset-col__desc {
   width: 100%;
   margin: 0;
