@@ -447,10 +447,21 @@ document.querySelectorAll('[data-carousel-track]').forEach(initCarousel);
     if (e.target !== track || e.propertyName !== 'transform') return;
     if (center < PAD || center >= PAD + total) {
       center = PAD + realIndex();
-      track.style.transition = 'none';
-      track.style.transform = `translateX(${offsetFor(center)}px)`;
+      // o destaque (capsule--lg/persona--main) ainda está no clone que
+      // sumiu de vista — reaplica pro card real que assumiu o centro.
+      // Desliga a transition de tamanho da cápsula só durante o salto,
+      // senão ela "encolhe e cresce" de novo mesmo já estando no lugar.
+      cells.forEach((cell) => {
+        cell.querySelector('.decision__capsule').style.transition = 'none';
+        cell.querySelector('.decision__persona').style.transition = 'none';
+      });
+      render(false);
       void track.offsetWidth;
       track.style.transition = '';
+      cells.forEach((cell) => {
+        cell.querySelector('.decision__capsule').style.transition = '';
+        cell.querySelector('.decision__persona').style.transition = '';
+      });
     }
   });
 
