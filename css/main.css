@@ -1263,7 +1263,7 @@ body.nav-menu-open { overflow: hidden; }
 .decision {
   width: 100%;
   padding: 140px var(--fihan-viewport-margin);
-  overflow: hidden;
+  overflow: visible;
   background: var(--fihan-background-white);
   display: flex;
   flex-direction: column;
@@ -1316,7 +1316,7 @@ body.nav-menu-open { overflow: hidden; }
 .decision__carousel {
   width: 100%;
   max-width: 1395px;
-  overflow: hidden;
+  overflow: visible;
   container-type: inline-size;
 }
 .decision__track {
@@ -1410,6 +1410,7 @@ body.nav-menu-open { overflow: hidden; }
   justify-content: center;
   align-items: center;
   gap: 8px;
+  overflow: visible;
 }
 
 /* Componente "Pill" do Figma (node 2380:1495) — estados inativo/carregando,
@@ -1419,7 +1420,7 @@ body.nav-menu-open { overflow: hidden; }
   position: relative;
   z-index: 1;
   overflow: hidden;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 999px;
   background: transparent;
   color: var(--fihan-text-secondary);
@@ -1463,7 +1464,7 @@ body.nav-menu-open { overflow: hidden; }
      (lá o gap:8px fica no container-pai; aqui cada célula carrega metade
      do vão na própria borda, técnica exigida pelo carrossel de largura
      uniforme) */
-  .decision__cell { padding: 0 4px; }
+  .decision__cell { padding: 0; }
 
   /* pills em uma linha só, com scroll horizontal — sem quebrar linha nem
      esconder nenhuma pill fora da largura da tela */
