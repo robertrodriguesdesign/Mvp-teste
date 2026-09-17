@@ -1661,6 +1661,11 @@ body.nav-menu-open { overflow: hidden; }
   .about__intro { flex: 0 0 auto; }
   .about__intro-content { padding: 32px; }
   .about__media { min-height: 320px; }
+  /* bottom:160px foi calibrado pro slide de 320-560px do desktop — na
+     altura mínima do mobile (320px) isso cai bem no meio da foto, em
+     cima do rosto da pessoa. Reaproxima da faixa de controles (92px)
+     como no desktop, só que proporcional a essa altura menor */
+  .about__tag { bottom: 108px; }
 }
 
 /* ============ AFIRMAÇÃO (claim) ============ */
