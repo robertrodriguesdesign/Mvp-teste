@@ -1,10 +1,69 @@
 // Fihan — comportamentos de interface (carrossel do case Zei, founders, etc.)
 
+// ---- ativos: para o shimmer em loop dos gradientes se o usuário pedir menos movimento ----
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('radialGradient > animateTransform').forEach((anim) => anim.remove());
+}
+
 // ---- formulário de contato: envia pro CRM (via /api/submit-lead) ----
 (function () {
   const form = document.querySelector('.contact__form');
   const status = document.querySelector('[data-contact-status]');
-  if (!form || !status) return;
+  const confirm = document.querySelector('[data-contact-confirm]');
+  const confirmDetail = document.querySelector('[data-confirm-detail]');
+  const icsLink = document.querySelector('[data-confirm-ics]');
+  if (!form || !status || !confirm || !confirmDetail || !icsLink) return;
+
+  // próximo dia útil (seg-sex) às 14h — horário fixo da "Reunião de Contexto"
+  function nextMeetingSlot() {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    while (d.getDay() === 0 || d.getDay() === 6) d.setDate(d.getDate() + 1);
+    d.setHours(14, 0, 0, 0);
+    return d;
+  }
+
+  function formatMeetingDate(date) {
+    const weekday = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' }).format(date);
+    const dayMonth = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long' }).format(date);
+    const time = date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    return `${weekday}, ${dayMonth} às ${time}`;
+  }
+
+  function buildIcs(date, protocol) {
+    const end = new Date(date.getTime() + 45 * 60000);
+    const stamp = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    return [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Fihan//Reuniao de Contexto//PT-BR',
+      'BEGIN:VEVENT',
+      `UID:${protocol}@fihan.com.br`,
+      `DTSTAMP:${stamp(new Date())}`,
+      `DTSTART:${stamp(date)}`,
+      `DTEND:${stamp(end)}`,
+      'SUMMARY:Reunião de Contexto — FIHAN',
+      `DESCRIPTION:Protocolo ${protocol}. A conversa começa pelo contexto\\, não pela oferta.`,
+      'END:VEVENT',
+      'END:VCALENDAR',
+      '',
+    ].join('\r\n');
+  }
+
+  icsLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    const { date, protocol } = icsLink._meeting || {};
+    if (!date) return;
+    const blob = new Blob([buildIcs(date, protocol)], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'reuniao-fihan.ics';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -33,8 +92,16 @@
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error(`status ${res.status}`);
-      status.dataset.state = 'ok';
-      status.textContent = 'Recebemos sua mensagem — vamos entrar em contato em breve.';
+
+      const meetingDate = nextMeetingSlot();
+      const protocol = `FH-${meetingDate.getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+      confirmDetail.textContent = `Protocolo ${protocol} · ${formatMeetingDate(meetingDate)}. A conversa começa pelo contexto, não pela oferta.`;
+      icsLink._meeting = { date: meetingDate, protocol };
+
+      status.textContent = '';
+      status.dataset.state = '';
+      form.style.display = 'none';
+      confirm.classList.add('is-visible');
       form.reset();
     } catch (err) {
       console.error('falha ao enviar formulário:', err);
