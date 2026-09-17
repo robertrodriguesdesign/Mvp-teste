@@ -722,14 +722,25 @@
               <label for="c-empresa">EMPRESA/PROJETO</label>
               <input id="c-empresa" name="empresa" type="text" />
             </div>
-            <div class="contact__field">
-              <label for="c-estagio">ESTÁGIO</label>
-              <input id="c-estagio" name="estagio" type="text" />
-            </div>
-            <div class="contact__field">
-              <label for="c-eixos">EIXOS DE INTERESSE</label>
-              <input id="c-eixos" name="eixos" type="text" />
-            </div>
+            <fieldset class="contact__field">
+              <legend>ESTÁGIO</legend>
+              <div class="contact__pills">
+                <label class="contact__pill"><input type="radio" name="estagio" value="Ideação" required /><span>Ideação</span></label>
+                <label class="contact__pill"><input type="radio" name="estagio" value="Validação" /><span>Validação</span></label>
+                <label class="contact__pill"><input type="radio" name="estagio" value="MVP" /><span>MVP</span></label>
+                <label class="contact__pill"><input type="radio" name="estagio" value="Tração" /><span>Tração</span></label>
+                <label class="contact__pill"><input type="radio" name="estagio" value="Escala" /><span>Escala</span></label>
+              </div>
+            </fieldset>
+            <fieldset class="contact__field">
+              <legend>EIXOS DE INTERESSE</legend>
+              <div class="contact__pills" data-checkbox-group="eixos">
+                <label class="contact__pill"><input type="checkbox" name="eixos" value="Negócio" /><span>Negócio</span></label>
+                <label class="contact__pill"><input type="checkbox" name="eixos" value="Marca" /><span>Marca</span></label>
+                <label class="contact__pill"><input type="checkbox" name="eixos" value="Desenvolvimento" /><span>Desenvolvimento</span></label>
+                <label class="contact__pill"><input type="checkbox" name="eixos" value="Todos" data-select-all /><span>Todos</span></label>
+              </div>
+            </fieldset>
           </div>
         </div>
 
@@ -738,11 +749,26 @@
           <div class="contact__fields">
             <div class="contact__field">
               <label for="c-investimento">INVESTIMENTO</label>
-              <input id="c-investimento" name="investimento" type="text" />
+              <div class="contact__select">
+                <select id="c-investimento" name="investimento" required>
+                  <option value="" disabled selected hidden>Selecione uma faixa</option>
+                  <option value="R$ 10 mil – R$ 30 mil">R$ 10 mil – R$ 30 mil</option>
+                  <option value="R$ 30 mil – R$ 60 mil">R$ 30 mil – R$ 60 mil</option>
+                  <option value="Acima de R$ 60 mil">Acima de R$ 60 mil</option>
+                </select>
+              </div>
             </div>
             <div class="contact__field">
               <label for="c-urgencia">URGÊNCIA</label>
-              <input id="c-urgencia" name="urgencia" type="text" />
+              <div class="contact__select">
+                <select id="c-urgencia" name="urgencia" required>
+                  <option value="" disabled selected hidden>Selecione um prazo</option>
+                  <option value="Imediato (menos de 1 mês)">Imediato (menos de 1 mês)</option>
+                  <option value="Curto prazo (1 a 3 meses)">Curto prazo (1 a 3 meses)</option>
+                  <option value="Médio prazo (3 a 6 meses)">Médio prazo (3 a 6 meses)</option>
+                  <option value="Sem prazo definido">Sem prazo definido</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>

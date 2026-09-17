@@ -1748,8 +1748,16 @@ body.nav-menu-open { overflow: hidden; }
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
+  /* zera o UA-stylesheet padrão de <fieldset>, usado nos campos de
+     pill/checkbox (estágio, eixos) — não afeta os campos em <div> */
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
 }
-.contact__field label {
+.contact__field label,
+.contact__field legend {
+  padding: 0;
   color: var(--fihan-text-secondary);
   font-family: var(--fihan-family-mono);
   font-weight: var(--fihan-weight-regular);
@@ -1767,6 +1775,84 @@ body.nav-menu-open { overflow: hidden; }
   font-size: 15px;
   line-height: 24px;
 }
+
+/* ESTÁGIO (pill única) e EIXOS DE INTERESSE (pill múltipla): checkbox/radio
+   real, visualmente escondido, com a label ao lado estilizada como pill —
+   mantém o valor real no FormData sem precisar de JS pra seleção em si */
+.contact__pills {
+  align-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.contact__pill {
+  position: relative;
+  cursor: pointer;
+}
+.contact__pill input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+.contact__pill span {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border: 1px solid var(--fihan-border-default);
+  border-radius: 999px;
+  color: var(--fihan-text-secondary);
+  font-family: var(--fihan-family-mono);
+  font-size: 15px;
+  line-height: 20px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.contact__pill input:checked + span {
+  background: var(--fihan-text-primary);
+  border-color: var(--fihan-text-primary);
+  color: var(--fihan-surface-base);
+}
+.contact__pill input:focus-visible + span {
+  outline: 2px solid var(--fihan-text-primary);
+  outline-offset: 2px;
+}
+
+/* INVESTIMENTO e URGÊNCIA: <select> real com o mesmo traço inferior dos
+   campos de texto, seta desenhada com um caractere (mesma linguagem
+   "técnica" usada nos rótulos [ ENTRE COLCHETES ] do resto do site) */
+.contact__select {
+  position: relative;
+  align-self: stretch;
+}
+.contact__select::after {
+  content: '▾';
+  position: absolute;
+  right: 2px;
+  bottom: 13px;
+  color: var(--fihan-text-secondary);
+  pointer-events: none;
+  font-size: 14px;
+  line-height: 1;
+}
+.contact__select select {
+  all: unset;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding-bottom: 17px;
+  padding-right: 24px;
+  border-bottom: 1px solid var(--fihan-border-default);
+  color: var(--fihan-text-primary);
+  font-family: var(--fihan-family-mono);
+  font-size: 15px;
+  line-height: 24px;
+  cursor: pointer;
+}
+.contact__select select:invalid { color: var(--fihan-text-subtle); }
 
 .contact__stakes {
   align-self: stretch;
@@ -1826,6 +1912,7 @@ body.nav-menu-open { overflow: hidden; }
   .contact__group,
   .contact__fields,
   .contact__field { align-items: center; text-align: center; }
+  .contact__pills { justify-content: center; }
 }
 
 /* ============ FOOTER ============ */

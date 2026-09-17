@@ -1,5 +1,21 @@
 // Fihan — comportamentos de interface (carrossel do case Zei, founders, etc.)
 
+// ---- formulário de contato: "Todos" e os eixos individuais se excluem ----
+document.querySelectorAll('[data-checkbox-group]').forEach((group) => {
+  const boxes = Array.from(group.querySelectorAll('input[type="checkbox"]'));
+  const allBox = group.querySelector('[data-select-all]');
+  if (!allBox) return;
+  boxes.forEach((box) => {
+    box.addEventListener('change', () => {
+      if (box === allBox) {
+        if (allBox.checked) boxes.forEach((b) => { if (b !== allBox) b.checked = false; });
+      } else if (box.checked) {
+        allBox.checked = false;
+      }
+    });
+  });
+});
+
 // ---- menu de tela cheia (hambúrguer do navbar) ----
 (function () {
   const toggle = document.querySelector('[data-menu-toggle]');
