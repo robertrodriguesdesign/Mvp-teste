@@ -1,0 +1,214 @@
+/* Fihan — Mesh Gradients
+   Biblioteca completa do componente "MeshGradient" do Figma (node 2348:2868).
+   16 variantes = 4 expressões (clareza, dev, marca, alerta) x 4 variações (01-04).
+   Cada uma é a mesma fórmula: base sólida + 6 gradientes radiais de parada múltipla
+   + uma camada de grão em Overlay (textura única, reaproveitada em todas as variantes). */
+
+.mesh {
+  position: relative;
+  background-repeat: no-repeat;
+}
+.mesh::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: url(../images/symbols/grain-noise.png);
+  background-size: 512px 512px;
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.mesh--clareza-01 {
+  background-image:
+    radial-gradient(ellipse 30% 42% at 77% 24%, #888C91 0%, #888C91E6 20%, #888C91A6 40%, #888C9159 60%, #888C911A 80%, #888C9100 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 96% 47%, #43464A 0%, #43464AE6 20%, #43464AA6 40%, #43464A59 60%, #43464A1A 80%, #43464A00 100%),
+    radial-gradient(ellipse 30% 42% at 77% 76%, #888C91 0%, #888C91E6 20%, #888C91A6 40%, #888C9159 60%, #888C911A 80%, #888C9100 100%),
+    radial-gradient(ellipse 30% 91.2514% at 23% 94%, #43464A 0%, #43464AE6 20%, #43464AA6 40%, #43464A59 60%, #43464A1A 80%, #43464A00 100%),
+    radial-gradient(ellipse 30% 65% at 0% 35%, #AEB1B5 0%, #AEB1B5E6 20%, #AEB1B5A6 40%, #AEB1B559 60%, #AEB1B51A 80%, #AEB1B500 100%),
+    radial-gradient(ellipse 45% 43.7486% at 46% 94%, #AEB1B5 0%, #AEB1B5E6 20%, #AEB1B5A6 40%, #AEB1B559 60%, #AEB1B51A 80%, #AEB1B500 100%);
+  background-color: #43464A;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--clareza-02 {
+  background-image:
+    radial-gradient(ellipse 33.75% 42% at 62% 65%, #65696E 0%, #65696EE6 20%, #65696EA6 40%, #65696E59 60%, #65696E1A 80%, #65696E00 100%),
+    radial-gradient(ellipse 30% 42% at 35% 94%, #888C91 0%, #888C91E6 20%, #888C91A6 40%, #888C9159 60%, #888C911A 80%, #888C9100 100%),
+    radial-gradient(ellipse 33.75% 42% at 31% 65%, #43464A 0%, #43464AE6 20%, #43464AA6 40%, #43464A59 60%, #43464A1A 80%, #43464A00 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 88% 0%, #AEB1B5 0%, #AEB1B5E6 20%, #AEB1B5A6 40%, #AEB1B559 60%, #AEB1B51A 80%, #AEB1B500 100%),
+    radial-gradient(ellipse 53.75% 112.5% at 0% 65%, #AEB1B5 0%, #AEB1B5E6 20%, #AEB1B5A6 40%, #AEB1B559 60%, #AEB1B51A 80%, #AEB1B500 100%),
+    radial-gradient(ellipse 82.5% 125% at 81% 94%, #43464A 0%, #43464AE6 20%, #43464AA6 40%, #43464A59 60%, #43464A1A 80%, #43464A00 100%);
+  background-color: #65696E;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--clareza-03 {
+  background-image:
+    radial-gradient(ellipse 61.25% 42% at 65% 94%, #65696E 0%, #65696EE6 20%, #65696EA6 40%, #65696E59 60%, #65696E1A 80%, #65696E00 100%),
+    radial-gradient(ellipse 33.75% 42% at 96% 24%, #43464A 0%, #43464AE6 20%, #43464AA6 40%, #43464A59 60%, #43464A1A 80%, #43464A00 100%),
+    radial-gradient(ellipse 46.25% 42% at 8% 0%, #888C91 0%, #888C91E6 20%, #888C91A6 40%, #888C9159 60%, #888C911A 80%, #888C9100 100%),
+    radial-gradient(ellipse 60% 58.7486% at 0% 35%, #43464A 0%, #43464AE6 20%, #43464AA6 40%, #43464A59 60%, #43464A1A 80%, #43464A00 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 96% 59%, #43464A 0%, #43464AE6 20%, #43464AA6 40%, #43464A59 60%, #43464A1A 80%, #43464A00 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 54% 0%, #D7D9DB 0%, #D7D9DBE6 20%, #D7D9DBA6 40%, #D7D9DB59 60%, #D7D9DB1A 80%, #D7D9DB00 100%);
+  background-color: #43464A;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--clareza-04 {
+  background-image:
+    radial-gradient(ellipse 45% 43.7486% at 38% 0%, #D7D9DB 0%, #D7D9DBE6 20%, #D7D9DBA6 40%, #D7D9DB59 60%, #D7D9DB1A 80%, #D7D9DB00 100%),
+    radial-gradient(ellipse 30% 91.2514% at 38% 94%, #43464A 0%, #43464AE6 20%, #43464AA6 40%, #43464A59 60%, #43464A1A 80%, #43464A00 100%),
+    radial-gradient(ellipse 30% 65% at 88% 94%, #43464A 0%, #43464AE6 20%, #43464AA6 40%, #43464A59 60%, #43464A1A 80%, #43464A00 100%),
+    radial-gradient(ellipse 30% 48.7486% at 73% 0%, #65696E 0%, #65696EE6 20%, #65696EA6 40%, #65696E59 60%, #65696E1A 80%, #65696E00 100%),
+    radial-gradient(ellipse 41.25% 86.2514% at 0% 18%, #43464A 0%, #43464AE6 20%, #43464AA6 40%, #43464A59 60%, #43464A1A 80%, #43464A00 100%),
+    radial-gradient(ellipse 106.25% 56.2486% at 96% 24%, #FAFAFA 0%, #FAFAFAE6 20%, #FAFAFAA6 40%, #FAFAFA59 60%, #FAFAFA1A 80%, #FAFAFA00 100%);
+  background-color: #888C91;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--dev-01 {
+  background-image:
+    radial-gradient(ellipse 36.25% 55% at 23% 94%, #0B7A31 0%, #0B7A31E6 20%, #0B7A31A6 40%, #0B7A3159 60%, #0B7A311A 80%, #0B7A3100 100%),
+    radial-gradient(ellipse 33.75% 42% at 35% 47%, #D7D9DB 0%, #D7D9DBE6 20%, #D7D9DBA6 40%, #D7D9DB59 60%, #D7D9DB1A 80%, #D7D9DB00 100%),
+    radial-gradient(ellipse 36.25% 55% at 0% 0%, #D7D9DB 0%, #D7D9DBE6 20%, #D7D9DBA6 40%, #D7D9DB59 60%, #D7D9DB1A 80%, #D7D9DB00 100%),
+    radial-gradient(ellipse 30% 65% at 54% 24%, #14CC52 0%, #14CC52E6 20%, #14CC52A6 40%, #14CC5259 60%, #14CC521A 80%, #14CC5200 100%),
+    radial-gradient(ellipse 33.75% 42% at 31% 12%, #334766 0%, #334766E6 20%, #334766A6 40%, #33476659 60%, #3347661A 80%, #33476600 100%),
+    radial-gradient(ellipse 45% 43.7486% at 85% 0%, #FAFAFA 0%, #FAFAFAE6 20%, #FAFAFAA6 40%, #FAFAFA59 60%, #FAFAFA1A 80%, #FAFAFA00 100%);
+  background-color: #334766;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--dev-02 {
+  background-image:
+    radial-gradient(ellipse 30% 121.2514% at 23% 35%, #D7D9DB 0%, #D7D9DBE6 20%, #D7D9DBA6 40%, #D7D9DB59 60%, #D7D9DB1A 80%, #D7D9DB00 100%),
+    radial-gradient(ellipse 33.75% 42% at 58% 35%, #14CC52 0%, #14CC52E6 20%, #14CC52A6 40%, #14CC5259 60%, #14CC521A 80%, #14CC5200 100%),
+    radial-gradient(ellipse 30% 91.2514% at 96% 76%, #358CF9 0%, #358CF9E6 20%, #358CF9A6 40%, #358CF959 60%, #358CF91A 80%, #358CF900 100%),
+    radial-gradient(ellipse 36.25% 55% at 0% 0%, #358CF9 0%, #358CF9E6 20%, #358CF9A6 40%, #358CF959 60%, #358CF91A 80%, #358CF900 100%),
+    radial-gradient(ellipse 60% 58.7486% at 65% 94%, #334766 0%, #334766E6 20%, #334766A6 40%, #33476659 60%, #3347661A 80%, #33476600 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 96% 0%, #0B7A31 0%, #0B7A31E6 20%, #0B7A31A6 40%, #0B7A3159 60%, #0B7A311A 80%, #0B7A3100 100%);
+  background-color: #334766;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--dev-03 {
+  background-image:
+    radial-gradient(ellipse 46.25% 42% at 27% 29%, #358CF9 0%, #358CF9E6 20%, #358CF9A6 40%, #358CF959 60%, #358CF91A 80%, #358CF900 100%),
+    radial-gradient(ellipse 106.25% 56.2486% at 92% 24%, #358CF9 0%, #358CF9E6 20%, #358CF9A6 40%, #358CF959 60%, #358CF91A 80%, #358CF900 100%),
+    radial-gradient(ellipse 36.25% 55% at 54% 94%, #D7D9DB 0%, #D7D9DBE6 20%, #D7D9DBA6 40%, #D7D9DB59 60%, #D7D9DB1A 80%, #D7D9DB00 100%),
+    radial-gradient(ellipse 106.25% 56.2486% at 0% 12%, #358CF9 0%, #358CF9E6 20%, #358CF9A6 40%, #358CF959 60%, #358CF91A 80%, #358CF900 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 35% 41%, #358CF9 0%, #358CF9E6 20%, #358CF9A6 40%, #358CF959 60%, #358CF91A 80%, #358CF900 100%),
+    radial-gradient(ellipse 140% 73.7486% at 15% 94%, #14CC52 0%, #14CC52E6 20%, #14CC52A6 40%, #14CC5259 60%, #14CC521A 80%, #14CC5200 100%);
+  background-color: #334766;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--dev-04 {
+  background-image:
+    radial-gradient(ellipse 33.75% 42% at 96% 59%, #14CC52 0%, #14CC52E6 20%, #14CC52A6 40%, #14CC5259 60%, #14CC521A 80%, #14CC5200 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 69% 6%, #358CF9 0%, #358CF9E6 20%, #358CF9A6 40%, #358CF959 60%, #358CF91A 80%, #358CF900 100%),
+    radial-gradient(ellipse 46.25% 42% at 42% 41%, #2B5945 0%, #2B5945E6 20%, #2B5945A6 40%, #2B594559 60%, #2B59451A 80%, #2B594500 100%),
+    radial-gradient(ellipse 36.25% 55% at 0% 65%, #2B5945 0%, #2B5945E6 20%, #2B5945A6 40%, #2B594559 60%, #2B59451A 80%, #2B594500 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 0% 29%, #14CC52 0%, #14CC52E6 20%, #14CC52A6 40%, #14CC5259 60%, #14CC521A 80%, #14CC5200 100%),
+    radial-gradient(ellipse 61.25% 42% at 96% 35%, #334766 0%, #334766E6 20%, #334766A6 40%, #33476659 60%, #3347661A 80%, #33476600 100%);
+  background-color: #334766;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--marca-01 {
+  background-image:
+    radial-gradient(ellipse 36.25% 55% at 77% 94%, #574E8F 0%, #574E8FE6 20%, #574E8FA6 40%, #574E8F59 60%, #574E8F1A 80%, #574E8F00 100%),
+    radial-gradient(ellipse 33.75% 42% at 65% 47%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 36.25% 55% at 100% 0%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 30% 65% at 46% 24%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 33.75% 42% at 69% 12%, #334766 0%, #334766E6 20%, #334766A6 40%, #33476659 60%, #3347661A 80%, #33476600 100%),
+    radial-gradient(ellipse 45% 43.7486% at 15% 0%, #FAFAFA 0%, #FAFAFAE6 20%, #FAFAFAA6 40%, #FAFAFA59 60%, #FAFAFA1A 80%, #FAFAFA00 100%);
+  background-color: #474074;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--marca-02 {
+  background-image:
+    radial-gradient(ellipse 30% 121.2514% at 77% 35%, #D7D9DB 0%, #D7D9DBE6 20%, #D7D9DBA6 40%, #D7D9DB59 60%, #D7D9DB1A 80%, #D7D9DB00 100%),
+    radial-gradient(ellipse 33.75% 42% at 42% 35%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 30% 91.2514% at 4% 76%, #6D62B3 0%, #6D62B3E6 20%, #6D62B3A6 40%, #6D62B359 60%, #6D62B31A 80%, #6D62B300 100%),
+    radial-gradient(ellipse 36.25% 55% at 100% 0%, #6D62B3 0%, #6D62B3E6 20%, #6D62B3A6 40%, #6D62B359 60%, #6D62B31A 80%, #6D62B300 100%),
+    radial-gradient(ellipse 60% 58.7486% at 35% 94%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 4% 0%, #5D5398 0%, #5D5398E6 20%, #5D5398A6 40%, #5D539859 60%, #5D53981A 80%, #5D539800 100%);
+  background-color: #474074;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--marca-03 {
+  background-image:
+    radial-gradient(ellipse 46.25% 42% at 73% 29%, #6D62B3 0%, #6D62B3E6 20%, #6D62B3A6 40%, #6D62B359 60%, #6D62B31A 80%, #6D62B300 100%),
+    radial-gradient(ellipse 106.25% 56.2486% at 8% 24%, #6D62B3 0%, #6D62B3E6 20%, #6D62B3A6 40%, #6D62B359 60%, #6D62B31A 80%, #6D62B300 100%),
+    radial-gradient(ellipse 36.25% 55% at 46% 94%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 106.25% 56.2486% at 100% 12%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 65% 41%, #6D62B3 0%, #6D62B3E6 20%, #6D62B3A6 40%, #6D62B359 60%, #6D62B31A 80%, #6D62B300 100%),
+    radial-gradient(ellipse 140% 73.7486% at 85% 94%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%);
+  background-color: #474074;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--marca-04 {
+  background-image:
+    radial-gradient(ellipse 33.75% 42% at 4% 59%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 31% 6%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 46.25% 42% at 58% 41%, #574E8F 0%, #574E8FE6 20%, #574E8FA6 40%, #574E8F59 60%, #574E8F1A 80%, #574E8F00 100%),
+    radial-gradient(ellipse 36.25% 55% at 100% 65%, #5D5398 0%, #5D5398E6 20%, #5D5398A6 40%, #5D539859 60%, #5D53981A 80%, #5D539800 100%),
+    radial-gradient(ellipse 81.25% 42.5% at 100% 29%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 61.25% 42% at 4% 35%, #5D5398 0%, #5D5398E6 20%, #5D5398A6 40%, #5D539859 60%, #5D53981A 80%, #5D539800 100%);
+  background-color: #474074;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--alerta-01 {
+  background-image:
+    radial-gradient(ellipse 30% 48.7486% at 31% 53%, #EA5623 0%, #EA5623E6 20%, #EA5623A6 40%, #EA562359 60%, #EA56231A 80%, #EA562300 100%),
+    radial-gradient(ellipse 125% 55% at 96% 24%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 41.25% 86.2514% at 31% 94%, #F5423D 0%, #F5423DE6 20%, #F5423DA6 40%, #F5423D59 60%, #F5423D1A 80%, #F5423D00 100%),
+    radial-gradient(ellipse 36.25% 55% at 0% 71%, #B8221D 0%, #B8221DE6 20%, #B8221DA6 40%, #B8221D59 60%, #B8221D1A 80%, #B8221D00 100%),
+    radial-gradient(ellipse 78.75% 76.2514% at 69% 94%, #EA5623 0%, #EA5623E6 20%, #EA5623A6 40%, #EA562359 60%, #EA56231A 80%, #EA562300 100%),
+    radial-gradient(ellipse 125% 56.2486% at 0% 6%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%);
+  background-color: #F5423D;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--alerta-02 {
+  background-image:
+    radial-gradient(ellipse 46.25% 42% at 96% 0%, #6D62B3 0%, #6D62B3E6 20%, #6D62B3A6 40%, #6D62B359 60%, #6D62B31A 80%, #6D62B300 100%),
+    radial-gradient(ellipse 46.25% 42% at 77% 24%, #F5423D 0%, #F5423DE6 20%, #F5423DA6 40%, #F5423D59 60%, #F5423D1A 80%, #F5423D00 100%),
+    radial-gradient(ellipse 46.25% 42% at 73% 0%, #6D62B3 0%, #6D62B3E6 20%, #6D62B3A6 40%, #6D62B359 60%, #6D62B31A 80%, #6D62B300 100%),
+    radial-gradient(ellipse 53.75% 112.5% at 8% 0%, #B8221D 0%, #B8221DE6 20%, #B8221DA6 40%, #B8221D59 60%, #B8221D1A 80%, #B8221D00 100%),
+    radial-gradient(ellipse 106.25% 56.2486% at 96% 94%, #EA5623 0%, #EA5623E6 20%, #EA5623A6 40%, #EA562359 60%, #EA56231A 80%, #EA562300 100%),
+    radial-gradient(ellipse 125% 55% at 96% 18%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%);
+  background-color: #A83B10;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--alerta-03 {
+  background-image:
+    radial-gradient(ellipse 45% 43.7486% at 62% 94%, #F5423D 0%, #F5423DE6 20%, #F5423DA6 40%, #F5423D59 60%, #F5423D1A 80%, #F5423D00 100%),
+    radial-gradient(ellipse 125% 121.2514% at 0% 0%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 60% 58.7486% at 96% 94%, #6D62B3 0%, #6D62B3E6 20%, #6D62B3A6 40%, #6D62B359 60%, #6D62B31A 80%, #6D62B300 100%),
+    radial-gradient(ellipse 88.75% 187.5% at 96% 12%, #B8221D 0%, #B8221DE6 20%, #B8221DA6 40%, #B8221D59 60%, #B8221D1A 80%, #B8221D00 100%),
+    radial-gradient(ellipse 48.75% 210% at 0% 94%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 41.25% 86.2514% at 23% 41%, #FAFAFA 0%, #FAFAFAE6 20%, #FAFAFAA6 40%, #FAFAFA59 60%, #FAFAFA1A 80%, #FAFAFA00 100%);
+  background-color: #F5423D;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}
+
+.mesh--alerta-04 {
+  background-image:
+    radial-gradient(ellipse 125% 55% at 46% 24%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 125% 55% at 0% 29%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%),
+    radial-gradient(ellipse 36.25% 55% at 35% 53%, #F5423D 0%, #F5423DE6 20%, #F5423DA6 40%, #F5423D59 60%, #F5423D1A 80%, #F5423D00 100%),
+    radial-gradient(ellipse 62.5% 96.2486% at 0% 94%, #B8221D 0%, #B8221DE6 20%, #B8221DA6 40%, #B8221D59 60%, #B8221D1A 80%, #B8221D00 100%),
+    radial-gradient(ellipse 140% 73.7486% at 81% 94%, #EA5623 0%, #EA5623E6 20%, #EA5623A6 40%, #EA562359 60%, #EA56231A 80%, #EA562300 100%),
+    radial-gradient(ellipse 140% 73.7486% at 0% 0%, #C5BEEE 0%, #C5BEEEE6 20%, #C5BEEEA6 40%, #C5BEEE59 60%, #C5BEEE1A 80%, #C5BEEE00 100%);
+  background-color: #F5423D;
+  background-blend-mode: overlay, normal, normal, normal, normal, normal, normal;
+}

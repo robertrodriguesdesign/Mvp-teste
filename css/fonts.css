@@ -1,0 +1,5 @@
+/* Fihan — Fontes
+   Placeholder: carregando IBM Plex Sans/Mono via Google Fonts para desenvolvimento.
+   Trocar por @font-face self-hosted quando os arquivos de fonte forem enviados. */
+
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=IBM+Plex+Mono:wght@300;400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');

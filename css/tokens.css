@@ -1,0 +1,66 @@
+/* Fihan — Design Tokens
+   Nomes e valores extraídos das variáveis do arquivo Figma "Institucional Fihan".
+   Complementar conforme novas seções chegarem. */
+
+:root {
+  /* Superfícies */
+  --fihan-surface-raised: #202224;
+  --fihan-accent-surface-hover: #202224;
+  --fihan-surface-glass: rgba(241, 242, 242, 0.26);
+  --fihan-border-glass: rgba(241, 242, 242, 0.20);
+  --fihan-accent-border: #AEB1B5;
+  --fihan-accent-surface: #FAFAFA;
+  --fihan-accent-on-surface: #111314;
+  --fihan-border-focus-on-inverse: #111314;
+  --fihan-border-width-thin: 1px;
+  --fihan-radius-glass: 16px;
+  --fihan-border-subtle: #65696E;
+  --fihan-border-default: #888C91;
+  --fihan-surface-emphasis: #43464A;
+  --fihan-surface-base: #FAFAFA;
+  --fihan-surface-brand-axis-hover: #574E8F;
+  --fihan-background-white: #FFFFFF;
+  --fihan-surface-inverse: #111314;
+
+  /* Texto */
+  --fihan-text-primary: #FAFAFA;
+  --fihan-text-secondary: #AEB1B5;
+  --fihan-text-subtle: #888C91;
+  --fihan-accent-text: #FAFAFA;
+  --fihan-text-inverse: #FAFAFA;
+
+  /* Ícones */
+  --fihan-icon-default: #D7D9DB;
+  --fihan-icon-brand: #14CC52;
+  --fihan-icon-on-brand-axis: #FAFAFA;
+  --fihan-accent-marker: #FAFAFA;
+  --fihan-icon-inverse: #FAFAFA;
+  --fihan-icon-secondary: #43464A;
+  --fihan-icon-subtle: #65696E;
+
+  /* Tipografia */
+  --fihan-family-sans: 'IBM Plex Sans', sans-serif;
+  --fihan-family-mono: 'IBM Plex Mono', monospace;
+  --fihan-family-golos: 'Golos Text', sans-serif;
+  --fihan-weight-light: 300;
+  --fihan-weight-regular: 400;
+  --fihan-weight-medium: 500;
+
+  --fihan-size-technical-numeral: 19px;
+  --fihan-line-technical-numeral: 26px;
+  --fihan-size-technical-default: 15px;
+  --fihan-line-technical-default: 24px;
+  --fihan-size-action-default: 16px;
+  --fihan-line-action-default: 22px;
+  --fihan-action-padding-lg: 32px;
+
+  /* Layout — margem lateral responsiva (documentada no componente Navbar) */
+  --fihan-viewport-margin: 80px;
+}
+
+@media (max-width: 1023px) {
+  :root { --fihan-viewport-margin: 40px; }
+}
+@media (max-width: 699px) {
+  :root { --fihan-viewport-margin: 20px; }
+}
