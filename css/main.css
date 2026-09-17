@@ -1431,7 +1431,19 @@ body.nav-menu-open { overflow: hidden; }
   .decision__capsule--lg { width: 180px; height: 196px; }
 }
 @media (max-width: 699px) {
-  .decision { padding-top: 32px; padding-bottom: 32px; gap: 54px; }
+  .decision {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    gap: 54px;
+    /* seção ocupa a tela inteira no mobile; svh evita o salto quando a
+       barra de endereço do navegador soma/some (fallback pra vh) */
+    min-height: 100vh;
+    min-height: 100svh;
+    box-sizing: border-box;
+    /* min-height só cria respiro extra acima/abaixo do bloco de conteúdo —
+       os gaps entre título, carrossel e pills continuam os mesmos de sempre */
+    justify-content: center;
+  }
   /* o gap de 54px do container serve bem pro espaço título→carrossel, mas
      deixa as pills longe demais do carrossel — puxa só essa distância pra
      perto (as pills continuam sendo o próximo item do gap, então o ajuste
