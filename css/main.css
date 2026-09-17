@@ -1432,6 +1432,11 @@ body.nav-menu-open { overflow: hidden; }
 }
 @media (max-width: 699px) {
   .decision { padding-top: 32px; padding-bottom: 32px; gap: 54px; }
+  /* o gap de 54px do container serve bem pro espaço título→carrossel, mas
+     deixa as pills longe demais do carrossel — puxa só essa distância pra
+     perto (as pills continuam sendo o próximo item do gap, então o ajuste
+     é por margin negativo, não mudando o gap geral) */
+  .decision__tags { margin-top: -34px; }
   /* 4px de cada lado = 8px de vão entre cápsulas vizinhas, como no Figma
      (lá o gap:8px fica no container-pai; aqui cada célula carrega metade
      do vão na própria borda, técnica exigida pelo carrossel de largura
