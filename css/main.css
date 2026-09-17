@@ -1267,11 +1267,8 @@ body.nav-menu-open { overflow: hidden; }
   background: var(--fihan-background-white);
   display: flex;
   flex-direction: column;
-  --decision-gap: 72px;
-  /* reserva a altura já observada com o conteúdo atual — a "mola" abaixo
-     preenche qualquer sobra entre o conteúdo e esse piso, então o rodapé
-     da seção (e o topo da seção seguinte) nunca se mexe */
-  min-height: 970px;
+  align-items: center;
+  gap: 72px;
 
   /* mesma sobrescrita de tema claro usada em .evidence */
   --fihan-text-primary: #111314;
@@ -1282,17 +1279,6 @@ body.nav-menu-open { overflow: hidden; }
   --fihan-accent-marker: #111314;
   --fihan-surface-emphasis: #D7D9DB;
   --fihan-icon-default: #202224;
-}
-.decision__content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--decision-gap);
-}
-.decision__spring {
-  flex: 1 1 auto;
-  min-height: 0;
 }
 
 .decision__head {
@@ -1316,7 +1302,7 @@ body.nav-menu-open { overflow: hidden; }
 .decision__carousel {
   width: 100%;
   max-width: 1395px;
-  overflow: visible;
+  overflow: hidden;
   container-type: inline-size;
 }
 .decision__track {
@@ -1400,17 +1386,11 @@ body.nav-menu-open { overflow: hidden; }
 .decision__tags {
   align-self: stretch;
   padding: 16px;
-  /* trava a distância visível entre o carrossel e o chip da pill em 32px
-     (o padding acima já dá 16px, então o restante vem do gap do .decision
-     menos essa parte — funciona em qualquer breakpoint porque usa a
-     variável --decision-gap em vez de repetir o valor) */
-  margin-top: calc(16px - var(--decision-gap));
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  overflow: visible;
 }
 
 /* Componente "Pill" do Figma (node 2380:1495) — estados inativo/carregando,
@@ -1420,7 +1400,7 @@ body.nav-menu-open { overflow: hidden; }
   position: relative;
   z-index: 1;
   overflow: hidden;
-  padding: 10px 10px;
+  padding: 10px 20px;
   border-radius: 999px;
   background: transparent;
   color: var(--fihan-text-secondary);
@@ -1442,29 +1422,15 @@ body.nav-menu-open { overflow: hidden; }
 .decision__tag-label { position: relative; z-index: 1; }
 
 @media (max-width: 1023px) {
-  .decision { padding-top: 80px; padding-bottom: 80px; --decision-gap: 56px; min-height: 910px; }
-  /* abaixo de 1024px o carrossel já espreme as células perto do piso de
-     288px (ver .decision__cell) — cápsulas em tamanho desktop (248×270)
-     ficam desproporcionais nessa largura, então encolhe mantendo a mesma
-     proporção largura/altura */
-  .decision__capsule--sm { width: 128px; height: 145px; }
-  .decision__capsule--lg { width: 180px; height: 196px; }
+  .decision { padding-top: 80px; padding-bottom: 80px; gap: 56px; }
 }
 @media (max-width: 699px) {
-  .decision {
-    padding-top: 32px;
-    padding-bottom: 32px;
-    --decision-gap: 54px;
-    /* seção ocupa a tela inteira no mobile; svh evita o salto quando a
-       barra de endereço do navegador soma/some (fallback pra vh) */
-    min-height: 100vh;
-    min-height: 100svh;
-  }
+  .decision { padding-top: 32px; padding-bottom: 32px; gap: 54px; }
   /* 4px de cada lado = 8px de vão entre cápsulas vizinhas, como no Figma
      (lá o gap:8px fica no container-pai; aqui cada célula carrega metade
      do vão na própria borda, técnica exigida pelo carrossel de largura
      uniforme) */
-  .decision__cell { padding: 0; }
+  .decision__cell { padding: 0 4px; }
 
   /* pills em uma linha só, com scroll horizontal — sem quebrar linha nem
      esconder nenhuma pill fora da largura da tela */
@@ -1483,8 +1449,6 @@ body.nav-menu-open { overflow: hidden; }
 /* ============ SOBRE / FOUNDERS ============ */
 .about {
   width: 100%;
-  padding-top: 96px;
-  padding-bottom: 96px;
   overflow: hidden;
   background: var(--fihan-background-white);
   display: flex;
@@ -1659,14 +1623,10 @@ body.nav-menu-open { overflow: hidden; }
 .about__nav svg { width: 16.11px; height: 12.53px; color: var(--fihan-icon-inverse); }
 
 @media (max-width: 1023px) {
-  .about { padding-top: 72px; padding-bottom: 72px; }
   .about__intro-content { padding: 40px; }
 }
 @media (max-width: 699px) {
-  /* sem padding-bottom: a foto já termina escura (scrim + controles), então
-     zerar aqui cola direto na próxima seção (também escura) sem a faixa
-     branca que sobrava entre as duas */
-  .about { padding-top: 40px; padding-bottom: 0; }
+  .about { padding-top: 40px; padding-bottom: 40px; }
   .about__grid { height: auto; flex-direction: column; }
   /* com o grid em altura auto (column), flex-basis:0 + overflow:hidden faz
      esse painel colapsar pra 0px (o mínimo automático do flex some quando
@@ -1674,11 +1634,6 @@ body.nav-menu-open { overflow: hidden; }
   .about__intro { flex: 0 0 auto; }
   .about__intro-content { padding: 32px; }
   .about__media { min-height: 320px; }
-  /* bottom:160px foi calibrado pro slide de 320-560px do desktop — na
-     altura mínima do mobile (320px) isso cai bem no meio da foto, em
-     cima do rosto da pessoa. Reaproxima da faixa de controles (92px)
-     como no desktop, só que proporcional a essa altura menor */
-  .about__tag { bottom: 108px; }
 }
 
 /* ============ AFIRMAÇÃO (claim) ============ */
