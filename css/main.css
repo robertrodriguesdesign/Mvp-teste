@@ -1423,6 +1423,12 @@ body.nav-menu-open { overflow: hidden; }
 
 @media (max-width: 1023px) {
   .decision { padding-top: 80px; padding-bottom: 80px; gap: 56px; }
+  /* abaixo de 1024px o carrossel já espreme as células perto do piso de
+     288px (ver .decision__cell) — cápsulas em tamanho desktop (248×270)
+     ficam desproporcionais nessa largura, então encolhe mantendo a mesma
+     proporção largura/altura */
+  .decision__capsule--sm { width: 128px; height: 145px; }
+  .decision__capsule--lg { width: 180px; height: 196px; }
 }
 @media (max-width: 699px) {
   .decision { padding-top: 32px; padding-bottom: 32px; gap: 54px; }
