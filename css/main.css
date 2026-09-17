@@ -1633,7 +1633,14 @@ body.nav-menu-open { overflow: hidden; }
      overflow não é visible) — basis:auto usa a altura real do conteúdo */
   .about__intro { flex: 0 0 auto; }
   .about__intro-content { padding: 32px; }
-  .about__media { min-height: 320px; }
+  /* flex:1 1 0 (base) faz o flex-basis:0 vencer qualquer height/min-height
+     declarado aqui — o item só cresce a partir de 0 dividindo o espaço
+     "extra" do container, e como .about__grid tem altura auto (indefinida),
+     esse cálculo de "quanto é o extra" diverge entre engines (Safari/WebKit
+     no iOS resolve pra muito mais que 320px, daí a foto aparecer cortada
+     lá embaixo/em cima). flex:0 0 320px fixa o tamanho direto, sem grow,
+     eliminando essa ambiguidade em qualquer navegador. */
+  .about__media { flex: 0 0 320px; }
 }
 
 /* ============ AFIRMAÇÃO (claim) ============ */
