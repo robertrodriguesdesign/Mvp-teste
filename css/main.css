@@ -1641,6 +1641,11 @@ body.nav-menu-open { overflow: hidden; }
      lá embaixo/em cima). flex:0 0 320px fixa o tamanho direto, sem grow,
      eliminando essa ambiguidade em qualquer navegador. */
   .about__media { flex: 0 0 320px; }
+  /* bottom:160px (base) foi pensado pro slide de 320-560px do desktop —
+     no slide fixo de 320px do mobile isso sobra longe demais da faixa de
+     controles; desce a etiqueta pra deixar só 8px até o indicador de
+     slide (.about__dashes, que começa em bottom:47px) */
+  .about__tag { bottom: 55px; }
 }
 
 /* ============ AFIRMAÇÃO (claim) ============ */
