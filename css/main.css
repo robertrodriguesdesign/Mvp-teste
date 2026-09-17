@@ -2002,23 +2002,16 @@ body.nav-menu-open { overflow: hidden; }
 .contact__confirm-cta:hover { opacity: 0.7; }
 .contact__confirm-cta svg { width: 20px; height: 20px; flex-shrink: 0; }
 
-@media (max-width: 699px) {
-  .contact__confirm { align-items: center; text-align: center; }
-}
-
 @media (max-width: 1023px) {
   .contact__inner { padding: 24px 0; gap: 48px; }
   .contact__group { gap: 40px; }
   .contact__fields { gap: 40px; }
 }
 @media (max-width: 699px) {
-  .contact__inner { justify-content: center; text-align: center; }
-  .contact__heading { text-align: center; }
-  .contact__form { align-items: center; }
-  .contact__group,
-  .contact__fields,
-  .contact__field { align-items: center; text-align: center; }
-  .contact__pills { justify-content: center; }
+  /* desktop usa text-align:right pro heading (faz par com o form ao lado);
+     no mobile, empilhado, tudo fica alinhado à esquerda — inclusive os
+     labels dos campos, que herdam o alinhamento do .contact__field */
+  .contact__heading { text-align: left; }
 }
 
 /* ============ FOOTER ============ */
