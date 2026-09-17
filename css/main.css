@@ -1267,9 +1267,11 @@ body.nav-menu-open { overflow: hidden; }
   background: var(--fihan-background-white);
   display: flex;
   flex-direction: column;
-  align-items: center;
   --decision-gap: 72px;
-  gap: var(--decision-gap);
+  /* reserva a altura já observada com o conteúdo atual — a "mola" abaixo
+     preenche qualquer sobra entre o conteúdo e esse piso, então o rodapé
+     da seção (e o topo da seção seguinte) nunca se mexe */
+  min-height: 970px;
 
   /* mesma sobrescrita de tema claro usada em .evidence */
   --fihan-text-primary: #111314;
@@ -1280,6 +1282,17 @@ body.nav-menu-open { overflow: hidden; }
   --fihan-accent-marker: #111314;
   --fihan-surface-emphasis: #D7D9DB;
   --fihan-icon-default: #202224;
+}
+.decision__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--decision-gap);
+}
+.decision__spring {
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .decision__head {
@@ -1428,7 +1441,7 @@ body.nav-menu-open { overflow: hidden; }
 .decision__tag-label { position: relative; z-index: 1; }
 
 @media (max-width: 1023px) {
-  .decision { padding-top: 80px; padding-bottom: 80px; --decision-gap: 56px; }
+  .decision { padding-top: 80px; padding-bottom: 80px; --decision-gap: 56px; min-height: 910px; }
   /* abaixo de 1024px o carrossel já espreme as células perto do piso de
      288px (ver .decision__cell) — cápsulas em tamanho desktop (248×270)
      ficam desproporcionais nessa largura, então encolhe mantendo a mesma
@@ -1445,10 +1458,6 @@ body.nav-menu-open { overflow: hidden; }
        barra de endereço do navegador soma/some (fallback pra vh) */
     min-height: 100vh;
     min-height: 100svh;
-    box-sizing: border-box;
-    /* min-height só cria respiro extra acima/abaixo do bloco de conteúdo —
-       os gaps entre título, carrossel e pills continuam os mesmos de sempre */
-    justify-content: center;
   }
   /* 4px de cada lado = 8px de vão entre cápsulas vizinhas, como no Figma
      (lá o gap:8px fica no container-pai; aqui cada célula carrega metade
