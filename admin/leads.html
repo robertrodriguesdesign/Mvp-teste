@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Fihan OS · Leads</title>
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/svg+xml" href="/images/brand/favicon.svg" />
+  <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/fonts.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body>
+
+  <div class="admin-shell">
+    <aside class="admin-sidebar" data-admin-sidebar>
+      <div class="admin-sidebar__brand">
+        <img src="../images/brand/simbolo.svg" alt="" aria-hidden="true" style="width:20px;height:20px;object-fit:contain;" />
+        <span>Fihan OS</span>
+      </div>
+
+      <nav class="admin-nav">
+        <div class="admin-nav__group">
+          <p class="admin-nav__eyebrow">[ Principal ]</p>
+          <a class="admin-nav__item" href="/admin">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 9L10 3l7 6M5 8v8h4v-5h2v5h4V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Dashboard
+          </a>
+          <a class="admin-nav__item is-active" href="/admin/leads">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="7.5" cy="6.5" r="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 17c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="14.5" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/><path d="M13 12.2c2.24.3 4 2.2 4 4.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Leads
+          </a>
+        </div>
+      </nav>
+
+      <div class="admin-sidebar__user">
+        <div class="admin-sidebar__avatar">F</div>
+        <div class="admin-sidebar__user-info">
+          <span class="admin-sidebar__user-name">Fihan</span>
+          <span class="admin-sidebar__user-role">Super Admin</span>
+        </div>
+        <button class="admin-sidebar__logout" type="button" data-logout aria-label="Sair">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 3H4.5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1H8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 13.5L17 10l-4-3.5M17 10H7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </aside>
+
+    <main class="admin-content">
+      <button class="admin-menu-toggle" type="button" data-nav-toggle aria-label="Abrir menu">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+
+      <p class="admin-breadcrumb">
+        <a href="/admin">Fihan OS</a> / <span class="admin-breadcrumb__current">Leads</span>
+      </p>
+
+      <div class="admin-header">
+        <div>
+          <h1 class="admin-header__title">Leads</h1>
+          <p class="admin-header__desc">Todos os contatos recebidos pelo formulário do site.</p>
+        </div>
+      </div>
+
+      <div class="admin-filterbar">
+        <label class="admin-search">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M17.5 17.5L13.7 13.7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <input type="text" placeholder="Buscar por nome, e-mail ou empresa..." data-search />
+        </label>
+        <select class="admin-select" data-estagio-filter>
+          <option value="">Todos os estágios</option>
+          <option value="Ideação">Ideação</option>
+          <option value="Validação">Validação</option>
+          <option value="MVP">MVP</option>
+          <option value="Tração">Tração</option>
+          <option value="Escala">Escala</option>
+        </select>
+        <div class="admin-filter__mode" role="radiogroup" aria-label="Tipo de filtro">
+          <label class="admin-pill"><input type="radio" name="filter-mode" value="dia" checked /><span>Dia</span></label>
+          <label class="admin-pill"><input type="radio" name="filter-mode" value="periodo" /><span>Período</span></label>
+        </div>
+        <input type="date" class="admin-date" data-field="date" aria-label="Dia" />
+        <input type="date" class="admin-date" data-field="from" aria-label="De" hidden />
+        <span class="admin-filter__sep" hidden>até</span>
+        <input type="date" class="admin-date" data-field="to" aria-label="Até" hidden />
+        <button class="admin-btn" type="button" data-action="apply-filter">Filtrar</button>
+        <button class="admin-btn admin-btn--ghost" type="button" data-action="clear-filter">Limpar</button>
+      </div>
+
+      <div class="admin-table">
+        <div class="admin-table__scroll">
+          <div class="admin-table__head">
+            <span>Nome</span>
+            <span>Contato</span>
+            <span>Estágio</span>
+            <span>Data</span>
+            <span></span>
+          </div>
+          <div data-leads-body>
+            <p class="admin-empty" data-empty>Nenhum lead encontrado.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-pagination" data-pagination hidden>
+        <button class="admin-btn admin-btn--ghost" type="button" data-page-prev>Anterior</button>
+        <div class="admin-pagination__pages" data-pagination-pages></div>
+        <button class="admin-btn admin-btn--ghost" type="button" data-page-next>Próxima</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- DRAWER DE DETALHES -->
+  <div class="admin-drawer" data-drawer aria-hidden="true">
+    <div class="admin-drawer__backdrop" data-drawer-close></div>
+    <div class="admin-drawer__panel" role="dialog" aria-modal="true" aria-label="Detalhes do lead">
+      <button class="admin-drawer__close" type="button" data-drawer-close aria-label="Fechar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.43 3.43L20.57 20.57M20.57 3.43L3.43 20.57" stroke="currentColor" stroke-width="1.7"/></svg>
+      </button>
+      <p class="admin-drawer__date" data-detail="created_at"></p>
+      <h2 class="admin-drawer__name" data-detail="nome"></h2>
+
+      <div class="admin-drawer__actions">
+        <a class="admin-btn" data-detail-href="email" target="_blank" rel="noopener">
+          Enviar e-mail
+          <svg viewBox="0 0 15 11" fill="none" aria-hidden="true"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg>
+        </a>
+        <a class="admin-btn admin-btn--whatsapp" data-detail-href="whatsapp" target="_blank" rel="noopener">
+          WhatsApp
+          <svg viewBox="0 0 15 11" fill="none" aria-hidden="true"><path d="M8.01037 2.15005H10.1604V0H8.01037V2.15005Z" fill="currentColor"/><path d="M10.1609 4.30235H12.3109V2.15H10.1609V4.30235Z" fill="currentColor"/><path d="M8.01037 10.7525H10.1604V8.60011H8.01037V10.7525Z" fill="currentColor"/><path d="M10.1609 8.60244H12.3109V6.45239H10.1609V8.60244Z" fill="currentColor"/><path d="M9.62339 4.56969H0V6.18281H9.62339V4.56969Z" fill="currentColor"/><path d="M12.3104 6.45244H14.9997V4.30239H12.3104V6.45244Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+
+      <dl class="admin-drawer__grid">
+        <div><dt>E-mail</dt><dd data-detail="email"></dd></div>
+        <div><dt>WhatsApp</dt><dd data-detail="whatsapp"></dd></div>
+        <div><dt>Empresa/Projeto</dt><dd data-detail="empresa"></dd></div>
+        <div><dt>Estágio</dt><dd data-detail="estagio"></dd></div>
+        <div><dt>Eixos de interesse</dt><dd data-detail="eixos"></dd></div>
+        <div><dt>Investimento</dt><dd data-detail="investimento"></dd></div>
+        <div><dt>Urgência</dt><dd data-detail="urgencia"></dd></div>
+      </dl>
+
+      <div class="admin-drawer__stakes">
+        <dt>O que está em jogo</dt>
+        <dd data-detail="mensagem"></dd>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/admin-shell.js" defer></script>
+  <script src="../js/admin-leads.js" defer></script>
+</body>
+</html>

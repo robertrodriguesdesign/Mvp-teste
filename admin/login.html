@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Fihan OS · Login</title>
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/svg+xml" href="/images/brand/favicon.svg" />
+  <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png" />
+  <link rel="stylesheet" href="../css/tokens.css" />
+  <link rel="stylesheet" href="../css/fonts.css" />
+  <link rel="stylesheet" href="../css/mesh-gradients.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body>
+
+  <div class="admin-login">
+    <div class="admin-login__bg mesh mesh--marca-04" aria-hidden="true"></div>
+    <div class="admin-login__scrim" aria-hidden="true"></div>
+
+    <form class="admin-login__card" data-login-form>
+      <img class="admin-login__logo" src="../images/brand/logo.svg" alt="Fihan" />
+      <div>
+        <p class="admin-login__eyebrow">[ FIHAN OS ]</p>
+        <h1 class="admin-login__title">Entrar no painel</h1>
+      </div>
+
+      <div class="admin-login__form">
+        <div class="admin-login__field">
+          <label for="login-user">Usuário</label>
+          <input id="login-user" name="user" type="text" autocomplete="username" required />
+        </div>
+        <div class="admin-login__field">
+          <label for="login-pass">Senha</label>
+          <input id="login-pass" name="pass" type="password" autocomplete="current-password" required />
+        </div>
+
+        <p class="admin-login__error" data-login-error role="alert" aria-live="polite"></p>
+
+        <button class="admin-login__submit" type="submit">Entrar</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="../js/admin-login.js" defer></script>
+</body>
+</html>
