@@ -2180,3 +2180,6 @@ body.nav-menu-open { overflow: hidden; }
 @media (max-width: 699px) {
   .footer { padding-top: 56px; }
 }
+
+/* CTAs de seção que levam às páginas internas são links, não botões. */
+a.eixo-col__cta, a.vertices__cta-btn, a.evidence__logos-cta, a.about__cta { text-decoration: none; text-align: center; }
