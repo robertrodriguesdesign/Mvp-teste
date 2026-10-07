@@ -1,0 +1,24 @@
+# fihan.com.br
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Buscadores e assistentes de IA: acesso liberado ao conteúdo público.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://fihan.com.br/sitemap.xml

@@ -1,0 +1,36 @@
+# FIHAN
+
+> A FIHAN é um sistema de inteligência de negócio, marca e desenvolvimento, com sede no Espírito Santo, Brasil. Ajuda founders a descobrir, com evidência, se uma ideia merece existir antes de investir nela, e depois constrói a marca e coloca a solução no ar. Não é consultoria, aceleradora nem agência.
+
+A FIHAN trabalha com um Protocolo próprio que integra três Eixos em um mesmo sprint e é atravessado por quatro Vértices de decisão. Em cada Vértice o projeto para e decide com evidência: avançar, pivotar ou encerrar. No fim, o founder fica com quatro ativos (Dossiê de Mercado, Relatório de Viabilidade, DNA da Marca e Codex de Marca) e com a Solução Operando, o produto no ar com dados reais.
+
+O nome FIHAN é um verbo composto em iorubá: FI (colocar, usar) e HAN (mostrar, revelar). Significa fazer ver, tornar visível.
+
+Contato: contato@fihan.com.br · WhatsApp +55 27 99728-9739
+
+## O Protocolo
+
+- [Eixo de Negócio](https://fihan.com.br/eixo-negocio): responde se a ideia merece existir. Dez Frentes em dois Ciclos, do diagnóstico do problema e da escuta de cliente até a projeção financeira de doze meses. Inclui uma calculadora de ponto de equilíbrio.
+- [Eixo de Marca](https://fihan.com.br/eixo-marca): responde como a marca será reconhecida e desejada. Catorze frameworks em cinco Dimensões (Diagnóstico, Estratégia, Criação, Experiência e Comunicação), até o DNA e o Codex de Marca.
+- [Eixo Dev](https://fihan.com.br/eixo-dev): responde como a ideia passa a operar de fato. Três Fases e seis Componentes, da Tradução à Operação, até a Solução Operando com monetização integrada.
+- [Os quatro Vértices](https://fihan.com.br/vertices): os pontos de decisão do Protocolo e o que cada um atesta.
+
+## Fomento à inovação
+
+- [Fomento](https://fihan.com.br/fomento): o que é fomento público à inovação e como funcionam cinco instrumentos (EMBRAPII, FINEP Subvenção, Tecnova, Centelha e PIPE FAPESP), como cada um abre e quanto tempo leva entre a submissão e o recurso.
+- [Parceria para quem escreve projetos de edital](https://fihan.com.br/parceria): como a FIHAN trabalha com escritores de projetos de fomento, construindo a solução que o projeto aprovado prometeu.
+
+## Trabalhos
+
+- [Índice de trabalhos](https://fihan.com.br/trabalhos): os projetos desenvolvidos pela FIHAN.
+- [Routes](https://fihan.com.br/trabalhos/routes): marketplace de transfer, transporte escolar por assinatura e passeios, com Central do Motorista.
+- [Makers](https://fihan.com.br/trabalhos/makers): portfólio, orçamento e acompanhamento de projetos para filmmakers e fotógrafos freelancers.
+- [Ciclos System](https://fihan.com.br/trabalhos/ciclos-system): venda, estoque e crediário por QR Code para lojas de moda, calçados e semijoias.
+- [Brain](https://fihan.com.br/trabalhos/brain): terminal de consulta de preços de supermercado no celular do cliente.
+- [Auati](https://fihan.com.br/trabalhos/auati): UX e UI de uma plataforma de permuta de serviços entre profissionais.
+- [Zei](https://fihan.com.br/trabalhos/zei): aplicativo de lista de compras e comparação de preços com dados da comunidade.
+
+## A empresa
+
+- [Sobre](https://fihan.com.br/sobre): quem é a FIHAN, o método em três Eixos, os founders, a origem do nome e do símbolo.
+- [Contatos](https://fihan.com.br/contatos): e-mail, WhatsApp e formulário para marcar uma Reunião de Contexto.
