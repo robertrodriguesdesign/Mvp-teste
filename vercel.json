@@ -56,14 +56,25 @@
   ],
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/",
       "has": [
         {
           "type": "host",
           "value": "www.fihan.com.br"
         }
       ],
-      "destination": "https://fihan.com.br/:path*",
+      "destination": "https://fihan.com.br/",
+      "permanent": true
+    },
+    {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.fihan.com.br"
+        }
+      ],
+      "destination": "https://fihan.com.br/:path",
       "permanent": true
     }
   ]
