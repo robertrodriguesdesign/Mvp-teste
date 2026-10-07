@@ -5,3 +5,7 @@
 .vercel
 .env*
 node_modules
+
+# Arquivos internos, fora do site
+Propostas comerciais/
+.claude/
