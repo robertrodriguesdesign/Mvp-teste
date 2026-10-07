@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brain — Trabalhos — Fihan</title>
+  <meta name="description" content="Como a FIHAN desenvolveu o Brain, terminal de consulta de preços para supermercados que roda no celular do cliente." />
+  <link rel="canonical" href="https://www.fihan.com.br/trabalhos/brain" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/svg+xml" href="/images/brand/favicon.svg" />
+  <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/institucional.css" />
+</head>
+<body class="inst">
+
+  <!-- DOBRA 1 · HERO -->
+  <div class="inst-hero inst-hero--short">
+    <!-- NAVBAR -->
+    <header class="inst-nav">
+      <div class="inst-nav__panel">
+        <a class="inst-nav__logo" href="/" aria-label="Fihan — página inicial">
+          <img src="/images/institucional/logo-navbar.svg" alt="Fihan" width="110" height="44" />
+        </a>
+        <div class="inst-nav__actions">
+          <a class="inst-btn" href="/#contact">Comece Agora</a>
+          <div class="tile-pair">
+            <button class="tile" type="button" data-open-menu="busca" aria-label="Buscar">
+              <img src="/images/institucional/icon-buscar.svg" alt="" />
+            </button>
+            <button class="tile" type="button" data-open-menu="menu" aria-label="Abrir menu">
+              <img src="/images/institucional/icon-menu.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- BARRA DE AÇÃO (mobile) -->
+    <div class="inst-actionbar">
+      <div class="tile-pair">
+        <button class="tile tile--accent" type="button" data-open-menu="menu" aria-label="Abrir menu">
+          <img src="/images/institucional/icon-menu.svg" alt="" />
+        </button>
+        <button class="tile tile--accent" type="button" data-open-menu="busca" aria-label="Buscar">
+          <img src="/images/institucional/icon-buscar.svg" alt="" />
+        </button>
+      </div>
+      <a class="inst-btn" href="/#contact">Comece Agora</a>
+    </div>
+
+    <div class="inst-hero__content">
+      <p class="t-overline"><a href="/trabalhos">[ Trabalhos ]</a></p>
+      <h1 class="inst-hero__title inst-hero__title--wide t-display">Brain</h1>
+      <p class="inst-hero__lede t-body-lg">O terminal de consulta de preços do supermercado, no celular do cliente. Sem aplicativo, sem cadastro e sem equipamento para comprar.</p>
+    </div>
+  </div>
+
+  <main>
+  <!-- DOBRA 2 · FICHA -->
+  <section class="dobra" aria-label="Ficha do projeto">
+    <dl class="proj-ficha">
+      <div><dt class="t-overline">Segmento</dt><dd class="t-body">Supermercados</dd></div>
+      <div><dt class="t-overline">Formato</dt><dd class="t-body">Aplicação web com terminal instalável</dd></div>
+      <div><dt class="t-overline">Origem do preço</dt><dd class="t-body">PDV e ERP da loja</dd></div>
+      <div><dt class="t-overline">Publicado em</dt><dd class="t-body"><a href="https://www.zeibrain.com.br/" target="_blank" rel="noopener">zeibrain.com.br</a></dd></div>
+    </dl>
+    <figure class="proj-capa">
+      <img src="/images/trabalhos/brain-capa.jpg" width="1184" height="864" alt="Brain em um smartphone" />
+    </figure>
+  </section>
+
+  <!-- DOBRA 3 · O PROBLEMA -->
+  <section class="dobra dobra--tight">
+    <hr class="dobra__regua" />
+    <div class="dobra__head">
+      <p class="t-overline">[ O problema ]</p>
+      <h2 class="t-h1 t-h1--lg">Consultar um preço no corredor precisava funcionar em qualquer celular e em qualquer conexão.</h2>
+    </div>
+    <div class="proj-texto">
+      <p class="t-body-lg">O cliente escaneia o QR Code da loja, aponta a câmera para o produto e vê o preço que está no PDV. Para o supermercado, isso dispensa comprar e manter terminais físicos. Para o cliente, não existe aplicativo a instalar nem cadastro a preencher.</p>
+      <p class="t-body-lg">A restrição que guiou o desenvolvimento foi o ambiente: sinal fraco dentro da loja, aparelhos simples e luz forte de corredor. Cada decisão técnica e visual responde a uma dessas condições.</p>
+    </div>
+  </section>
+
+  <!-- DOBRA 4 · O DESENVOLVIMENTO -->
+  <section class="dobra dobra--tight">
+    <hr class="dobra__regua" />
+    <div class="dobra__head">
+      <p class="t-overline">[ O desenvolvimento ]</p>
+      <h2 class="t-h2">Como o Brain foi desenvolvido.</h2>
+    </div>
+    <ol class="proj-etapas">
+      <li class="proj-etapa">
+        <h3 class="t-h3">Documento de projeto</h3>
+        <p class="t-body">O MVP foi descrito por completo antes do código: quem usa, como o preço chega do PDV e o que o cliente vê no celular.</p>
+      </li>
+      <li class="proj-etapa">
+        <h3 class="t-h3">Caminho rápido</h3>
+        <p class="t-body">A tela do terminal chega pronta do servidor em poucos kilobytes. A consulta troca cerca de cem bytes na ida e duzentos na volta, e o registro acontece depois da resposta.</p>
+      </li>
+      <li class="proj-etapa">
+        <h3 class="t-h3">Sem sinal</h3>
+        <p class="t-body">O catálogo da loja fica salvo no aparelho. O preço aparece na hora e o servidor só confirma. Sem conexão, o preço salvo é mostrado com aviso.</p>
+      </li>
+      <li class="proj-etapa">
+        <h3 class="t-h3">Publicação</h3>
+        <p class="t-body">Aplicação no ar, com painel para o supermercado e terminal para o cliente.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- DOBRA 5 · O QUE FOI ENTREGUE -->
+  <section class="dobra dobra--dark">
+    <div class="dobra__head">
+      <p class="t-overline">[ A solução ]</p>
+      <h2 class="t-h2">O que está operando.</h2>
+    </div>
+    <ul class="proj-lista">
+      <li>
+        <h3 class="t-overline">Terminal do cliente</h3>
+        <p class="t-body">Leitura de código de barras pela câmera, usando o leitor nativo do aparelho quando existe e uma alternativa leve onde ele falta.</p>
+      </li>
+      <li>
+        <h3 class="t-overline">Integração com o PDV</h3>
+        <p class="t-body">Entrada de preços em lote e por evento, com validação, proteção contra envio repetido e histórico de preço.</p>
+      </li>
+      <li>
+        <h3 class="t-overline">Painel do supermercado</h3>
+        <p class="t-body">Lojas, catálogo, integrações, análise de consultas, usuários e auditoria, com papéis diferentes para dono e gerente de loja.</p>
+      </li>
+      <li>
+        <h3 class="t-overline">Tema claro</h3>
+        <p class="t-body">O terminal é lido sob a luz da loja. Superfícies brancas e um único azul saturado, para o preço ser a coisa mais forte da tela.</p>
+      </li>
+      <li>
+        <h3 class="t-overline">Economia de dados</h3>
+        <p class="t-body">O catálogo não é baixado com economia de dados ligada nem em conexão 2G.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- DOBRA 6 · BASE TÉCNICA E PRÓXIMO -->
+  <section class="dobra">
+    <div class="proj-texto">
+      <p class="t-overline">[ Base técnica ]</p>
+      <p class="t-body-lg">Next.js, React, TypeScript e Tailwind, com Turso e Drizzle no banco e publicação na Vercel. O terminal é uma aplicação web instalável, com catálogo guardado no aparelho. Os componentes vêm do mesmo design system de Ciclos, Makers e Routes.</p>
+      <p><a class="inst-btn inst-btn--dark" href="https://www.zeibrain.com.br/" target="_blank" rel="noopener">Visitar o Brain</a></p>
+    </div>
+    <a class="proj-proximo" href="/trabalhos/auati">
+      <span class="t-overline">[ Próximo trabalho ]</span>
+      <span class="t-h1 t-h1--lg">Auati</span>
+    </a>
+  </section>
+  </main>
+
+  <!-- ASSINATURA E CONTATO -->
+  <section class="dobra dobra--contato" id="contato">
+    <hr class="dobra__regua" />
+    <div class="contato">
+      <h2 class="t-h1">Contate-nos</h2>
+      <div class="contato__campo-wrap" data-contato>
+        <div class="contato__campo">
+          <p class="contato__saudacao t-body-lg">Olá, bem-vindo à FIHAN</p>
+          <label class="contato__entrada t-body-lg">
+            <span aria-hidden="true">/</span>
+            <input type="text" placeholder="enviar mensagem" aria-label="Sua mensagem" autocomplete="off" />
+          </label>
+        </div>
+        <div class="tile-pair tile-pair--col">
+          <a class="tile tile--on-light" data-contato-whatsapp href="https://wa.me/5527997289739" target="_blank" rel="noopener" aria-label="Enviar pelo WhatsApp">
+            <img src="/images/institucional/icon-whatsapp.svg" alt="" />
+          </a>
+          <a class="tile tile--on-light" data-contato-email href="mailto:contato@fihan.com.br" aria-label="Enviar por e-mail">
+            <img src="/images/institucional/icon-mensagem.svg" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="assinatura">
+      <p class="assinatura__autor t-h3">– Fihan</p>
+      <p class="t-h2">Cada trabalho carrega a mesma disciplina: entender o problema e as pessoas antes de desenvolver, e entregar a solução operando sobre fundamento documentado.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="inst-footer">
+    <div class="inst-footer__top">
+      <div class="inst-footer__contato">
+        <a href="/" aria-label="Fihan — página inicial">
+          <img src="/images/institucional/logo-footer.svg" alt="Fihan" width="130" height="52" />
+        </a>
+        <div class="inst-footer__dados">
+          <a href="mailto:contato@fihan.com.br">contato@fihan.com.br</a>
+          <a href="https://wa.me/5527997289739" target="_blank" rel="noopener">+55 27 99728-9739</a>
+          <span>Espírito Santo, Brasil</span>
+        </div>
+        <div class="inst-footer__sociais">
+          <a class="inst-pill t-overline" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="inst-pill t-overline" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+          <a class="inst-pill t-overline" href="https://youtube.com" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+      <nav class="inst-footer__colunas" aria-label="Rodapé">
+        <div class="inst-footer__coluna">
+          <p class="t-overline">[ Fihan ]</p>
+          <ul>
+            <li><a href="/trabalhos">Trabalhos</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/contatos">Contatos</a></li>
+          </ul>
+        </div>
+        <div class="inst-footer__coluna">
+          <p class="t-overline">[ Protocolo ]</p>
+          <ul>
+            <li><a href="/eixo-negocio">Eixo de Negócio</a></li>
+            <li><a href="/fomento">Fomento</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="inst-footer__bottom">
+      <p class="inst-footer__copy">© 2026 FIHAN. Todos os direitos reservados.</p>
+      <div class="inst-selo">
+        <img src="/images/institucional/simbolo.svg" alt="" width="4" height="16" />
+        <span>Inteligência de Negócio, Marca e Desenvolvimento</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MENU E BUSCA -->
+  <dialog class="inst-menu" id="inst-menu" aria-label="Menu">
+    <div class="inst-menu__inner">
+      <div class="inst-menu__top">
+        <img src="/images/institucional/logo-navbar.svg" alt="Fihan" width="110" height="44" />
+        <button class="tile inst-menu__close" type="button" data-close-menu aria-label="Fechar menu">×</button>
+      </div>
+      <input class="inst-menu__search" type="search" placeholder="Buscar no site" aria-label="Buscar no site" />
+      <nav class="inst-menu__cols" aria-label="Principal">
+        <div class="inst-menu__col">
+          <p class="inst-menu__label t-overline">[ Fihan ]</p>
+          <ul class="inst-menu__list">
+            <li><a class="t-h3" href="/">Início</a></li>
+            <li><a class="t-h3" href="/trabalhos" data-keywords="cases projetos">Trabalhos</a></li>
+            <li><a class="t-h3" href="/sobre">Sobre</a></li>
+            <li><a class="t-h3" href="/contatos">Contatos</a></li>
+          </ul>
+        </div>
+        <div class="inst-menu__col">
+          <p class="inst-menu__label t-overline">[ Trabalhos ]</p>
+          <ul class="inst-menu__list">
+            <li><a class="t-h3" href="/trabalhos/routes" data-keywords="Transporte de passageiros">Routes</a></li>
+            <li><a class="t-h3" href="/trabalhos/makers" data-keywords="Filmmakers e fotógrafos freelancers">Makers</a></li>
+            <li><a class="t-h3" href="/trabalhos/ciclos-system" data-keywords="Lojas de moda, calçados e semijoias">Ciclos System</a></li>
+            <li><a class="t-h3" href="/trabalhos/brain" data-keywords="Supermercados">Brain</a></li>
+            <li><a class="t-h3" href="/trabalhos/auati" data-keywords="Permuta de serviços entre profissionais">Auati</a></li>
+            <li><a class="t-h3" href="/trabalhos/zei" data-keywords="Compras em supermercado">Zei</a></li>
+          </ul>
+        </div>
+        <div class="inst-menu__col">
+          <p class="inst-menu__label t-overline">[ Protocolo ]</p>
+          <ul class="inst-menu__list">
+            <li><a class="t-h3" href="/eixo-negocio" data-keywords="protocolo frentes ciclos calculadora">Eixo de Negócio</a></li>
+            <li><a class="t-h3" href="/vertices" data-keywords="protocolo decisao avancar pivotar encerrar">Os quatro Vértices</a></li>
+            <li><a class="t-h3" href="/eixo-marca" data-keywords="dna codex frameworks dimensoes">Eixo de Marca</a></li>
+            <li><a class="t-h3" href="/eixo-dev" data-keywords="desenvolvimento componentes fases solucao operando">Eixo Dev</a></li>
+            <li><a class="t-h3" href="/fomento" data-keywords="editais finep embrapii centelha tecnova fapesp">Fomento</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p class="inst-menu__empty">Nada encontrado.</p>
+    </div>
+  </dialog>
+
+  <script src="/js/institucional.js"></script>
+</body>
+</html>

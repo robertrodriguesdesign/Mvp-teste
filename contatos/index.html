@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contatos — Fihan</title>
+  <meta name="description" content="Traga o seu desafio para a FIHAN. Fale por e-mail ou WhatsApp, ou marque uma Reunião de Contexto." />
+  <link rel="canonical" href="https://www.fihan.com.br/contatos" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/svg+xml" href="/images/brand/favicon.svg" />
+  <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/institucional.css" />
+</head>
+<body class="inst">
+
+  <!-- DOBRA 1 · HERO -->
+  <div class="ct-hero">
+    <!-- NAVBAR -->
+    <header class="inst-nav">
+      <div class="inst-nav__panel">
+        <a class="inst-nav__logo" href="/" aria-label="Fihan — página inicial">
+          <img src="/images/institucional/logo-navbar.svg" alt="Fihan" width="110" height="44" />
+        </a>
+        <div class="inst-nav__actions">
+          <a class="inst-btn" href="/#contact">Comece Agora</a>
+          <div class="tile-pair">
+            <button class="tile" type="button" data-open-menu="busca" aria-label="Buscar">
+              <img src="/images/institucional/icon-buscar.svg" alt="" />
+            </button>
+            <button class="tile" type="button" data-open-menu="menu" aria-label="Abrir menu">
+              <img src="/images/institucional/icon-menu.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- BARRA DE AÇÃO (mobile) -->
+    <div class="inst-actionbar">
+      <div class="tile-pair">
+        <button class="tile tile--accent" type="button" data-open-menu="menu" aria-label="Abrir menu">
+          <img src="/images/institucional/icon-menu.svg" alt="" />
+        </button>
+        <button class="tile tile--accent" type="button" data-open-menu="busca" aria-label="Buscar">
+          <img src="/images/institucional/icon-buscar.svg" alt="" />
+        </button>
+      </div>
+      <a class="inst-btn" href="/#contact">Comece Agora</a>
+    </div>
+
+    <div class="ct-hero__content">
+      <h1 class="ct-hero__title t-display">Traga o seu desafio para nós.</h1>
+    </div>
+    <img class="ct-hero__photo" src="/images/brandbook/booth-wall.jpg" alt="" fetchpriority="high" />
+  </div>
+
+  <main>
+  <!-- DOBRA 2 · DIRETO -->
+  <section class="ct-dobra ct-dobra--direto">
+    <h2 class="t-overline t-overline--dim">[ Direto ]</h2>
+    <div class="ct-canais">
+      <a class="t-display-md" href="mailto:contato@fihan.com.br">contato@fihan.com.br</a>
+      <a class="ct-canais__whats t-h1 t-h1--lg" href="https://wa.me/5527997289739" target="_blank" rel="noopener">WhatsApp +55 27 99728-9739</a>
+    </div>
+  </section>
+
+  <div class="ct-regua"><hr /></div>
+
+  <!-- DOBRA 3 · REUNIÃO DE CONTEXTO -->
+  <section class="ct-dobra ct-dobra--reuniao ct-dobra--cinza" id="reuniao">
+    <h2 class="t-overline t-overline--dim">[ Reunião de Contexto ]</h2>
+
+    <details class="ct-nota" open>
+      <summary>
+        <span class="t-h3">Honestidade do próximo passo</span>
+        <img src="/images/institucional/icon-fechar.svg" alt="" />
+      </summary>
+      <p class="t-body">Uma conversa com a FIHAN começa sempre pelo contexto, não pela oferta. Queremos entender o que você já tem e o que está em jogo. Se o caminho fizer sentido, dizemos como seguimos. Se não fizer, dizemos também. É assim do mesmo lado da mesa que você.</p>
+    </details>
+
+    <form class="intake" id="intake" novalidate>
+      <div class="intake__passo" aria-live="polite">
+        <div class="intake__pontos" aria-hidden="true"><span class="is-on"></span><span></span><span></span></div>
+        <span class="t-tech" data-passo-label>passo 1/3</span>
+      </div>
+
+      <!-- Passo 1 · Contato -->
+      <div class="intake__panel is-active" data-step="1">
+        <div class="intake__campos">
+          <div class="intake__campo">
+            <label class="t-tech" for="ct-nome">Nome</label>
+            <input id="ct-nome" name="nome" type="text" autocomplete="name" />
+          </div>
+          <div class="intake__campo">
+            <label class="t-tech" for="ct-email">E-mail</label>
+            <input id="ct-email" name="email" type="email" autocomplete="email" />
+          </div>
+          <div class="intake__campo">
+            <label class="t-tech" for="ct-whatsapp">WhatsApp</label>
+            <input id="ct-whatsapp" name="whatsapp" type="tel" autocomplete="tel" />
+          </div>
+          <div class="intake__campo">
+            <label class="t-tech" for="ct-empresa">Empresa/Projeto</label>
+            <input id="ct-empresa" name="empresa" type="text" autocomplete="organization" />
+          </div>
+        </div>
+        <p class="intake__erro t-tech" data-erro="1" role="alert"></p>
+        <button class="intake__btn" type="button" data-avancar="1">Continuar <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+      </div>
+
+      <!-- Passo 2 · Qualificação -->
+      <div class="intake__panel" data-step="2">
+        <div class="intake__campos">
+          <fieldset class="intake__grupo">
+            <legend class="t-tech">Estágio</legend>
+            <div class="intake__chips" data-group="estagio">
+              <button class="intake__chip" type="button" aria-pressed="false">Ideação</button>
+              <button class="intake__chip" type="button" aria-pressed="false">Validação</button>
+              <button class="intake__chip" type="button" aria-pressed="false">MVP</button>
+              <button class="intake__chip" type="button" aria-pressed="false">Tração</button>
+              <button class="intake__chip" type="button" aria-pressed="false">Escala</button>
+            </div>
+          </fieldset>
+          <fieldset class="intake__grupo">
+            <legend class="t-tech">Eixos de interesse</legend>
+            <div class="intake__chips" data-group="eixos" data-multi>
+              <button class="intake__chip" type="button" aria-pressed="false">Negócio</button>
+              <button class="intake__chip" type="button" aria-pressed="false">Marca</button>
+              <button class="intake__chip" type="button" aria-pressed="false">Desenvolvimento</button>
+              <button class="intake__chip" type="button" aria-pressed="false">Todos</button>
+            </div>
+          </fieldset>
+          <div class="intake__campo">
+            <label class="t-tech" for="ct-investimento">Investimento</label>
+            <select id="ct-investimento" name="investimento">
+              <option value="">Selecione</option>
+              <option>R$ 10 mil – R$ 30 mil</option>
+              <option>R$ 30 mil – R$ 60 mil</option>
+              <option>Acima de R$ 60 mil</option>
+            </select>
+          </div>
+          <div class="intake__campo">
+            <label class="t-tech" for="ct-urgencia">Urgência</label>
+            <select id="ct-urgencia" name="urgencia">
+              <option value="">Selecione</option>
+              <option>Imediato (menos de 1 mês)</option>
+              <option>Curto prazo (1 a 3 meses)</option>
+              <option>Médio prazo (3 a 6 meses)</option>
+              <option>Sem prazo definido</option>
+            </select>
+          </div>
+          <p class="t-body">Estes campos são o ponto de partida da conversa, e não o seu orçamento. A primeira reunião começa pelo contexto, não pela oferta.</p>
+        </div>
+        <p class="intake__erro t-tech" data-erro="2" role="alert"></p>
+        <button class="intake__btn" type="button" data-avancar="2">Continuar <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+      </div>
+
+      <!-- Passo 3 · O desafio -->
+      <div class="intake__panel" data-step="3">
+        <div class="intake__campos">
+          <div class="intake__campo">
+            <label class="t-tech" for="ct-mensagem">O seu desafio</label>
+            <textarea id="ct-mensagem" name="mensagem" rows="5" placeholder="Fale um pouco sobre a sua ideia ou projeto"></textarea>
+          </div>
+        </div>
+        <p class="intake__erro t-tech" data-erro="3" role="alert"></p>
+        <button class="intake__btn" type="submit"><span data-btn-label>Enviar</span> <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+      </div>
+
+      <!-- Confirmação -->
+      <div class="intake__panel" data-step="4">
+        <div class="intake__ok" tabindex="-1">
+          <div class="intake__selo"><img src="/images/institucional/check-confirm.svg" alt="" /></div>
+          <p class="t-h2">Contexto recebido.</p>
+          <p class="t-body">A FIHAN responde pelo e-mail ou pelo WhatsApp que você informou para marcar a Reunião de Contexto.</p>
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <!-- DOBRA 4 · REDES SOCIAIS -->
+  <section class="ct-dobra ct-dobra--redes">
+    <h2 class="t-overline t-overline--dim">[ Redes sociais ]</h2>
+    <div class="ct-perfis">
+      <a class="ct-perfil t-overline" href="https://youtube.com" target="_blank" rel="noopener">YouTube</a>
+      <a class="ct-perfil t-overline" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="ct-perfil t-overline" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="inst-footer">
+    <div class="inst-footer__top">
+      <div class="inst-footer__contato">
+        <a href="/" aria-label="Fihan — página inicial">
+          <img src="/images/institucional/logo-footer.svg" alt="Fihan" width="130" height="52" />
+        </a>
+        <div class="inst-footer__dados">
+          <a href="mailto:contato@fihan.com.br">contato@fihan.com.br</a>
+          <a href="https://wa.me/5527997289739" target="_blank" rel="noopener">+55 27 99728-9739</a>
+          <span>Espírito Santo, Brasil</span>
+        </div>
+        <div class="inst-footer__sociais">
+          <a class="inst-pill t-overline" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="inst-pill t-overline" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+          <a class="inst-pill t-overline" href="https://youtube.com" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+      <nav class="inst-footer__colunas" aria-label="Rodapé">
+        <div class="inst-footer__coluna">
+          <p class="t-overline">[ Fihan ]</p>
+          <ul>
+            <li><a href="/trabalhos">Trabalhos</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/contatos">Contatos</a></li>
+          </ul>
+        </div>
+        <div class="inst-footer__coluna">
+          <p class="t-overline">[ Protocolo ]</p>
+          <ul>
+            <li><a href="/eixo-negocio">Eixo de Negócio</a></li>
+            <li><a href="/fomento">Fomento</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="inst-footer__bottom">
+      <p class="inst-footer__copy">© 2026 FIHAN. Todos os direitos reservados.</p>
+      <div class="inst-selo">
+        <img src="/images/institucional/simbolo.svg" alt="" width="4" height="16" />
+        <span>Inteligência de Negócio, Marca e Desenvolvimento</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MENU E BUSCA -->
+  <dialog class="inst-menu" id="inst-menu" aria-label="Menu">
+    <div class="inst-menu__inner">
+      <div class="inst-menu__top">
+        <img src="/images/institucional/logo-navbar.svg" alt="Fihan" width="110" height="44" />
+        <button class="tile inst-menu__close" type="button" data-close-menu aria-label="Fechar menu">×</button>
+      </div>
+      <input class="inst-menu__search" type="search" placeholder="Buscar no site" aria-label="Buscar no site" />
+      <nav class="inst-menu__cols" aria-label="Principal">
+        <div class="inst-menu__col">
+          <p class="inst-menu__label t-overline">[ Fihan ]</p>
+          <ul class="inst-menu__list">
+            <li><a class="t-h3" href="/">Início</a></li>
+            <li><a class="t-h3" href="/trabalhos" data-keywords="cases projetos">Trabalhos</a></li>
+            <li><a class="t-h3" href="/sobre">Sobre</a></li>
+            <li><a class="t-h3" href="/contatos">Contatos</a></li>
+          </ul>
+        </div>
+        <div class="inst-menu__col">
+          <p class="inst-menu__label t-overline">[ Trabalhos ]</p>
+          <ul class="inst-menu__list">
+            <li><a class="t-h3" href="/trabalhos/routes" data-keywords="Transporte de passageiros">Routes</a></li>
+            <li><a class="t-h3" href="/trabalhos/makers" data-keywords="Filmmakers e fotógrafos freelancers">Makers</a></li>
+            <li><a class="t-h3" href="/trabalhos/ciclos-system" data-keywords="Lojas de moda, calçados e semijoias">Ciclos System</a></li>
+            <li><a class="t-h3" href="/trabalhos/brain" data-keywords="Supermercados">Brain</a></li>
+            <li><a class="t-h3" href="/trabalhos/auati" data-keywords="Permuta de serviços entre profissionais">Auati</a></li>
+            <li><a class="t-h3" href="/trabalhos/zei" data-keywords="Compras em supermercado">Zei</a></li>
+          </ul>
+        </div>
+        <div class="inst-menu__col">
+          <p class="inst-menu__label t-overline">[ Protocolo ]</p>
+          <ul class="inst-menu__list">
+            <li><a class="t-h3" href="/eixo-negocio" data-keywords="protocolo frentes ciclos calculadora">Eixo de Negócio</a></li>
+            <li><a class="t-h3" href="/vertices" data-keywords="protocolo decisao avancar pivotar encerrar">Os quatro Vértices</a></li>
+            <li><a class="t-h3" href="/eixo-marca" data-keywords="dna codex frameworks dimensoes">Eixo de Marca</a></li>
+            <li><a class="t-h3" href="/eixo-dev" data-keywords="desenvolvimento componentes fases solucao operando">Eixo Dev</a></li>
+            <li><a class="t-h3" href="/fomento" data-keywords="editais finep embrapii centelha tecnova fapesp">Fomento</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p class="inst-menu__empty">Nada encontrado.</p>
+    </div>
+  </dialog>
+
+  <script src="/js/institucional.js"></script>
+  <script src="/js/contatos.js"></script>
+</body>
+</html>

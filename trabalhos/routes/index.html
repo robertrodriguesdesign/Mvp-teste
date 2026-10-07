@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Routes — Trabalhos — Fihan</title>
+  <meta name="description" content="Como a FIHAN desenvolveu o Routes, marketplace de transfer, transporte escolar e passeios com Central do Motorista." />
+  <link rel="canonical" href="https://www.fihan.com.br/trabalhos/routes" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/svg+xml" href="/images/brand/favicon.svg" />
+  <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/institucional.css" />
+</head>
+<body class="inst">
+
+  <!-- DOBRA 1 · HERO -->
+  <div class="inst-hero inst-hero--short">
+    <!-- NAVBAR -->
+    <header class="inst-nav">
+      <div class="inst-nav__panel">
+        <a class="inst-nav__logo" href="/" aria-label="Fihan — página inicial">
+          <img src="/images/institucional/logo-navbar.svg" alt="Fihan" width="110" height="44" />
+        </a>
+        <div class="inst-nav__actions">
+          <a class="inst-btn" href="/#contact">Comece Agora</a>
+          <div class="tile-pair">
+            <button class="tile" type="button" data-open-menu="busca" aria-label="Buscar">
+              <img src="/images/institucional/icon-buscar.svg" alt="" />
+            </button>
+            <button class="tile" type="button" data-open-menu="menu" aria-label="Abrir menu">
+              <img src="/images/institucional/icon-menu.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- BARRA DE AÇÃO (mobile) -->
+    <div class="inst-actionbar">
+      <div class="tile-pair">
+        <button class="tile tile--accent" type="button" data-open-menu="menu" aria-label="Abrir menu">
+          <img src="/images/institucional/icon-menu.svg" alt="" />
+        </button>
+        <button class="tile tile--accent" type="button" data-open-menu="busca" aria-label="Buscar">
+          <img src="/images/institucional/icon-buscar.svg" alt="" />
+        </button>
+      </div>
+      <a class="inst-btn" href="/#contact">Comece Agora</a>
+    </div>
+
+    <div class="inst-hero__content">
+      <p class="t-overline"><a href="/trabalhos">[ Trabalhos ]</a></p>
+      <h1 class="inst-hero__title inst-hero__title--wide t-display">Routes</h1>
+      <p class="inst-hero__lede t-body-lg">Marketplace que reúne transfer, transporte escolar por assinatura e passeios, com uma Central para o motorista operar frota, rotas e preços.</p>
+    </div>
+  </div>
+
+  <main>
+  <!-- DOBRA 2 · FICHA -->
+  <section class="dobra" aria-label="Ficha do projeto">
+    <dl class="proj-ficha">
+      <div><dt class="t-overline">Segmento</dt><dd class="t-body">Transporte de passageiros</dd></div>
+      <div><dt class="t-overline">Formato</dt><dd class="t-body">Marketplace e Central do Motorista</dd></div>
+      <div><dt class="t-overline">Modalidades</dt><dd class="t-body">Transfer, Escolar e Passeios</dd></div>
+      <div><dt class="t-overline">Publicado em</dt><dd class="t-body"><a href="https://routes.app.br/" target="_blank" rel="noopener">routes.app.br</a></dd></div>
+    </dl>
+    <figure class="proj-capa">
+      <img src="/images/trabalhos/routes-capa.jpg" width="1184" height="864" alt="Routes em um smartphone" />
+    </figure>
+  </section>
+
+  <!-- DOBRA 3 · O PROBLEMA -->
+  <section class="dobra dobra--tight">
+    <hr class="dobra__regua" />
+    <div class="dobra__head">
+      <p class="t-overline">[ O problema ]</p>
+      <h2 class="t-h1 t-h1--lg">Contratar transporte ainda dependia de negociação manual, e o motorista não tinha onde operar o próprio negócio.</h2>
+    </div>
+    <div class="proj-texto">
+      <p class="t-body-lg">O Routes nasceu para digitalizar a descoberta e a contratação de transporte e dar autonomia comercial ao motorista. De um lado, o cliente pesquisa, compara e contrata. Do outro, o motorista gerencia frota, escolas atendidas, passeios, preços e solicitações em uma Central própria.</p>
+      <p class="t-body-lg">Antes de qualquer tela, o projeto ganhou um documento mestre que alinha produto, fluxos, arquitetura, banco de dados, integrações e plano de implementação. É esse blueprint que o código segue.</p>
+    </div>
+  </section>
+
+  <!-- DOBRA 4 · O DESENVOLVIMENTO -->
+  <section class="dobra dobra--tight">
+    <hr class="dobra__regua" />
+    <div class="dobra__head">
+      <p class="t-overline">[ O desenvolvimento ]</p>
+      <h2 class="t-h2">Como o Routes foi desenvolvido.</h2>
+    </div>
+    <ol class="proj-etapas">
+      <li class="proj-etapa">
+        <h3 class="t-h3">Blueprint</h3>
+        <p class="t-body">Requisitos de produto, fluxos do app, requisitos técnicos, modelo de dados e plano de implementação reunidos em um único documento, versionado a cada decisão.</p>
+      </li>
+      <li class="proj-etapa">
+        <h3 class="t-h3">Decisões de produto</h3>
+        <p class="t-body">O frete saiu como produto, porque o transfer já atende o caso de uso. A rota escolar deixou de ter origem: o motorista cadastra as escolas atendidas e o cliente busca pela escola.</p>
+      </li>
+      <li class="proj-etapa">
+        <h3 class="t-h3">Backend</h3>
+        <p class="t-body">Monólito modular com um módulo por domínio. Nenhuma regra crítica, seja preço, estado ou capacidade, depende do frontend: tudo é validado, calculado e registrado no servidor.</p>
+      </li>
+      <li class="proj-etapa">
+        <h3 class="t-h3">Frontend</h3>
+        <p class="t-body">Telas construídas a partir do handoff de design: cadastro, login, recuperação de senha, onboarding de endereço, explorar, busca guiada e filtros.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- DOBRA 5 · O QUE FOI ENTREGUE -->
+  <section class="dobra dobra--dark">
+    <div class="dobra__head">
+      <p class="t-overline">[ A solução ]</p>
+      <h2 class="t-h2">O que está operando.</h2>
+    </div>
+    <ul class="proj-lista">
+      <li>
+        <h3 class="t-overline">Transfer</h3>
+        <p class="t-body">O cliente informa origem, destino, data, horário e passageiros. O sistema calcula a distância por roteamento e aplica o valor por pessoa e por quilômetro definidos pelo motorista.</p>
+      </li>
+      <li>
+        <h3 class="t-overline">Escolar</h3>
+        <p class="t-body">O motorista cria a rota com escolas atendidas, dias, horários, veículo, vagas e mensalidade. A contratação gera uma assinatura recorrente.</p>
+      </li>
+      <li>
+        <h3 class="t-overline">Passeios</h3>
+        <p class="t-body">Passeios com destino, data, preço por vaga e imagens, com controle de vagas feito em transação para não vender o mesmo assento duas vezes.</p>
+      </li>
+      <li>
+        <h3 class="t-overline">Central do Motorista</h3>
+        <p class="t-body">Veículos e documentos, rotas e assinaturas, passeios, preços do transfer, agenda, financeiro e avaliações.</p>
+      </li>
+      <li>
+        <h3 class="t-overline">Contratação</h3>
+        <p class="t-body">Cada reserva guarda o retrato do preço e da rota no momento da compra e percorre estados definidos, da solicitação à conclusão.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- DOBRA 6 · BASE TÉCNICA E PRÓXIMO -->
+  <section class="dobra">
+    <div class="proj-texto">
+      <p class="t-overline">[ Base técnica ]</p>
+      <p class="t-body-lg">Next.js, React, TypeScript e Tailwind no frontend. Fastify, Prisma e PostgreSQL com PostGIS no backend, com Redis e BullMQ para filas e Stripe para pagamentos, repasses e assinaturas. A arquitetura começa como monólito modular: extrair serviços só quando houver necessidade comprovada.</p>
+      <p><a class="inst-btn inst-btn--dark" href="https://routes.app.br/" target="_blank" rel="noopener">Visitar o Routes</a></p>
+    </div>
+    <a class="proj-proximo" href="/trabalhos/makers">
+      <span class="t-overline">[ Próximo trabalho ]</span>
+      <span class="t-h1 t-h1--lg">Makers</span>
+    </a>
+  </section>
+  </main>
+
+  <!-- ASSINATURA E CONTATO -->
+  <section class="dobra dobra--contato" id="contato">
+    <hr class="dobra__regua" />
+    <div class="contato">
+      <h2 class="t-h1">Contate-nos</h2>
+      <div class="contato__campo-wrap" data-contato>
+        <div class="contato__campo">
+          <p class="contato__saudacao t-body-lg">Olá, bem-vindo à FIHAN</p>
+          <label class="contato__entrada t-body-lg">
+            <span aria-hidden="true">/</span>
+            <input type="text" placeholder="enviar mensagem" aria-label="Sua mensagem" autocomplete="off" />
+          </label>
+        </div>
+        <div class="tile-pair tile-pair--col">
+          <a class="tile tile--on-light" data-contato-whatsapp href="https://wa.me/5527997289739" target="_blank" rel="noopener" aria-label="Enviar pelo WhatsApp">
+            <img src="/images/institucional/icon-whatsapp.svg" alt="" />
+          </a>
+          <a class="tile tile--on-light" data-contato-email href="mailto:contato@fihan.com.br" aria-label="Enviar por e-mail">
+            <img src="/images/institucional/icon-mensagem.svg" alt="" />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="assinatura">
+      <p class="assinatura__autor t-h3">– Fihan</p>
+      <p class="t-h2">Cada trabalho carrega a mesma disciplina: entender o problema e as pessoas antes de desenvolver, e entregar a solução operando sobre fundamento documentado.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="inst-footer">
+    <div class="inst-footer__top">
+      <div class="inst-footer__contato">
+        <a href="/" aria-label="Fihan — página inicial">
+          <img src="/images/institucional/logo-footer.svg" alt="Fihan" width="130" height="52" />
+        </a>
+        <div class="inst-footer__dados">
+          <a href="mailto:contato@fihan.com.br">contato@fihan.com.br</a>
+          <a href="https://wa.me/5527997289739" target="_blank" rel="noopener">+55 27 99728-9739</a>
+          <span>Espírito Santo, Brasil</span>
+        </div>
+        <div class="inst-footer__sociais">
+          <a class="inst-pill t-overline" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="inst-pill t-overline" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+          <a class="inst-pill t-overline" href="https://youtube.com" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+      <nav class="inst-footer__colunas" aria-label="Rodapé">
+        <div class="inst-footer__coluna">
+          <p class="t-overline">[ Fihan ]</p>
+          <ul>
+            <li><a href="/trabalhos">Trabalhos</a></li>
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/contatos">Contatos</a></li>
+          </ul>
+        </div>
+        <div class="inst-footer__coluna">
+          <p class="t-overline">[ Protocolo ]</p>
+          <ul>
+            <li><a href="/eixo-negocio">Eixo de Negócio</a></li>
+            <li><a href="/fomento">Fomento</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="inst-footer__bottom">
+      <p class="inst-footer__copy">© 2026 FIHAN. Todos os direitos reservados.</p>
+      <div class="inst-selo">
+        <img src="/images/institucional/simbolo.svg" alt="" width="4" height="16" />
+        <span>Inteligência de Negócio, Marca e Desenvolvimento</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MENU E BUSCA -->
+  <dialog class="inst-menu" id="inst-menu" aria-label="Menu">
+    <div class="inst-menu__inner">
+      <div class="inst-menu__top">
+        <img src="/images/institucional/logo-navbar.svg" alt="Fihan" width="110" height="44" />
+        <button class="tile inst-menu__close" type="button" data-close-menu aria-label="Fechar menu">×</button>
+      </div>
+      <input class="inst-menu__search" type="search" placeholder="Buscar no site" aria-label="Buscar no site" />
+      <nav class="inst-menu__cols" aria-label="Principal">
+        <div class="inst-menu__col">
+          <p class="inst-menu__label t-overline">[ Fihan ]</p>
+          <ul class="inst-menu__list">
+            <li><a class="t-h3" href="/">Início</a></li>
+            <li><a class="t-h3" href="/trabalhos" data-keywords="cases projetos">Trabalhos</a></li>
+            <li><a class="t-h3" href="/sobre">Sobre</a></li>
+            <li><a class="t-h3" href="/contatos">Contatos</a></li>
+          </ul>
+        </div>
+        <div class="inst-menu__col">
+          <p class="inst-menu__label t-overline">[ Trabalhos ]</p>
+          <ul class="inst-menu__list">
+            <li><a class="t-h3" href="/trabalhos/routes" data-keywords="Transporte de passageiros">Routes</a></li>
+            <li><a class="t-h3" href="/trabalhos/makers" data-keywords="Filmmakers e fotógrafos freelancers">Makers</a></li>
+            <li><a class="t-h3" href="/trabalhos/ciclos-system" data-keywords="Lojas de moda, calçados e semijoias">Ciclos System</a></li>
+            <li><a class="t-h3" href="/trabalhos/brain" data-keywords="Supermercados">Brain</a></li>
+            <li><a class="t-h3" href="/trabalhos/auati" data-keywords="Permuta de serviços entre profissionais">Auati</a></li>
+            <li><a class="t-h3" href="/trabalhos/zei" data-keywords="Compras em supermercado">Zei</a></li>
+          </ul>
+        </div>
+        <div class="inst-menu__col">
+          <p class="inst-menu__label t-overline">[ Protocolo ]</p>
+          <ul class="inst-menu__list">
+            <li><a class="t-h3" href="/eixo-negocio" data-keywords="protocolo frentes ciclos calculadora">Eixo de Negócio</a></li>
+            <li><a class="t-h3" href="/vertices" data-keywords="protocolo decisao avancar pivotar encerrar">Os quatro Vértices</a></li>
+            <li><a class="t-h3" href="/eixo-marca" data-keywords="dna codex frameworks dimensoes">Eixo de Marca</a></li>
+            <li><a class="t-h3" href="/eixo-dev" data-keywords="desenvolvimento componentes fases solucao operando">Eixo Dev</a></li>
+            <li><a class="t-h3" href="/fomento" data-keywords="editais finep embrapii centelha tecnova fapesp">Fomento</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p class="inst-menu__empty">Nada encontrado.</p>
+    </div>
+  </dialog>
+
+  <script src="/js/institucional.js"></script>
+</body>
+</html>
