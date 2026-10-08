@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Fihan OS · Dashboard</title>
+  <title>Fihan OS · Usuários</title>
   <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" type="image/svg+xml" href="/images/brand/favicon.svg" />
   <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png" />
@@ -24,7 +24,7 @@
       <nav class="admin-nav">
         <div class="admin-nav__group">
           <p class="admin-nav__eyebrow">[ Principal ]</p>
-          <a class="admin-nav__item is-active" href="/admin">
+          <a class="admin-nav__item" href="/admin">
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 9L10 3l7 6M5 8v8h4v-5h2v5h4V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Dashboard
           </a>
@@ -36,7 +36,7 @@
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 2.5h7l3.5 3.5v11.5H5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 10h5M8 13.5h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             Conteúdos
           </a>
-          <a class="admin-nav__item" href="/admin/usuarios">
+          <a class="admin-nav__item is-active" href="/admin/usuarios">
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><path d="M7 9V6.5a3 3 0 0 1 6 0V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
             Usuários
           </a>
@@ -61,55 +61,56 @@
       </button>
 
       <p class="admin-breadcrumb">
-        <a href="/admin">Fihan OS</a> / <span class="admin-breadcrumb__current">Dashboard</span>
+        <a href="/admin">Fihan OS</a> / <span class="admin-breadcrumb__current">Usuários</span>
       </p>
 
       <div class="admin-header">
         <div>
-          <h1 class="admin-header__title">Dashboard</h1>
-          <p class="admin-header__desc">Visão geral dos leads recebidos pelo site.</p>
+          <h1 class="admin-header__title">Usuários</h1>
+          <p class="admin-header__desc">Quem pode entrar no painel. Cada pessoa usa o próprio e-mail e senha.</p>
         </div>
       </div>
 
-      <div class="admin-stats">
-        <div class="admin-stat">
-          <p class="admin-stat__label">Leads no período</p>
-          <p class="admin-stat__value" data-stat="total">0</p>
-          <p class="admin-stat__hint">Total de leads recebidos</p>
-        </div>
-        <div class="admin-stat">
-          <p class="admin-stat__label">Dia com mais leads</p>
-          <p class="admin-stat__value" data-stat="peak-day">—</p>
-          <p class="admin-stat__hint">Pico de recebimento</p>
-        </div>
-        <div class="admin-stat">
-          <p class="admin-stat__label">Média por dia</p>
-          <p class="admin-stat__value" data-stat="avg">0</p>
-          <p class="admin-stat__hint">Média no período filtrado</p>
+      <div class="admin-table admin-table--usuarios">
+        <div class="admin-table__scroll">
+          <div class="admin-table__head">
+            <span>Nome</span>
+            <span>E-mail</span>
+            <span>Criado em</span>
+            <span></span>
+          </div>
+          <div data-usuarios>
+            <p class="admin-empty" data-empty>Carregando…</p>
+          </div>
         </div>
       </div>
 
-      <div class="admin-filterbar">
-        <div class="admin-filter__mode" role="radiogroup" aria-label="Tipo de filtro">
-          <label class="admin-pill"><input type="radio" name="filter-mode" value="dia" checked /><span>Dia</span></label>
-          <label class="admin-pill"><input type="radio" name="filter-mode" value="periodo" /><span>Período</span></label>
-        </div>
-        <input type="date" class="admin-date" data-field="date" aria-label="Dia" />
-        <input type="date" class="admin-date" data-field="from" aria-label="De" hidden />
-        <span class="admin-filter__sep" hidden>até</span>
-        <input type="date" class="admin-date" data-field="to" aria-label="Até" hidden />
-        <button class="admin-btn" type="button" data-action="apply-filter">Filtrar</button>
-        <button class="admin-btn admin-btn--ghost" type="button" data-action="clear-filter">Limpar</button>
-      </div>
-
-      <div class="admin-card">
-        <p class="admin-card__label">Leads por dia</p>
-        <div class="admin-chart" data-chart></div>
-      </div>
+      <form class="admin-form admin-form--usuario" data-form-usuario novalidate>
+        <fieldset class="admin-form__grupo">
+          <legend>[ Novo usuário ]</legend>
+          <label class="admin-field">
+            <span>Nome</span>
+            <input type="text" name="nome" maxlength="120" autocomplete="off" />
+          </label>
+          <label class="admin-field">
+            <span>E-mail</span>
+            <input type="email" name="email" maxlength="200" autocomplete="off" />
+          </label>
+          <label class="admin-field">
+            <span>Senha</span>
+            <input type="password" name="senha" maxlength="200" autocomplete="new-password" />
+            <small>Pelo menos 8 caracteres. A pessoa pode pedir a troca depois, por aqui.</small>
+          </label>
+          <p class="admin-form__msg" data-msg role="status" aria-live="polite"></p>
+          <div class="admin-form__acoes">
+            <button class="admin-btn admin-btn--primary" type="submit">Criar usuário</button>
+          </div>
+        </fieldset>
+      </form>
     </main>
   </div>
 
   <script src="../js/admin-shell.js" defer></script>
-  <script src="../js/admin-dashboard.js" defer></script>
+  <script src="../js/admin-usuarios.js" defer></script>
 </body>
 </html>

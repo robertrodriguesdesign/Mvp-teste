@@ -54,6 +54,19 @@ function ensureSchema() {
         bytes BLOB NOT NULL,
         created_at TEXT NOT NULL DEFAULT (datetime('now'))
       )`,
+      // quem entra no admin; a senha fica só como hash (api/_senha.js)
+      `CREATE TABLE IF NOT EXISTS usuarios (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        email TEXT NOT NULL UNIQUE,
+        senha_hash TEXT NOT NULL,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      )`,
+      // tentativas de login erradas, para travar quem fica chutando senha
+      `CREATE TABLE IF NOT EXISTS login_falhas (
+        chave TEXT NOT NULL,
+        quando TEXT NOT NULL DEFAULT (datetime('now'))
+      )`,
     ], 'write').catch((err) => {
       // não deixa uma falha passageira presa no cache da instância
       ready = undefined;
