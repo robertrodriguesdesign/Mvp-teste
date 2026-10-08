@@ -22,3 +22,4 @@ Disallow: /admin
 Disallow: /api/
 
 Sitemap: https://fihan.com.br/sitemap.xml
+Sitemap: https://fihan.com.br/sitemap-conteudos.xml

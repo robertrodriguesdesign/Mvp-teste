@@ -1286,3 +1286,11 @@ summary.ex-frente__cab:focus-visible { outline: 2px solid var(--fh-green-500); o
 .intake__campo select:focus, .intake__campo textarea:focus { border-bottom: 2px solid var(--fh-black-900); }
 .intake__ok:focus { outline: none; }
 .pc-ficha__ok[hidden] { display: none; }
+
+/* ============ BLOG (corpo do artigo) ============ */
+.post-corpo h2, .post-corpo h3 { margin-top: 16px; }
+.post-corpo a { text-decoration: underline; text-underline-offset: 4px; }
+.post-corpo ul, .post-corpo ol { display: grid; gap: 8px; padding-left: 24px; }
+.post-corpo ul { list-style: disc; }
+.post-corpo ol { list-style: decimal; }
+.post-corpo blockquote { margin: 0; padding-left: 24px; border-left: 2px solid var(--fh-black-900); }

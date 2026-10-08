@@ -3,7 +3,7 @@
   'use strict';
 
   var WHATSAPP = '5527997289739';
-  var EMAIL = 'contato@fihan.com.br';
+  var EMAIL = 'wellington@fihan.com.br';
 
   /* ───── Menu e busca ───── */
   var menu = document.getElementById('inst-menu');

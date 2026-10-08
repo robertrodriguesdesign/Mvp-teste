@@ -6,6 +6,26 @@
     {
       "source": "/call/:room",
       "destination": "/call/index"
+    },
+    {
+      "source": "/trabalhos/:slug",
+      "destination": "/api/site?pagina=projeto&slug=:slug"
+    },
+    {
+      "source": "/blog",
+      "destination": "/api/site?pagina=blog"
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/api/site?pagina=post&slug=:slug"
+    },
+    {
+      "source": "/midia/:arquivo",
+      "destination": "/api/site?midia=:arquivo"
+    },
+    {
+      "source": "/sitemap-conteudos.xml",
+      "destination": "/api/site?sitemap=1"
     }
   ],
   "headers": [

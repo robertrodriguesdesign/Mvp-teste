@@ -1,5 +1,5 @@
 export const config = {
-  matcher: ['/admin', '/admin/:path*', '/api/leads', '/api/leads/:path*'],
+  matcher: ['/admin', '/admin/:path*', '/api/leads', '/api/leads/:path*', '/api/cms', '/api/cms/:path*'],
 };
 
 const COOKIE_NAME = 'fihan_os_session';

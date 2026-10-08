@@ -1,20 +1,17 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Página não encontrada | FIHAN</title>
-  <meta name="robots" content="noindex" />
-  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+// moldura compartilhada das páginas geradas pelo admin (projetos e blog):
+// navbar, contato, rodapé e menu iguais aos das páginas estáticas de
+// /trabalhos — ao mudar o menu ou o rodapé do site, atualize aqui também
+const HEAD_LINKS = `  <link rel="icon" href="/favicon.ico" sizes="32x32" />
   <link rel="icon" type="image/svg+xml" href="/images/brand/favicon.svg" />
   <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png" />
   <link rel="stylesheet" href="/css/fonts.css" />
   <link rel="stylesheet" href="/css/institucional.css" />
-</head>
-<body class="inst">
+`;
 
-  <!-- HERO -->
-  <div class="inst-hero inst-hero--short ex-hero">
+const TOPO = `<body class="inst">
+
+  <!-- DOBRA 1 · HERO -->
+  <div class="inst-hero inst-hero--short">
     <!-- NAVBAR -->
     <header class="inst-nav">
       <div class="inst-nav__panel">
@@ -48,25 +45,36 @@
       <a class="inst-btn" href="/#contact">Comece Agora</a>
     </div>
 
-    <div class="inst-hero__content">
-      <p class="t-overline">[ 404 ]</p>
-      <h1 class="inst-hero__title inst-hero__title--wide t-display-md">Esta página não existe.</h1>
-    </div>
-  </div>
+`;
 
-  <main>
-  <section class="ex-devolve">
-    <div class="ex-devolve__corpo">
-      <p class="t-tech">404</p>
-      <p class="t-h2">O endereço pode ter mudado ou nunca ter existido. Estes caminhos levam a algum lugar.</p>
-      <div class="ex-devolve__acoes">
-        <a class="sb-link" href="/">Ir para o início <img src="/images/institucional/arrow-right.svg" alt="" /></a>
-        <a class="sb-link" href="/trabalhos">Ver os trabalhos <img src="/images/institucional/arrow-right.svg" alt="" /></a>
-        <a class="sb-link" href="/contatos">Falar com a FIHAN <img src="/images/institucional/arrow-right.svg" alt="" /></a>
+const RODAPE = `  <!-- ASSINATURA E CONTATO -->
+  <section class="dobra dobra--contato" id="contato">
+    <hr class="dobra__regua" />
+    <div class="contato">
+      <h2 class="t-h1">Contate-nos</h2>
+      <div class="contato__campo-wrap" data-contato>
+        <div class="contato__campo">
+          <p class="contato__saudacao t-body-lg">Olá, bem-vindo à FIHAN</p>
+          <label class="contato__entrada t-body-lg">
+            <span aria-hidden="true">/</span>
+            <input type="text" placeholder="enviar mensagem" aria-label="Sua mensagem" autocomplete="off" />
+          </label>
+        </div>
+        <div class="tile-pair tile-pair--col">
+          <a class="tile tile--on-light" data-contato-whatsapp href="https://wa.me/5527997289739" target="_blank" rel="noopener" aria-label="Enviar pelo WhatsApp">
+            <img src="/images/institucional/icon-whatsapp.svg" alt="" />
+          </a>
+          <a class="tile tile--on-light" data-contato-email href="mailto:wellington@fihan.com.br" aria-label="Enviar por e-mail">
+            <img src="/images/institucional/icon-mensagem.svg" alt="" />
+          </a>
+        </div>
       </div>
     </div>
+    <div class="assinatura">
+      <p class="assinatura__autor t-h3">– Fihan</p>
+      <p class="t-h2">Cada trabalho carrega a mesma disciplina: entender o problema e as pessoas antes de desenvolver, e entregar a solução operando sobre fundamento documentado.</p>
+    </div>
   </section>
-  </main>
 
   <!-- FOOTER -->
   <footer class="inst-footer">
@@ -160,3 +168,6 @@
   <script src="/js/institucional.js"></script>
 </body>
 </html>
+`;
+
+module.exports = { HEAD_LINKS, TOPO, RODAPE };
