@@ -324,6 +324,8 @@ document.querySelectorAll('[data-carousel-track]').forEach(initCarousel);
   // insere sempre relativo à 1ª célula real (estável), senão a ordem inverte
   before.forEach((el) => { el.setAttribute('aria-hidden', 'true'); track.insertBefore(el, realCells[0]); });
   after.forEach((el) => { el.setAttribute('aria-hidden', 'true'); track.appendChild(el); });
+  // os links dos clones saem da ordem de tabulação (o card real já tem o seu)
+  before.concat(after).forEach((el) => el.querySelectorAll('a').forEach((a) => { a.tabIndex = -1; }));
 
   const cells = Array.from(track.children); // [..before, ...real, ...after]
   let center = PAD; // posição (no array `cells`) do card real ativo
@@ -425,15 +427,16 @@ document.querySelectorAll('[data-carousel-track]').forEach(initCarousel);
     }
   });
 
+  // as pills são links: o clique navega, e o foco pelo teclado traz o card da pill
   pills.forEach((pill, i) => {
-    pill.addEventListener('click', () => activate(i));
+    pill.addEventListener('focus', () => activate(i));
   });
 
   wrap.addEventListener('mouseenter', stopAuto);
   wrap.addEventListener('mouseleave', () => activate(realIndex()));
   window.addEventListener('resize', () => render(false));
 
-  activate(1, { init: true }); // "Eixo de Negócio" começa selecionado
+  activate(0, { init: true }); // "Eixo de Negócio" começa selecionado
 })();
 
 // ---- "O que a evidência mostra": barras crescendo + números contando ----

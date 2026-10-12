@@ -101,13 +101,16 @@ const RODAPE = `  <!-- ASSINATURA E CONTATO -->
             <li><a href="/trabalhos">Trabalhos</a></li>
             <li><a href="/sobre">Sobre</a></li>
             <li><a href="/contatos">Contatos</a></li>
+            <li><a href="/fomento">Fomento</a></li>
           </ul>
         </div>
         <div class="inst-footer__coluna">
           <p class="t-overline">[ Protocolo ]</p>
           <ul>
             <li><a href="/eixo-negocio">Eixo de Negócio</a></li>
-            <li><a href="/fomento">Fomento</a></li>
+            <li><a href="/eixo-marca">Eixo de Marca</a></li>
+            <li><a href="/eixo-dev">Eixo Dev</a></li>
+            <li><a href="/vertices">Os quatro Vértices</a></li>
           </ul>
         </div>
       </nav>

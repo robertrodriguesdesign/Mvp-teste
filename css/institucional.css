@@ -884,6 +884,8 @@ summary.ex-frente__cab:focus-visible { outline: 2px solid var(--fh-green-500); o
   border-bottom: 1px solid var(--fh-gray-100);
   font-variant-numeric: tabular-nums;
 }
+/* estado vazio: uma régua no lugar do número, sem caractere de texto */
+.ex-resultado__num:empty::before { content: ""; width: 48px; height: 2px; background: currentColor; }
 .ex-resultado__corpo { display: flex; flex-direction: column; gap: 8px; padding: 24px; }
 @media (min-width: 768px) {
   .ex-campos { grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -1025,6 +1027,8 @@ summary.ex-frente__cab:focus-visible { outline: 2px solid var(--fh-green-500); o
 .tema-marca .ex-frente__ciclo,
 .tema-marca .ex-ativo__nome .t-tech,
 .tema-marca .ex-fecho__descritor { color: var(--fh-gray-300); }
+/* Selo de fechamento solto: último elemento da página, logo antes do rodapé */
+.pg-selo { padding: 0 var(--inst-pad-x) var(--inst-pad-y); text-align: center; }
 .tema-marca .ex-frente__cab .tile { border-color: var(--fh-gray-500); }
 .tema-marca .ex-frente__cab .tile img { filter: invert(1); }
 .tema-marca .sb-link { color: var(--mk-acento); }
@@ -1265,6 +1269,24 @@ summary.ex-frente__cab:focus-visible { outline: 2px solid var(--fh-green-500); o
 .sb-eixo h3 a:hover { text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 1px; }
 @media (min-width: 1200px) {
   .ex-ativo--acao { grid-template-columns: minmax(0, 470px) minmax(0, 440px) auto; justify-content: space-between; }
+  /* nos Vértices só o último card tem convite: colunas fixas mantêm os quatro alinhados */
+  #vertices .ex-ativo--acao { grid-template-columns: 470px 440px 1fr; justify-content: start; }
+}
+
+/* Régua de pagamento por Vértice */
+.vt-regua {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--fh-gray-100);
+}
+.vt-regua li { display: flex; flex-direction: column; gap: 8px; padding: 32px 0; border-top: 1px solid var(--fh-gray-100); }
+.vt-regua .t-tech, .vt-regua .t-body-df { color: var(--fh-gray-800); }
+@media (min-width: 768px) {
+  .vt-regua { grid-template-columns: repeat(4, 1fr); }
+  .vt-regua li { padding: 48px 0; }
 }
 
 /* Campos de seleção e texto longo do formulário de contexto */

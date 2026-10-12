@@ -27,7 +27,7 @@
   function atualizar() {
     var c = valor(custo), p = valor(preco), k = Math.floor(valor(clientes));
     if (!c || !p) {
-      num.textContent = '—';
+      num.textContent = '';
       titulo.textContent = VAZIO.titulo;
       desc.textContent = VAZIO.desc;
       return;

@@ -12,10 +12,12 @@
   var stepLabel = form.querySelector('[data-passo-label]');
   var submitBtn = form.querySelector('button[type="submit"]');
 
+  var PASSOS = ['contato', 'projeto', 'desafio'];
+
   function goToStep(step) {
     panels.forEach(function (p) { p.classList.toggle('is-active', p.dataset.step === String(step)); });
     dots.forEach(function (d, i) { d.classList.toggle('is-on', i < step); });
-    stepLabel.textContent = step > 3 ? 'enviado' : 'passo ' + step + '/3';
+    stepLabel.textContent = step > 3 ? 'enviado' : 'passo ' + step + '/3 · ' + PASSOS[step - 1];
     var target = form.querySelector('.intake__panel.is-active').querySelector('input, select, textarea, .intake__chip, .intake__ok');
     if (target) target.focus({ preventScroll: true });
     form.scrollIntoView({ behavior: 'smooth', block: 'start' });
