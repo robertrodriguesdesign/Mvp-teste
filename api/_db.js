@@ -67,6 +67,27 @@ function ensureSchema() {
         chave TEXT NOT NULL,
         quando TEXT NOT NULL DEFAULT (datetime('now'))
       )`,
+      // Pré-Work do cliente: um por lead, aberto pelo link com o token.
+      // `respostas` guarda o JSON enviado; `envio_id` torna o envio idempotente
+      `CREATE TABLE IF NOT EXISTS pre_works (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        lead_id INTEGER NOT NULL UNIQUE,
+        token TEXT NOT NULL UNIQUE,
+        status TEXT NOT NULL DEFAULT 'pendente',
+        envio_id TEXT,
+        respostas TEXT,
+        created_at TEXT NOT NULL DEFAULT (datetime('now')),
+        enviado_at TEXT
+      )`,
+      // PDFs anexados no Pré-Work, presos ao pré-work que os recebeu
+      `CREATE TABLE IF NOT EXISTS pre_work_arquivos (
+        id TEXT PRIMARY KEY,
+        pre_work_id INTEGER NOT NULL,
+        nome TEXT NOT NULL,
+        tamanho INTEGER NOT NULL,
+        bytes BLOB NOT NULL,
+        created_at TEXT NOT NULL DEFAULT (datetime('now'))
+      )`,
     ], 'write').catch((err) => {
       // não deixa uma falha passageira presa no cache da instância
       ready = undefined;

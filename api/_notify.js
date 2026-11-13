@@ -32,9 +32,6 @@ function recipients() {
 // `saved` indica se o lead entrou no banco — quando não entrou, o e-mail é o
 // único registro e precisa dizer isso
 async function notifyLead(lead, { saved }) {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) throw new Error('RESEND_API_KEY não configurada');
-
   const rows = FIELDS.filter(([key]) => lead[key]);
   const warning = saved
     ? ''
@@ -59,7 +56,13 @@ async function notifyLead(lead, { saved }) {
     ${saved ? '<p style="font-family:sans-serif;font-size:14px"><a href="https://fihan.com.br/admin/leads">Ver no admin</a></p>' : ''}
   `;
 
-  const subject = `[Fihan] Novo lead · ${lead.nome}${lead.empresa ? ` · ${lead.empresa}` : ''}`.replace(/[\r\n]+/g, ' ');
+  const subject = `[Fihan] Novo lead · ${lead.nome}${lead.empresa ? ` · ${lead.empresa}` : ''}`;
+  await sendEmail({ subject, text, html, replyTo: lead.email });
+}
+
+async function sendEmail({ subject, text, html, replyTo }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) throw new Error('RESEND_API_KEY não configurada');
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -70,8 +73,8 @@ async function notifyLead(lead, { saved }) {
     body: JSON.stringify({
       from: process.env.LEAD_NOTIFY_FROM || DEFAULT_FROM,
       to: recipients(),
-      reply_to: lead.email,
-      subject,
+      reply_to: replyTo || undefined,
+      subject: subject.replace(/[\r\n]+/g, ' '),
       text,
       html,
     }),
@@ -84,4 +87,29 @@ async function notifyLead(lead, { saved }) {
   }
 }
 
-module.exports = { notifyLead };
+// aviso de Pré-Work recebido; `secoes` vem de resumir() em api/_prework.js
+async function notifyPreWork({ projeto, email, leadId, secoes }) {
+  const link = `https://fihan.com.br/admin/leads?lead=${leadId}`;
+  const text = [
+    ...secoes.map((s) => [`== ${s.titulo} ==`, ...s.itens.map((i) => `${i.rotulo}: ${i.valor}`)].join('\n')),
+    '',
+    `Ver no admin: ${link}`,
+  ].join('\n\n');
+
+  const html = `
+    ${secoes.map((s) => `
+      <h3 style="font-family:sans-serif;font-size:15px;margin:24px 0 8px">${escapeHtml(s.titulo)}</h3>
+      <table cellpadding="6" style="border-collapse:collapse;font-family:sans-serif;font-size:14px">
+        ${s.itens.map((i) => `
+          <tr>
+            <td style="vertical-align:top;color:#666;width:240px">${escapeHtml(i.rotulo)}</td>
+            <td style="white-space:pre-wrap">${escapeHtml(i.valor)}</td>
+          </tr>`).join('')}
+      </table>`).join('')}
+    <p style="font-family:sans-serif;font-size:14px"><a href="${link}">Ver no admin</a></p>
+  `;
+
+  await sendEmail({ subject: `[Fihan] Pré-Work recebido · ${projeto}`, text, html, replyTo: email });
+}
+
+module.exports = { notifyLead, notifyPreWork };

@@ -528,6 +528,20 @@ input, select, textarea { font-family: inherit; }
   white-space: pre-wrap;
 }
 
+/* ============ PRÉ-WORK NO DRAWER DO LEAD ============ */
+.admin-prework { display: flex; flex-direction: column; gap: 12px; padding-top: 16px; border-top: 1px solid var(--fihan-border-subtle); }
+.admin-prework__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.admin-prework__title { margin: 0; color: var(--fihan-text-secondary); font-size: 12px; font-weight: 400; text-transform: uppercase; letter-spacing: 0.5px; }
+.admin-prework__info { margin: 0; color: var(--fihan-text-secondary); font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; }
+.admin-prework__info:empty { display: none; }
+.admin-prework__respostas { display: flex; flex-direction: column; gap: 20px; }
+.admin-prework__secao h4 { margin: 0 0 8px; color: var(--fihan-text-primary); font-family: var(--fihan-family-sans); font-size: 15px; font-weight: 500; }
+.admin-prework__secao dl { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.admin-prework__secao dt { color: var(--fihan-text-secondary); font-size: 12px; line-height: 1.4; }
+.admin-prework__secao dd { margin: 2px 0 0; color: var(--fihan-text-primary); font-family: var(--fihan-family-golos); font-size: 15px; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+.admin-prework__arquivos { display: flex; flex-direction: column; gap: 6px; }
+.admin-prework__arquivos a { color: var(--fihan-icon-brand); font-size: 14px; word-break: break-all; }
+
 /* ============ RESPONSIVO ============ */
 @media (max-width: 1023px) {
   .admin-content { padding: 24px 24px 48px; }

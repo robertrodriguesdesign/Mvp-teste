@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#E6E6E6" />
+  <title>Pré-Work | FIHAN</title>
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/svg+xml" href="/images/brand/favicon.svg" />
+  <link rel="apple-touch-icon" href="/images/brand/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/css/fonts.css" />
+  <link rel="stylesheet" href="/css/institucional.css" />
+  <link rel="stylesheet" href="/css/pre-work.css" />
+</head>
+<body class="pw">
+  <main class="pw-layout">
+    <header class="pw-id">
+      <p class="pw-over">FIHAN&nbsp;&nbsp;/&nbsp;&nbsp;Imersão</p>
+      <h1 class="pw-display">Pré-Work</h1>
+      <p class="pw-texto pw-id__intro">Compartilhe o que já existe. Vamos usar esse material para preparar a reunião de imersão.</p>
+    </header>
+
+    <form class="pw-form" id="pre-work" novalidate>
+
+      <!-- Carregando o link -->
+      <section class="pw-etapa is-active" data-etapa="carregando" aria-busy="true">
+        <p class="pw-over">Carregando</p>
+        <p class="pw-texto">Abrindo o seu Pré-Work…</p>
+      </section>
+
+      <!-- Link inválido ou fora do ar -->
+      <section class="pw-etapa" data-etapa="invalido">
+        <p class="pw-over">Link indisponível</p>
+        <h2 class="pw-titulo" tabindex="-1" data-invalido-titulo>Não encontramos este Pré-Work</h2>
+        <p class="pw-texto" data-invalido-texto>Confira o link que a FIHAN enviou. Se o problema continuar, fale com a gente pelo <a href="https://wa.me/5527997289739">WhatsApp</a>.</p>
+        <div class="pw-nav" data-invalido-acao hidden>
+          <button class="pw-btn pw-btn--primario" type="button" data-recarregar>Tentar de novo</button>
+        </div>
+      </section>
+
+      <!-- 0 · Boas-vindas -->
+      <section class="pw-etapa" data-etapa="inicio">
+        <p class="pw-over">Antes da imersão</p>
+        <h2 class="pw-titulo" tabindex="-1">Boas-vindas ao Pré-Work</h2>
+        <p class="pw-texto">Vamos conhecer o que vocês já têm para preparar a reunião de imersão. São sete etapas curtas.</p>
+        <div class="pw-nav">
+          <button class="pw-btn pw-btn--primario" type="button" data-avancar>Começar <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+        </div>
+      </section>
+
+      <!-- 1 · Materiais existentes -->
+      <section class="pw-etapa" data-etapa="1">
+        <p class="pw-over">Etapa 1 de 7&nbsp;&nbsp;/&nbsp;&nbsp;Materiais existentes</p>
+        <h2 class="pw-titulo" tabindex="-1">Compartilhe os materiais do projeto</h2>
+        <p class="pw-texto">Exemplos: apresentações, pesquisas, protótipos, dados da operação, site e materiais de marca.</p>
+        <p class="pw-texto">Cole o link da pasta ou anexe um PDF.</p>
+
+        <div class="pw-grupo-erro" data-erro-de="materiais">
+          <div class="pw-campo">
+            <label for="pw-link-pasta">Link da pasta</label>
+            <input id="pw-link-pasta" type="url" inputmode="url" autocomplete="url" placeholder="https://" data-campo="materiais.link" data-link />
+          </div>
+          <div class="pw-anexo" data-anexo="materiais.arquivo" data-anexo-rotulo="Anexar PDF"></div>
+        </div>
+
+        <div class="pw-campo">
+          <label for="pw-comeco">Por onde devemos começar? (opcional)</label>
+          <input id="pw-comeco" type="text" data-campo="materiais.comeco" />
+        </div>
+
+        <div class="pw-nav">
+          <button class="pw-btn pw-btn--primario" type="button" data-avancar>Continuar <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+        </div>
+      </section>
+
+      <!-- 2 · Identificação -->
+      <section class="pw-etapa" data-etapa="2">
+        <p class="pw-over">Etapa 2 de 7&nbsp;&nbsp;/&nbsp;&nbsp;Identificação</p>
+        <h2 class="pw-titulo" tabindex="-1">Quem é responsável pelo projeto?</h2>
+        <p class="pw-texto">Confira os dados de contato do projeto.</p>
+
+        <div class="pw-campo">
+          <label for="pw-projeto">Nome do projeto</label>
+          <input id="pw-projeto" type="text" autocomplete="organization" data-campo="identificacao.projeto" />
+        </div>
+        <div class="pw-campo">
+          <label for="pw-nome">Nome do responsável</label>
+          <input id="pw-nome" type="text" autocomplete="name" data-campo="identificacao.nome" />
+        </div>
+        <div class="pw-campo">
+          <label for="pw-email">E-mail</label>
+          <input id="pw-email" type="email" autocomplete="email" data-campo="identificacao.email" />
+        </div>
+        <div class="pw-campo">
+          <label for="pw-whatsapp">WhatsApp ou telefone</label>
+          <input id="pw-whatsapp" type="tel" autocomplete="tel" data-campo="identificacao.whatsapp" />
+        </div>
+        <div class="pw-campo">
+          <label for="pw-cnpj">CNPJ (opcional)</label>
+          <input id="pw-cnpj" type="text" inputmode="numeric" data-campo="identificacao.cnpj" />
+        </div>
+
+        <div class="pw-nav">
+          <button class="pw-btn pw-btn--primario" type="button" data-avancar>Continuar <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+          <button class="pw-btn pw-btn--ghost" type="button" data-voltar>Voltar</button>
+        </div>
+      </section>
+
+      <!-- 3 · Estágio operacional -->
+      <section class="pw-etapa" data-etapa="3">
+        <p class="pw-over">Etapa 3 de 7&nbsp;&nbsp;/&nbsp;&nbsp;Estágio operacional</p>
+        <h2 class="pw-titulo" tabindex="-1">Em que estágio o projeto está hoje?</h2>
+
+        <fieldset class="pw-grupo" data-erro-de="estagio.estagio">
+          <legend class="pw-texto">Escolha uma opção para o estágio atual.</legend>
+          <div class="pw-opcoes" data-escolha="estagio.estagio" data-tipo="radio">
+            <span>Em preparação</span><span>Protótipo em teste</span><span>Piloto com usuários</span><span>Em operação sem receita</span><span>Em operação com receita</span>
+          </div>
+        </fieldset>
+
+        <fieldset class="pw-grupo" data-erro-de="estagio.dados">
+          <legend class="pw-texto">Quais dados vocês já acompanham? <span class="pw-legenda-dica">Selecione todas as opções que se aplicam.</span></legend>
+          <div class="pw-opcoes pw-opcoes--curtas" data-escolha="estagio.dados" data-tipo="checkbox" data-exclusiva="Ainda não medimos">
+            <span>Uso</span><span>Vendas</span><span>Faturamento</span><span>Ainda não medimos</span>
+          </div>
+        </fieldset>
+
+        <div class="pw-campo">
+          <label for="pw-link-dados">Link para os dados (opcional)</label>
+          <input id="pw-link-dados" type="url" inputmode="url" placeholder="https://" data-campo="estagio.link" data-link />
+        </div>
+
+        <div class="pw-nav">
+          <button class="pw-btn pw-btn--primario" type="button" data-avancar>Continuar <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+          <button class="pw-btn pw-btn--ghost" type="button" data-voltar>Voltar</button>
+        </div>
+      </section>
+
+      <!-- 4 · Equipe e estrutura -->
+      <section class="pw-etapa" data-etapa="4">
+        <p class="pw-over">Etapa 4 de 7&nbsp;&nbsp;/&nbsp;&nbsp;Equipe e estrutura</p>
+        <h2 class="pw-titulo" tabindex="-1">Quem trabalha no projeto hoje?</h2>
+
+        <fieldset class="pw-grupo" data-erro-de="equipe.opcoes">
+          <legend class="pw-texto">Selecione todas as opções que se aplicam.</legend>
+          <div class="pw-opcoes" data-escolha="equipe.opcoes" data-tipo="checkbox" data-exclusiva="Atuo sozinho">
+            <span>Sócios</span><span>Equipe própria</span><span>Prestadores recorrentes</span><span>Parceiros</span><span>Atuo sozinho</span>
+          </div>
+        </fieldset>
+
+        <div class="pw-campo">
+          <label for="pw-equipe-complemento">Papéis e quem aprova as decisões (opcional)</label>
+          <input id="pw-equipe-complemento" type="text" data-campo="equipe.complemento" />
+        </div>
+
+        <div class="pw-nav">
+          <button class="pw-btn pw-btn--primario" type="button" data-avancar>Continuar <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+          <button class="pw-btn pw-btn--ghost" type="button" data-voltar>Voltar</button>
+        </div>
+      </section>
+
+      <!-- 5 · Histórico -->
+      <section class="pw-etapa" data-etapa="5">
+        <p class="pw-over">Etapa 5 de 7&nbsp;&nbsp;/&nbsp;&nbsp;Histórico</p>
+        <h2 class="pw-titulo" tabindex="-1">O que já aconteceu neste projeto?</h2>
+
+        <fieldset class="pw-grupo" data-erro-de="historico.opcoes">
+          <legend class="pw-texto">Selecione todas as opções que se aplicam. Se houver um registro, indique onde encontrá-lo.</legend>
+          <div class="pw-opcoes" data-escolha="historico.opcoes" data-tipo="checkbox" data-exclusiva="Nenhum destes">
+            <span>Pesquisa com clientes</span><span>Teste ou piloto</span><span>Lançamento</span><span>Mudança de direção</span><span>Investimento próprio</span><span>Captação</span><span>Participação em programa</span><span>Nenhum destes</span>
+          </div>
+        </fieldset>
+
+        <div class="pw-campo">
+          <label for="pw-historico-complemento">Link ou resultado registrado (opcional)</label>
+          <input id="pw-historico-complemento" type="text" data-campo="historico.complemento" />
+        </div>
+
+        <div class="pw-nav">
+          <button class="pw-btn pw-btn--primario" type="button" data-avancar>Continuar <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+          <button class="pw-btn pw-btn--ghost" type="button" data-voltar>Voltar</button>
+        </div>
+      </section>
+
+      <!-- 6A · Sobre a marca: o que já existe -->
+      <section class="pw-etapa" data-etapa="6a">
+        <p class="pw-over">Etapa 6 de 7&nbsp;&nbsp;/&nbsp;&nbsp;Sobre a marca</p>
+        <h2 class="pw-titulo" tabindex="-1">O que vocês já têm sobre a marca?</h2>
+        <p class="pw-texto">Escolha uma opção por pergunta.</p>
+
+        <fieldset class="pw-grupo" data-erro-de="marca.identidade">
+          <legend class="pw-pergunta">Vocês já têm uma identidade visual?</legend>
+          <div class="pw-opcoes pw-opcoes--lista" data-escolha="marca.identidade" data-tipo="radio">
+            <span>Sim, está em uso</span><span>Está em desenvolvimento</span><span>Ainda não</span><span>Não sei informar</span>
+          </div>
+        </fieldset>
+        <div data-vinculo="identidade"></div>
+
+        <fieldset class="pw-grupo" data-erro-de="marca.estrategia">
+          <legend class="pw-pergunta">Vocês já têm uma estratégia de marca documentada? <span class="pw-legenda-dica pw-legenda-dica--mono">Exemplos: posicionamento, diferenciais ou propósito.</span></legend>
+          <div class="pw-opcoes pw-opcoes--lista" data-escolha="marca.estrategia" data-tipo="radio">
+            <span>Sim</span><span>Em parte</span><span>Ainda não</span><span>Não sei informar</span>
+          </div>
+        </fieldset>
+        <div data-vinculo="estrategia"></div>
+
+        <div class="pw-nav">
+          <button class="pw-btn pw-btn--primario" type="button" data-avancar>Continuar <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+          <button class="pw-btn pw-btn--ghost" type="button" data-voltar>Voltar</button>
+        </div>
+      </section>
+
+      <!-- 6B · Perguntas de marca (montadas por js/pre-work.js) -->
+      <section class="pw-etapa" data-etapa="6b">
+        <p class="pw-over">Etapa 6 de 7&nbsp;&nbsp;/&nbsp;&nbsp;Sobre a marca</p>
+        <h2 class="pw-titulo" tabindex="-1">Conte um pouco sobre a marca</h2>
+        <p class="pw-texto">Responda com base no que já existe ou no que vocês planejam. Se algo ainda estiver em definição, diga isso. Você também pode indicar o material e a página.</p>
+
+        <ol class="pw-perguntas" data-perguntas></ol>
+
+        <div class="pw-nav">
+          <button class="pw-btn pw-btn--primario" type="button" data-avancar>Continuar <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+          <button class="pw-btn pw-btn--ghost" type="button" data-voltar>Voltar</button>
+        </div>
+      </section>
+
+      <!-- 7 · Concorrentes conhecidos -->
+      <section class="pw-etapa" data-etapa="7">
+        <p class="pw-over">Etapa 7 de 7&nbsp;&nbsp;/&nbsp;&nbsp;Concorrentes conhecidos</p>
+        <h2 class="pw-titulo" tabindex="-1">Compartilhe aqui quem são seus principais concorrentes.</h2>
+        <p class="pw-texto">Pode ser uma empresa, um produto ou outra forma de resolver a mesma necessidade.</p>
+
+        <div class="pw-grupo-erro" data-erro-de="concorrentes">
+          <fieldset class="pw-concorrentes" data-concorrentes>
+            <legend class="pw-sr">Concorrentes</legend>
+            <div class="pw-concorrentes__lista" data-concorrentes-lista></div>
+            <button class="pw-btn pw-btn--secundario pw-btn--auto" type="button" data-concorrente-adicionar>Adicionar outra alternativa</button>
+          </fieldset>
+          <div class="pw-opcoes pw-opcoes--curtas" data-escolha="concorrentes.nenhum" data-tipo="checkbox" data-sozinha>
+            <span>Ainda não identificamos</span>
+          </div>
+        </div>
+
+        <div class="pw-nav">
+          <button class="pw-btn pw-btn--primario" type="submit" data-enviar><span data-enviar-rotulo>Enviar Pré-Work</span> <img src="/images/institucional/arrow-right.svg" alt="" /></button>
+          <button class="pw-btn pw-btn--ghost" type="button" data-voltar>Voltar</button>
+        </div>
+        <p class="pw-erro pw-erro--envio" data-erro-envio role="alert" hidden></p>
+      </section>
+
+      <!-- Confirmação -->
+      <section class="pw-etapa" data-etapa="ok">
+        <p class="pw-over">Envio concluído</p>
+        <h2 class="pw-titulo" tabindex="-1">Recebemos seu Pré-Work</h2>
+        <p class="pw-texto">Vamos analisar o material para preparar a reunião de imersão.</p>
+      </section>
+
+      <p class="pw-sr" aria-live="polite" data-anuncio></p>
+    </form>
+  </main>
+
+  <script src="/js/pre-work.js" defer></script>
+</body>
+</html>

@@ -73,6 +73,11 @@
       leadsById = new Map(leads.map((l) => [l.id, l]));
       page = 1;
       applyClientFilters();
+      const pedido = Number(new URLSearchParams(window.location.search).get('lead'));
+      if (pedido && leadsById.has(pedido)) {
+        openDrawer(leadsById.get(pedido));
+        window.history.replaceState(null, '', window.location.pathname);
+      }
     } catch (err) {
       console.error('falha ao carregar leads:', err);
       leadsBody.innerHTML = '';
@@ -111,6 +116,12 @@
     return div.innerHTML;
   }
 
+  function preWorkBadge(status) {
+    if (status === 'enviado') return ' <span class="admin-badge admin-badge--positive">Pré-Work</span>';
+    if (status === 'pendente') return ' <span class="admin-badge admin-badge--neutral">Pré-Work pendente</span>';
+    return '';
+  }
+
   function renderTable() {
     leadsBody.innerHTML = '';
     if (!filtered.length) {
@@ -142,7 +153,7 @@
           <span title="${escapeHtml(lead.email)}">${escapeHtml(lead.email)}</span>
           <span class="is-subtle" title="${escapeHtml(lead.whatsapp || '')}">${escapeHtml(lead.whatsapp || '—')}</span>
         </div>
-        <span>${lead.estagio ? `<span class="admin-badge admin-badge--neutral">${escapeHtml(lead.estagio)}</span>` : '—'}</span>
+        <span>${lead.estagio ? `<span class="admin-badge admin-badge--neutral">${escapeHtml(lead.estagio)}</span>` : '—'}${preWorkBadge(lead.pre_work)}</span>
         <span>${formatDate(lead.created_at)}</span>
         <button type="button" class="admin-row__detail" data-lead-id="${lead.id}">
           Detalhes
@@ -208,7 +219,109 @@
 
     drawer.classList.add('is-open');
     drawer.setAttribute('aria-hidden', 'false');
+    loadPreWork(lead.id);
   }
+
+  // ---- Pré-Work do lead: gerar o link, copiar e ver as respostas ----
+  const pw = {
+    status: drawer.querySelector('[data-prework-status]'),
+    info: drawer.querySelector('[data-prework-info]'),
+    gerar: drawer.querySelector('[data-prework-gerar]'),
+    copiar: drawer.querySelector('[data-prework-copiar]'),
+    abrir: drawer.querySelector('[data-prework-abrir]'),
+    respostas: drawer.querySelector('[data-prework-respostas]'),
+  };
+  let pwLeadId = null;
+  let pwUrl = '';
+
+  function formatDateTime(value) {
+    return value ? new Date(`${value.replace(' ', 'T')}Z`).toLocaleString('pt-BR') : '';
+  }
+
+  function renderPreWork(item) {
+    pwUrl = item ? item.url : '';
+    pw.gerar.hidden = Boolean(item);
+    pw.gerar.disabled = false;
+    pw.copiar.hidden = !item || item.status === 'enviado';
+    pw.copiar.textContent = 'Copiar link';
+    pw.abrir.hidden = !item || item.status === 'enviado';
+    pw.abrir.href = pwUrl || '#';
+    pw.respostas.innerHTML = '';
+
+    if (!item) {
+      pw.status.innerHTML = '';
+      pw.info.textContent = 'Gere o link e envie ao cliente. As respostas e os PDFs ficam ligados a este lead.';
+      return;
+    }
+    if (item.status !== 'enviado') {
+      pw.status.innerHTML = '<span class="admin-badge admin-badge--neutral">Aguardando o cliente</span>';
+      pw.info.textContent = pwUrl;
+      return;
+    }
+
+    pw.status.innerHTML = '<span class="admin-badge admin-badge--positive">Recebido</span>';
+    pw.info.textContent = `Enviado em ${formatDateTime(item.enviado_at)}. As respostas são declaradas pelo cliente e servem de insumo para a Descoberta.`;
+    const arquivos = (item.arquivos || []).map((a) =>
+      `<a href="/api/pre-work?arquivo=${encodeURIComponent(a.id)}" target="_blank" rel="noopener">${escapeHtml(a.nome)}</a>`).join('');
+    pw.respostas.innerHTML = (arquivos ? `<div class="admin-prework__secao"><h4>PDFs anexados</h4><div class="admin-prework__arquivos">${arquivos}</div></div>` : '') +
+      (item.secoes || []).filter((s) => s.itens.length).map((s) => `
+        <div class="admin-prework__secao">
+          <h4>${escapeHtml(s.titulo)}</h4>
+          <dl>${s.itens.map((i) => `<div><dt>${escapeHtml(i.rotulo)}</dt><dd>${escapeHtml(i.valor)}</dd></div>`).join('')}</dl>
+        </div>`).join('');
+  }
+
+  async function preWorkRequest(url, options) {
+    const res = await fetch(url, options);
+    if (res.status === 401) { window.location.href = '/admin/login'; throw new Error('não autenticado'); }
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `status ${res.status}`);
+    return data;
+  }
+
+  async function loadPreWork(leadId) {
+    pwLeadId = leadId;
+    pw.status.innerHTML = '';
+    pw.info.textContent = 'Carregando…';
+    pw.gerar.hidden = true;
+    pw.copiar.hidden = true;
+    pw.abrir.hidden = true;
+    pw.respostas.innerHTML = '';
+    try {
+      const { preWork } = await preWorkRequest(`/api/pre-work?lead=${leadId}`);
+      if (pwLeadId === leadId) renderPreWork(preWork);
+    } catch (err) {
+      console.error('falha ao carregar o pré-work:', err);
+      if (pwLeadId === leadId) pw.info.textContent = 'Não foi possível carregar o Pré-Work agora.';
+    }
+  }
+
+  pw.gerar.addEventListener('click', async () => {
+    const leadId = pwLeadId;
+    pw.gerar.disabled = true;
+    try {
+      const { preWork } = await preWorkRequest('/api/pre-work', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ acao: 'gerar', leadId }),
+      });
+      const lead = leadsById.get(leadId);
+      if (lead) { lead.pre_work = preWork.status; renderTable(); }
+      if (pwLeadId === leadId) renderPreWork(preWork);
+    } catch (err) {
+      pw.gerar.disabled = false;
+      pw.info.textContent = 'Não foi possível gerar o link agora. Tente de novo.';
+    }
+  });
+
+  pw.copiar.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(pwUrl);
+      pw.copiar.textContent = 'Link copiado';
+    } catch {
+      pw.copiar.textContent = 'Copie o link acima';
+    }
+  });
   function closeDrawer() {
     drawer.classList.remove('is-open');
     drawer.setAttribute('aria-hidden', 'true');

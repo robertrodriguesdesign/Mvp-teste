@@ -8,6 +8,10 @@
       "destination": "/call/index"
     },
     {
+      "source": "/pre-work/:token",
+      "destination": "/pre-work/index"
+    },
+    {
       "source": "/trabalhos/:slug",
       "destination": "/api/site?pagina=projeto&slug=:slug"
     },

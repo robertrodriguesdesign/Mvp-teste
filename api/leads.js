@@ -9,16 +9,19 @@ module.exports = async (req, res) => {
   const { from, to } = req.query || {};
   const clauses = [];
   const args = [];
-  if (from) { clauses.push('date(created_at) >= ?'); args.push(String(from)); }
-  if (to) { clauses.push('date(created_at) <= ?'); args.push(String(to)); }
+  if (from) { clauses.push('date(l.created_at) >= ?'); args.push(String(from)); }
+  if (to) { clauses.push('date(l.created_at) <= ?'); args.push(String(to)); }
   const where = clauses.length ? `WHERE ${clauses.join(' AND ')}` : '';
 
   try {
     await ensureSchema();
     const rs = await getClient().execute({
-      sql: `SELECT id, created_at, nome, email, whatsapp, empresa, estagio, eixos, investimento, urgencia, mensagem
-            FROM leads ${where}
-            ORDER BY created_at DESC`,
+      // pre_work: status do Pré-Work do lead (pendente, enviado ou null)
+      sql: `SELECT l.id, l.created_at, l.nome, l.email, l.whatsapp, l.empresa, l.estagio, l.eixos,
+                   l.investimento, l.urgencia, l.mensagem, p.status AS pre_work
+            FROM leads l LEFT JOIN pre_works p ON p.lead_id = l.id
+            ${where}
+            ORDER BY l.created_at DESC`,
       args,
     });
     res.status(200).json({ leads: rs.rows });
