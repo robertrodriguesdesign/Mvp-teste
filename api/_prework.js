@@ -18,16 +18,16 @@ const VINCULOS = {
 };
 
 const PERGUNTAS = [
-  ['q1', 'Qual é o propósito da empresa?'],
-  ['q2', 'Quais perfis de clientes a empresa atende hoje?'],
-  ['q3', 'Por que vocês escolheram o nome informado na etapa 2?'],
-  ['q4', 'Quando a empresa foi fundada e quais marcos ajudam a contar sua história?'],
-  ['q5', 'Como vocês se comunicam com esses clientes hoje? Quais canais usam?'],
-  ['q6', 'Quais exemplos recentes mostram como vocês se comunicam?'],
-  ['q7', 'Quais são os principais desafios da empresa no cenário em que atua?'],
-  ['q8', 'Qual é a principal meta da empresa no curto, médio e longo prazo?'],
-  ['q9', 'O que vocês esperam que este projeto ajude a resolver?'],
-  ['q10', 'Quais marcas inspiram vocês e o que podemos aprender com elas?'],
+  ['q1', 'Qual o propósito da sua empresa?'],
+  ['q2', 'Quais perfis de clientes vocês atendem ou pretendem atender?'],
+  ['q3', 'Qual é o nome da empresa? E por que escolheram este nome? Se ainda estiver em definição, o que orienta a escolha?'],
+  ['q4', 'Como surgiu a ideia da empresa? Se ela já foi fundada, quando foi e quais foram os principais marcos até aqui?'],
+  ['q5', 'Como vocês se comunicam ou pretendem se comunicar com esses clientes? Quais canais usam ou planejam usar?'],
+  ['q6', 'Se houver, compartilhem exemplos de comunicação já publicados ou em preparação ou benchmarks.'],
+  ['q7', 'Quais são os principais desafios no mercado em que vocês atuam ou pretendem atuar?'],
+  ['q8', 'Qual é a principal meta da empresa para o curto, médio e longo prazo?'],
+  ['q9', 'Pensando na sua Marca, no seu Negócio e na sua Comunicação, o que você gostaria de manter, perder ou ganhar durante a execução deste projeto?'],
+  ['q10', 'Benchmarks: Compartilhe aqui quais são marcas que inspiram seu negócio e com quem podemos aprender.'],
 ];
 // os exemplos de comunicação ficam opcionais quando não houver exemplos
 const PERGUNTAS_OPCIONAIS = ['q6'];
@@ -277,7 +277,7 @@ function resumir(d) {
       ['Onde está a estratégia', descreverVinculo(d.marca.vinculos.estrategia, d.materiais)],
     ]),
     secao('6 · Perguntas de marca (respostas declaradas, insumo da Descoberta)', PERGUNTAS.map(([chave, texto], n) => [
-      `${n + 1}. ${chave === 'q3' && d.identificacao.projeto ? `Por que vocês escolheram o nome “${d.identificacao.projeto}”?` : texto}`,
+      `${n + 1}. ${texto}`,
       descreverPergunta(chave, d.perguntas[chave]),
     ])),
     secao('7 · Concorrentes conhecidos', [

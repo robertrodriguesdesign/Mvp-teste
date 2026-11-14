@@ -20,23 +20,16 @@
   };
 
   var PERGUNTAS = [
-    { chave: 'q1', texto: 'Qual é o propósito da empresa?' },
-    { chave: 'q2', texto: 'Quais perfis de clientes a empresa atende hoje?' },
-    {
-      chave: 'q3',
-      texto: function () {
-        var nome = estado.identificacao.projeto.trim();
-        return nome ? 'Por que vocês escolheram o nome “' + nome + '”?' : 'Por que vocês escolheram o nome informado na etapa 2?';
-      },
-      dica: 'Conte o motivo da escolha.'
-    },
-    { chave: 'q4', texto: 'Quando a empresa foi fundada e quais marcos ajudam a contar sua história?', dica: 'A data pode ser aproximada.' },
-    { chave: 'q5', texto: 'Como vocês se comunicam com esses clientes hoje? Quais canais usam?' },
-    { chave: 'q6', texto: 'Quais exemplos recentes mostram como vocês se comunicam?', dica: 'Indique links ou referências. Se ainda não houver exemplos, deixe em branco.', opcional: true },
-    { chave: 'q7', texto: 'Quais são os principais desafios da empresa no cenário em que atua?' },
-    { chave: 'q8', texto: 'Qual é a principal meta da empresa no curto, médio e longo prazo?', metas: true },
-    { chave: 'q9', texto: 'O que vocês esperam que este projeto ajude a resolver?' },
-    { chave: 'q10', texto: 'Quais marcas inspiram vocês e o que podemos aprender com elas?' }
+    { chave: 'q1', texto: 'Qual o propósito da sua empresa?' },
+    { chave: 'q2', texto: 'Quais perfis de clientes vocês atendem ou pretendem atender?' },
+    { chave: 'q3', texto: 'Qual é o nome da empresa? E por que escolheram este nome? Se ainda estiver em definição, o que orienta a escolha?' },
+    { chave: 'q4', texto: 'Como surgiu a ideia da empresa? Se ela já foi fundada, quando foi e quais foram os principais marcos até aqui?', dica: 'A data pode ser aproximada.' },
+    { chave: 'q5', texto: 'Como vocês se comunicam ou pretendem se comunicar com esses clientes? Quais canais usam ou planejam usar?' },
+    { chave: 'q6', texto: 'Se houver, compartilhem exemplos de comunicação já publicados ou em preparação ou benchmarks.', dica: 'Indique links ou referências. Se ainda não houver exemplos, deixe em branco.', opcional: true },
+    { chave: 'q7', texto: 'Quais são os principais desafios no mercado em que vocês atuam ou pretendem atuar?' },
+    { chave: 'q8', texto: 'Qual é a principal meta da empresa para o curto, médio e longo prazo?', metas: true },
+    { chave: 'q9', texto: 'Pensando na sua Marca, no seu Negócio e na sua Comunicação, o que você gostaria de manter, perder ou ganhar durante a execução deste projeto?' },
+    { chave: 'q10', texto: 'Benchmarks: Compartilhe aqui quais são marcas que inspiram seu negócio e com quem podemos aprender.' }
   ];
 
   var match = location.pathname.match(/^\/pre-work\/([A-Za-z0-9_-]{20,64})\/?$/);
@@ -670,7 +663,6 @@
       if (r.emMaterial && materiais.length && r.material && materiais.indexOf(r.material) === -1) r.material = '';
       var base = 'perguntas.' + p.chave;
       var id = 'pw-' + p.chave;
-      var texto = typeof p.texto === 'function' ? p.texto() : p.texto;
       var dica = p.dica ? '<p class="pw-legenda-dica" id="' + id + '-dica">' + esc(p.dica) + '</p>' : '';
       var descr = p.dica ? ' aria-describedby="' + id + '-dica"' : '';
 
@@ -684,8 +676,8 @@
         : '<textarea id="' + id + '" rows="2" placeholder="' + (p.opcional ? 'Links ou referências' : 'Resposta ou referência ao material') + '" data-campo="' + base + '.texto"' + descr + '></textarea>';
 
       var titulo = p.metas
-        ? '<p class="pw-pergunta" id="' + id + '-titulo">' + (n + 1) + '. ' + esc(texto) + '</p>'
-        : '<label class="pw-pergunta" for="' + id + '">' + (n + 1) + '. ' + esc(texto) + (p.opcional ? ' (opcional)' : '') + '</label>';
+        ? '<p class="pw-pergunta" id="' + id + '-titulo">' + (n + 1) + '. ' + esc(p.texto) + '</p>'
+        : '<label class="pw-pergunta" for="' + id + '">' + (n + 1) + '. ' + esc(p.texto) + (p.opcional ? ' (opcional)' : '') + '</label>';
 
       var material = materiais.length
         ? '<div class="pw-campo"><label for="' + id + '-material">Qual material?</label>' +
