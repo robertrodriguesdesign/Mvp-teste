@@ -15,6 +15,12 @@ Contato: wellington@fihan.com.br · WhatsApp +55 27 99728-9739
 - [Eixo Dev](https://fihan.com.br/eixo-dev): responde como a ideia passa a operar de fato. Três Fases e seis Componentes, da Tradução à Operação, até a Solução Operando com monetização integrada.
 - [Os quatro Vértices](https://fihan.com.br/vertices): os pontos de decisão do Protocolo e o que cada um atesta.
 
+## O que a FIHAN entrega
+
+- Eixo de Negócio: modelo de negócio, pesquisa de mercado, validação com clientes e viabilidade financeira.
+- Eixo de Marca: naming, branding, identidade visual completa, tom de voz e comunicação.
+- Eixo Dev: UI/UX, landing page, WebApp e aplicativo Android.
+
 ## Fomento à inovação
 
 - [Fomento](https://fihan.com.br/fomento): o que é fomento público à inovação e como funcionam cinco instrumentos (EMBRAPII, FINEP Subvenção, Tecnova, Centelha e PIPE FAPESP), como cada um abre e quanto tempo leva entre a submissão e o recurso.

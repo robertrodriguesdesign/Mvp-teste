@@ -370,6 +370,141 @@ body.nav-menu-open { overflow: hidden; }
   .statement__inner { padding: 24px var(--fihan-viewport-margin); }
 }
 
+/* ============ ENTREGAS ============ */
+/* tradução do Protocolo para os nomes que o cliente já procura
+   (UI/UX, landing page, naming...), agrupados pelo Eixo de origem */
+.deliverables {
+  width: 100%;
+  padding: 140px var(--fihan-viewport-margin);
+  overflow: hidden;
+  background: var(--fihan-surface-raised);
+  border-bottom: 0.5px solid var(--fihan-accent-border);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 64px;
+}
+
+.deliverables__head {
+  align-self: stretch;
+  padding-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px 80px;
+}
+
+.deliverables__heading {
+  flex: 1 1 480px;
+  margin: 0;
+  color: var(--fihan-text-primary);
+  font-family: var(--fihan-family-sans);
+  font-weight: var(--fihan-weight-regular);
+  font-size: clamp(1.75rem, 3.2vw, 48px);
+  line-height: 1.083;
+}
+
+.deliverables__lede {
+  flex: 0 1 420px;
+  margin: 0;
+  color: var(--fihan-text-secondary);
+  font-family: var(--fihan-family-golos);
+  font-weight: var(--fihan-weight-regular);
+  font-size: 19px;
+  line-height: 28px;
+}
+
+.deliverables__label-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.deliverables__marker {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  background: var(--fihan-accent-marker);
+}
+.deliverables__label {
+  margin: 0;
+  color: var(--fihan-text-primary);
+  font-family: var(--fihan-family-mono);
+  font-weight: var(--fihan-weight-medium);
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.65px;
+  text-transform: uppercase;
+}
+
+.deliverables__grid {
+  align-self: stretch;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.deliverable-group {
+  flex: 1 1 280px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.deliverable-group__axis {
+  margin: 0;
+  color: var(--fihan-text-subtle);
+  font-family: var(--fihan-family-mono);
+  font-weight: var(--fihan-weight-medium);
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.65px;
+  text-transform: uppercase;
+}
+
+.deliverable-group__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 0.5px solid var(--fihan-border-subtle);
+}
+
+.deliverable-item {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 20px 0;
+  border-top: 0.5px solid var(--fihan-border-subtle);
+  color: var(--fihan-text-primary);
+  font-family: var(--fihan-family-sans);
+  font-weight: var(--fihan-weight-regular);
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1.214;
+}
+
+.deliverable-item__index {
+  flex-shrink: 0;
+  min-width: 2ch;
+  color: var(--fihan-text-subtle);
+  font-family: var(--fihan-family-mono);
+  font-weight: var(--fihan-weight-regular);
+  font-size: var(--fihan-size-technical-default);
+  line-height: var(--fihan-line-technical-default);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 1023px) {
+  .deliverables { padding-top: 96px; padding-bottom: 96px; }
+}
+@media (max-width: 699px) {
+  .deliverables { padding-top: 64px; padding-bottom: 64px; gap: 48px; }
+  .deliverables__grid { gap: 48px; }
+  .deliverable-group { min-width: 0; flex-basis: 100%; }
+  .deliverable-item { padding: 16px 0; }
+}
+
 /* ============ EIXOS ============ */
 .eixos {
   width: 100%;
